@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "module": "esnext",
+    "target": "es5",
+    "jsx": "react",
+    "lib": ["es2018", "dom"],
+    "moduleResolution": "node",
+    "strict": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "baseUrl": "./",
+    "paths": {
+      "src/*": ["src/*"],
+      "components/*": ["src/components/*"],
+      "containers/*": ["src/containers/*"],
+      "actions/*": ["src/actions/*"],
+      "reducers/*": ["src/reducers/*"],
+      "sagas/*": ["src/sagas/*"],
+      "services/*": ["src/services/*"],
+      "styles/*": ["src/styles/*"],
+    }
+  },
+  "include": ["./src/**/*", "./types/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
