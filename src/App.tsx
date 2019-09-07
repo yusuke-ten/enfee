@@ -17,9 +17,20 @@ const HomeComponent: FC = () => (
   </>
 );
 
+const StyleComponent: FC<{ primary: boolean }> = props => {
+  console.log(props);
+
+  return (
+    <>
+      <div>sytled components</div>
+    </>
+  );
+};
+
 const App: FC = () => (
   <Layout title="todo app">
     <h1>Hello, World</h1>
+    <StyleComponent primary />
     <nav>
       <StyledNavLink to="/test">Test</StyledNavLink>
       <StyledNavLink to="/todo">Todo</StyledNavLink>

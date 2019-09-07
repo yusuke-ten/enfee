@@ -16,6 +16,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "baseUrl": "./",
+    "typeRoots": [
+      "node_modules/@types",
+      "types"
+    ],
     "paths": {
       "src/*": ["src/*"],
       "components/*": ["src/components/*"],
@@ -24,7 +28,7 @@
       "reducers/*": ["src/reducers/*"],
       "sagas/*": ["src/sagas/*"],
       "services/*": ["src/services/*"],
-      "styles/*": ["src/styles/*"],
+      "styles/*": ["src/styles/*"]
     }
   },
   "include": ["./src/**/*", "./types/**/*"],

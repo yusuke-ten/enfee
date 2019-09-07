@@ -38,7 +38,7 @@ const Todo: FC<TodoProps> = ({
 };
 
 const Container = styled.div`
-  margin: 20px 20px;
+  /* margin: 20px 20px; */
 `;
 
 export default Todo;

@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "Hiroaki Aoba",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.js --open",
+    "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "precommit": "lint-staged",
     "lint": "eslint --ext ./ 'src/**/*.{js,jsx,ts,tsx}'; stylelint 'src/**/*.css'",
@@ -76,6 +76,7 @@
     "stylelint-order": "^3.0.0",
     "thread-loader": "^2.1.n2",
     "ts-loader": "^5.3.3",
+    "typescript-plugin-styled-components": "^1.4.3",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",

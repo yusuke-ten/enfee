@@ -26,6 +26,7 @@ module.exports = {
             loader: 'ts-loader',
             options: {
               happyPackMode: true,
+              getCustomTransformers: path.join(__dirname, './webpack.ts-transformers.js')
             },
           },
         ],
