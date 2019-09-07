@@ -15,8 +15,10 @@ const TodoContainer: FC = () => {
   const dispatch = useDispatch();
 
   const handleAddTodo = () => {
-    dispatch(actionCreators.addTodo(value));
-    setValue('');
+    if (value !== '') {
+      dispatch(actionCreators.addTodo(value));
+      setValue('');
+    }
   };
 
   const handleDeleteTodo = (id: number) => {

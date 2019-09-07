@@ -5,6 +5,6 @@ export interface ApplicationState {
   todo: TodoState;
 }
 
-export default combineReducers<ApplicationState>({
+export default combineReducers({
   todo,
 });
