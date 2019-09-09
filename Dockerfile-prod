@@ -1,0 +1,23 @@
+# build environment
+FROM node:12.2.0-alpine as build
+WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json /app/package.json
+RUN yarn install --silent
+COPY . /app
+RUN yarn build
+
+# production environment
+# FROM nginx:1.16.0-alpine
+# COPY --from=build /app/build /usr/share/nginx/html
+# EXPOSE 80
+# CMD ["nginx", "-g", "daemon off;"]
+
+FROM node:12.2.0-alpine
+RUN mkdir /frontend-app
+WORKDIR /frontend-app
+RUN yarn add koa koa-static koa-ejs koa-router
+COPY --from=build /app/dist /frontend-app/dist
+COPY ./server/index.js /frontend-app/server/
+
+CMD ["node", "./server"]
