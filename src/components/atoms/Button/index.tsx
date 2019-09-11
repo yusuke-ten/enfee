@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import Color from '../../../const/Color';
+import { Color, Size } from '../../../const';
 
 type ColorType = 'primary' | 'secondary' | 'twitter';
 type SizeType = 'small' | 'midium' | 'large';
@@ -44,11 +44,11 @@ const getColor = (color: ColorType = 'primary') => {
 const getShape = (shape: ShapeType = 'rect') => {
   switch (shape) {
     case 'rect':
-      return 3;
+      return Size.BORDER_RADIUS.RECT;
     case 'oval':
-      return 30;
+      return Size.BORDER_RADIUS.OVAL;
     default:
-      return 3;
+      return Size.BORDER_RADIUS.OVAL;
   }
 };
 
@@ -83,7 +83,7 @@ type ButtonProps = Required<Omit<Props, 'children'>>;
 
 const StyledButton = styled.button<ButtonProps>`
   ${({ color, inversion }) => getColorStyle(color, inversion)}
-  font-size: 12px;
+  font-size: ${Size.FONT.BASE}px;
   padding: 6px 15px;
   border-radius: ${({ shape }) => getShape(shape)}px;
   letter-spacing: 1.28px;
