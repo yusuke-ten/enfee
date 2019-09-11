@@ -56,10 +56,14 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts',  '.js', '.jsx'],
     alias: {
-      '@': path.join(__dirname, '/src'),
+      'src': path.resolve(__dirname, './src/'),
+      'components': path.resolve(__dirname, './src/components/'),
+      'containers': path.resolve(__dirname, './src/containers/'),
+      'atoms': path.resolve(__dirname, './src/components/atoms/'),
+      'const': path.resolve(__dirname, './src/const/'),
     },
+    extensions: ['.tsx', '.ts',  '.js', '.jsx'],
   },
   plugins: [
     new ExtractTextPlugin({

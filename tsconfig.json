@@ -24,11 +24,8 @@
       "src/*": ["src/*"],
       "components/*": ["src/components/*"],
       "containers/*": ["src/containers/*"],
-      "actions/*": ["src/actions/*"],
-      "reducers/*": ["src/reducers/*"],
-      "sagas/*": ["src/sagas/*"],
-      "services/*": ["src/services/*"],
-      "styles/*": ["src/styles/*"]
+      "atoms/*": ["src/components/atoms/*"],
+      "const/*": ["src/const/*"]
     }
   },
   "include": ["./src/**/*", "./types/**/*"],
