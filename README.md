@@ -1,9 +1,17 @@
 ## 概要
 
-React,Redux,Typescriptのボイラープレート
+テスト
 
-## 導入
 
-- styled-components
-- redux-saga
-- storybook
+#### development
+
+```
+yarn install
+yarn start
+```
+
+#### storybook
+
+```
+yarn storybook
+```
