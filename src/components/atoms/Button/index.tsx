@@ -10,7 +10,7 @@ interface Props {
   color?: ColorType;
   size?: SizeType;
   shape?: ShapeType;
-  inversion?: boolean;
+  reverse?: boolean;
   children: React.ReactNode;
 }
 
@@ -19,12 +19,10 @@ const Button: React.FC<Props> = ({
   color = 'primary',
   size = 'midium',
   shape = 'rect',
-  inversion = false,
+  reverse = false,
 }) => (
   <>
-    <StyledButton color={color} size={size} shape={shape} inversion={inversion}>
-      {children}
-    </StyledButton>
+    <StyledButton {...{ color, size, shape, reverse }}>{children}</StyledButton>
   </>
 );
 
@@ -52,10 +50,10 @@ const getShape = (shape: ShapeType = 'rect') => {
   }
 };
 
-const getColorStyle = (color: ColorType, inversion: boolean) => {
+const getColorStyle = (color: ColorType, reverse: boolean) => {
   const colorCode = getColor(color);
 
-  if (inversion) {
+  if (reverse) {
     return css`
       color: ${colorCode};
       background-color: white;
@@ -82,7 +80,7 @@ const getColorStyle = (color: ColorType, inversion: boolean) => {
 type ButtonProps = Required<Omit<Props, 'children'>>;
 
 const StyledButton = styled.button<ButtonProps>`
-  ${({ color, inversion }) => getColorStyle(color, inversion)}
+  ${({ color, reverse }) => getColorStyle(color, reverse)}
   font-size: ${Size.FONT.BASE}px;
   padding: 6px 15px;
   border-radius: ${({ shape }) => getShape(shape)}px;

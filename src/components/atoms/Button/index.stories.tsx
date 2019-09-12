@@ -7,7 +7,7 @@ storiesOf('Button', module)
   .add('secondary', () => <Button color="secondary">新規登録</Button>)
   .add('twitter', () => <Button color="twitter">Twitterでログインする</Button>)
   .add('oval', () => (
-    <Button shape="oval" inversion>
+    <Button shape="oval" reverse>
       フォロー
     </Button>
   ));
