@@ -3,20 +3,20 @@ import styled from 'styled-components';
 import yummyIcon from './icons/yummy.png';
 import treasureIcon from './icons/treasure.png';
 
-type Icon = 'yummy' | 'treasure';
+export type IconType = 'yummy' | 'treasure';
 
 interface Props {
-  icon: Icon;
+  icon: IconType;
   height?: number;
   width?: number;
 }
 
-const mappedImages: { [P in Icon]: string } = {
+const mappedImages: { [P in IconType]: string } = {
   yummy: yummyIcon,
   treasure: treasureIcon,
 };
 
-const Icon: React.FC<Props> = ({ icon, height = 50, width = 50 }) => (
+const Icon: React.FC<Props> = ({ icon, height = 35, width = 35 }) => (
   <Wrapper src={mappedImages[icon]} alt={icon} height={height} width={width} />
 );
 
