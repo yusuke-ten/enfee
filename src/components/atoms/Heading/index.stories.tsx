@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Heading from '.';
 
-storiesOf('Heading', module)
+storiesOf('atoms/Heading', module)
   .add('h1', () => (
     <Heading type="h1">
       コンビニ商品の感想を
