@@ -46,7 +46,7 @@ const getShape = (shape: ShapeType = 'rect') => {
     case 'oval':
       return Size.BORDER_RADIUS.OVAL;
     default:
-      return Size.BORDER_RADIUS.OVAL;
+      return Size.BORDER_RADIUS.RECT;
   }
 };
 
