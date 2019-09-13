@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import { TextInput } from '.';
+import Input from '.';
+
+const { TextInput } = Input;
 
 storiesOf('atoms/Input', module).add('textInput', () => (
   <Wrapper>

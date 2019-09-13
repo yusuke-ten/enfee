@@ -7,6 +7,7 @@ type SizeType = 'small' | 'midium' | 'large';
 type ShapeType = 'oval' | 'rect';
 
 interface Props {
+  onClick?: () => void;
   color?: ColorType;
   size?: SizeType;
   shape?: ShapeType;
@@ -16,13 +17,16 @@ interface Props {
 
 const Button: React.FC<Props> = ({
   children,
+  onClick = () => {},
   color = 'primary',
   size = 'midium',
   shape = 'rect',
   reverse = false,
 }) => (
   <>
-    <StyledButton {...{ color, size, shape, reverse }}>{children}</StyledButton>
+    <StyledButton onClick={onClick} {...{ color, size, shape, reverse }}>
+      {children}
+    </StyledButton>
   </>
 );
 
@@ -82,11 +86,13 @@ type ButtonProps = Required<Omit<Props, 'children'>>;
 const StyledButton = styled.button<ButtonProps>`
   ${({ color, reverse }) => getColorStyle(color, reverse)}
   font-size: ${Size.FONT.BASE}px;
-  padding: 6px 15px;
+  height: 35px;
+  padding: 0 26px;
   border-radius: ${({ shape }) => getShape(shape)}px;
   letter-spacing: 1.28px;
   cursor: pointer;
   outline: none;
+  font-weight: ${Size.FONT_WEIGHT.NORMAL};
 `;
 
 export default Button;

@@ -24,8 +24,8 @@ const TextInput: FC<Props> = ({
   };
 
   return (
-    <>
-      <Label showLabel={showLabel}>メールアドレス</Label>
+    <Wrapper>
+      <Label showLabel={showLabel}>{placeholder}</Label>
       <StyledInput
         placeholder={placeholder}
         value={value}
@@ -33,10 +33,13 @@ const TextInput: FC<Props> = ({
         onBlur={onBlurHandler}
         onFocus={onFocusHandler}
       />
-    </>
+    </Wrapper>
   );
 };
 
+const Wrapper = styled.div`
+  width: 100%;
+`;
 const Label = styled.div<{ showLabel: boolean }>`
   visibility: ${props => (props.showLabel ? 'visible' : 'hidden')};
   font-size: ${Size.FONT.SMALL}px;

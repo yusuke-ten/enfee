@@ -1,9 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import Feature from '.';
 
 storiesOf('molecules/Feature', module)
-  .add('yummy', () => <Feature icon="yummy" text="ぜひ食べてほしいっ！" />)
+  .add('yummy', () => (
+    <Wrapper>
+      <Feature icon="yummy" text="ぜひ食べてほしいっ！" />
+    </Wrapper>
+  ))
   .add('treasure', () => (
-    <Feature icon="treasure" text="こんなおすすめ商品もあるよっ！" />
+    <Wrapper>
+      <Feature icon="treasure" text="こんなおすすめ商品もあるよっ！" />
+    </Wrapper>
   ));
+
+const Wrapper = styled.div`
+  background-color: gray;
+`;

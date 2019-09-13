@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import InputComponent from 'src/components/atoms/Input';
+import LoginForm from 'components/organisms/LoginForm';
 import Layout from './components/Layout';
 import TodoContainer from './containers/TodoContainer';
 import PostComponent from './components/Post';
@@ -34,6 +35,7 @@ const StyleComponent: FC<{ primary: boolean }> = props => {
 const App: FC = () => (
   <Layout title="todo app">
     <LoginPage />
+    <LoginForm />
     {/* <h1>Hello, World</h1>
     <StyleComponent primary />
     <nav>
