@@ -1,7 +1,18 @@
 import React from 'react';
+import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import Input from '.';
+import { TextInput } from '.';
 
 storiesOf('atoms/Input', module).add('textInput', () => (
-  <Input type="inputText" value="" onChangeHandler={() => {}} />
+  <Wrapper>
+    <TextInput
+      placeholder="メールアドレス"
+      value=""
+      onChangeHandler={() => {}}
+    />
+  </Wrapper>
 ));
+
+const Wrapper = styled.div`
+  width: 500px;
+`;
