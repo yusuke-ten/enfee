@@ -19,7 +19,14 @@ module.exports = ({config}) => {
         },
       },
     ],
-  });
-  config.resolve.extensions.push('.ts', '.tsx');
+  })
+  config.resolve.alias = {
+    'src': SRC_PATH,
+    'components': SRC_PATH + '/components/',
+    'containers': SRC_PATH + '/containers/',
+    'atoms': SRC_PATH + 'components/atoms/',
+    'const': SRC_PATH + 'const/',
+  },
+  config.resolve.extensions.push('.ts', '.tsx', 'js', 'jsx');
   return config;
 };
