@@ -62,6 +62,7 @@ module.exports = {
       'containers': path.resolve(__dirname, './src/containers/'),
       'atoms': path.resolve(__dirname, './src/components/atoms/'),
       'const': path.resolve(__dirname, './src/const/'),
+      'modules': path.resolve(__dirname, './src/modules/'),
     },
     extensions: ['.tsx', '.ts',  '.js', '.jsx'],
   },

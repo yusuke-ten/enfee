@@ -5,7 +5,7 @@ import { Size, Color } from 'src/const';
 interface Props {
   value: string;
   placeholder: string;
-  onChangeHandler: () => void;
+  onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const TextInput: FC<Props> = ({

@@ -6,27 +6,37 @@ import { Button, Input, Line } from 'components/atoms';
 
 const { TextInput } = Input;
 
-interface Props {
-  onSubmitHandler: () => {};
+export interface Props {
+  emailValue: string;
+  passwrodValue: string;
+  onChangeEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: () => void;
 }
 
-const LoginForm: React.FC<Props> = ({ onSubmitHandler = () => {} }) => {
+const LoginForm: React.FC<Props> = ({
+  emailValue,
+  passwrodValue,
+  onChangeEmail,
+  onChangePassword,
+  onSubmit,
+}) => {
   return (
     <Container>
       <Heading type="h2">ログイン</Heading>
       <Form>
         <TextInput
           placeholder="メールアドレス"
-          value=""
-          onChangeHandler={() => {}}
+          value={emailValue}
+          onChangeHandler={onChangeEmail}
         />
         <TextInput
           placeholder="パスワード"
-          value=""
-          onChangeHandler={() => {}}
+          value={passwrodValue}
+          onChangeHandler={onChangePassword}
         />
         <ButtonWrapper>
-          <Button onClick={onSubmitHandler}>ログインする</Button>
+          <Button onClick={onSubmit}>ログインする</Button>
         </ButtonWrapper>
         <Line text="または" />
         <ButtonWrapper>
