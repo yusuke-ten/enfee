@@ -7,6 +7,9 @@ const LoginFormContainer = () => {
   const [emailValue, updateEmailValue] = useState('');
   const [passwrodValue, updatePasswrodValue] = useState('');
 
+  const disabledSubmitButton =
+    emailValue.length === 0 || passwrodValue.length === 0;
+
   const dispatch = useDispatch();
 
   const onChangeEmail = useCallback(
@@ -40,6 +43,7 @@ const LoginFormContainer = () => {
         onSubmit,
         emailValue,
         passwrodValue,
+        disabledSubmitButton,
       }}
     />
   );

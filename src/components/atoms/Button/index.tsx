@@ -12,6 +12,7 @@ interface Props {
   size?: SizeType;
   shape?: ShapeType;
   reverse?: boolean;
+  disabled?: boolean;
   children: React.ReactNode;
 }
 
@@ -22,12 +23,15 @@ const Button: React.FC<Props> = ({
   size = 'midium',
   shape = 'rect',
   reverse = false,
+  disabled = false,
 }) => (
-  <>
-    <StyledButton onClick={onClick} {...{ color, size, shape, reverse }}>
-      {children}
-    </StyledButton>
-  </>
+  <StyledButton
+    onClick={onClick}
+    {...{ color, size, shape, reverse }}
+    disabled={disabled}
+  >
+    {children}
+  </StyledButton>
 );
 
 const getColor = (color: ColorType = 'primary') => {
@@ -93,6 +97,13 @@ const StyledButton = styled.button<ButtonProps>`
   cursor: pointer;
   outline: none;
   font-weight: ${Size.FONT_WEIGHT.NORMAL};
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      background-color: gray;
+      cursor: default;
+      opacity: 1 !important;
+    `}
 `;
 
 export default Button;

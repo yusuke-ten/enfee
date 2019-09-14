@@ -10,6 +10,7 @@ export interface Props {
   onChangeEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onChangePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: () => void;
+  disabledSubmitButton: boolean;
 }
 
 const LoginForm: React.FC<Props> = ({
@@ -18,6 +19,7 @@ const LoginForm: React.FC<Props> = ({
   onChangeEmail,
   onChangePassword,
   onSubmit,
+  disabledSubmitButton,
 }) => {
   return (
     <Container>
@@ -37,7 +39,9 @@ const LoginForm: React.FC<Props> = ({
           onChangeHandler={onChangePassword}
         />
         <ButtonWrapper>
-          <Button onClick={onSubmit}>ログインする</Button>
+          <Button onClick={onSubmit} disabled={disabledSubmitButton}>
+            ログインする
+          </Button>
         </ButtonWrapper>
         <Line text="または" />
         <ButtonWrapper>
