@@ -10,6 +10,7 @@
     "test": "jest",
     "precommit": "lint-staged",
     "lint": "eslint --ext ./ 'src/**/*.{js,jsx,ts,tsx}'; stylelint 'src/**/*.css'",
+    "fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook -o build/storybook"
   },
@@ -80,6 +81,7 @@
     "thread-loader": "^2.1.n2",
     "ts-jest": "^24.1.0",
     "ts-loader": "^5.3.3",
+    "typescript": "^3.6.3",
     "typescript-plugin-styled-components": "^1.4.3",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.6",
@@ -100,7 +102,6 @@
     "redux": "^4.0.4",
     "redux-saga": "^1.0.2",
     "styled-components": "^4.1.3",
-    "typescript": "^3.5.3",
     "yup": "^0.27.0"
   },
   "husky": {

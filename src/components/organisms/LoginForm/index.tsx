@@ -64,7 +64,7 @@ const Container = styled.div`
   width: 310px;
   display: inline-block;
 `;
-const Form = styled.div`
+const Form = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
