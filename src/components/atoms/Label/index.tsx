@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Color, Size } from 'src/const';
 
-const Label = styled.div<{ isHidden?: boolean; isError?: boolean }>`
+const Label = styled.label<{ isHidden?: boolean; isError?: boolean }>`
   visibility: ${props =>
     props.isHidden && !props.isError ? 'hidden' : 'visible'};
   font-size: ${Size.FONT.SMALL}px;

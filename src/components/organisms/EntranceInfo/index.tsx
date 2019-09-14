@@ -5,7 +5,7 @@ import { Feature } from 'components/molecules';
 import { Color, Size } from 'src/const';
 
 const EntranceInfo = () => (
-  <>
+  <div>
     <HeadingWrapper>
       <Heading type="h1" color="less">
         コンビニ商品のレビューを
@@ -20,7 +20,7 @@ const EntranceInfo = () => (
       <Feature icon="treasure" text="最近おすすめのスイーツはこれ！" />
     </WrapperFeature>
     <Text>日々の買い物がより楽しくなる</Text>
-  </>
+  </div>
 );
 
 const HeadingWrapper = styled.div`

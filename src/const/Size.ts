@@ -20,8 +20,14 @@ const BORDER_RADIUS = {
   OVAL: 30,
 } as const;
 
+const BREAK_POINT = {
+  MOBILE: 560,
+  TABLET: 960,
+} as const;
+
 export default {
   FONT,
   FONT_WEIGHT,
   BORDER_RADIUS,
+  BREAK_POINT,
 };

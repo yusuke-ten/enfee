@@ -1,11 +1,11 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
-import LoginFormContainer from 'containers/organisms/LoginFormContainer';
+import LoginPage from 'components/pages/LoginPage';
 
 const App: React.FC = () => (
   <>
     <Switch>
-      <Route path="/login" component={LoginFormContainer} />
+      <Route path="/login" component={LoginPage} />
     </Switch>
   </>
 );

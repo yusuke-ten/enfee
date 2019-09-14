@@ -21,7 +21,9 @@ const LoginForm: React.FC<Props> = ({
 }) => {
   return (
     <Container>
-      <Heading type="h2">ログイン</Heading>
+      <Heading type="h2" align="center">
+        ログイン
+      </Heading>
       <Form>
         <Field
           placeholder="メールアドレス"
@@ -29,6 +31,7 @@ const LoginForm: React.FC<Props> = ({
           onChangeHandler={onChangeEmail}
         />
         <Field
+          type="password"
           placeholder="パスワード"
           value={passwrodValue}
           onChangeHandler={onChangePassword}
@@ -54,13 +57,11 @@ const LoginForm: React.FC<Props> = ({
 };
 
 const Container = styled.div`
-  width: 520px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 310px;
+  display: inline-block;
 `;
 const Form = styled.div`
-  width: 310px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import TextInput from 'components/atoms/Input';
+import { InputType } from 'components/atoms/Input/TextInput';
 import Label from 'components/atoms/Label';
 
 interface Props {
+  type?: InputType;
   value: string;
   onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
@@ -11,6 +13,7 @@ interface Props {
 }
 
 const Field: React.FC<Props> = ({
+  type,
   value,
   onChangeHandler,
   placeholder,
@@ -32,6 +35,7 @@ const Field: React.FC<Props> = ({
         {placeholder}
       </Label>
       <TextInput
+        type={type}
         value={value}
         placeholder={placeholder}
         onChangeHandler={onChangeHandler}
@@ -46,7 +50,6 @@ const Field: React.FC<Props> = ({
 const Wrapper = styled.div`
   width: 100%;
   text-align: left;
-  margin-top: 10px;
 `;
 
 export default Field;

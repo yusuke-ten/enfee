@@ -1,8 +1,11 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
-import { Size, Color } from 'src/const';
+import { Color } from 'src/const';
+
+export type InputType = 'password' | 'text';
 
 interface Props {
+  type?: InputType;
   value: string;
   placeholder: string;
   onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -12,6 +15,7 @@ interface Props {
 }
 
 const TextInput: FC<Props> = ({
+  type = 'text',
   value = '',
   onChangeHandler = () => {},
   onBlurHandler = () => {},
@@ -21,10 +25,10 @@ const TextInput: FC<Props> = ({
 }) => {
   return (
     <StyledInput
+      type={type}
       placeholder={placeholder}
       value={value}
-      // onChange={onChangeHandler}
-      onChange=
+      onChange={onChangeHandler}
       onBlur={onBlurHandler}
       onFocus={onFocusHandler}
       isError={isError}
