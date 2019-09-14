@@ -1,6 +1,6 @@
 import { fork } from 'redux-saga/effects';
 
-function testSaga() {
+export function testSaga() {
   console.log('saga started!');
 }
 
