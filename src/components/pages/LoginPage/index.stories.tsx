@@ -1,6 +1,14 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { text } from '@storybook/addon-knobs';
+import { MemoryRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from 'src/index';
 import LoginPage from '.';
 
-storiesOf('pages/LoginPage', module).add('default', () => <LoginPage />);
+storiesOf('pages/LoginPage', module)
+  .addDecorator(story => <Router initialEntries={['/']}>{story()}</Router>)
+  .add('default', () => (
+    <Provider store={store}>
+      <LoginPage />
+    </Provider>
+  ));

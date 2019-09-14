@@ -21,7 +21,7 @@ const composeEnhancers =
 
 const sagaMiddleWare = createSagaMiddleware();
 const enhancer = composeEnhancers(applyMiddleware(sagaMiddleWare));
-const store = createStore(rootReducer, enhancer);
+export const store = createStore(rootReducer, enhancer);
 
 ReactDOM.render(
   <Provider store={store}>
