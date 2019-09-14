@@ -7,7 +7,7 @@ import Field from '.';
 storiesOf('molecules/Field', module).add('default', () => (
   <Field
     value={text('value', '')}
-    onChangeHander={() => {}}
+    onChangeHandler={() => {}}
     placeholder="メールアドレス"
     isError={boolean('isError', false)}
   />

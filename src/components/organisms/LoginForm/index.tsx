@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Heading from 'components/atoms/Heading';
-import { Button, TextInput, Line } from 'components/atoms';
+import { Button, Line, Heading } from 'components/atoms';
+import { Field } from 'components/molecules';
 
 export interface Props {
   emailValue: string;
@@ -23,12 +23,12 @@ const LoginForm: React.FC<Props> = ({
     <Container>
       <Heading type="h2">ログイン</Heading>
       <Form>
-        <TextInput
+        <Field
           placeholder="メールアドレス"
           value={emailValue}
           onChangeHandler={onChangeEmail}
         />
-        <TextInput
+        <Field
           placeholder="パスワード"
           value={passwrodValue}
           onChangeHandler={onChangePassword}

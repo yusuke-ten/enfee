@@ -5,14 +5,14 @@ import Label from 'components/atoms/Label';
 
 interface Props {
   value: string;
-  onChangeHander: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   isError?: boolean;
 }
 
 const Field: React.FC<Props> = ({
   value,
-  onChangeHander,
+  onChangeHandler,
   placeholder,
   isError = false,
 }) => {
@@ -29,12 +29,12 @@ const Field: React.FC<Props> = ({
   return (
     <Wrapper>
       <Label isHidden={!showLabel} isError={isError}>
-        メールアドレス
+        {placeholder}
       </Label>
       <TextInput
         value={value}
         placeholder={placeholder}
-        onChangeHandler={onChangeHander}
+        onChangeHandler={onChangeHandler}
         onBlurHandler={onBlurHandler}
         onFocusHandler={onFocusHandler}
         isError={isError}
@@ -46,6 +46,7 @@ const Field: React.FC<Props> = ({
 const Wrapper = styled.div`
   width: 100%;
   text-align: left;
+  margin-top: 10px;
 `;
 
 export default Field;
