@@ -16,5 +16,6 @@ storiesOf('molecules/Feature', module)
   ));
 
 const Wrapper = styled.div`
+  display: inline-block;
   background-color: gray;
 `;
