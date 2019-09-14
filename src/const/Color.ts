@@ -3,6 +3,7 @@ const THEME = {
   BACKGROUND: '#F4F1E9',
   ACCENT: '#009F8C',
   TWITTER: '#55ACEE',
+  ERROR: '#EB5A46',
 } as const;
 
 const FONT = {

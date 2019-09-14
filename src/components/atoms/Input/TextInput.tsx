@@ -6,47 +6,33 @@ interface Props {
   value: string;
   placeholder: string;
   onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlurHandler?: () => void;
+  onFocusHandler?: () => void;
+  isError?: boolean;
 }
 
 const TextInput: FC<Props> = ({
   value = '',
   onChangeHandler = () => {},
+  onBlurHandler = () => {},
+  onFocusHandler = () => {},
   placeholder = '',
+  isError = false,
 }) => {
-  const [showLabel, toggleShowLabel] = useState<boolean>(false);
-
-  const onBlurHandler = () => {
-    toggleShowLabel(false);
-  };
-
-  const onFocusHandler = () => {
-    toggleShowLabel(true);
-  };
-
   return (
-    <Wrapper>
-      <Label showLabel={showLabel}>{placeholder}</Label>
-      <StyledInput
-        placeholder={placeholder}
-        value={value}
-        onChange={onChangeHandler}
-        onBlur={onBlurHandler}
-        onFocus={onFocusHandler}
-      />
-    </Wrapper>
+    <StyledInput
+      placeholder={placeholder}
+      value={value}
+      // onChange={onChangeHandler}
+      onChange=
+      onBlur={onBlurHandler}
+      onFocus={onFocusHandler}
+      isError={isError}
+    />
   );
 };
 
-const Wrapper = styled.div`
-  width: 100%;
-`;
-const Label = styled.div<{ showLabel: boolean }>`
-  visibility: ${props => (props.showLabel ? 'visible' : 'hidden')};
-  font-size: ${Size.FONT.SMALL}px;
-  color: ${Color.THEME.PRIMARY};
-  padding: 0 5px;
-`;
-const StyledInput = styled.input`
+const StyledInput = styled.input<{ isError?: boolean }>`
   width: 100%;
   height: 40px;
   font-size: 14px;
@@ -58,7 +44,8 @@ const StyledInput = styled.input`
   box-sizing: border-box;
   border: none;
   background-color: transparent;
-  border-bottom: 2px solid ${Color.FONT.LIGHT};
+  border-bottom: 2px solid
+    ${props => (props.isError ? Color.THEME.ERROR : Color.FONT.LIGHT)};
 
   &::placeholder {
     color: ${Color.FONT.LIGHT};

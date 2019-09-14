@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import Input from '.';
-
-const { TextInput } = Input;
+import { boolean } from '@storybook/addon-knobs';
+import TextInput from '.';
 
 storiesOf('atoms/Input', module).add('textInput', () => (
   <Wrapper>
@@ -11,6 +10,7 @@ storiesOf('atoms/Input', module).add('textInput', () => (
       placeholder="メールアドレス"
       value=""
       onChangeHandler={() => {}}
+      isError={boolean('isError', false)}
     />
   </Wrapper>
 ));
