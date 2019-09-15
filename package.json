@@ -73,6 +73,7 @@
     "prettier": "^1.17.0",
     "prettier-stylelint": "^0.4.2",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
+    "react-svg-loader": "^3.0.3",
     "style-loader": "^0.23.1",
     "stylelint": "^10.0.1",
     "stylelint-config-prettier": "^5.1.0",
