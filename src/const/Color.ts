@@ -6,6 +6,11 @@ const THEME = {
   ERROR: '#EB5A46',
 } as const;
 
+const BACKGROUND = {
+  BASE: '#FCF1D3',
+  LIGTH: '#F4F1E9',
+};
+
 const FONT = {
   BASE: '#858282',
   DARK: '#5C5B5B',
@@ -18,10 +23,16 @@ const BORDER = {
   LIGHT: '#DEE5EC',
 } as const;
 
-const Color = {
+const STORE = {
+  SEVEN_ELEVEN: '#EF2A2F',
+  LAWSON: '#066AB9',
+  FAMILY_MART: '#18AE48',
+};
+
+export default {
   THEME,
+  BACKGROUND,
   FONT,
   BORDER,
-} as const;
-
-export default Color;
+  STORE,
+};

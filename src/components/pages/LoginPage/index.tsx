@@ -29,7 +29,7 @@ const centerStyle = css`
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: ${Color.THEME.BACKGROUND};
+  background-color: ${Color.BACKGROUND.LIGTH};
   ${centerStyle}
 `;
 const Frame = styled.div`

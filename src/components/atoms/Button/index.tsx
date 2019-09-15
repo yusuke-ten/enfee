@@ -47,7 +47,7 @@ const getColor = (color: ColorType = 'primary') => {
   }
 };
 
-const getShape = (shape: ShapeType = 'rect') => {
+const getshape = (shape: ShapeType = 'rect') => {
   switch (shape) {
     case 'rect':
       return Size.BORDER_RADIUS.RECT;
@@ -92,7 +92,7 @@ const StyledButton = styled.button<ButtonProps>`
   font-size: ${Size.FONT.BASE}px;
   height: 35px;
   padding: 0 26px;
-  border-radius: ${({ shape }) => getShape(shape)}px;
+  border-radius: ${({ shape }) => getshape(shape)}px;
   letter-spacing: 1.28px;
   cursor: pointer;
   outline: none;
