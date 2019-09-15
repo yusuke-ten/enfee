@@ -54,7 +54,7 @@ const WrapperForm = styled.div`
   width: 26vw;
   min-width: 400px;
   ${centerStyle}
-  padding: 40px 0;
+  padding: 70px 0;
 
   @media (max-width: ${Size.BREAK_POINT.MOBILE}px) {
     width: 100vw;
