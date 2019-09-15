@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { Navigation } from 'components/molecules';
+import { Logo } from 'components/atoms';
 import { Color, Size } from 'src/const';
 
 const links = [
@@ -15,7 +16,9 @@ const Header: React.FC = () => {
     <Container>
       <Frame>
         <LeftWrapper>
-          <Logo to="/">Logo</Logo>
+          <LogoLink to="/">
+            <Logo />
+          </LogoLink>
           <Navigation links={links} />
         </LeftWrapper>
         <RightWrapper></RightWrapper>
@@ -58,7 +61,11 @@ const WrapperCommonStyle = css`
 const LeftWrapper = styled.div`
   ${WrapperCommonStyle}
 `;
-const Logo = styled(Link)``;
+const LogoLink = styled(Link)`
+  &:hover {
+    opacity: 0.9;
+  }
+`;
 const RightWrapper = styled.div`
   ${WrapperCommonStyle}
 `;
