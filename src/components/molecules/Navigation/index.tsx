@@ -48,9 +48,11 @@ const StyledLink = styled(NavLink)`
   }
 
   &.active {
-    text-decoration: underline;
-    color: ${Color.FONT.DARK};
+    box-sizing: border-box;
+    color: ${Color.FONT.SELECTED};
     font-weight: ${Size.FONT_WEIGHT.BOLD};
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid ${Color.FONT.SELECTED};
   }
 `;
 

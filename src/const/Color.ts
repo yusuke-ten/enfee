@@ -17,6 +17,7 @@ const FONT = {
   LIGHT: '#CFCECE',
   SUPER_LIGHT: '#BEC8D2',
   LESS: '#FFFFFF',
+  SELECTED: '#A7893E',
 } as const;
 
 const BORDER = {

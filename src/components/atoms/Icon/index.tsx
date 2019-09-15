@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import yummyIcon from './icons/yummy.png';
 import treasureIcon from './icons/treasure.png';
 
@@ -17,9 +16,7 @@ const mappedImages: { [P in IconType]: string } = {
 };
 
 const Icon: React.FC<Props> = ({ icon, height = 35, width = 35 }) => (
-  <Wrapper src={mappedImages[icon]} alt={icon} height={height} width={width} />
+  <img src={mappedImages[icon]} alt={icon} height={height} width={width} />
 );
-
-const Wrapper = styled.img``;
 
 export default Icon;
