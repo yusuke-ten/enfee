@@ -39,7 +39,7 @@ const BREAK_POINT = {
 } as const;
 
 const HEADER = {
-  HEIGHT: 56,
+  HEIGHT: 50,
 };
 
 export default {

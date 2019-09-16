@@ -7,8 +7,8 @@ import { Color, Size } from 'src/const';
 
 const links = [
   { text: 'レビュー', to: '/' },
-  { text: 'コミュニティ', to: '#' },
-  { text: 'メッセージ', to: '#' },
+  { text: 'コミュニティ', to: '/comunities' },
+  { text: 'メッセージ', to: '/messages' },
 ];
 
 const Header: React.FC = () => {
@@ -39,17 +39,20 @@ const Frame = styled.div`
   justify-content: space-between;
   margin-left: auto;
   margin-right: auto;
+  max-width: 1100px;
 
-  @media (min-width: ${Size.BREAK_POINT.PC}px) {
+  /* @media (max-width: ${Size.BREAK_POINT.PC}px) {
     max-width: 1280px;
+  } */
+
+  @media (max-width: ${Size.BREAK_POINT.TABLET}px) {
+    width: 100vw;
+    padding: 0 10px;
   }
 
-  @media (min-width: ${Size.BREAK_POINT.TABLET}px) {
-    max-width: 1000px;
-  }
-
-  @media (min-width: ${Size.BREAK_POINT.MOBILE}px) {
-    max-width: 740px;
+  @media (max-width: ${Size.BREAK_POINT.MOBILE}px) {
+    width: 100vw;
+    padding: 0 5px;
   }
 `;
 
