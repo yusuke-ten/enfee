@@ -5,3 +5,4 @@ export { default as Line } from './Line';
 export { default as TextInput } from './Input';
 export { default as Spinner } from './Spinner';
 export { default as Logo } from './Logo';
+export { default as StoreBadge } from './StoreBadge';

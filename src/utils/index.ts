@@ -6,3 +6,16 @@ type ReturnTypes<T> = {
 };
 
 export type CreatorsToActions<T> = Unbox<ReturnTypes<T>>;
+
+export type StoreType = 'sevenEleven' | 'familyMart' | 'lawson';
+export type StoreTextType = 'セブン-イレブン' | 'ファミリーマート' | 'ローソン';
+
+const mappedStore: { [k in StoreType]: StoreTextType } = {
+  sevenEleven: 'セブン-イレブン',
+  familyMart: 'ファミリーマート',
+  lawson: 'ローソン',
+};
+
+export const toStoreName = (store: StoreType): StoreTextType => {
+  return mappedStore[store];
+};
