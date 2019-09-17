@@ -1,24 +1,22 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { EntranceInfo } from 'components/organisms';
 import { Color, Size } from 'src/const';
 
 interface Props {
   children: React.ReactNode;
+  InfoComponent: React.FC;
 }
 
-const EntranceTemplate: React.FC<Props> = ({ children }) => {
+const EntranceTemplate: React.FC<Props> = ({ children, InfoComponent }) => {
   return (
-    <>
-      <Container>
-        <Frame>
-          <WrapperEntranceInfo>
-            <EntranceInfo />
-          </WrapperEntranceInfo>
-          <WrapperForm>{children}</WrapperForm>
-        </Frame>
-      </Container>
-    </>
+    <Container>
+      <Frame>
+        <WrapperEntranceInfo>
+          <InfoComponent />
+        </WrapperEntranceInfo>
+        <WrapperForm>{children}</WrapperForm>
+      </Frame>
+    </Container>
   );
 };
 
