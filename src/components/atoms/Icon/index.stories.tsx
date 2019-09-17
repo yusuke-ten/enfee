@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import Icon from '.';
+import { InfoIcon } from '.';
 
 storiesOf('atoms/Icon', module)
-  .add('yummy', () => (
+  .add('InfoIcon/yummy', () => (
     <Wrapper>
-      <Icon icon="yummy" />
+      <InfoIcon icon="yummy" />
     </Wrapper>
   ))
-  .add('treasure', () => (
+  .add('InfoIcon/treasure', () => (
     <Wrapper>
-      <Icon icon="treasure" />
+      <InfoIcon icon="treasure" />
     </Wrapper>
   ));
 

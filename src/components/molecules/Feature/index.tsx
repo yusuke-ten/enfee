@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import Icon, { IconType } from '../../atoms/Icon';
-import { Color, Size } from '../../../const';
+import InfoIcon, { InfoIconType } from 'components/atoms/Icon/InfoIcon';
+import { Color, Size } from 'src/const';
 
 interface Props {
   text: string;
-  icon: IconType;
+  icon: InfoIconType;
 }
 
 const Feature: React.FC<Props> = ({ text, icon }) => (
   <Wrapper>
-    <Icon icon={icon} />
+    <InfoIcon icon={icon} />
     <Text>{text}</Text>
   </Wrapper>
 );
