@@ -38,13 +38,13 @@ interface User {
 
 /* reducer */
 export interface AppState {
-  isLogin: boolean;
+  isLoggedIn: boolean;
   user: User | null;
   token: string | null;
 }
 
 const initialState: AppState = {
-  isLogin: false,
+  isLoggedIn: false,
   user: null,
   token: null,
 };
