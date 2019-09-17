@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import { InfoIcon } from '.';
+import { InfoIcon, EnvelopeIcon, CommentsIcon } from '.';
 
 storiesOf('atoms/Icon', module)
   .add('InfoIcon/yummy', () => (
@@ -12,6 +12,16 @@ storiesOf('atoms/Icon', module)
   .add('InfoIcon/treasure', () => (
     <Wrapper>
       <InfoIcon icon="treasure" />
+    </Wrapper>
+  ))
+  .add('EnvelopeIcon', () => (
+    <Wrapper>
+      <EnvelopeIcon />
+    </Wrapper>
+  ))
+  .add('CommentsIcon', () => (
+    <Wrapper>
+      <CommentsIcon />
     </Wrapper>
   ));
 
