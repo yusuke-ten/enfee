@@ -9,6 +9,7 @@ export {
   CommentDotsIcon,
   ThumbsUpIcon,
   AlignLeftIcon,
+  PenIcon,
 } from './Icon';
 export { default as Line } from './Line';
 export { default as TextInput } from './Input';

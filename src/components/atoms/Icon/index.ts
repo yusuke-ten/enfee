@@ -7,4 +7,5 @@ export {
   CommentDotsIcon,
   ThumbsUpIcon,
   AlignLeftIcon,
+  PenIcon,
 } from './Icons';
