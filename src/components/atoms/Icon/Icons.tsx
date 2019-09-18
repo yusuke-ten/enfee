@@ -7,6 +7,7 @@ import Home from './icons/home.svg';
 import Search from './icons/search.svg';
 import CommentDots from './icons/commentDots.svg';
 import ThumbsUp from './icons/thumbsUp.svg';
+import AlignLeft from './icons/alignLeft.svg';
 
 export type ColorType = 'less' | 'primary' | 'gray';
 
@@ -56,6 +57,12 @@ export const ThumbsUpIcon: React.FC<Props> = ({
   height = DEFAULT_HEIGHT,
 }) => <StyledThumbsUpIcon color={color} height={height} width={width} />;
 
+export const AlignLeftIcon: React.FC<Props> = ({
+  color = DEFAULT_COLOR,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
+}) => <StyledAlignLeftIcon color={color} height={height} width={width} />;
+
 const colorPallete: { [k in ColorType]: string } = {
   gray: Color.FONT.BASE,
   less: Color.FONT.LESS,
@@ -89,5 +96,8 @@ const StyledCommentDotsIcon = styled(CommentDots)<StyleProps>`
   ${props => getStyles(props.color)}
 `;
 const StyledThumbsUpIcon = styled(ThumbsUp)<StyleProps>`
+  ${props => getStyles(props.color)}
+`;
+const StyledAlignLeftIcon = styled(AlignLeft)<StyleProps>`
   ${props => getStyles(props.color)}
 `;

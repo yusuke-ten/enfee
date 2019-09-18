@@ -8,6 +8,7 @@ export {
   SearchIcon,
   CommentDotsIcon,
   ThumbsUpIcon,
+  AlignLeftIcon,
 } from './Icon';
 export { default as Line } from './Line';
 export { default as TextInput } from './Input';

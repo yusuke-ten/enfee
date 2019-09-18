@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { Navigation } from 'components/molecules';
+import { Link as LinkType } from 'components/molecules/Navigation';
 import { Logo } from 'components/atoms';
 import { Color, Size } from 'src/const';
 
-const links = [
+const links: LinkType[] = [
   { text: 'レビュー', to: '/' },
   { text: 'コミュニティ', to: '/comunities' },
   { text: 'メッセージ', to: '/messages' },

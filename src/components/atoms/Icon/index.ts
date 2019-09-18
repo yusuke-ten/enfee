@@ -6,4 +6,5 @@ export {
   SearchIcon,
   CommentDotsIcon,
   ThumbsUpIcon,
+  AlignLeftIcon,
 } from './Icons';

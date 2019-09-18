@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { EnvelopeIcon, CommentsIcon, AlignLeftIcon } from 'components/atoms';
 import { Color, Size } from 'src/const';
 
-interface Link {
-  text: string;
+type LinkText = 'レビュー' | 'メッセージ' | 'コミュニティ';
+
+export interface Link {
+  text: LinkText;
   to: string;
 }
 
@@ -12,12 +15,23 @@ interface Props {
   links: Link[];
 }
 
+const selectIconComponent = (linkText: LinkText) => {
+  if (linkText === 'レビュー') return <AlignLeftIcon />;
+  if (linkText === 'メッセージ') return <EnvelopeIcon />;
+  if (linkText === 'コミュニティ') return <CommentsIcon />;
+
+  return null;
+};
+
 const Navigation: React.FC<Props> = ({ links }) => {
   return (
     <List>
       {links.map(({ text, to }: Link) => (
         <ListItem key={to}>
-          <StyledLink to={to}>{text}</StyledLink>
+          <StyledLink to={to}>
+            <LinkText>{text}</LinkText>
+            {selectIconComponent(text)}
+          </StyledLink>
         </ListItem>
       ))}
     </List>
@@ -49,11 +63,13 @@ const StyledLink = styled(NavLink)`
 
   &.active {
     box-sizing: border-box;
-    color: ${Color.FONT.SELECTED};
     font-weight: ${Size.FONT_WEIGHT.BOLD};
     border-top: 3px solid transparent;
-    border-bottom: 3px solid ${Color.FONT.SELECTED};
+    border-bottom: 3px solid ${Color.FONT.LESS};
   }
+`;
+const LinkText = styled.span`
+  padding-right: 0.7rem;
 `;
 
 export default Navigation;
