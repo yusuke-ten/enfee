@@ -3,7 +3,7 @@ import { Color, Size } from 'src/const';
 
 const FieldError = styled.div`
   color: ${Color.THEME.ERROR};
-  font-size: ${Size.FONT_RATIO.SMALL}rem;
+  font-size: ${Size.FONT_RATIO.XSMALL}rem;
 `;
 
 export default FieldError;

@@ -14,6 +14,7 @@ const BACKGROUND = {
 const FONT = {
   BASE: '#858282',
   DARK: '#5C5B5B',
+  SUPER_DARK: '#333333',
   LIGHT: '#CFCECE',
   SUPER_LIGHT: '#BEC8D2',
   LESS: '#FFFFFF',

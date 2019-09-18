@@ -50,7 +50,7 @@ const ListItem = styled.li`
 `;
 const StyledLink = styled(NavLink)`
   height: 100%;
-  font-size: ${Size.FONT_RATIO.BASE}rem;
+  font-size: ${Size.FONT_RATIO.SMALL}rem;
   display: flex;
   align-items: center;
   color: ${Color.FONT.LESS};

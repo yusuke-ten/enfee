@@ -9,7 +9,7 @@ interface Props {
 const CategoryTag: React.FC<Props> = ({ text }) => <Tag>{text}</Tag>;
 
 const Tag = styled.span`
-  font-size: ${Size.FONT_RATIO.SMALL}rem;
+  font-size: ${Size.FONT_RATIO.XSMALL}rem;
   text-align: center;
   display: inline-block;
   line-height: 24px;
