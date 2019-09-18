@@ -1,14 +1,14 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import { ReviewPage, LoginPage } from 'components/pages';
-
-import Spinner from 'components/atoms/Spinner';
+import EntranceTemplate from 'components/templates/EntranceTemplate';
 
 const App: React.FC = () => (
   <>
     <Switch>
+      <Route path="/entrance" component={EntranceTemplate} />
       <Route path="/login" component={LoginPage} />
-      <Route path="/" component={ReviewPage} exact />
+      <Route path="/" component={ReviewPage} />
     </Switch>
   </>
 );
