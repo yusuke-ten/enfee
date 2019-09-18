@@ -4,16 +4,14 @@ import { Color, Size } from 'src/const';
 
 interface Props {
   children: React.ReactNode;
-  InfoComponent: React.FC;
+  InfoComponent: JSX.Element; // React.ReactElement, React.ReactNodeの方がよいかも？
 }
 
 const EntranceTemplate: React.FC<Props> = ({ children, InfoComponent }) => {
   return (
     <Container>
       <Frame>
-        <WrapperEntranceInfo>
-          <InfoComponent />
-        </WrapperEntranceInfo>
+        <WrapperEntranceInfo>{InfoComponent}</WrapperEntranceInfo>
         <WrapperForm>{children}</WrapperForm>
       </Frame>
     </Container>

@@ -6,7 +6,7 @@ import { EntranceTemplate } from 'components/templates';
 
 const LoginPage: React.FC = () => (
   <Layout title="login page">
-    <EntranceTemplate InfoComponent={EntranceInfo}>
+    <EntranceTemplate InfoComponent={<EntranceInfo />}>
       <LoginFormContainer />
     </EntranceTemplate>
   </Layout>
