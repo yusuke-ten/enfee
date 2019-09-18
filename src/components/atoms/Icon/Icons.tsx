@@ -16,40 +16,44 @@ interface Props {
   height?: number;
 }
 
+const DEFAULT_COLOR = 'less';
+const DEFAULT_WIDTH = 10;
+const DEFAULT_HEIGHT = 10;
+
 export const EnvelopeIcon: React.FC<Props> = ({
-  color = 'less',
-  width = 10,
-  height = 10,
+  color = DEFAULT_COLOR,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
 }) => <StyledEnvelopeIcon color={color} height={height} width={width} />;
 
 export const CommentsIcon: React.FC<Props> = ({
-  color = 'less',
-  width = 10,
-  height = 10,
+  color = DEFAULT_COLOR,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
 }) => <StyledCommentsIcon color={color} height={height} width={width} />;
 
 export const HomeIcon: React.FC<Props> = ({
-  color = 'less',
-  width = 10,
-  height = 10,
+  color = DEFAULT_COLOR,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
 }) => <StyledHomeIcon color={color} height={height} width={width} />;
 
 export const SearchIcon: React.FC<Props> = ({
-  color = 'less',
-  width = 10,
-  height = 10,
+  color = DEFAULT_COLOR,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
 }) => <StyledSearchIcon color={color} height={height} width={width} />;
 
 export const CommentDotsIcon: React.FC<Props> = ({
-  color = 'less',
-  width = 10,
-  height = 10,
+  color = DEFAULT_COLOR,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
 }) => <StyledCommentDotsIcon color={color} height={height} width={width} />;
 
 export const ThumbsUpIcon: React.FC<Props> = ({
-  color = 'less',
-  width = 10,
-  height = 10,
+  color = DEFAULT_COLOR,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
 }) => <StyledThumbsUpIcon color={color} height={height} width={width} />;
 
 const colorPallete: { [k in ColorType]: string } = {
