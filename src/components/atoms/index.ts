@@ -20,3 +20,4 @@ export { default as StoreBadge } from './StoreBadge';
 export { CategoryTag } from './Tag';
 export { FieldError } from './Error';
 export { default as AvatarCircle } from './AvatarCircle';
+export { default as StatsCell } from './StatsCell';
