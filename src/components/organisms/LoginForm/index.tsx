@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button, Line, Heading } from 'components/atoms';
-import { Field } from 'components/molecules';
+import { Field, TwitterButton } from 'components/molecules';
 
 export interface Props {
   emailValue: string;
@@ -46,7 +46,7 @@ const LoginForm: React.FC<Props> = ({
         <Line text="または" />
         <ButtonWrapper>
           <Link to="/twitter.com">
-            <Button color="twitter">Twitterアカウントでログインする</Button>
+            <TwitterButton text="twitterアカウントでログイン" />
           </Link>
         </ButtonWrapper>
         <Line />

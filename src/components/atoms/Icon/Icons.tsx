@@ -9,6 +9,7 @@ import CommentDots from './icons/commentDots.svg';
 import ThumbsUp from './icons/thumbsUp.svg';
 import AlignLeft from './icons/alignLeft.svg';
 import Pen from './icons/pen.svg';
+import Twitter from './icons/twitter.svg';
 
 export type ColorType = 'less' | 'primary' | 'gray';
 
@@ -70,6 +71,12 @@ export const PenIcon: React.FC<Props> = ({
   height = DEFAULT_HEIGHT,
 }) => <StyledPenIcon color={color} height={height} width={width} />;
 
+export const TwitterIcon: React.FC<Props> = ({
+  color = DEFAULT_COLOR,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
+}) => <StyledTwitterIcon color={color} height={height} width={width} />;
+
 const colorPallete: { [k in ColorType]: string } = {
   gray: Color.FONT.BASE,
   less: Color.FONT.LESS,
@@ -109,5 +116,8 @@ const StyledAlignLeftIcon = styled(AlignLeft)<StyleProps>`
   ${props => getStyles(props.color)}
 `;
 const StyledPenIcon = styled(Pen)<StyleProps>`
+  ${props => getStyles(props.color)}
+`;
+const StyledTwitterIcon = styled(Twitter)<StyleProps>`
   ${props => getStyles(props.color)}
 `;

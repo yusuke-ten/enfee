@@ -8,4 +8,5 @@ export {
   ThumbsUpIcon,
   AlignLeftIcon,
   PenIcon,
+  TwitterIcon,
 } from './Icons';
