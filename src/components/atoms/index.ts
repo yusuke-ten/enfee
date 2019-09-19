@@ -21,3 +21,4 @@ export { CategoryTag } from './Tag';
 export { FieldError } from './Error';
 export { default as AvatarCircle } from './AvatarCircle';
 export { default as StatsCell } from './StatsCell';
+export { default as Usernames } from './Usernames';

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Color, Size } from 'src/const';
+import { Color } from 'src/const';
 
 interface Props {
   heading: string;
