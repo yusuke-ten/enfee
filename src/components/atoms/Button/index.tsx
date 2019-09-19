@@ -1,38 +1,18 @@
-import React from 'react';
 import styled, { css } from 'styled-components';
-import { Color, Size } from '../../../const';
+import { Color, Size } from 'src/const';
 
 type ColorType = 'primary' | 'secondary' | 'twitter';
 type SizeType = 'small' | 'midium' | 'large';
 type ShapeType = 'oval' | 'rect';
 
 interface Props {
-  onClick?: () => void;
   color?: ColorType;
   size?: SizeType;
   shape?: ShapeType;
   reverse?: boolean;
   disabled?: boolean;
-  children: React.ReactNode;
+  height?: number;
 }
-
-const Button: React.FC<Props> = ({
-  children,
-  onClick = () => {},
-  color = 'primary',
-  size = 'midium',
-  shape = 'rect',
-  reverse = false,
-  disabled = false,
-}) => (
-  <StyledButton
-    onClick={onClick}
-    {...{ color, size, shape, reverse }}
-    disabled={disabled}
-  >
-    {children}
-  </StyledButton>
-);
 
 const getColor = (color: ColorType = 'primary') => {
   switch (color) {
@@ -85,15 +65,13 @@ const getColorStyle = (color: ColorType, reverse: boolean) => {
   `;
 };
 
-type ButtonProps = Required<Omit<Props, 'children'>>;
-
-const StyledButton = styled.button<ButtonProps>`
-  ${({ color, reverse }) => getColorStyle(color, reverse)}
+const StyledButton = styled.button<Props>`
+  ${({ color = 'primary', reverse = false }) => getColorStyle(color, reverse)}
   font-size: ${Size.FONT.BASE}px;
-  height: 35px;
-  padding: 0 26px;
+  height: ${({ height = 35 }) => height}px;
   border-radius: ${({ shape }) => getshape(shape)}px;
   letter-spacing: 1.28px;
+  padding: 0 25px;
   cursor: pointer;
   outline: none;
   font-weight: ${Size.FONT_WEIGHT.NORMAL};
@@ -106,4 +84,4 @@ const StyledButton = styled.button<ButtonProps>`
     `}
 `;
 
-export default Button;
+export default StyledButton;
