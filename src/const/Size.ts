@@ -19,6 +19,7 @@ const FONT_RATIO = {
   BASE: 1.4,
   SMALL: 1.2,
   XSMALL: 1.1,
+  XXSMALL: 1.0,
   TINY: 0.9,
 } as const;
 

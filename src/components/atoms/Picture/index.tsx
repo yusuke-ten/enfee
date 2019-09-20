@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import { Color } from 'src/const';
 
 interface Props {
-  src: string;
+  src: string | null;
 }
 
 const Picture: React.FC<Props> = ({ src }) => <StyledImage src={src} />;
 
-const StyledImage = styled.span<{ src: string }>`
+const StyledImage = styled.span<{ src: string | null }>`
   background-image: url(${props => props.src});
   display: inline-block;
   background-color: ${Color.BACKGROUND.BASE};

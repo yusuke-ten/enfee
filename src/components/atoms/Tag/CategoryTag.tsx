@@ -9,12 +9,11 @@ interface Props {
 const CategoryTag: React.FC<Props> = ({ text }) => <Tag>{text}</Tag>;
 
 const Tag = styled.span`
-  font-size: ${Size.FONT_RATIO.XSMALL}rem;
+  font-size: ${Size.FONT_RATIO.XXSMALL}rem;
   text-align: center;
   display: inline-block;
-  line-height: 24px;
+  line-height: 20px;
   position: relative;
-  height: 24px;
   padding: 0 20px 0 23px;
   text-decoration: none;
   color: ${Color.FONT.LESS};
@@ -22,12 +21,12 @@ const Tag = styled.span`
 
   &::after {
     position: absolute;
-    top: -2px;
-    right: -9px;
+    top: -1px;
+    right: -8px;
     width: 0;
     height: 0;
     content: '';
-    border-width: 14px 0 14px 10px;
+    border-width: 11px 0 11px 9px;
     border-style: solid;
     border-color: transparent transparent transparent ${Color.THEME.PRIMARY};
     border-radius: 9px;

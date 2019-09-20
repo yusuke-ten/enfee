@@ -25,7 +25,7 @@ const getSizebStyles = (size: Size) => {
     case 'medium':
       return css`
         padding: 6px 18px;
-        font-size: ${Size.FONT_RATIO.XSMALL}rem;
+        font-size: ${Size.FONT_RATIO.XXSMALL}rem;
       `;
     case 'small':
       return css`
