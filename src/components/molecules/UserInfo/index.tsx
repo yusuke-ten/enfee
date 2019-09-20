@@ -5,15 +5,15 @@ import { AvatarCircle } from 'components/atoms';
 import { Color, Size } from 'src/const';
 
 interface Props {
-  imageUrl: string;
+  imageUrl: string | null;
   displayName: string;
   loginName: string;
-  userPageUrl: string;
+  userPageUrl: string | null;
   size?: 'small' | 'normal';
 }
 
 const UserInfo: React.FC<Props> = ({
-  imageUrl,
+  imageUrl = '',
   displayName,
   loginName,
   userPageUrl,
@@ -23,8 +23,8 @@ const UserInfo: React.FC<Props> = ({
 
   return (
     <Container>
-      <AvatarFrame to={userPageUrl} isSmall={isSmall}>
-        <AvatarCircle src={imageUrl} />
+      <AvatarFrame to={userPageUrl || '#'} isSmall={isSmall}>
+        <AvatarCircle src={imageUrl || ''} />
       </AvatarFrame>
       <div>
         <DisplayName isSmall={isSmall}>{displayName}</DisplayName>

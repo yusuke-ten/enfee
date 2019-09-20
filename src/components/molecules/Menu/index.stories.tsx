@@ -10,7 +10,7 @@ const links: Link[] = [
   { text: 'セブン−イレブン', to: '/reviews/seven-eleven' },
   { text: 'ファミリーマート', to: '/reviews/family-mart' },
   { text: 'ローソン', to: '/reviews/lawson' },
-]
+];
 
 storiesOf('molecules/Menu', module)
   .addDecorator(story => (
@@ -22,7 +22,7 @@ storiesOf('molecules/Menu', module)
         <ReviewMenu links={links} />
       </MenuWrapper>
     </Background>
-  ))
+  ));
 
 const Background = styled.div`
   width: 100vw;
@@ -31,4 +31,4 @@ const Background = styled.div`
 `;
 const MenuWrapper = styled.div`
   width: 200px;
-`
+`;

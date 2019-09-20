@@ -10,17 +10,7 @@ import Rate40 from './svg/rate4.0.svg';
 import Rate45 from './svg/rate4.5.svg';
 import Rate50 from './svg/rate5.0.svg';
 
-type Rating =
-  | '0.5'
-  | '1.0'
-  | '1.5'
-  | '2.0'
-  | '2.5'
-  | '3.0'
-  | '3.5'
-  | '4.0'
-  | '4.5'
-  | '5.0';
+export type Rating = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10';
 
 interface Props {
   rating: Rating;
@@ -28,16 +18,16 @@ interface Props {
 }
 
 const mappedSvg: { [k in Rating]: any } = {
-  '0.5': Rate05,
-  '1.0': Rate10,
-  '1.5': Rate15,
-  '2.0': Rate20,
-  '2.5': Rate25,
-  '3.0': Rate30,
-  '3.5': Rate35,
-  '4.0': Rate40,
-  '4.5': Rate45,
-  '5.0': Rate50,
+  1: Rate05,
+  2: Rate10,
+  3: Rate15,
+  4: Rate20,
+  5: Rate25,
+  6: Rate30,
+  7: Rate35,
+  8: Rate40,
+  9: Rate45,
+  10: Rate50,
 };
 
 const Rating: React.FC<Props> = ({ rating, height }) => {
