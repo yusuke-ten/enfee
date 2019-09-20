@@ -25,11 +25,13 @@ const UserInfoCard: React.FC<Props> = ({
       <AvatarCircle src={imageUrl} />
     </AvatarWrapper>
     <Usernames displayName={displayName} loginName={loginName} align="center" />
-    <StatsWrapper>
+    <StatsFrame>
       {statsList.map(stats => (
-        <StatsCell heading={stats.heading} amount={stats.amount} />
+        <StatsWrapeer key={stats.heading}>
+          <StatsCell heading={stats.heading} amount={stats.amount} />
+        </StatsWrapeer>
       ))}
-    </StatsWrapper>
+    </StatsFrame>
   </Container>
 );
 
@@ -44,8 +46,12 @@ const AvatarWrapper = styled.div`
   width: 80px;
   padding-bottom: 1rem;
 `;
-const StatsWrapper = styled.div`
+const StatsFrame = styled.div`
   padding-top: 10px;
+  display: flex;
+`;
+const StatsWrapeer = styled.div`
+  flex: 1;
 `;
 
 export default UserInfoCard;

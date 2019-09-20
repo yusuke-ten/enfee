@@ -8,15 +8,12 @@ interface Props {
 }
 
 const StatsCell: React.FC<Props> = ({ heading, amount }) => (
-  <Wrapper>
+  <>
     <Title>{heading}</Title>
     <Amount>{amount}</Amount>
-  </Wrapper>
+  </>
 );
 
-const Wrapper = styled.div`
-  display: inline-block;
-`;
 const Title = styled.span`
   display: inline-block;
   text-align: center;
