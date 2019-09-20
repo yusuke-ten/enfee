@@ -6,3 +6,4 @@ export { default as TwitterButton } from './Button/TwitterButton';
 export { default as ReviewPostButton } from './Button/ReviewPostButton';
 export { default as UserInfoCard } from './Card/UserInfoCard';
 export { default as ReviewMenu } from './Menu/ReviewMenu';
+export { default as CountText } from './CountText';
