@@ -24,3 +24,4 @@ export { default as StatsCell } from './StatsCell';
 export { default as Usernames } from './Usernames';
 export { default as MenuItem } from './MenuItem';
 export { default as Paragraph } from './Paragraph';
+export { default as Picture } from './Picture';
