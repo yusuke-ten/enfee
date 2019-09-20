@@ -51,6 +51,8 @@ module.exports = {
     },
   },
   rules: {
+    'no-undef': 'off',
+
     // eslint official
     'newline-before-return': 'error',
     'no-console': 'warn',

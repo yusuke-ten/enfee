@@ -26,7 +26,8 @@
       "containers/*": ["src/containers/*"],
       "atoms/*": ["src/components/atoms/*"],
       "const/*": ["src/const/*"],
-      "modules/*": ["src/modules/*"]
+      "modules/*": ["src/modules/*"],
+      "services/*": ["src/services/*"]
     }
   },
   "include": ["./src/**/*", "./types/**/*"],
