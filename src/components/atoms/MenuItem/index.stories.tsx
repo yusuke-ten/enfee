@@ -1,18 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import { MemoryRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { Color } from 'src/const';
 import MenuItem from '.';
 
 storiesOf('atoms/MenuItem', module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/seven-eleven']}>{story()}</MemoryRouter>
+  ))
   .add('default', () => (
     <Wrapper>
-      <MenuItem>セブン−イレブン</MenuItem>
+      <MenuItem to="#">セブン−イレブン</MenuItem>
     </Wrapper>
   ))
   .add('active', () => (
     <Wrapper>
-      <MenuItem active>セブン−イレブン</MenuItem>
+      <MenuItem to="/seven-eleven">セブン−イレブン</MenuItem>
     </Wrapper>
   ));
 
