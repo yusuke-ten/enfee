@@ -5,13 +5,15 @@ import { Heading, Button, Line } from 'components/atoms';
 import { Field } from 'components/molecules';
 import { Color, Size } from 'src/const';
 
-interface Props {
+export interface Props {
   emailValue: string;
   passwordValue: string;
   passwordConfirmationValue: string;
   onChangeEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onChangePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onChangeConfirmationValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangePasswordConfirmation: (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => void;
   onSubmit: () => void;
   disabledSubmitButton: boolean;
 }
@@ -22,7 +24,7 @@ const SignupForm: React.FC<Props> = ({
   passwordConfirmationValue,
   onChangeEmail,
   onChangePassword,
-  onChangeConfirmationValue,
+  onChangePasswordConfirmation,
   onSubmit,
   disabledSubmitButton,
 }) => {
@@ -47,7 +49,7 @@ const SignupForm: React.FC<Props> = ({
           type="password"
           placeholder="パスワード確認"
           value={passwordConfirmationValue}
-          onChangeHandler={onChangeConfirmationValue}
+          onChangeHandler={onChangePasswordConfirmation}
         />
       </Form>
       <MarginWrapper>

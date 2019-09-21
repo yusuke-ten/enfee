@@ -12,7 +12,7 @@ storiesOf('organisms/SignForm', module).add('default', () => (
       passwordConfirmationValue={text('passwordConfirmationValue', '')}
       onChangeEmail={() => {}}
       onChangePassword={() => {}}
-      onChangeConfirmationValue={() => {}}
+      onChangePasswordConfirmation={() => {}}
       onSubmit={() => {}}
       disabledSubmitButton={boolean('disabledSubmitButton', false)}
     />
