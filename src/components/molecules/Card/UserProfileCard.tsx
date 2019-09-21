@@ -14,7 +14,7 @@ interface Props {
   statsList: Stats[];
 }
 
-const UserInfoCard: React.FC<Props> = ({
+const UserProfileCard: React.FC<Props> = ({
   imageUrl,
   displayName,
   loginName,
@@ -39,6 +39,8 @@ const Container = styled.div`
   display: inline-block;
   background-color: #ffffff;
   padding: 20px 14px;
+  width: 100%;
+  box-sizing: border-box;
 `;
 const AvatarWrapper = styled.div`
   margin: 0 auto;
@@ -54,4 +56,4 @@ const StatsWrapeer = styled.div`
   flex: 1;
 `;
 
-export default UserInfoCard;
+export default UserProfileCard;

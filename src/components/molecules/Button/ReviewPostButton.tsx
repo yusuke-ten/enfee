@@ -21,6 +21,7 @@ const Text = styled.span`
 `;
 const StyledButton = styled(Button)`
   height: 50px;
+  width: 100%;
 `;
 
 export default TwitterButton;
