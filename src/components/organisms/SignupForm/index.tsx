@@ -54,7 +54,7 @@ const SignupForm: React.FC<Props> = ({
       </Form>
       <MarginWrapper>
         <Button type="submit" disabled={disabledSubmitButton}>
-          ログインする
+          アカウント登録
         </Button>
       </MarginWrapper>
       <Line />
