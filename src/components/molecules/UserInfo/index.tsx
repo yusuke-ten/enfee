@@ -22,8 +22,8 @@ const UserInfo: React.FC<Props> = ({
   const isSmall = size === 'small';
 
   return (
-    <Container>
-      <AvatarFrame to={userPageUrl || '#'} isSmall={isSmall}>
+    <Container to={userPageUrl || '#'}>
+      <AvatarFrame isSmall={isSmall}>
         <AvatarCircle src={imageUrl || ''} />
       </AvatarFrame>
       <div>
@@ -34,11 +34,11 @@ const UserInfo: React.FC<Props> = ({
   );
 };
 
-const Container = styled.div`
+const Container = styled(Link)`
   display: flex;
   align-items: flex-end;
 `;
-const AvatarFrame = styled(Link)<{ isSmall: boolean }>`
+const AvatarFrame = styled.div<{ isSmall: boolean }>`
   display: inline-block;
   height: ${props => (props.isSmall ? 34 : 50)}px;
   width: ${props => (props.isSmall ? 34 : 50)}px;

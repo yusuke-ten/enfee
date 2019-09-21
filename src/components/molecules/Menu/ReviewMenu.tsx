@@ -14,7 +14,9 @@ interface Props {
 const ReviewMenu: React.FC<Props> = ({ links }) => (
   <>
     {links.map(({ text, to }) => (
-      <StyledMenuItem to={to}>{text}</StyledMenuItem>
+      <StyledMenuItem key={to} to={to}>
+        {text}
+      </StyledMenuItem>
     ))}
   </>
 );
