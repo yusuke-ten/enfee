@@ -48,8 +48,8 @@ const ReviewPage: React.FC<Props> = ({ isLoadingReview = false }) => {
   );
 
   const ReviewsComponent = reviews.map(review => (
-    <ReviewWrapper>
-      <ReviewPanel key={review.id} review={review} />
+    <ReviewWrapper key={review.id}>
+      <ReviewPanel review={review} />
     </ReviewWrapper>
   ));
 
