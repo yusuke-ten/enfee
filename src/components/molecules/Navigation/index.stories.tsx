@@ -5,9 +5,9 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import Navigation from '.';
 
 const links = [
-  { text: 'レビュー', to: '/' },
-  { text: 'コミュニティ', to: '#' },
-  { text: 'メッセージ', to: '#' },
+  { text: 'レビュー', to: '/' } as const,
+  { text: 'コミュニティ', to: '/communites' } as const,
+  { text: 'メッセージ', to: '/messages' } as const,
 ];
 
 storiesOf('molecules/Navigation', module).add('default', () => (

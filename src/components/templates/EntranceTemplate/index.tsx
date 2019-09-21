@@ -51,6 +51,7 @@ const WrapperForm = styled.div`
   background: white;
   width: 26vw;
   min-width: 400px;
+  min-height: 440px;
   ${centerStyle}
   padding: 50px 0;
 
