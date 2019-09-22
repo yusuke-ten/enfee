@@ -1,23 +1,23 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { toStoreName, StoreType } from 'src/utils';
+import { Store } from 'services/models/store';
 import { Color, Size } from 'src/const';
 
 type Size = 'small' | 'medium';
 
 interface Props {
-  store: StoreType;
+  store: Store;
   size?: Size;
 }
 
 const StoreBadge: React.FC<Props> = ({ store, size = 'medium' }) => (
-  <Wrapper {...{ store, size }}>{toStoreName(store)}</Wrapper>
+  <Wrapper {...{ store, size }}>{store}</Wrapper>
 );
 
-const colors: { [k in StoreType]: string } = {
-  sevenEleven: Color.STORE.SEVEN_ELEVEN,
-  familyMart: Color.STORE.FAMILY_MART,
-  lawson: Color.STORE.LAWSON,
+const colors: { [k in Store]: string } = {
+  'セブン-イレブン': Color.STORE.SEVEN_ELEVEN,
+  ファミリーマート: Color.STORE.FAMILY_MART,
+  ローソン: Color.STORE.LAWSON,
 };
 
 const getSizebStyles = (size: Size) => {
@@ -37,7 +37,7 @@ const getSizebStyles = (size: Size) => {
   }
 };
 
-const Wrapper = styled.span<{ store: StoreType; size: Size }>`
+const Wrapper = styled.span<{ store: Store; size: Size }>`
   display: inline-block;
   color: ${Color.FONT.LESS};
   border-radius: 2px;

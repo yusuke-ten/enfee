@@ -17,12 +17,6 @@ interface Props {
   review: Review;
 }
 
-const mappedStore = {
-  'セブン-イレブン': 'sevenEleven',
-  ローソン: 'lawson',
-  ファミリーマート: 'familyMart',
-} as const;
-
 const ReviewPanel: React.FC<Props> = ({ review }) => {
   const {
     id,
@@ -38,14 +32,12 @@ const ReviewPanel: React.FC<Props> = ({ review }) => {
     user,
   } = review;
 
-  const store = mappedStore[storeName];
-
   return (
     <Container>
       <Top>
         <div>
           <LabelItemWrapper>
-            <StoreBadge store={store} />
+            <StoreBadge store={storeName} />
           </LabelItemWrapper>
           <LabelItemWrapper>
             <CategoryTag text={productCategoryName} />
