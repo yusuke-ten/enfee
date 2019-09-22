@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   color: ${Color.FONT.LESS};
-  font-size: ${Size.FONT.LARGE}px;
+  font-size: ${Size.FONT.MEDIUM}px;
 
   > img {
     vertical-align: middle;

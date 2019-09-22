@@ -41,7 +41,7 @@ const Text = styled.span`
   display: inline-block;
   padding: 0 16px;
   color: ${Color.FONT.SUPER_LIGHT};
-  font-size: ${Size.FONT.BASE}px;
+  font-size: ${Size.FONT.SMALL}px;
   line-height: 16px;
   text-align: center;
   background-color: #fff;

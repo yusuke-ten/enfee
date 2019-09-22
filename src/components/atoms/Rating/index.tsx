@@ -10,7 +10,7 @@ import Rate40 from './svg/rate4.0.svg';
 import Rate45 from './svg/rate4.5.svg';
 import Rate50 from './svg/rate5.0.svg';
 
-export type Rating = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10';
+export type Rating = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 interface Props {
   rating: Rating;

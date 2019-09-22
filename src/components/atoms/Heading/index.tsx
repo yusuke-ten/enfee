@@ -53,19 +53,19 @@ const commonStyle = css`
 const StyledH1 = styled.h1<StyleProps>`
   color: ${({ color }) => getcolor(color)};
   text-align: ${props => props.align};
-  font-size: ${Size.FONT.XXLARGE}px;
+  font-size: ${Size.FONT.XLARGE}px;
   ${commonStyle}
 `;
 const StyledH2 = styled.h2<StyleProps>`
   color: ${({ color }) => getcolor(color)};
   text-align: ${props => props.align};
-  font-size: ${Size.FONT.XLARGE}px;
+  font-size: ${Size.FONT.LARGE}px;
   ${commonStyle}
 `;
 const StyledH3 = styled.h3<StyleProps>`
   color: ${({ color }) => getcolor(color)};
   text-align: ${props => props.align};
-  font-size: ${Size.FONT.LARGE}px;
+  font-size: ${Size.FONT.MEDIUM}px;
   ${commonStyle}
 `;
 
