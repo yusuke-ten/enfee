@@ -60,7 +60,7 @@ const Inner = styled.div`
 `;
 const Content = styled.div`
   overflow: initial;
-  min-height: 80vh;
+  /* min-height: 80vh; */
 
   > * {
     pointer-events: all;
@@ -90,6 +90,7 @@ const CloseButton = styled.span`
   transform: translateY(-50%);
 `;
 const Main = styled.div`
+  height: 100%;
   padding: 30px 30px;
   word-wrap: break-word;
 `;
