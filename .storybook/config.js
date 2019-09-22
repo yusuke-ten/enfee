@@ -12,4 +12,8 @@ function loadStories() {
   req.keys().forEach(req);
 }
 
+const modalRoot = document.createElement('div');
+modalRoot.setAttribute('id', 'modal-root');
+document.body.append(modalRoot);
+
 configure(loadStories, module);

@@ -9,4 +9,5 @@ export {
   AlignLeftIcon,
   PenIcon,
   TwitterIcon,
+  CloseIcon,
 } from './Icons';

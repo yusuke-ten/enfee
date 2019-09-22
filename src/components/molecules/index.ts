@@ -7,3 +7,4 @@ export { default as ReviewPostButton } from './Button/ReviewPostButton';
 export { default as UserProfileCard } from './Card/UserProfileCard';
 export { default as ReviewMenu } from './Menu/ReviewMenu';
 export { default as CountText } from './CountText';
+export { default as Modal } from './Modal';

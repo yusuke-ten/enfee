@@ -10,6 +10,7 @@ import ThumbsUp from './icons/thumbsUp.svg';
 import AlignLeft from './icons/alignLeft.svg';
 import Pen from './icons/pen.svg';
 import Twitter from './icons/twitter.svg';
+import Close from './icons/close.svg';
 
 export type ColorType = 'less' | 'primary' | 'gray';
 
@@ -77,6 +78,12 @@ export const TwitterIcon: React.FC<Props> = ({
   height = DEFAULT_HEIGHT,
 }) => <StyledTwitterIcon color={color} height={height} width={width} />;
 
+export const CloseIcon: React.FC<Props> = ({
+  color = DEFAULT_COLOR,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
+}) => <StyledCloseIcon color={color} height={height} width={width} />;
+
 const colorPallete: { [k in ColorType]: string } = {
   gray: Color.FONT.BASE,
   less: Color.FONT.LESS,
@@ -119,5 +126,8 @@ const StyledPenIcon = styled(Pen)<StyleProps>`
   ${props => getStyles(props.color)}
 `;
 const StyledTwitterIcon = styled(Twitter)<StyleProps>`
+  ${props => getStyles(props.color)}
+`;
+const StyledCloseIcon = styled(Close)<StyleProps>`
   ${props => getStyles(props.color)}
 `;
