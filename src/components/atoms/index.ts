@@ -12,6 +12,8 @@ export {
   PenIcon,
   TwitterIcon,
   CloseIcon,
+  AngleUpIcon,
+  AngleDownIcon,
 } from './Icon';
 export { default as Line } from './Line';
 export { default as TextInput } from './Input';

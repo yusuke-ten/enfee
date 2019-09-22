@@ -10,4 +10,6 @@ export {
   PenIcon,
   TwitterIcon,
   CloseIcon,
+  AngleUpIcon,
+  AngleDownIcon,
 } from './Icons';

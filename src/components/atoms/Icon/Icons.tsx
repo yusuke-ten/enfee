@@ -11,6 +11,8 @@ import AlignLeft from './icons/alignLeft.svg';
 import Pen from './icons/pen.svg';
 import Twitter from './icons/twitter.svg';
 import Close from './icons/close.svg';
+import AngleUp from './icons/angleUp.svg';
+import AngleDown from './icons/angleDown.svg';
 
 export type ColorType = 'less' | 'primary' | 'gray';
 
@@ -84,6 +86,18 @@ export const CloseIcon: React.FC<Props> = ({
   height = DEFAULT_HEIGHT,
 }) => <StyledCloseIcon color={color} height={height} width={width} />;
 
+export const AngleUpIcon: React.FC<Props> = ({
+  color = DEFAULT_COLOR,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
+}) => <StyledAngleUpIcon color={color} height={height} width={width} />;
+
+export const AngleDownIcon: React.FC<Props> = ({
+  color = DEFAULT_COLOR,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
+}) => <StyledAngleDownIcon color={color} height={height} width={width} />;
+
 const colorPallete: { [k in ColorType]: string } = {
   gray: Color.FONT.BASE,
   less: Color.FONT.LESS,
@@ -129,5 +143,11 @@ const StyledTwitterIcon = styled(Twitter)<StyleProps>`
   ${props => getStyles(props.color)}
 `;
 const StyledCloseIcon = styled(Close)<StyleProps>`
+  ${props => getStyles(props.color)}
+`;
+const StyledAngleUpIcon = styled(AngleUp)<StyleProps>`
+  ${props => getStyles(props.color)}
+`;
+const StyledAngleDownIcon = styled(AngleDown)<StyleProps>`
   ${props => getStyles(props.color)}
 `;
