@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from './modules';
-import rootSaga from './sagas';
+import rootSaga from './modules/sagas';
 import App from './App';
 
 import './styles/reset.css';

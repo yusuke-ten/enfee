@@ -62,7 +62,7 @@ const ReviewPanel: React.FC<Props> = ({ review }) => {
           imageUrl={user.imageUrl}
           displayName={user.displayName}
           loginName={user.loginName}
-          userPageUrl="/test"
+          userPageUrl={`/users/${user.id}`}
           size="small"
         />
       </Author>

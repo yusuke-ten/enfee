@@ -1,4 +1,4 @@
-import { testSaga } from 'src/sagas/app';
+import { testSaga } from 'src/modules/sagas/app';
 
 console.log(testSaga());
 
