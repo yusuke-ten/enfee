@@ -27,11 +27,32 @@ const ReviewPageContainer: React.FC<RouteComponentProps<{ store: string }>> = ({
   history,
   match,
 }) => {
+  const [isModal, toggleModal] = useState<boolean>(false);
+
   const isLoadingReview = false;
+
+  const openModal = useCallback(() => {
+    toggleModal(true);
+  }, []);
+
+  const closeModal = useCallback(() => {
+    toggleModal(false);
+  }, []);
 
   const { store } = match.params;
 
-  return <ReviewPage {...{ isLoadingReview, reviews, myProfile }} />;
+  return (
+    <ReviewPage
+      {...{
+        isLoadingReview,
+        reviews,
+        myProfile,
+        isModal,
+        openModal,
+        closeModal,
+      }}
+    />
+  );
 };
 
 export default withRouter(ReviewPageContainer);

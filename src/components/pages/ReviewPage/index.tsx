@@ -10,6 +10,7 @@ import { Header, ReviewPanel } from 'components/organisms';
 import { Color, Size } from 'src/const';
 import Review from 'src/services/models/review';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
+import { ReviewDetailPageContainer } from 'containers/pages';
 
 const links: MenuLinkType[] = [
   { text: 'すべて', to: '/reviews/all' },
@@ -32,12 +33,18 @@ interface Props {
   isLoadingReview: boolean;
   reviews: Review[];
   myProfile: MyProfile;
+  isModal: boolean;
+  openModal: () => void;
+  closeModal: () => void;
 }
 
 const ReviewPage: React.FC<Props> = ({
   isLoadingReview = false,
   reviews,
   myProfile,
+  isModal,
+  openModal,
+  closeModal,
 }) => {
   const LoadingComponent = (
     <SpinnerWrapper>
@@ -46,7 +53,7 @@ const ReviewPage: React.FC<Props> = ({
   );
 
   const ReviewsComponent = reviews.map(review => (
-    <ReviewWrapper key={review.id}>
+    <ReviewWrapper key={review.id} onClick={openModal}>
       <ReviewPanel review={review} />
     </ReviewWrapper>
   ));
@@ -75,6 +82,7 @@ const ReviewPage: React.FC<Props> = ({
           </RightWrapper>
         </Container>
       </Main>
+      {isModal && <ReviewDetailPageContainer closeModal={closeModal} />}
     </>
   );
 };
