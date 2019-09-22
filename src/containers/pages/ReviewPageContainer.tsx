@@ -4,6 +4,25 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { ReviewPage } from 'components/pages';
 import { actionCreators } from 'src/modules/app';
 
+/* モックデータ */
+import reviewData from 'src/services/mocks/reviews.json';
+import camelcaseKeys from 'camelcase-keys';
+import Review from 'src/services/models/review';
+
+const reviews = camelcaseKeys(reviewData, { deep: true }) as Review[];
+
+const myProfile = {
+  imageUrl:
+    'https://s3-ap-northeast-1.amazonaws.com/aohiro-blog/User/avatar/dot.jpg',
+  displayName: 'あおひろ',
+  loginName: '@aohiro',
+  statsList: [
+    { heading: 'レビュー', amount: 30 } as const,
+    { heading: 'フォロー', amount: 59 } as const,
+    { heading: 'フォロワー', amount: 103 } as const,
+  ],
+};
+
 const ReviewPageContainer: React.FC<RouteComponentProps<{ store: string }>> = ({
   history,
   match,
@@ -12,7 +31,7 @@ const ReviewPageContainer: React.FC<RouteComponentProps<{ store: string }>> = ({
 
   const { store } = match.params;
 
-  return <ReviewPage {...{ isLoadingReview }} />;
+  return <ReviewPage {...{ isLoadingReview, reviews, myProfile }} />;
 };
 
 export default withRouter(ReviewPageContainer);

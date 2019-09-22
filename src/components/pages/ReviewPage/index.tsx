@@ -8,26 +8,8 @@ import {
 } from 'components/molecules';
 import { Header, ReviewPanel } from 'components/organisms';
 import { Color, Size } from 'src/const';
-
-import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
-
-/* モックデータ */
-import reviewData from 'src/services/mocks/reviews.json';
-import camelcaseKeys from 'camelcase-keys';
 import Review from 'src/services/models/review';
-
-const reviews = camelcaseKeys(reviewData, { deep: true }) as Review[];
-
-const imageUrl =
-  'https://s3-ap-northeast-1.amazonaws.com/aohiro-blog/User/avatar/dot.jpg';
-const displayName = 'あおひろ';
-const loginName = '@aohiro';
-const statsList = [
-  { heading: 'レビュー', amount: 30 } as const,
-  { heading: 'フォロー', amount: 59 } as const,
-  { heading: 'フォロワー', amount: 103 } as const,
-];
-/* ------------ */
+import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
 
 const links: MenuLinkType[] = [
   { text: 'すべて', to: '/reviews/all' },
@@ -36,11 +18,27 @@ const links: MenuLinkType[] = [
   { text: 'ローソン', to: '/reviews/lawson' },
 ];
 
-interface Props {
-  isLoadingReview: boolean;
+interface MyProfile {
+  imageUrl: string;
+  displayName: string;
+  loginName: string;
+  statsList: {
+    heading: 'レビュー' | 'フォロー' | 'フォロワー';
+    amount: number;
+  }[];
 }
 
-const ReviewPage: React.FC<Props> = ({ isLoadingReview = false }) => {
+interface Props {
+  isLoadingReview: boolean;
+  reviews: Review[];
+  myProfile: MyProfile;
+}
+
+const ReviewPage: React.FC<Props> = ({
+  isLoadingReview = false,
+  reviews,
+  myProfile,
+}) => {
   const LoadingComponent = (
     <SpinnerWrapper>
       <Spinner color="primary" height={45} width={45} />
@@ -66,9 +64,14 @@ const ReviewPage: React.FC<Props> = ({ isLoadingReview = false }) => {
           </Reviews>
           <RightWrapper>
             <ReviewPostButton text="レビューを投稿する" />
-            <UserProfileCard
-              {...{ imageUrl, displayName, loginName, statsList }}
-            />
+            {myProfile && (
+              <UserProfileCard
+                imageUrl={myProfile.imageUrl}
+                displayName={myProfile.displayName}
+                loginName={myProfile.loginName}
+                statsList={myProfile.statsList}
+              />
+            )}
           </RightWrapper>
         </Container>
       </Main>
