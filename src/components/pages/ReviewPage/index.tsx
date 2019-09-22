@@ -85,9 +85,12 @@ const Main = styled.div`
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  align-items: flex-start;
 `;
 const NavWrapper = styled.div`
   width: 200px;
+  position: sticky;
+  top: 1em;
 `;
 const Reviews = styled.div`
   margin: 0 30px;
