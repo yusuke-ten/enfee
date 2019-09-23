@@ -6,7 +6,7 @@ import { Size } from 'src/const';
 interface Props {
   imageUrl: string;
   value: string;
-  onChange: () => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   reply?: boolean;
 }
 
