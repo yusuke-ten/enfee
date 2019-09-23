@@ -12,6 +12,7 @@ interface Props {
   onBlurHandler?: () => void;
   onFocusHandler?: () => void;
   isError?: boolean;
+  small?: boolean;
 }
 
 const TextInput: FC<Props> = ({
@@ -22,6 +23,7 @@ const TextInput: FC<Props> = ({
   onFocusHandler = () => {},
   placeholder = '',
   isError = false,
+  small = false,
 }) => {
   return (
     <StyledInput
@@ -32,14 +34,15 @@ const TextInput: FC<Props> = ({
       onBlur={onBlurHandler}
       onFocus={onFocusHandler}
       isError={isError}
+      small={small}
     />
   );
 };
 
-const StyledInput = styled.input<{ isError?: boolean }>`
+const StyledInput = styled.input<{ isError?: boolean; small: boolean }>`
   width: 100%;
-  height: 40px;
-  font-size: 14px;
+  height: ${props => (props.small ? '30px' : '40px')};
+  font-size: ${props => (props.small ? '12px' : '14px')};
   color: ${Color.FONT.BASE};
   letter-spacing: 1.5px;
   border-radius: 2px;

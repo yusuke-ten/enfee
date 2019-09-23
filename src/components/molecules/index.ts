@@ -10,3 +10,4 @@ export { default as CountText } from './CountText';
 export { default as Modal } from './Modal';
 export { default as Like } from './Like';
 export { default as ToggleAngle } from './ToggleAngle';
+export { default as CommentInputField } from './CommentInputField';
