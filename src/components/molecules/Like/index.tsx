@@ -20,8 +20,7 @@ const Like: React.FC<Props> = ({ count, isLiked }) => {
 };
 
 const Container = styled.div`
-  display: inline-block;
-  line-height: ${Size.FONT.MEDIUM}px;
+  display: flex;
 `;
 const Text = styled.span<{ isLiked: boolean }>`
   padding-left: 5px;
