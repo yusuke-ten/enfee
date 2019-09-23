@@ -15,9 +15,10 @@ import { Color, Size } from 'src/const';
 
 interface Props {
   review: Review;
+  onOpenModal: () => void;
 }
 
-const ReviewPanel: React.FC<Props> = ({ review }) => {
+const ReviewPanel: React.FC<Props> = ({ review, onOpenModal }) => {
   const {
     id,
     productName,
@@ -59,7 +60,7 @@ const ReviewPanel: React.FC<Props> = ({ review }) => {
         />
       </Author>
       <Line />
-      <Main>
+      <Main onClick={onOpenModal}>
         <PictureFrame>
           <Picture src={picturePath} />
         </PictureFrame>
@@ -67,7 +68,7 @@ const ReviewPanel: React.FC<Props> = ({ review }) => {
           <Heading>{productName}</Heading>
           <div>
             <RateText>おすすめ度: </RateText>
-            <Rating rating={String(rating) as RatingType} height={14} />
+            <Rating rating={rating as RatingType} height={14} />
             <Paragraph>{content.slice(0, 60)}...</Paragraph>
           </div>
         </ReviewFrame>
@@ -104,6 +105,7 @@ const Author = styled.div`
   padding: 8px 10px;
 `;
 const Main = styled.div`
+  cursor: pointer;
   display: flex;
   padding: 10px 10px;
 `;

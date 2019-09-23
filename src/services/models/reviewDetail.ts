@@ -1,3 +1,5 @@
+import { Store } from './store';
+
 export interface User {
   id: number;
   displayName: string;
@@ -24,7 +26,7 @@ export interface ReviewDetail {
   rating: number;
   createdAt: string;
   price: number;
-  storeName: 'セブン-イレブン' | 'ローソン' | 'ファミリーマート';
+  storeName: Store;
   productCategoryName: string;
   user: User;
   comments: Comment[];

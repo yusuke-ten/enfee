@@ -53,8 +53,8 @@ const ReviewPage: React.FC<Props> = ({
   );
 
   const ReviewsComponent = reviews.map(review => (
-    <ReviewWrapper key={review.id} onClick={openModal}>
-      <ReviewPanel review={review} />
+    <ReviewWrapper key={review.id}>
+      <ReviewPanel review={review} onOpenModal={openModal} />
     </ReviewWrapper>
   ));
 

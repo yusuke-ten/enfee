@@ -10,7 +10,7 @@
   "rating": 5,
   "created_at": "2019-09-20",
   "price": 100,
-  "store_name": "セブン−イレブン",
+  "store_name": "セブン-イレブン",
   "product_category_name": "おにぎり",
   "user": {
       "id": 1,
