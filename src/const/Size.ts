@@ -17,10 +17,10 @@ const FONT = {
   LARGE: 18,
   MEDIUM: 16,
   BASE: 14,
-  SMALL: 12,
-  XSMALL: 11,
-  XXSMALL: 10,
-  TINY: 9,
+  SMALL: 13,
+  XSMALL: 12,
+  XXSMALL: 11,
+  TINY: 10,
 } as const;
 
 const FONT_RATIO = {
