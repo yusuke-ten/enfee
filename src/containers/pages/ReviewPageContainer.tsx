@@ -27,7 +27,7 @@ const ReviewPageContainer: React.FC<RouteComponentProps<{ store: string }>> = ({
   history,
   match,
 }) => {
-  const [isModal, toggleModal] = useState<boolean>(false);
+  const [isModal, toggleModal] = useState<boolean>(true);
 
   const isLoadingReview = false;
 

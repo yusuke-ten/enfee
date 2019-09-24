@@ -15,9 +15,32 @@ const reviewDetail = camelcaseKeys(reviewDetailData, {
 const ReviewPageContainer: React.FC<
   RouteComponentProps & { closeModal: () => void }
 > = ({ closeModal }) => {
+  const [commentValue, changeCommentValue] = useState<string>('');
+
+  const commentChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    changeCommentValue(e.target.value);
+  };
+
+  const submitCommentHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(`submit comment! value: ${commentValue}`);
+    changeCommentValue('');
+  };
+
   const isLoading = false;
 
-  return <ReviewDetailPage {...{ reviewDetail, isLoading, closeModal }} />;
+  return (
+    <ReviewDetailPage
+      {...{
+        reviewDetail,
+        isLoading,
+        closeModal,
+        commentValue,
+        commentChangeHandler,
+        submitCommentHandler,
+      }}
+    />
+  );
 };
 
 export default withRouter(ReviewPageContainer);

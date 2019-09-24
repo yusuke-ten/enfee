@@ -11,26 +11,40 @@ import {
   Picture,
 } from 'components/atoms';
 import { Rating as RatingType } from 'components/atoms/Rating';
-import { Modal, UserInfo } from 'components/molecules';
-import { ReviewDetail } from 'services/models/reviewDetail';
+import {
+  Modal,
+  UserInfo,
+  CountText,
+  CommentInputField,
+} from 'components/molecules';
+import { Comment } from 'components/organisms';
+import {
+  ReviewDetail,
+  Comment as IComment,
+} from 'services/models/reviewDetail';
 import { Size, Color } from 'src/const';
 
 interface Props {
   reviewDetail: ReviewDetail;
   isLoading: boolean;
   closeModal: () => void;
+  commentValue: string;
+  commentChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  submitCommentHandler: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const ReviewDetailPage: React.FC<Props> = ({
   reviewDetail,
   isLoading,
   closeModal,
+  commentValue,
+  commentChangeHandler,
+  submitCommentHandler,
 }) => {
   const {
     id,
     productName,
     content,
-    commentCount,
     picturePath,
     rating,
     createdAt,
@@ -40,6 +54,13 @@ const ReviewDetailPage: React.FC<Props> = ({
     user,
     comments,
   } = reviewDetail;
+
+  const addRepliesComments = comments.map(comment => {
+    const obj = comment as IComment & { replies: IComment[] };
+    obj.replies = [];
+
+    return obj;
+  });
 
   return (
     <Modal onClose={closeModal}>
@@ -89,7 +110,23 @@ const ReviewDetailPage: React.FC<Props> = ({
               ))}
           </PictureArea>
           <Line />
-          <Section></Section>
+          <Section>
+            <Title>
+              <CountText text="コメント" count={comments.length} />
+            </Title>
+            <form onSubmit={submitCommentHandler}>
+              <CommentInputField
+                imageUrl=""
+                value={commentValue}
+                onChange={commentChangeHandler}
+              />
+            </form>
+            <CommentArea>
+              {addRepliesComments.map(comment => (
+                <Comment comment={comment} />
+              ))}
+            </CommentArea>
+          </Section>
         </Container>
       )}
     </Modal>
@@ -138,5 +175,8 @@ const PictureFrame = styled.a`
   margin-right: 10px;
 `;
 const CommentArea = styled.div``;
+const Title = styled.div`
+  padding-bottom: 14px;
+`;
 
 export default ReviewDetailPage;

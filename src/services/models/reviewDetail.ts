@@ -21,7 +21,6 @@ export interface ReviewDetail {
   id: number;
   productName: string;
   content: string;
-  commentCount: number;
   picturePath: string[] | null;
   rating: number;
   createdAt: string;
