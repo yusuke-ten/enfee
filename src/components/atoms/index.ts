@@ -30,3 +30,4 @@ export { default as Paragraph } from './Paragraph';
 export { default as Picture } from './Picture';
 export { default as Rating } from './Rating';
 export { default as Txt, InfoTxt, WarnTxt } from './Text';
+export { default as MediaObjectLayout } from './MediaObjectLayout';
