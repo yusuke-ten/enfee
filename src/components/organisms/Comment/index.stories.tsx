@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import { boolean } from '@storybook/addon-knobs';
 import { Comment as IComment } from 'services/models/reviewDetail';
@@ -40,13 +41,23 @@ const commentData: IComment & { replies: IComment[] } = {
 
 storiesOf('organisms/Comment', module)
   .add('default', () => (
-    <Comment
-      comment={commentData}
-      onOpenReply={() => {}}
-      showReplies={boolean('showReplies', true)}
-      toggleShowReplies={() => {}}
-      onReplySubmit={() => {}}
-      isReplyLoading={boolean('isReplyLoading', false)}
-    />
+    <Wrapper>
+      <Comment
+        comment={commentData}
+        onOpenReply={() => {}}
+        showReplies={boolean('showReplies', true)}
+        toggleShowReplies={() => {}}
+        onReplySubmit={() => {}}
+        isReplyLoading={boolean('isReplyLoading', false)}
+      />
+    </Wrapper>
   ))
-  .add('replyComment', () => <ReplyComment comment={replyCommentData} />);
+  .add('replyComment', () => (
+    <Wrapper>
+      <ReplyComment comment={replyCommentData} />
+    </Wrapper>
+  ));
+
+const Wrapper = styled.div`
+  width: 600px;
+`;

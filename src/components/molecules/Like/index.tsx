@@ -6,13 +6,14 @@ import { Color, Size } from 'src/const';
 interface Props {
   count: number;
   isLiked: boolean;
+  handleClick: () => void;
 }
 
-const Like: React.FC<Props> = ({ count, isLiked }) => {
+const Like: React.FC<Props> = ({ count, isLiked, handleClick, ...props }) => {
   const iconColor = isLiked ? 'primary' : 'gray';
 
   return (
-    <Container>
+    <Container onClick={handleClick} {...props}>
       <ThumbsUpIcon color={iconColor} width={16} height={16} />
       <Text isLiked={isLiked}>{count}</Text>
     </Container>
@@ -21,6 +22,7 @@ const Like: React.FC<Props> = ({ count, isLiked }) => {
 
 const Container = styled.div`
   display: flex;
+  cursor: pointer;
 `;
 const Text = styled.span<{ isLiked: boolean }>`
   padding-left: 5px;

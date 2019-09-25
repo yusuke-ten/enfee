@@ -6,22 +6,25 @@ import { ReplyComment } from 'components/organisms';
 import { Comment as IComment } from 'services/models/reviewDetail';
 import { Color, Size } from 'src/const';
 
-interface Props {
+export interface Props {
   comment: IComment & { replies: IComment[] };
-  onOpenReply: (id: number) => void;
-  showReplies: boolean;
-  toggleShowReplies: () => void;
-  onReplySubmit: (id: number, value: string) => void;
+  handleOpenReplies: (id: number) => void;
+  hiddenDisplayReplies: () => void;
+  handleReplySubmit: (id: number, value: string) => void;
+  isDisplayReplies: boolean;
   isReplyLoading: boolean;
+  handleLike: () => void;
 }
 
 const Comment: React.FC<Props> = ({
   comment,
-  onOpenReply,
-  showReplies,
-  toggleShowReplies,
-  onReplySubmit,
+  handleOpenReplies,
+  isDisplayReplies,
+  hiddenDisplayReplies,
+  handleReplySubmit,
   isReplyLoading = false,
+  handleLike,
+  ...props
 }) => {
   const [showReplyForm, toggleReplyForm] = useState<boolean>(false);
   const [replyValue, changeReplyValue] = useState<string>('');
@@ -49,23 +52,28 @@ const Comment: React.FC<Props> = ({
   } = comment;
 
   const ToggleReplyComponent = () => {
-    if (showReplies) {
+    if (isDisplayReplies) {
       return (
-        <ShowReply onClick={toggleShowReplies}>
+        <ShowReply onClick={hiddenDisplayReplies}>
           <ToggleAngle text="返信を非表示にする" iconType="up" />
         </ShowReply>
       );
     }
 
     return (
-      <ShowReply onClick={() => onOpenReply(id)}>
+      <ShowReply onClick={() => handleOpenReplies(id)}>
         <ToggleAngle text={`${replyCount}件の返信を表示`} iconType="down" />
       </ShowReply>
     );
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleReplySubmit(id, replyValue);
+  };
+
   return (
-    <Container>
+    <Container {...props}>
       <AvatarFrame>
         <AvatarCircle src={user.imageUrl} />
       </AvatarFrame>
@@ -78,13 +86,13 @@ const Comment: React.FC<Props> = ({
         </Top>
         <Body>{body}</Body>
         <Desc>
-          <Like count={likeCount} isLiked={liked} />
+          <Like count={likeCount} isLiked={liked} handleClick={handleLike} />
           <DoReply onClick={toggleReplyFormHandler}>
             {showReplyForm ? '返信をキャンセル' : '返信する'}
           </DoReply>
         </Desc>
         {showReplyForm && (
-          <ReplyForm onSubmit={() => onReplySubmit(id, replyValue)}>
+          <ReplyForm onSubmit={handleSubmit}>
             <CommentInputField
               imageUrl=""
               value={replyValue}
@@ -94,7 +102,7 @@ const Comment: React.FC<Props> = ({
           </ReplyForm>
         )}
         {replyCount > 0 && <ToggleReplyComponent />}
-        {showReplies &&
+        {isDisplayReplies &&
           (isReplyLoading ? (
             <RepliesArea>
               <Spinner color="gray" height={30} width={30} />

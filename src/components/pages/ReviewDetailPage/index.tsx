@@ -17,7 +17,8 @@ import {
   CountText,
   CommentInputField,
 } from 'components/molecules';
-import { Comment } from 'components/organisms';
+// import { Comment } from 'components/organisms';
+import { CommentContainer } from 'containers/organisms';
 import {
   ReviewDetail,
   Comment as IComment,
@@ -122,8 +123,8 @@ const ReviewDetailPage: React.FC<Props> = ({
               />
             </form>
             <CommentArea>
-              {addRepliesComments.map(comment => (
-                <Comment comment={comment} />
+              {addRepliesComments.map((comment, idx) => (
+                <StyledComment key={idx} comment={comment} />
               ))}
             </CommentArea>
           </Section>
@@ -175,6 +176,9 @@ const PictureFrame = styled.a`
   margin-right: 10px;
 `;
 const CommentArea = styled.div``;
+const StyledComment = styled(CommentContainer)`
+  padding-top: 14px;
+`;
 const Title = styled.div`
   padding-bottom: 14px;
 `;
