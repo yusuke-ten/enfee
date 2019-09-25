@@ -42,6 +42,7 @@ const AvatarFrame = styled.div`
   width: 40px;
 `;
 const Content = styled.div`
+  flex: 1;
   padding-left: 16px;
 `;
 const Top = styled.div`
