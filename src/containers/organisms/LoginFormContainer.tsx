@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import LoginForm, { Props } from 'components/organisms/LoginForm';
-import { actionCreators } from 'src/modules/app';
+import { login } from 'src/modules/app';
+import { RootState } from 'src/modules';
 
 const LoginFormContainer = () => {
   const [emailValue, updateEmailValue] = useState('');
@@ -11,6 +12,8 @@ const LoginFormContainer = () => {
     emailValue.length === 0 || passwrodValue.length === 0;
 
   const dispatch = useDispatch();
+
+  const { isLoading } = useSelector((state: RootState) => state.app);
 
   const onChangeEmail = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,14 +29,14 @@ const LoginFormContainer = () => {
     [],
   );
 
-  const onSubmit = useCallback(() => {
-    const submitState = {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const params = {
       email: emailValue,
       password: passwrodValue,
     };
-    dispatch(actionCreators.loginStart(submitState));
-    console.log('submit!!!');
-  }, []);
+    dispatch(login.start(params));
+  };
 
   return (
     <LoginForm
@@ -44,6 +47,7 @@ const LoginFormContainer = () => {
         emailValue,
         passwrodValue,
         disabledSubmitButton,
+        isLoading,
       }}
     />
   );

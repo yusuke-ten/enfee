@@ -2,7 +2,6 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ReviewPage } from 'components/pages';
-import { actionCreators } from 'src/modules/app';
 
 /* モックデータ */
 import reviewData from 'src/services/mocks/reviews.json';

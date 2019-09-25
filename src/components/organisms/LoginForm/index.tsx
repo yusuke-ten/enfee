@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Button, Line, Heading } from 'components/atoms';
+import { Button, Line, Heading, Spinner } from 'components/atoms';
 import { Field, TwitterButton } from 'components/molecules';
 
 export interface Props {
@@ -9,9 +9,17 @@ export interface Props {
   passwrodValue: string;
   onChangeEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onChangePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: () => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   disabledSubmitButton: boolean;
+  isLoading: boolean;
 }
+
+const LoadingComponent = () => (
+  <span>
+    読み込み中
+    <Spinner height={20} width={20} />
+  </span>
+);
 
 const LoginForm: React.FC<Props> = ({
   emailValue,
@@ -20,13 +28,14 @@ const LoginForm: React.FC<Props> = ({
   onChangePassword,
   onSubmit,
   disabledSubmitButton,
+  isLoading,
 }) => {
   return (
     <Container>
       <Heading type="h2" align="center">
         ログイン
       </Heading>
-      <Form>
+      <Form onSubmit={onSubmit}>
         <Field
           placeholder="メールアドレス"
           value={emailValue}
@@ -39,8 +48,8 @@ const LoginForm: React.FC<Props> = ({
           onChangeHandler={onChangePassword}
         />
         <ButtonWrapper>
-          <Button onClick={onSubmit} disabled={disabledSubmitButton}>
-            ログインする
+          <Button type="submit" disabled={disabledSubmitButton || isLoading}>
+            {isLoading ? <LoadingComponent /> : 'ログインする'}
           </Button>
         </ButtonWrapper>
         <Line text="または" />
