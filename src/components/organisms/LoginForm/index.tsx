@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Button, Line, Heading, Spinner, Txt } from 'components/atoms';
+import { Button, Line, Heading, Spinner, Txt, WarnTxt } from 'components/atoms';
 import { Field, TwitterButton } from 'components/molecules';
 
 export interface Props {
@@ -12,6 +12,8 @@ export interface Props {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   disabledSubmitButton: boolean;
   isLoading: boolean;
+  error: string | null | undefined;
+  isError: boolean;
 }
 
 const LoadingComponent = () => (
@@ -31,6 +33,8 @@ const LoginForm: React.FC<Props> = ({
   onSubmit,
   disabledSubmitButton,
   isLoading,
+  error,
+  isError,
 }) => {
   return (
     <Container>
@@ -42,30 +46,33 @@ const LoginForm: React.FC<Props> = ({
           placeholder="メールアドレス"
           value={emailValue}
           onChangeHandler={onChangeEmail}
+          isError={isError}
         />
         <Field
           type="password"
           placeholder="パスワード"
           value={passwrodValue}
           onChangeHandler={onChangePassword}
+          isError={isError}
         />
-        <ButtonWrapper>
+        {isError && <StyledWarnTxt size="b">{error}</StyledWarnTxt>}
+        <MarginBlock>
           <Button type="submit" disabled={disabledSubmitButton || isLoading}>
             {isLoading ? <LoadingComponent /> : 'ログインする'}
           </Button>
-        </ButtonWrapper>
+        </MarginBlock>
         <Line text="または" />
-        <ButtonWrapper>
+        <MarginBlock>
           <Link to="/twitter.com">
             <TwitterButton text="twitterアカウントでログイン" />
           </Link>
-        </ButtonWrapper>
+        </MarginBlock>
         <Line />
-        <ButtonWrapper>
+        <MarginBlock>
           <Link to="/signup">
             <Button color="secondary">新規アカウント作成</Button>
           </Link>
-        </ButtonWrapper>
+        </MarginBlock>
       </Form>
     </Container>
   );
@@ -81,13 +88,16 @@ const Form = styled.form`
   flex-direction: column;
   align-items: center;
 `;
-const ButtonWrapper = styled.div`
+const MarginBlock = styled.div`
   margin: 20px auto;
 `;
 const StyledTxt = styled(Txt)`
   color: white;
   margin-right: 6px;
   vertical-align: middle;
+`;
+const StyledWarnTxt = styled(WarnTxt)`
+  margin-top: 10px;
 `;
 
 export default LoginForm;

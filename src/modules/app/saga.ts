@@ -1,23 +1,24 @@
 import { fork, takeLatest, call, put } from 'redux-saga/effects';
+import { loginApiFactory } from 'services/api/auth';
 import { actions, login } from '.';
 
-const loginMock = () => {
-  return new Promise((resolve, reject) => {
-    setInterval(() => {
-      resolve('ok');
-    }, 1000);
-  });
-};
+const loginHandler = loginApiFactory();
 
 export function* runLogin(action: ReturnType<typeof login.start>) {
   console.log('run login! action: ', action);
-  yield call(loginMock);
+  const { params } = action.payload;
+
+  try {
+    const { token } = yield call(loginHandler, params);
+
+    yield put(login.succeed(params, { token }));
+  } catch (error) {
+    yield put(login.fail(params, error));
+  }
   console.log('call finished');
-  yield put(login.succeed(action.payload.params, { token: 'ok' }));
 }
 
 export function* watchLogin() {
-  console.log('watch login!');
   yield takeLatest(actions.LOGIN_START, runLogin);
 }
 

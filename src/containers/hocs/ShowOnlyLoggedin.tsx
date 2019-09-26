@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { ApplicationState } from 'src/modules';
+import { RootState } from 'src/modules';
 
-const appState = (state: ApplicationState) => state.app;
+const appState = (state: RootState) => state.app;
 
 interface Props {
   Component: React.FC;

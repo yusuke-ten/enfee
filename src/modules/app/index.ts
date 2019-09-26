@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios';
 import { Reducer } from 'redux';
 import { CreatorsToActions } from 'src/utils';
 
@@ -24,7 +23,7 @@ export const login = {
     type: actions.LOGIN_SUCCEED,
     payload: { params, result },
   }),
-  fail: (params: LoginParams, error: AxiosError) => ({
+  fail: (params: LoginParams, error: { message: string }) => ({
     type: actions.LOGIN_FAIL,
     payload: { params, error },
     error: true,
@@ -44,13 +43,16 @@ interface User {
 export interface AppState {
   isLoading: boolean;
   isLoggedIn: boolean;
+  isError: boolean;
   profile: User | null;
   token: string | null;
+  error?: string | null;
 }
 
 const initialState: AppState = {
   isLoading: false,
   isLoggedIn: false,
+  isError: false,
   profile: null,
   token: null,
 };
@@ -66,6 +68,7 @@ const reducer: Reducer<AppState, AppAction> = (
       return {
         ...state,
         isLoading: true,
+        isError: false,
       };
     case actions.LOGIN_SUCCEED:
       console.log('login succeed', action.payload);
@@ -75,13 +78,16 @@ const reducer: Reducer<AppState, AppAction> = (
         token: action.payload.result.token,
         isLoading: false,
         isLoggedIn: true,
+        isError: false,
       };
     case actions.LOGIN_FAIL:
-      console.log('login fail', action.payload);
+      console.log('login fail', action.payload.error.message);
 
       return {
         ...state,
         isLoading: false,
+        isError: true,
+        error: action.payload.error.message,
       };
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars

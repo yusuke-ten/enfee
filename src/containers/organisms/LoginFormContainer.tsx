@@ -13,7 +13,9 @@ const LoginFormContainer = () => {
 
   const dispatch = useDispatch();
 
-  const { isLoading } = useSelector((state: RootState) => state.app);
+  const { isLoading, error, isError } = useSelector(
+    (state: RootState) => state.app,
+  );
 
   const onChangeEmail = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,6 +50,8 @@ const LoginFormContainer = () => {
         passwrodValue,
         disabledSubmitButton,
         isLoading,
+        error,
+        isError,
       }}
     />
   );

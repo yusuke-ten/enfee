@@ -40,7 +40,7 @@ export const loginApiFactory = (optionConfig?: ApiConfig) => {
 
       return result;
     } catch (err) {
-      throw err;
+      throw err.response.data;
     }
   };
 
