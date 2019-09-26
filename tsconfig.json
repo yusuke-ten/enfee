@@ -27,7 +27,8 @@
       "atoms/*": ["src/components/atoms/*"],
       "const/*": ["src/const/*"],
       "modules/*": ["src/modules/*"],
-      "services/*": ["src/services/*"]
+      "services/*": ["src/services/*"],
+      "config/*": ["src/config/*"]
     }
   },
   "include": ["./src/**/*", "./types/**/*"],

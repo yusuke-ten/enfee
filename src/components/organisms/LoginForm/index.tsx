@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Button, Line, Heading, Spinner } from 'components/atoms';
+import { Button, Line, Heading, Spinner, Txt } from 'components/atoms';
 import { Field, TwitterButton } from 'components/molecules';
 
 export interface Props {
@@ -16,8 +16,10 @@ export interface Props {
 
 const LoadingComponent = () => (
   <span>
-    読み込み中
-    <Spinner height={20} width={20} />
+    <StyledTxt tag="span" size="s">
+      読み込み中
+    </StyledTxt>
+    <Spinner height={14} width={14} />
   </span>
 );
 
@@ -81,6 +83,11 @@ const Form = styled.form`
 `;
 const ButtonWrapper = styled.div`
   margin: 20px auto;
+`;
+const StyledTxt = styled(Txt)`
+  color: white;
+  margin-right: 6px;
+  vertical-align: middle;
 `;
 
 export default LoginForm;

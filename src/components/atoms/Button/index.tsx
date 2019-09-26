@@ -67,7 +67,7 @@ const getColorStyle = (color: ColorType, reverse: boolean) => {
 
 const StyledButton = styled.button<Props>`
   ${({ color = 'primary', reverse = false }) => getColorStyle(color, reverse)}
-  font-size: ${Size.FONT.SMALL}px;
+  font-size: ${Size.FONT.XSMALL}px;
   height: ${({ height = 35 }) => height}px;
   border-radius: ${({ shape }) => getshape(shape)}px;
   letter-spacing: 1.28px;

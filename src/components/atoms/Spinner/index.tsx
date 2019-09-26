@@ -15,7 +15,8 @@ const Spinner: React.FC<Props> = ({
   color = 'white',
   width = 40,
   height = 40,
-}) => <StyledOval width={width} height={height} color={color} />;
+  ...props
+}) => <StyledOval width={width} height={height} color={color} {...props} />;
 
 const getcolor = (color: Color) => {
   switch (color) {
