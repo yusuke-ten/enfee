@@ -85,6 +85,18 @@ module.exports = {
     },
     extensions: ['.tsx', '.ts',  '.js', '.jsx'],
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          name: 'vendor',
+          chunks: 'initial',
+          enforce: true
+        }
+      }
+    }
+  },
   plugins: [
     new ExtractTextPlugin({
       filename: 'css/style.css',
