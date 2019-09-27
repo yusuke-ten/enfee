@@ -55,7 +55,7 @@ export const loginApiFactory = (optionConfig?: ApiConfig) => {
       return result;
     } catch (err) {
       if (err.response) {
-        throw new Error(err.response.data);
+        throw new LoginError(err.response.data.message);
       } else if (err.message.startsWith('timeout')) {
         throw new LoginError('通信でエラーが発生しました。');
       }

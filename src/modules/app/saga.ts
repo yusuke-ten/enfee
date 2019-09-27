@@ -15,9 +15,9 @@ export function* runLogin(action: ReturnType<typeof login.start>) {
     if (err instanceof LoginError) {
       const error = err.message;
       yield put(login.fail(params, { message: error }));
+    } else {
+      yield put(login.fail(params, { message: 'エラーが発生しました。' }));
     }
-
-    yield put(login.fail(params, { message: '' }));
   }
 }
 
