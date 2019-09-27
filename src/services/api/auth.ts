@@ -2,6 +2,20 @@ import axios from 'axios';
 import camelcaseKeys from 'camelcase-keys';
 import config from 'src/config';
 
+export abstract class MyProjectError extends Error {
+  constructor(m: string) {
+    super(m);
+    Object.setPrototypeOf(this, new.target.prototype);
+  }
+}
+
+export class LoginError extends MyProjectError {
+  constructor(m: string) {
+    super(m);
+    this.name = 'LoginError';
+  }
+}
+
 interface ApiConfig {
   baseURL: string;
   timeout: number;
@@ -40,7 +54,12 @@ export const loginApiFactory = (optionConfig?: ApiConfig) => {
 
       return result;
     } catch (err) {
-      throw err.response.data;
+      if (err.response) {
+        throw new Error(err.response.data);
+      } else if (err.message.startsWith('timeout')) {
+        throw new LoginError('通信でエラーが発生しました。');
+      }
+      throw new Error('Unexpected Error');
     }
   };
 
