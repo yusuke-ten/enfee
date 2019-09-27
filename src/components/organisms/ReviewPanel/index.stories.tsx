@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { MemoryRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { object } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import reviewData from 'src/services/mocks/reviews.json';
 import camelcaseKeys from 'camelcase-keys';
 import Review from 'src/services/models/review';
@@ -17,7 +18,10 @@ storiesOf('organisms/ReviewPanel', module)
   ))
   .add('default', () => (
     <Background>
-      <ReviewPanel review={object('review', reviews[0])} />
+      <ReviewPanel
+        review={object('review', reviews[0])}
+        onOpenModal={action('onOpenModal')}
+      />
     </Background>
   ));
 

@@ -81,7 +81,7 @@ module.exports = {
       'const': path.resolve(__dirname, './src/const/'),
       'modules': path.resolve(__dirname, './src/modules/'),
       'services': path.resolve(__dirname, './src/services/'),
-      'config': path.resolve(__dirname, './src//config/')
+      'config': path.resolve(__dirname, './src/config/')
     },
     extensions: ['.tsx', '.ts',  '.js', '.jsx'],
   },

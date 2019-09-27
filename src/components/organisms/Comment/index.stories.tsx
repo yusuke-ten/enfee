@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import { boolean } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import { Comment as IComment } from 'services/models/reviewDetail';
 import Comment from '.';
 import ReplyComment from './ReplyComment';
@@ -44,11 +45,12 @@ storiesOf('organisms/Comment', module)
     <Wrapper>
       <Comment
         comment={commentData}
-        onOpenReply={() => {}}
-        showReplies={boolean('showReplies', true)}
-        toggleShowReplies={() => {}}
-        onReplySubmit={() => {}}
+        handleOpenReplies={action('handleOpenReplies')}
+        hiddenDisplayReplies={action('hiddenDisplayReplies')}
+        handleReplySubmit={action('handleReplySubmit')}
+        isDisplayReplies={boolean('isDisplayReplies', true)}
         isReplyLoading={boolean('isReplyLoading', false)}
+        handleLike={action('handleLike')}
       />
     </Wrapper>
   ))

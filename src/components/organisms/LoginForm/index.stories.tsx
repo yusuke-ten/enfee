@@ -13,6 +13,9 @@ storiesOf('organisms/LoginForm', module).add('default', () => (
       onChangePassword={() => {}}
       onSubmit={() => {}}
       disabledSubmitButton={boolean('disabledSubmitButton', false)}
+      isLoading={boolean('isLoading', false)}
+      error={text('error', '')}
+      isError={boolean('isError', false)}
     />
   </Router>
 ));

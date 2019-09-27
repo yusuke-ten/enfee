@@ -26,7 +26,7 @@ const Comment: React.FC<Props> = ({ comment }) => {
         </Top>
         <Body>{body}</Body>
         <Desc>
-          <Like count={likeCount} isLiked={liked} />
+          <Like count={likeCount} isLiked={liked} handleClick={() => {}} />
         </Desc>
       </Content>
     </Container>

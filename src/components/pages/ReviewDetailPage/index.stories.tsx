@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from 'src/index';
@@ -20,9 +21,12 @@ storiesOf('pages/ReviewDetailPage', module)
   .add('default', () => (
     <Provider store={store}>
       <ReviewDetailPage
-        isLoading={boolean('isLoading', false)}
-        closeModal={() => {}}
         reviewDetail={reviewDetail}
+        isLoading={boolean('isLoading', false)}
+        closeModal={action('closeModal')}
+        commentValue={text('commentValue', '')}
+        commentChangeHandler={action('commentChangeHandler')}
+        submitCommentHandler={action('submitCommentHandler')}
       />
     </Provider>
   ));

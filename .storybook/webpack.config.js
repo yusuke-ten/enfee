@@ -57,6 +57,9 @@ module.exports = ({config}) => {
     'containers': SRC_PATH + '/containers/',
     'atoms': SRC_PATH + 'components/atoms/',
     'const': SRC_PATH + 'const/',
+    'modules': SRC_PATH + 'modules/',
+    'services': SRC_PATH + '/services',
+    'config': SRC_PATH + '/config'
   },
   config.resolve.extensions.push('.ts', '.tsx', 'js', 'jsx');
   return config;
