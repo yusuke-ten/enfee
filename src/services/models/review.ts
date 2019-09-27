@@ -1,10 +1,13 @@
-interface Reaction {
+import { Store } from './store';
+import { User } from './user';
+
+export interface Reaction {
   name: string;
   count: number;
   reacted: boolean;
 }
 
-interface Review {
+export interface Review {
   id: number;
   productName: string;
   content: string;
@@ -12,15 +15,10 @@ interface Review {
   picturePath: string | null;
   createdAt: string;
   rating: number;
-  storeName: 'セブン-イレブン' | 'ローソン' | 'ファミリーマート';
+  storeName: Store;
   productCategoryName: string;
   reactions: Reaction[] | null;
-  user: {
-    id: number;
-    displayName: string;
-    loginName: string;
-    imageUrl: string | null;
-  };
+  user: User;
 }
 
 export default Review;

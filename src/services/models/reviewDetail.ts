@@ -1,11 +1,5 @@
 import { Store } from './store';
-
-export interface User {
-  id: number;
-  displayName: string;
-  loginName: string;
-  imageUrl: string;
-}
+import { User } from './user';
 
 export interface Comment {
   id: number;
