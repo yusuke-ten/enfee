@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from 'src/index';
 
 /* モックデータ */
-import reviewDetailData from 'src/services/mocks/reviewDetail.json';
+import reviewDetailData from 'src/services/mocks/json/reviewDetail.json';
 import camelcaseKeys from 'camelcase-keys';
 import { ReviewDetail } from 'src/services/models/reviewDetail';
 import ReviewDetailPage from '.';

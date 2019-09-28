@@ -3,7 +3,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { ReviewsPage } from 'components/pages';
 
 /* モックデータ */
-import reviewData from 'src/services/mocks/reviews.json';
+import reviewData from 'src/services/mocks/json/reviews.json';
 import camelcaseKeys from 'camelcase-keys';
 import Review from 'src/services/models/review';
 

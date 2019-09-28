@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { object } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import reviewData from 'src/services/mocks/reviews.json';
+import reviewData from 'src/services/mocks/json/reviews.json';
 import camelcaseKeys from 'camelcase-keys';
 import Review from 'src/services/models/review';
 import { Color } from 'src/const';

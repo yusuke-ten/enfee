@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { object, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import camelcaseKeys from 'camelcase-keys';
-import reviewsData from 'services/mocks/reviews.json';
+import reviewsData from 'services/mocks/json/reviews.json';
 import { Review } from 'services/models';
 import ReviewPanelList from '.';
 
