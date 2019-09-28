@@ -1,16 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Spinner } from 'components/atoms';
-import {
-  ReviewMenu,
-  ReviewPostButton,
-  UserProfileCard,
-} from 'components/molecules';
-import { Header, ReviewPanel } from 'components/organisms';
-import { Color, Size } from 'src/const';
+import { ReviewPostButton, UserProfileCard } from 'components/molecules';
+import { ReviewPanel } from 'components/organisms';
 import Review from 'src/services/models/review';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
-import { ReviewDetailPageContainer } from 'containers/pages';
+import { ReviewsTemplate } from 'components/templates';
 
 const links: MenuLinkType[] = [
   { text: 'すべて', to: '/reviews/all' },
@@ -58,55 +53,33 @@ const ReviewPage: React.FC<Props> = ({
     </ReviewWrapper>
   ));
 
-  return (
+  const AsideComponent = (
     <>
-      <Header />
-      <Main>
-        <Container>
-          <NavWrapper>
-            <ReviewMenu links={links} />
-          </NavWrapper>
-          <Reviews>
-            {isLoadingReview ? LoadingComponent : ReviewsComponent}
-          </Reviews>
-          <RightWrapper>
-            <ReviewPostButton text="レビューを投稿する" />
-            {myProfile && (
-              <UserProfileCard
-                imageUrl={myProfile.imageUrl}
-                displayName={myProfile.displayName}
-                loginName={myProfile.loginName}
-                statsList={myProfile.statsList}
-              />
-            )}
-          </RightWrapper>
-        </Container>
-      </Main>
-      {isModal && <ReviewDetailPageContainer closeModal={closeModal} />}
+      <ReviewPostButton text="レビューを投稿する" />
+      {myProfile && (
+        <UserProfileCard
+          imageUrl={myProfile.imageUrl}
+          displayName={myProfile.displayName}
+          loginName={myProfile.loginName}
+          statsList={myProfile.statsList}
+        />
+      )}
     </>
+  );
+
+  return (
+    <ReviewsTemplate
+      menuLinks={links}
+      Aside={AsideComponent}
+      isModal={isModal}
+      openModal={openModal}
+      closeModal={closeModal}
+    >
+      {isLoadingReview ? LoadingComponent : ReviewsComponent}
+    </ReviewsTemplate>
   );
 };
 
-const Main = styled.div`
-  min-height: calc(100vh - 50px);
-  padding: 32px 16px;
-  background-color: ${Color.BACKGROUND.LIGTH};
-  box-sizing: border-box;
-`;
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-`;
-const NavWrapper = styled.div`
-  width: 200px;
-  position: sticky;
-  top: 1em;
-`;
-const Reviews = styled.div`
-  margin: 0 30px;
-  width: 460px;
-`;
 const SpinnerWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -115,13 +88,6 @@ const SpinnerWrapper = styled.div`
 `;
 const ReviewWrapper = styled.div`
   margin-bottom: 20px;
-`;
-const RightWrapper = styled.div`
-  width: 240px;
-
-  & button {
-    margin-bottom: 20px;
-  }
 `;
 
 export default ReviewPage;
