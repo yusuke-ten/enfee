@@ -4,7 +4,7 @@ import { ReviewPanel } from 'components/organisms';
 import { Spinner } from 'components/atoms';
 import { Review } from 'services/models';
 
-interface Props {
+export interface Props {
   reviews: Review[];
   openModal: () => void;
   isLoadingReview: boolean;

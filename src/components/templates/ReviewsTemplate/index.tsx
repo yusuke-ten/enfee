@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from 'components/Layout';
 import { ReviewMenu } from 'components/molecules';
-import { Header } from 'components/organisms';
+import { Header, ReviewPanelList } from 'components/organisms';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
 import { ReviewDetailPageContainer } from 'containers/pages';
+import { Review } from 'services/models';
 import { Color } from 'src/const';
 
 interface Props {
@@ -13,15 +14,18 @@ interface Props {
   isModal: boolean;
   openModal: () => void;
   closeModal: () => void;
+  reviews: Review[];
+  isLoadingReview: boolean;
 }
 
 const ReviewsTemplate: React.FC<Props> = ({
   menuLinks,
-  children,
   Aside,
   isModal,
   openModal,
   closeModal,
+  reviews,
+  isLoadingReview,
 }) => {
   return (
     <Layout title="レビューページ">
@@ -31,7 +35,13 @@ const ReviewsTemplate: React.FC<Props> = ({
           <NavWrapper>
             <ReviewMenu links={menuLinks} />
           </NavWrapper>
-          <MainWrapper>{children}</MainWrapper>
+          <MainWrapper>
+            <ReviewPanelList
+              reviews={reviews}
+              openModal={openModal}
+              isLoadingReview={isLoadingReview}
+            />
+          </MainWrapper>
           <AsideWrapper>{Aside}</AsideWrapper>
         </Contents>
       </Body>

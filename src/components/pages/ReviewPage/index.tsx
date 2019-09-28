@@ -1,8 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Spinner } from 'components/atoms';
 import { ReviewPostButton, UserProfileCard } from 'components/molecules';
-import { ReviewPanel } from 'components/organisms';
 import Review from 'src/services/models/review';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
 import { ReviewsTemplate } from 'components/templates';
@@ -41,18 +38,6 @@ const ReviewPage: React.FC<Props> = ({
   openModal,
   closeModal,
 }) => {
-  const LoadingComponent = (
-    <SpinnerWrapper>
-      <Spinner color="primary" height={45} width={45} />
-    </SpinnerWrapper>
-  );
-
-  const ReviewsComponent = reviews.map(review => (
-    <ReviewWrapper key={review.id}>
-      <ReviewPanel review={review} onOpenModal={openModal} />
-    </ReviewWrapper>
-  ));
-
   const AsideComponent = (
     <>
       <ReviewPostButton text="レビューを投稿する" />
@@ -74,20 +59,10 @@ const ReviewPage: React.FC<Props> = ({
       isModal={isModal}
       openModal={openModal}
       closeModal={closeModal}
-    >
-      {isLoadingReview ? LoadingComponent : ReviewsComponent}
-    </ReviewsTemplate>
+      reviews={reviews}
+      isLoadingReview={isLoadingReview}
+    />
   );
 };
-
-const SpinnerWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-`;
-const ReviewWrapper = styled.div`
-  margin-bottom: 20px;
-`;
 
 export default ReviewPage;
