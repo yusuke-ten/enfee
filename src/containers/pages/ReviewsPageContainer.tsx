@@ -1,7 +1,6 @@
-import React, { useState, useCallback, useMemo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useCallback } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { ReviewPage } from 'components/pages';
+import { ReviewsPage } from 'components/pages';
 
 /* モックデータ */
 import reviewData from 'src/services/mocks/reviews.json';
@@ -11,7 +10,7 @@ import Review from 'src/services/models/review';
 const tmpReviews = camelcaseKeys(reviewData, { deep: true }) as {
   [k: string]: any;
 }[];
-const reviews = tmpReviews as Review[]
+const reviews = tmpReviews as Review[];
 
 const myProfile = {
   imageUrl:
@@ -25,10 +24,9 @@ const myProfile = {
   ],
 };
 
-const ReviewPageContainer: React.FC<RouteComponentProps<{ store: string }>> = ({
-  history,
-  match,
-}) => {
+const ReviewsPageContainer: React.FC<
+  RouteComponentProps<{ store: string }>
+> = ({ history, match }) => {
   const [isModal, toggleModal] = useState<boolean>(true);
 
   const isLoadingReview = false;
@@ -44,7 +42,7 @@ const ReviewPageContainer: React.FC<RouteComponentProps<{ store: string }>> = ({
   const { store } = match.params;
 
   return (
-    <ReviewPage
+    <ReviewsPage
       {...{
         isLoadingReview,
         reviews,
@@ -57,4 +55,4 @@ const ReviewPageContainer: React.FC<RouteComponentProps<{ store: string }>> = ({
   );
 };
 
-export default withRouter(ReviewPageContainer);
+export default withRouter(ReviewsPageContainer);

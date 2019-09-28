@@ -1,5 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ReviewDetailPage } from 'components/pages';
 
@@ -13,7 +12,7 @@ const tmpReviewDetail = camelcaseKeys(reviewDetailData, {
 }) as { [k: string]: any };
 const reviewDetail = tmpReviewDetail as ReviewDetail;
 
-const ReviewPageContainer: React.FC<
+const ReviewsPageContainer: React.FC<
   RouteComponentProps & { closeModal: () => void }
 > = ({ closeModal }) => {
   const [commentValue, changeCommentValue] = useState<string>('');
@@ -44,4 +43,4 @@ const ReviewPageContainer: React.FC<
   );
 };
 
-export default withRouter(ReviewPageContainer);
+export default withRouter(ReviewsPageContainer);

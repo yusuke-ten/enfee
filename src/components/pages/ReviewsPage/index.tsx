@@ -30,7 +30,7 @@ interface Props {
   closeModal: () => void;
 }
 
-const ReviewPage: React.FC<Props> = ({
+const ReviewsPage: React.FC<Props> = ({
   isLoadingReview = false,
   reviews,
   myProfile,
@@ -65,4 +65,4 @@ const ReviewPage: React.FC<Props> = ({
   );
 };
 
-export default ReviewPage;
+export default ReviewsPage;
