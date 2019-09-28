@@ -17,7 +17,7 @@ const TwitterButton: React.FC<Props> = ({ text }) => (
 const Text = styled.span`
   padding-left: 6px;
   vertical-align: middle;
-  font-size: ${Size.FONT.BASE}px;
+  font-size: ${Size.FONT_RATIO.SMALL}rem;
 `;
 const StyledButton = styled(Button)`
   height: 50px;
