@@ -11,3 +11,4 @@ export { default as Modal } from './Modal';
 export { default as Like } from './Like';
 export { default as ToggleAngle } from './ToggleAngle';
 export { default as CommentInputField } from './CommentInputField';
+export { default as Aside } from './Aside';

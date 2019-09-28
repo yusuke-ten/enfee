@@ -7,8 +7,8 @@ interface Props {
   text: string;
 }
 
-const TwitterButton: React.FC<Props> = ({ text }) => (
-  <StyledButton color="secondary">
+const TwitterButton: React.FC<Props> = ({ text, ...props }) => (
+  <StyledButton color="secondary" {...props}>
     <PenIcon height={12} width={12} />
     <Text>{text}</Text>
   </StyledButton>

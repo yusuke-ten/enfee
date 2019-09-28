@@ -1,8 +1,8 @@
 import React from 'react';
-import { ReviewPostButton, UserProfileCard } from 'components/molecules';
 import Review from 'src/services/models/review';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
 import { ReviewsTemplate } from 'components/templates';
+import { MyProfileInAside } from 'services/models';
 
 const links: MenuLinkType[] = [
   { text: 'すべて', to: '/reviews/all' },
@@ -11,20 +11,10 @@ const links: MenuLinkType[] = [
   { text: 'ローソン', to: '/reviews/lawson' },
 ];
 
-interface MyProfile {
-  imageUrl: string;
-  displayName: string;
-  loginName: string;
-  statsList: {
-    heading: 'レビュー' | 'フォロー' | 'フォロワー';
-    amount: number;
-  }[];
-}
-
 interface Props {
   isLoadingReview: boolean;
   reviews: Review[];
-  myProfile: MyProfile;
+  myProfile: MyProfileInAside;
   isModal: boolean;
   openModal: () => void;
   closeModal: () => void;
@@ -38,29 +28,15 @@ const ReviewsPage: React.FC<Props> = ({
   openModal,
   closeModal,
 }) => {
-  const AsideComponent = (
-    <>
-      <ReviewPostButton text="レビューを投稿する" />
-      {myProfile && (
-        <UserProfileCard
-          imageUrl={myProfile.imageUrl}
-          displayName={myProfile.displayName}
-          loginName={myProfile.loginName}
-          statsList={myProfile.statsList}
-        />
-      )}
-    </>
-  );
-
   return (
     <ReviewsTemplate
       menuLinks={links}
-      Aside={AsideComponent}
       isModal={isModal}
       openModal={openModal}
       closeModal={closeModal}
       reviews={reviews}
       isLoadingReview={isLoadingReview}
+      myProfile={myProfile}
     />
   );
 };

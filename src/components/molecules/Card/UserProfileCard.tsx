@@ -1,39 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AvatarCircle, Usernames, StatsCell } from 'components/atoms';
-
-export interface Stats {
-  heading: 'レビュー' | 'フォロー' | 'フォロワー';
-  amount: number;
-}
+import { MyProfileInAside } from 'services/models';
 
 interface Props {
-  imageUrl: string;
-  displayName: string;
-  loginName: string;
-  statsList: Stats[];
+  myProfile: MyProfileInAside;
 }
 
-const UserProfileCard: React.FC<Props> = ({
-  imageUrl,
-  displayName,
-  loginName,
-  statsList,
-}) => (
-  <Container>
-    <AvatarWrapper>
-      <AvatarCircle src={imageUrl} />
-    </AvatarWrapper>
-    <Usernames displayName={displayName} loginName={loginName} align="center" />
-    <StatsFrame>
-      {statsList.map(stats => (
-        <StatsWrapeer key={stats.heading}>
-          <StatsCell heading={stats.heading} amount={stats.amount} />
-        </StatsWrapeer>
-      ))}
-    </StatsFrame>
-  </Container>
-);
+const UserProfileCard: React.FC<Props> = ({ myProfile }) => {
+  const { imageUrl, displayName, loginName, statsList } = myProfile;
+
+  return (
+    <Container>
+      <AvatarWrapper>
+        <AvatarCircle src={imageUrl} />
+      </AvatarWrapper>
+      <Usernames
+        displayName={displayName}
+        loginName={loginName}
+        align="center"
+      />
+      <StatsFrame>
+        {statsList.map(stats => (
+          <StatsWrapeer key={stats.heading}>
+            <StatsCell heading={stats.heading} amount={stats.amount} />
+          </StatsWrapeer>
+        ))}
+      </StatsFrame>
+    </Container>
+  );
+};
 
 const Container = styled.div`
   display: inline-block;

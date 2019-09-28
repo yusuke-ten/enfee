@@ -1,31 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
 import Layout from 'components/Layout';
-import { ReviewMenu } from 'components/molecules';
+import { ReviewMenu, Aside } from 'components/molecules';
 import { Header, ReviewPanelList } from 'components/organisms';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
 import { ReviewDetailPageContainer } from 'containers/pages';
-import { Review } from 'services/models';
+import { Review, MyProfileInAside } from 'services/models';
 import { Color } from 'src/const';
 
 interface Props {
   menuLinks: MenuLinkType[];
-  Aside: JSX.Element;
   isModal: boolean;
   openModal: () => void;
   closeModal: () => void;
   reviews: Review[];
   isLoadingReview: boolean;
+  myProfile: MyProfileInAside;
 }
 
 const ReviewsTemplate: React.FC<Props> = ({
   menuLinks,
-  Aside,
   isModal,
   openModal,
   closeModal,
   reviews,
   isLoadingReview,
+  myProfile,
 }) => {
   return (
     <Layout title="レビューページ">
@@ -42,7 +42,9 @@ const ReviewsTemplate: React.FC<Props> = ({
               isLoadingReview={isLoadingReview}
             />
           </MainWrapper>
-          <AsideWrapper>{Aside}</AsideWrapper>
+          <AsideWrapper>
+            <Aside myProfile={myProfile} />
+          </AsideWrapper>
         </Contents>
       </Body>
       {isModal && <ReviewDetailPageContainer closeModal={closeModal} />}
@@ -72,10 +74,6 @@ const MainWrapper = styled.div`
 `;
 const AsideWrapper = styled.div`
   width: 240px;
-
-  & button {
-    margin-bottom: 20px;
-  }
 `;
 
 export default ReviewsTemplate;
