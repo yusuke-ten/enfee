@@ -37,3 +37,4 @@ export {
   Tip,
   Marker,
 } from './HoverTipInteraction';
+export { default as Card } from './Card';
