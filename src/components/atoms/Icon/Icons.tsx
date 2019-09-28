@@ -14,7 +14,7 @@ import Close from './icons/close.svg';
 import AngleUp from './icons/angleUp.svg';
 import AngleDown from './icons/angleDown.svg';
 
-export type ColorType = 'less' | 'primary' | 'gray';
+export type ColorType = 'less' | 'primary' | 'gray' | 'black';
 
 interface Props {
   color?: ColorType;
@@ -102,6 +102,7 @@ const colorPallete: { [k in ColorType]: string } = {
   gray: Color.FONT.BASE,
   less: Color.FONT.LESS,
   primary: Color.THEME.PRIMARY,
+  black: Color.FONT.DARK,
 };
 
 const getStyles = (color: ColorType) => {

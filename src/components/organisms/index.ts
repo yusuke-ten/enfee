@@ -6,3 +6,4 @@ export { default as SignupForm } from './SignupForm';
 export { default as Comment } from './Comment';
 export { default as ReplyComment } from './Comment/ReplyComment';
 export { default as ReviewPanelList } from './ReviewPanelList';
+export { default as CommentArea } from './CommentArea';

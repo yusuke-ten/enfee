@@ -17,7 +17,6 @@ import {
   CountText,
   CommentInputField,
 } from 'components/molecules';
-// import { Comment } from 'components/organisms';
 import { CommentContainer } from 'containers/organisms';
 import {
   ReviewDetail,
