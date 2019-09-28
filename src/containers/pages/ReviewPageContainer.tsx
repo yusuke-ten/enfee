@@ -8,7 +8,10 @@ import reviewData from 'src/services/mocks/reviews.json';
 import camelcaseKeys from 'camelcase-keys';
 import Review from 'src/services/models/review';
 
-const reviews = camelcaseKeys(reviewData, { deep: true }) as Review[];
+const tmpReviews = camelcaseKeys(reviewData, { deep: true }) as {
+  [k: string]: any;
+}[];
+const reviews = tmpReviews as Review[]
 
 const myProfile = {
   imageUrl:

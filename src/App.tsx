@@ -1,13 +1,13 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import { LoginPage, SignupPage } from 'components/pages';
-import { ReviewPageContainer } from 'containers/pages';
+import { LoginPageContainer, ReviewPageContainer } from 'containers/pages';
 
 const NotFound = () => <div>not found</div>;
 
 const App: React.FC = () => (
   <Switch>
-    <Route path="/login" component={LoginPage} exact />
+    <Route path="/login" component={LoginPageContainer} exact />
     <Route path="/signup" component={SignupPage} exact />
     <Route path="/reviews/:store" component={ReviewPageContainer} exact />
     <Route

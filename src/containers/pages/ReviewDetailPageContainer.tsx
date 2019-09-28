@@ -8,9 +8,10 @@ import reviewDetailData from 'src/services/mocks/reviewDetail.json';
 import camelcaseKeys from 'camelcase-keys';
 import { ReviewDetail } from 'src/services/models/reviewDetail';
 
-const reviewDetail = camelcaseKeys(reviewDetailData, {
+const tmpReviewDetail = camelcaseKeys(reviewDetailData, {
   deep: true,
-}) as ReviewDetail;
+}) as { [k: string]: any };
+const reviewDetail = tmpReviewDetail as ReviewDetail;
 
 const ReviewPageContainer: React.FC<
   RouteComponentProps & { closeModal: () => void }

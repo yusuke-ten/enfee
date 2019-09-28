@@ -14,14 +14,14 @@ import ReviewDetailPage from '.';
 
 const reviewDetail = camelcaseKeys(reviewDetailData, {
   deep: true,
-}) as ReviewDetail;
+}) as { [k: string]: any };
 
 storiesOf('pages/ReviewDetailPage', module)
   .addDecorator(story => <Router initialEntries={['/']}>{story()}</Router>)
   .add('default', () => (
     <Provider store={store}>
       <ReviewDetailPage
-        reviewDetail={reviewDetail}
+        reviewDetail={reviewDetail as ReviewDetail}
         isLoading={boolean('isLoading', false)}
         closeModal={action('closeModal')}
         commentValue={text('commentValue', '')}

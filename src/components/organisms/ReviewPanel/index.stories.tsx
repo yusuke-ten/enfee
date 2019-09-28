@@ -10,7 +10,11 @@ import Review from 'src/services/models/review';
 import { Color } from 'src/const';
 import ReviewPanel from '.';
 
-const reviews = camelcaseKeys(reviewData, { deep: true }) as Review[];
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const reviews = camelcaseKeys(reviewData, { deep: true }) as {
+  [k: string]: any;
+}[];
+/* eslint-enable */
 
 storiesOf('organisms/ReviewPanel', module)
   .addDecorator(story => (
@@ -19,7 +23,7 @@ storiesOf('organisms/ReviewPanel', module)
   .add('default', () => (
     <Background>
       <ReviewPanel
-        review={object('review', reviews[0])}
+        review={object('review', reviews[0] as Review)}
         onOpenModal={action('onOpenModal')}
       />
     </Background>
