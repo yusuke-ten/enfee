@@ -10,7 +10,7 @@ import {
   Paragraph,
 } from 'components/atoms';
 import { CountText, UserInfo } from 'components/molecules';
-import { Rating as RatingType } from 'components/atoms/Rating';
+import { Rating as RatingType } from 'services/models';
 import { Color, Size } from 'src/const';
 
 interface Props {

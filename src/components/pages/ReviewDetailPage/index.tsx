@@ -10,7 +10,6 @@ import {
   Paragraph,
   Picture,
 } from 'components/atoms';
-import { Rating as RatingType } from 'components/atoms/Rating';
 import {
   Modal,
   UserInfo,
@@ -96,7 +95,7 @@ const ReviewDetailPage: React.FC<Props> = ({
             <Price>価格: ￥{price}</Price>
             <p>
               <Text>おすすめ度: </Text>
-              <Rating rating={rating as RatingType} height={16} />
+              <Rating rating={rating} height={16} />
             </p>
             <StyledParagraph>{content}</StyledParagraph>
           </Section>

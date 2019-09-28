@@ -1,4 +1,5 @@
 import React from 'react';
+import { Rating } from 'services/models';
 import Rate05 from './svg/rate0.5.svg';
 import Rate10 from './svg/rate1.0.svg';
 import Rate15 from './svg/rate1.5.svg';
@@ -9,8 +10,6 @@ import Rate35 from './svg/rate3.5.svg';
 import Rate40 from './svg/rate4.0.svg';
 import Rate45 from './svg/rate4.5.svg';
 import Rate50 from './svg/rate5.0.svg';
-
-export type Rating = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 interface Props {
   rating: Rating;

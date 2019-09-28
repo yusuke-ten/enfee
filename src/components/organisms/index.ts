@@ -7,3 +7,4 @@ export { default as Comment } from './Comment';
 export { default as ReplyComment } from './Comment/ReplyComment';
 export { default as ReviewPanelList } from './ReviewPanelList';
 export { default as CommentArea } from './CommentArea';
+export { default as ReviewDetailArea } from './ReviewDetailArea';
