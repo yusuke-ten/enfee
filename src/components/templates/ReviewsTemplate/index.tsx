@@ -4,7 +4,7 @@ import Layout from 'components/Layout';
 import { ReviewMenu, Aside } from 'components/molecules';
 import { Header, ReviewPanelList } from 'components/organisms';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
-import { ReviewDetailPageContainer } from 'containers/pages';
+import { ReviewDetailModalContainer } from 'containers/organisms';
 import { Review, MyProfileInAside } from 'services/models';
 import { Color } from 'src/const';
 
@@ -47,7 +47,7 @@ const ReviewsTemplate: React.FC<Props> = ({
           </AsideWrapper>
         </Contents>
       </Body>
-      {isModal && <ReviewDetailPageContainer closeModal={closeModal} />}
+      {isModal && <ReviewDetailModalContainer closeModal={closeModal} />}
     </Layout>
   );
 };

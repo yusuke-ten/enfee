@@ -35,14 +35,16 @@ const CommentArea: React.FC<Props> = ({
       </form>
       <div>
         {comments.map((comment, idx) => (
-          <StyledComment key={idx} comment={comment} />
+          <CommentWrapper key={idx}>
+            <CommentContainer comment={comment} />
+          </CommentWrapper>
         ))}
       </div>
     </>
   );
 };
 
-const StyledComment = styled(CommentContainer)`
+const CommentWrapper = styled.div`
   padding-top: 14px;
 `;
 const Title = styled.div`

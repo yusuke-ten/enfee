@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { ReviewDetailPage } from 'components/pages';
+import { ReviewDetailModal } from 'components/organisms';
 
 /* モックデータ */
 import reviewDetailData from 'src/services/mocks/json/reviewDetail.json';
@@ -12,7 +12,7 @@ const tmpReviewDetail = camelcaseKeys(reviewDetailData, {
 }) as { [k: string]: any };
 const reviewDetail = tmpReviewDetail as ReviewDetail;
 
-const ReviewsPageContainer: React.FC<
+const ReviewsDetailModalContainer: React.FC<
   RouteComponentProps & { closeModal: () => void }
 > = ({ closeModal }) => {
   const [commentValue, changeCommentValue] = useState<string>('');
@@ -30,7 +30,7 @@ const ReviewsPageContainer: React.FC<
   const isLoading = false;
 
   return (
-    <ReviewDetailPage
+    <ReviewDetailModal
       {...{
         reviewDetail,
         isLoading,
@@ -43,4 +43,4 @@ const ReviewsPageContainer: React.FC<
   );
 };
 
-export default withRouter(ReviewsPageContainer);
+export default withRouter(ReviewsDetailModalContainer);
