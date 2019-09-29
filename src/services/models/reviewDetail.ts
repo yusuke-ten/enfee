@@ -23,5 +23,5 @@ export interface ReviewDetail {
   storeName: Store;
   productCategoryName: string;
   user: User;
-  comments: Comment[];
+  comments: (Comment & { replies: Comment[] })[];
 }

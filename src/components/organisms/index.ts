@@ -8,3 +8,4 @@ export { default as ReplyComment } from './Comment/ReplyComment';
 export { default as ReviewPanelList } from './ReviewPanelList';
 export { default as CommentArea } from './CommentArea';
 export { default as ReviewDetailArea } from './ReviewDetailArea';
+export { default as ReviewDetailModal } from './ReviewDetailModal';

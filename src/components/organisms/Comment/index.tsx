@@ -92,14 +92,14 @@ const Comment: React.FC<Props> = ({
           </DoReply>
         </Desc>
         {showReplyForm && (
-          <ReplyForm onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <CommentInputField
               imageUrl=""
               value={replyValue}
               onChange={changeReplyValueHandler}
               reply
             />
-          </ReplyForm>
+          </form>
         )}
         {replyCount > 0 && <ToggleReplyComponent />}
         {isDisplayReplies &&
@@ -148,7 +148,6 @@ const Desc = styled.div`
   align-items: center;
   padding-bottom: 10px;
 `;
-const ReplyForm = styled.form``;
 const DoReply = styled.span`
   cursor: pointer;
   padding-left: 14px;

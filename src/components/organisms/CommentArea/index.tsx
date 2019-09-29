@@ -46,7 +46,7 @@ const StyledComment = styled(CommentContainer)`
   padding-top: 14px;
 `;
 const Title = styled.div`
-  padding-bottom: 20px;
+  margin: 12px 0;
   display: flex;
   align-items: center;
 `;
