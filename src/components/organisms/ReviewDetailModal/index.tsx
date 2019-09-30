@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Spinner, Line } from 'components/atoms';
+import { Spinner } from 'components/atoms';
 import { Modal } from 'components/molecules';
 import { ReviewDetailArea, CommentArea } from 'components/organisms';
 import { ReviewDetail } from 'services/models';
@@ -23,7 +23,7 @@ const ReviewDetailModal: React.FC<Props> = ({
   submitCommentHandler,
 }) => {
   const {
-    id,
+    id: reviewId,
     productName,
     content,
     picturePath,
@@ -63,6 +63,7 @@ const ReviewDetailModal: React.FC<Props> = ({
               commentValue,
               commentChangeHandler,
               submitCommentHandler,
+              reviewId,
             }}
           />
         </Container>

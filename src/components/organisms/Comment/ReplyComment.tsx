@@ -7,10 +7,18 @@ import { Color, Size } from 'src/const';
 
 interface Props {
   comment: IComment;
+  handleLike: (commentId: number, liked: boolean) => void;
 }
 
-const Comment: React.FC<Props> = ({ comment }) => {
-  const { id, comment: body, likeCount, createdAt, liked, user } = comment;
+const Comment: React.FC<Props> = ({ comment, handleLike }) => {
+  const {
+    id: commentId,
+    comment: body,
+    likeCount,
+    createdAt,
+    liked,
+    user,
+  } = comment;
 
   return (
     <Container>
@@ -26,7 +34,11 @@ const Comment: React.FC<Props> = ({ comment }) => {
         </Top>
         <Body>{body}</Body>
         <Desc>
-          <Like count={likeCount} isLiked={liked} handleClick={() => {}} />
+          <Like
+            count={likeCount}
+            isLiked={liked}
+            handleClick={() => handleLike(commentId, liked)}
+          />
         </Desc>
       </Content>
     </Container>

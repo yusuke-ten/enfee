@@ -10,6 +10,7 @@ interface Props {
   commentValue: string;
   commentChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   submitCommentHandler: (e: React.FormEvent<HTMLFormElement>) => void;
+  reviewId: number;
 }
 
 const CommentArea: React.FC<Props> = ({
@@ -17,6 +18,7 @@ const CommentArea: React.FC<Props> = ({
   commentValue,
   commentChangeHandler,
   submitCommentHandler,
+  reviewId,
 }) => {
   return (
     <>
@@ -36,7 +38,7 @@ const CommentArea: React.FC<Props> = ({
       <div>
         {comments.map((comment, idx) => (
           <CommentWrapper key={idx}>
-            <CommentContainer comment={comment} />
+            <CommentContainer comment={comment} reviewId={reviewId} />
           </CommentWrapper>
         ))}
       </div>

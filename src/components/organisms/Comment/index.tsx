@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { AvatarCircle, Spinner } from 'components/atoms';
 import { Like, ToggleAngle, CommentInputField } from 'components/molecules';
@@ -8,40 +8,34 @@ import { Color, Size } from 'src/const';
 
 export interface Props {
   comment: IComment & { replies: IComment[] };
-  handleOpenReplies: (id: number) => void;
-  hiddenDisplayReplies: () => void;
-  handleReplySubmit: (id: number, value: string) => void;
+  replyValue: string;
   isDisplayReplies: boolean;
+  isDisplayReplyForm: boolean;
   isReplyLoading: boolean;
-  handleLike: () => void;
+  handleOpenReplies: (id: number) => void;
+  handleHiddenReplies: () => void;
+  handleReplySubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleChangeReplyValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleToggleDisplayReplayForm: () => void;
+  handleLike: (commentId: number, liked: boolean) => void;
 }
 
 const Comment: React.FC<Props> = ({
   comment,
-  handleOpenReplies,
+  replyValue,
   isDisplayReplies,
-  hiddenDisplayReplies,
-  handleReplySubmit,
+  isDisplayReplyForm,
   isReplyLoading = false,
+  handleToggleDisplayReplayForm,
+  handleChangeReplyValue,
+  handleOpenReplies,
+  handleHiddenReplies,
+  handleReplySubmit,
   handleLike,
   ...props
 }) => {
-  const [showReplyForm, toggleReplyForm] = useState<boolean>(false);
-  const [replyValue, changeReplyValue] = useState<string>('');
-
-  const toggleReplyFormHandler = () => {
-    toggleReplyForm(!showReplyForm);
-  };
-
-  const changeReplyValueHandler = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      changeReplyValue(e.target.value);
-    },
-    [],
-  );
-
   const {
-    id,
+    id: commentId,
     comment: body,
     likeCount,
     createdAt,
@@ -51,25 +45,20 @@ const Comment: React.FC<Props> = ({
     replies,
   } = comment;
 
-  const ToggleReplyComponent = () => {
+  const ToggleReplyDisplayButton = () => {
     if (isDisplayReplies) {
       return (
-        <ShowReply onClick={hiddenDisplayReplies}>
+        <ShowReply onClick={handleHiddenReplies}>
           <ToggleAngle text="返信を非表示にする" iconType="up" />
         </ShowReply>
       );
     }
 
     return (
-      <ShowReply onClick={() => handleOpenReplies(id)}>
+      <ShowReply onClick={() => handleOpenReplies(commentId)}>
         <ToggleAngle text={`${replyCount}件の返信を表示`} iconType="down" />
       </ShowReply>
     );
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    handleReplySubmit(id, replyValue);
   };
 
   return (
@@ -86,22 +75,26 @@ const Comment: React.FC<Props> = ({
         </Top>
         <Body>{body}</Body>
         <Desc>
-          <Like count={likeCount} isLiked={liked} handleClick={handleLike} />
-          <DoReply onClick={toggleReplyFormHandler}>
-            {showReplyForm ? '返信をキャンセル' : '返信する'}
+          <Like
+            count={likeCount}
+            isLiked={liked}
+            handleClick={() => handleLike(commentId, liked)}
+          />
+          <DoReply onClick={handleToggleDisplayReplayForm}>
+            {isDisplayReplyForm ? '返信をキャンセル' : '返信する'}
           </DoReply>
         </Desc>
-        {showReplyForm && (
-          <form onSubmit={handleSubmit}>
+        {isDisplayReplyForm && (
+          <form onSubmit={handleReplySubmit}>
             <CommentInputField
               imageUrl=""
               value={replyValue}
-              onChange={changeReplyValueHandler}
+              onChange={handleChangeReplyValue}
               reply
             />
           </form>
         )}
-        {replyCount > 0 && <ToggleReplyComponent />}
+        {replyCount > 0 && <ToggleReplyDisplayButton />}
         {isDisplayReplies &&
           (isReplyLoading ? (
             <RepliesArea>
@@ -110,7 +103,11 @@ const Comment: React.FC<Props> = ({
           ) : (
             <RepliesArea>
               {replies.map(replyComment => (
-                <ReplyComment key={replyComment.id} comment={replyComment} />
+                <ReplyComment
+                  key={replyComment.id}
+                  comment={replyComment}
+                  handleLike={handleLike}
+                />
               ))}
             </RepliesArea>
           ))}

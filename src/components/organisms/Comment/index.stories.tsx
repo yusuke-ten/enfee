@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, text, object } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Comment as IComment } from 'services/models/reviewDetail';
 import Comment from '.';
@@ -44,19 +44,26 @@ storiesOf('organisms/Comment', module)
   .add('default', () => (
     <Wrapper>
       <Comment
-        comment={commentData}
-        handleOpenReplies={action('handleOpenReplies')}
-        hiddenDisplayReplies={action('hiddenDisplayReplies')}
-        handleReplySubmit={action('handleReplySubmit')}
+        comment={object('comment', commentData)}
+        replyValue={text('replyValue', '')}
         isDisplayReplies={boolean('isDisplayReplies', true)}
+        isDisplayReplyForm={boolean('isDisplayReplyForm', false)}
         isReplyLoading={boolean('isReplyLoading', false)}
+        handleOpenReplies={action('handleOpenReplies')}
+        handleHiddenReplies={action('handleHiddenReplies')}
+        handleReplySubmit={action('handleReplySubmit')}
+        handleChangeReplyValue={action('handleChangeReplyValue')}
+        handleToggleDisplayReplayForm={action('handleToggleDisplayReplayForm')}
         handleLike={action('handleLike')}
       />
     </Wrapper>
   ))
   .add('replyComment', () => (
     <Wrapper>
-      <ReplyComment comment={replyCommentData} />
+      <ReplyComment
+        comment={replyCommentData}
+        handleLike={action('handleLike')}
+      />
     </Wrapper>
   ));
 
