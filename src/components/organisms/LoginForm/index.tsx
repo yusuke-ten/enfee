@@ -7,6 +7,8 @@ import { Field, TwitterButton } from 'components/molecules';
 export interface Props {
   emailValue: string;
   passwrodValue: string;
+  emailValidationError: string;
+  passwordValidationError: string;
   onChangeEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onChangePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -28,6 +30,8 @@ const LoadingComponent = () => (
 const LoginForm: React.FC<Props> = ({
   emailValue,
   passwrodValue,
+  emailValidationError,
+  passwordValidationError,
   onChangeEmail,
   onChangePassword,
   onSubmit,
@@ -47,6 +51,7 @@ const LoginForm: React.FC<Props> = ({
           value={emailValue}
           onChangeHandler={onChangeEmail}
           isError={isError}
+          validationError={emailValidationError}
         />
         <Field
           type="password"
@@ -54,6 +59,7 @@ const LoginForm: React.FC<Props> = ({
           value={passwrodValue}
           onChangeHandler={onChangePassword}
           isError={isError}
+          validationError={passwordValidationError}
         />
         {isError && <StyledWarnTxt size="b">{error}</StyledWarnTxt>}
         <MarginBlock>

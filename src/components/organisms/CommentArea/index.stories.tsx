@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import { text } from '@storybook/addon-knobs';
+import { text, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { store } from 'src/index';
 import { comments } from 'services/mocks/comments';
@@ -14,6 +14,7 @@ storiesOf('organisms/CommentArea', module)
     <Wrapper>
       <CommentArea
         comments={comments}
+        reviewId={number('reviewId', 1)}
         commentValue={text('commentValue', '')}
         commentChangeHandler={action('commentChangeHandler')}
         submitCommentHandler={action('submitCommentHandler')}

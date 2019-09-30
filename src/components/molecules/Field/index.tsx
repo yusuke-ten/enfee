@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import TextInput from 'components/atoms/Input';
 import { InputType } from 'components/atoms/Input/TextInput';
-import Label from 'components/atoms/Label';
+import { TextInput, Label, WarnTxt } from 'components/atoms';
 
 interface Props {
   type?: InputType;
@@ -10,6 +9,7 @@ interface Props {
   onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   isError?: boolean;
+  validationError?: string;
 }
 
 const Field: React.FC<Props> = ({
@@ -18,6 +18,7 @@ const Field: React.FC<Props> = ({
   onChangeHandler,
   placeholder,
   isError = false,
+  validationError = '',
 }) => {
   const [showLabel, toggleShowLabel] = useState<boolean>(false);
 
@@ -43,6 +44,11 @@ const Field: React.FC<Props> = ({
         onFocusHandler={onFocusHandler}
         isError={isError}
       />
+      {validationError && (
+        <StyledWarnTxt size="s">
+          {placeholder}は{validationError}
+        </StyledWarnTxt>
+      )}
     </Wrapper>
   );
 };
@@ -50,6 +56,9 @@ const Field: React.FC<Props> = ({
 const Wrapper = styled.div`
   width: 100%;
   text-align: left;
+`;
+const StyledWarnTxt = styled(WarnTxt)`
+  margin-top: 6px;
 `;
 
 export default Field;

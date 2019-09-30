@@ -9,6 +9,8 @@ storiesOf('organisms/LoginForm', module).add('default', () => (
     <LoginForm
       emailValue={text('emailValue', '')}
       passwrodValue={text('passwordValue', '')}
+      emailValidationError={text('emailValidationError', '')}
+      passwordValidationError={text('passwordValidationError', '')}
       onChangeEmail={() => {}}
       onChangePassword={() => {}}
       onSubmit={() => {}}

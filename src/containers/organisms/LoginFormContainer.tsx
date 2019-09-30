@@ -1,12 +1,15 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import LoginForm, { Props } from 'components/organisms/LoginForm';
+import LoginForm from 'components/organisms/LoginForm';
 import { login } from 'src/modules/app';
 import { RootState } from 'src/modules';
+import { validationEmail, validationPassword } from 'services/validation';
 
 const LoginFormContainer = () => {
   const [emailValue, updateEmailValue] = useState('');
   const [passwrodValue, updatePasswrodValue] = useState('');
+  const [emailValidationError, updateEmailValidationError] = useState('');
+  const [passwordValidationError, updatePasswordValidationError] = useState('');
 
   const disabledSubmitButton =
     emailValue.length === 0 || passwrodValue.length === 0;
@@ -37,7 +40,11 @@ const LoginFormContainer = () => {
       email: emailValue,
       password: passwrodValue,
     };
-    dispatch(login.start(params));
+    updateEmailValidationError(validationEmail(emailValue));
+    updatePasswordValidationError(validationPassword(passwrodValue));
+    if (emailValidationError && passwordValidationError) {
+      dispatch(login.start(params));
+    }
   };
 
   return (
@@ -48,6 +55,8 @@ const LoginFormContainer = () => {
         onSubmit,
         emailValue,
         passwrodValue,
+        emailValidationError,
+        passwordValidationError,
         disabledSubmitButton,
         isLoading,
         error,
