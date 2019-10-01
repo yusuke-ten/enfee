@@ -39,3 +39,4 @@ export {
   Marker,
 } from './HoverTipInteraction';
 export { default as Card } from './Card';
+export { default as Select } from './Select';
