@@ -18,3 +18,12 @@ reviewsページの中で更にルーティングするとなったらこっち�
 - reviews/seven-eleven&category=...
 - reviews/lawson&category=...
 - reviews/family-mart
+
+### custom hooks
+
+- stateをtoggleさせるメソッドを返すカスタムフックスを作成
+- stateをtrue, falseに変換するメソッドを返すフックスを作成
+
+### refactor
+
+- headerのメニューアイコンを上のコンポネントから受け渡すように修正する。
