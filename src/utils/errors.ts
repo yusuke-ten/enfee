@@ -5,6 +5,13 @@ abstract class ApplicationError extends Error {
   }
 }
 
+export class ServerError extends ApplicationError {
+  constructor(m: string) {
+    super(m);
+    this.name = 'ServerError';
+  }
+}
+
 export class LoginError extends ApplicationError {
   constructor(m: string) {
     super(m);

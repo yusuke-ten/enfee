@@ -15,7 +15,7 @@ const developmentConfig = {
 };
 
 const productionConfig = {
-  apiUrl: 'https://enfee',
+  // apiUrl: 'https://enfee',
 };
 
 const testConfig = {};

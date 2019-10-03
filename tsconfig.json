@@ -28,7 +28,8 @@
       "const/*": ["src/const/*"],
       "modules/*": ["src/modules/*"],
       "services/*": ["src/services/*"],
-      "config/*": ["src/config/*"]
+      "config/*": ["src/config/*"],
+      "utils/*": ["src/utils/*"]
     }
   },
   "include": ["./src/**/*", "./types/**/*"],
