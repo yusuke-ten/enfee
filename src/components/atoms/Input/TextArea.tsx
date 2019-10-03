@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { Color, Size } from 'src/const';
 
 interface Props {
-  height?: number;
+  height?: string;
   placeholder: string;
   value: string;
   handleChage: () => void;
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const TextArea: React.FC<Props> = ({
-  height = 200,
+  height = '200px',
   placeholder,
   value,
   handleChage,
@@ -28,10 +28,10 @@ const TextArea: React.FC<Props> = ({
   />
 );
 
-const StyledTextArea = styled.textarea<{ height: number; isError: boolean }>`
+const StyledTextArea = styled.textarea<{ height: string; isError: boolean }>`
   width: 100%;
   min-height: 120px;
-  height: ${props => props.height}px;
+  height: ${props => props.height};
   border: 1px solid transparent;
   box-shadow: none;
   overflow: hidden;
@@ -39,7 +39,7 @@ const StyledTextArea = styled.textarea<{ height: number; isError: boolean }>`
   word-wrap: break-word;
   resize: none;
   transition: 0.3s ease;
-  padding: 1rem;
+  padding: 0.9rem;
   font-size: ${Size.FONT_RATIO.MEDIUM}rem;
   box-sizing: border-box;
 
