@@ -1,20 +1,7 @@
 import axios from 'axios';
 import camelcaseKeys from 'camelcase-keys';
 import config from 'src/config';
-
-export abstract class MyProjectError extends Error {
-  constructor(m: string) {
-    super(m);
-    Object.setPrototypeOf(this, new.target.prototype);
-  }
-}
-
-export class LoginError extends MyProjectError {
-  constructor(m: string) {
-    super(m);
-    this.name = 'LoginError';
-  }
-}
+import { LoginError } from 'src/utils/errors';
 
 interface ApiConfig {
   baseURL: string;

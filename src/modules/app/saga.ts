@@ -1,5 +1,6 @@
 import { fork, takeLatest, call, put } from 'redux-saga/effects';
-import { loginApiFactory, LoginError } from 'services/api/auth';
+import { loginApiFactory } from 'services/api/auth';
+import { LoginError } from 'src/utils/errors';
 import { actions, login } from '.';
 
 const loginHandler = loginApiFactory();
