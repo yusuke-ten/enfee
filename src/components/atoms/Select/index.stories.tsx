@@ -8,5 +8,6 @@ storiesOf('atoms/Select', module).add('default', () => (
     title="カテゴリー"
     items={productCategories}
     name="product_category"
+    size={4}
   />
 ));

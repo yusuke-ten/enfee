@@ -14,10 +14,10 @@ interface Props {
   size?: number;
 }
 
-const Select: React.FC<Props> = ({ title, name, items, size = 1 }) => {
+const Select: React.FC<Props> = ({ title, name, items, ...props }) => {
   return (
-    <Container>
-      <StyledSelect name={name} size={size}>
+    <Container {...props}>
+      <StyledSelect name={name}>
         <option value="non-select">--- {title}を選択してください ---</option>
         {items.map(item => (
           <option value={item.id}>{item.name}</option>

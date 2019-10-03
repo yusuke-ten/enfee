@@ -1,11 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { MemoryRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { myProfile } from 'services/mocks/myProfile';
 import { Color } from 'src/const';
 import Aside from '.';
 
 storiesOf('molecules/Aside', module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/reviews']}>{story()}</MemoryRouter>
+  ))
   .add('login user', () => (
     <Background>
       <Wrapper>
