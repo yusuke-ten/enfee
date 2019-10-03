@@ -7,6 +7,7 @@ const commonConfig = {
   basename: process.env.PUBLIC_PATH,
   isBrowser: typeof window !== 'undefined',
   apiUrl: '',
+  timeoutMsec: 7000,
 };
 
 const developmentConfig = {
