@@ -17,7 +17,8 @@ export {
   AngleDownIcon,
 } from './Icon';
 export { default as Line } from './Line';
-export { default as TextInput } from './Input';
+export { default as TextInput } from './Input/TextInput';
+export { default as TextArea } from './Input/TextArea';
 export { default as Spinner } from './Spinner';
 export { default as Logo } from './Logo';
 export { default as StoreBadge } from './StoreBadge';
