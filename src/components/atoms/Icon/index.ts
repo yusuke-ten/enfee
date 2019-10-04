@@ -12,4 +12,5 @@ export {
   CloseIcon,
   AngleUpIcon,
   AngleDownIcon,
+  PlusIcon,
 } from './Icons';

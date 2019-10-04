@@ -13,6 +13,7 @@ import Twitter from './icons/twitter.svg';
 import Close from './icons/close.svg';
 import AngleUp from './icons/angleUp.svg';
 import AngleDown from './icons/angleDown.svg';
+import Plus from './icons/plus.svg';
 
 export type ColorType = 'less' | 'primary' | 'gray' | 'black';
 
@@ -98,6 +99,13 @@ export const AngleDownIcon: React.FC<Props> = ({
   height = DEFAULT_HEIGHT,
 }) => <StyledAngleDownIcon color={color} height={height} width={width} />;
 
+export const PlusIcon: React.FC<Props> = ({
+  color = DEFAULT_COLOR,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
+  ...props
+}) => <StyledPlusIcon color={color} height={height} width={width} {...props} />;
+
 const colorPallete: { [k in ColorType]: string } = {
   gray: Color.FONT.BASE,
   less: Color.FONT.LESS,
@@ -150,5 +158,8 @@ const StyledAngleUpIcon = styled(AngleUp)<StyleProps>`
   ${props => getStyles(props.color)}
 `;
 const StyledAngleDownIcon = styled(AngleDown)<StyleProps>`
+  ${props => getStyles(props.color)}
+`;
+const StyledPlusIcon = styled(Plus)<StyleProps>`
   ${props => getStyles(props.color)}
 `;
