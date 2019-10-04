@@ -14,6 +14,7 @@ import Close from './icons/close.svg';
 import AngleUp from './icons/angleUp.svg';
 import AngleDown from './icons/angleDown.svg';
 import Plus from './icons/plus.svg';
+import Camera from './icons/camera.svg';
 
 export type ColorType = 'less' | 'primary' | 'gray' | 'black';
 
@@ -27,6 +28,8 @@ const DEFAULT_COLOR = 'less';
 const DEFAULT_WIDTH = 10;
 const DEFAULT_HEIGHT = 10;
 
+// TODO: リファクタリングする
+// この状態だとiconを追加するのが大変
 export const EnvelopeIcon: React.FC<Props> = ({
   color = DEFAULT_COLOR,
   width = DEFAULT_WIDTH,
@@ -106,6 +109,15 @@ export const PlusIcon: React.FC<Props> = ({
   ...props
 }) => <StyledPlusIcon color={color} height={height} width={width} {...props} />;
 
+export const CameraIcon: React.FC<Props> = ({
+  color = DEFAULT_COLOR,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
+  ...props
+}) => (
+  <StyledCameraIcon color={color} height={height} width={width} {...props} />
+);
+
 const colorPallete: { [k in ColorType]: string } = {
   gray: Color.FONT.BASE,
   less: Color.FONT.LESS,
@@ -161,5 +173,8 @@ const StyledAngleDownIcon = styled(AngleDown)<StyleProps>`
   ${props => getStyles(props.color)}
 `;
 const StyledPlusIcon = styled(Plus)<StyleProps>`
+  ${props => getStyles(props.color)}
+`;
+const StyledCameraIcon = styled(Camera)<StyleProps>`
   ${props => getStyles(props.color)}
 `;

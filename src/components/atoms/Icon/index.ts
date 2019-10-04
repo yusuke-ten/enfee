@@ -13,4 +13,5 @@ export {
   AngleUpIcon,
   AngleDownIcon,
   PlusIcon,
+  CameraIcon,
 } from './Icons';

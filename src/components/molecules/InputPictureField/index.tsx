@@ -1,6 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Picture, PlusIcon, InfoTxt, Heading } from 'components/atoms';
+import {
+  Picture,
+  PlusIcon,
+  InfoTxt,
+  Heading,
+  CameraIcon,
+} from 'components/atoms';
 import { Color, Size } from 'src/const';
 
 interface Props {
@@ -34,11 +40,14 @@ const InputPictureField: React.FC<Props> = ({
   return (
     <>
       <TitleWrapper>
-        <Heading type="h4">写真を追加</Heading>
+        <Heading type="h4">
+          写真を追加
+          <StyledCameraIcon height={14} width={14} color="gray" />
+        </Heading>
       </TitleWrapper>
       <Container>
-        {pictures.map(picture => (
-          <PictureFrame>
+        {pictures.map((picture, i) => (
+          <PictureFrame key={i}>
             <span>
               <Picture src={picture} />
             </span>
@@ -58,6 +67,10 @@ const TitleWrapper = styled.div`
   display: inline-block;
   padding: 8px 12px;
   background-color: ${Color.BACKGROUND.LIGTH};
+`;
+const StyledCameraIcon = styled(CameraIcon)`
+  vertical-align: top;
+  padding-left: 4px;
 `;
 const Label = styled.label`
   cursor: pointer;
