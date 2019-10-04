@@ -33,7 +33,9 @@ const TextAreaField: React.FC<Props> = ({
         height="94%"
       />
       {validLength ? (
-        <StyledInfoTxt size="s">残り文字数： {RemainingLength} </StyledInfoTxt>
+        <StyledInfoTxt size="s">
+          残り文字数： {RemainingLength} ({valueMaxLength}文字以内で入力)
+        </StyledInfoTxt>
       ) : (
         <StyledWarnTxt size="s">
           残り文字数： {RemainingLength} ※{valueMaxLength}
