@@ -1,37 +1,106 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Picture } from 'components/atoms';
+import { Picture, PlusIcon, InfoTxt, Heading } from 'components/atoms';
 import { Color, Size } from 'src/const';
 
 interface Props {
   pictures: string[];
+  handleChangeFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  maxPicturesCount: number;
 }
 
-const InputPictureField: React.FC<Props> = ({ pictures }) => {
+// fileChageHandlerはこれを参考に
+// const { createObjectURL } = window.URL || window.webkitURL;
+// const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+//   const { files } = e.target;
+//   if (files && files.length !== 0) {
+//     const imageUrl = createObjectURL(files[0]);
+//   }
+// };
+
+const InputPictureField: React.FC<Props> = ({
+  pictures,
+  maxPicturesCount,
+  handleChangeFile,
+}) => {
+  const InputFileComponent = () => (
+    <Label htmlFor="pucture_file">
+      <StyledPlusIcon height={24} width={24} />
+      <StyledInfoTxt size="m">写真を追加</StyledInfoTxt>
+      <input type="file" id="pucture_file" onChange={handleChangeFile} />
+    </Label>
+  );
+
   return (
-    <Container>
-      {pictures.map(picture => (
-        <PictureFrame>
-          <span>
-            <Picture src={picture} />
-          </span>
-        </PictureFrame>
-      ))}
-    </Container>
+    <>
+      <TitleWrapper>
+        <Heading type="h4">写真を追加</Heading>
+      </TitleWrapper>
+      <Container>
+        {pictures.map(picture => (
+          <PictureFrame>
+            <span>
+              <Picture src={picture} />
+            </span>
+          </PictureFrame>
+        ))}
+        {pictures.length < maxPicturesCount && (
+          <PictureFrame>
+            <InputFileComponent />
+          </PictureFrame>
+        )}
+      </Container>
+    </>
   );
 };
+
+const TitleWrapper = styled.div`
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: ${Color.BACKGROUND.LIGTH};
+`;
+const Label = styled.label`
+  cursor: pointer;
+  background-color: white;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 2px;
+  box-sizing: border-box;
+  border: 3px dashed #bcb7b7;
+  border-radius: 3px;
+
+  & input {
+    display: none;
+  }
+`;
+const StyledPlusIcon = styled(PlusIcon)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+const StyledInfoTxt = styled(InfoTxt)`
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: ${Size.FONT_WEIGHT.BOLD};
+`;
 
 // 参考:
 // https://recost-design.com/2133.html (heigthをwidthと同値に設定する)
 // https://migi.me/css/flexbox-margin-wrap/ (折返し要素のみにマージンをつける)
 const Container = styled.div`
   display: flex;
-  /* justify-content: space-between; */
   justify-content: flex-start;
   flex-wrap: wrap;
   padding: 16px 10px;
   background-color: ${Color.BACKGROUND.LIGTH};
-  margin-top: -16px;
 `;
 const PictureFrame = styled.div`
   border: solid 1px #ded7c6;
@@ -41,7 +110,6 @@ const PictureFrame = styled.div`
   height: auto;
   position: relative;
   box-shadow: 1px 2px 3px 0 rgba(133, 131, 131, 0.3);
-  margin-top: 16px;
 
   &::before {
     content: '';
