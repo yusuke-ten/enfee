@@ -9,3 +9,4 @@ export { default as ReviewPanelList } from './ReviewPanelList';
 export { default as CommentArea } from './CommentArea';
 export { default as ReviewDetailArea } from './ReviewDetailArea';
 export { default as ReviewDetailModal } from './ReviewDetailModal';
+export { default as ReviewPostForm } from './ReviewPostForm';
