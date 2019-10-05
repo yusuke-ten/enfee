@@ -11,13 +11,22 @@ interface Props {
   title: string;
   name: string;
   items: Item[];
+  value: string;
+  handleChage: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   size?: number;
 }
 
-const Select: React.FC<Props> = ({ title, name, items, ...props }) => {
+const Select: React.FC<Props> = ({
+  title,
+  name,
+  items,
+  value,
+  handleChage,
+  ...props
+}) => {
   return (
     <Container {...props}>
-      <StyledSelect name={name}>
+      <StyledSelect name={name} value={value} onChange={handleChage}>
         <option value="non-select">--- {title}を選択してください ---</option>
         {items.map(item => (
           <option value={item.id}>{item.name}</option>
@@ -128,7 +137,6 @@ const Container = styled.div`
 
 const StyledSelect = styled.select`
   cursor: pointer;
-  /* border: ${borderWidth}px solid ${demoBorder}; */
   border: ${borderWidth}px solid transparent;
   border-radius: 0;
   font-weight: 400;

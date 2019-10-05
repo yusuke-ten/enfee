@@ -1,4 +1,4 @@
-const productCategories = [
+export const productCategoryList = [
   {
     id: 1,
     name: 'おにぎり',
@@ -104,5 +104,3 @@ const productCategories = [
     name: 'その他・雑貨',
   },
 ];
-
-export default productCategories;

@@ -1,13 +1,17 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import productCategories from 'services/mocks/productCategories';
+import { text } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
+import { productCategoryList } from 'src/services/mocks/productCategoryList';
 import Select from '.';
 
 storiesOf('atoms/Select', module).add('default', () => (
   <Select
     title="カテゴリー"
-    items={productCategories}
+    items={productCategoryList}
     name="product_category"
     size={4}
+    value={text('value', 'non-select')}
+    handleChage={action('handleChange')}
   />
 ));
