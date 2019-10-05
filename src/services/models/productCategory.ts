@@ -1,4 +1,4 @@
-export interface ProductCategoryList {
+export interface ProductCategoryItem {
   id: number;
   name: string;
-}
+};

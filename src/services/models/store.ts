@@ -1,5 +1,5 @@
 export type Store = 'セブン-イレブン' | 'ファミリーマート' | 'ローソン';
-export interface StoreList {
+export interface StoreItem {
   id: number;
   name: string;
 }
