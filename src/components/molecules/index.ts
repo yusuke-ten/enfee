@@ -13,3 +13,4 @@ export { default as ToggleAngle } from './ToggleAngle';
 export { default as CommentInputField } from './CommentInputField';
 export { default as Aside } from './Aside';
 export { default as TextAreaField } from './TextAreaField';
+export { default as InputPictureField } from './InputPictureField';

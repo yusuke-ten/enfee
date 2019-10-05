@@ -4,7 +4,7 @@ import { TextArea, InfoTxt, WarnTxt } from 'components/atoms';
 
 interface Props {
   value: string;
-  handleChage: () => void;
+  handleChage: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder: string;
   isError?: boolean;
   valueMaxLength: number;

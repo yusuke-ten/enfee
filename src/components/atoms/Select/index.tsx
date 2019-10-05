@@ -36,7 +36,7 @@ const Select: React.FC<Props> = ({
   );
 };
 
-const borderWidth = 3;
+const borderWidth = 2;
 const demoBlue = '#005BA6';
 const demoGray = '#D6D6D6';
 const demoPlaceholder = '#C7C7C7';
@@ -63,8 +63,7 @@ const selectFormReset = css`
     box-sizing: border-box;
     width: 100%;
     margin: 0;
-    /* border: 1px solid transparent; */
-    font-size: 16px;
+    font-size: ${Size.FONT_RATIO.MEDIUM}rem;
     outline: none;
 
     &:focus {
@@ -81,11 +80,11 @@ const selectFormReset = css`
 const Container = styled.div`
   ${selectFormReset}
 
-  color: ${Color.THEME.PRIMARY};
+  color: ${Color.FONT.BASE};
   display: block;
   border-radius: 0;
   box-shadow: none;
-  font-size: 16px;
+  font-size: ${Size.FONT_RATIO.MEDIUM}rem;
   margin-top: 9px;
   margin-bottom: 15px;
   width: 100%;
@@ -137,11 +136,11 @@ const Container = styled.div`
 
 const StyledSelect = styled.select`
   cursor: pointer;
-  border: ${borderWidth}px solid transparent;
+  border: ${borderWidth}px solid ${Color.FONT.LIGHT};
   border-radius: 0;
   font-weight: 400;
   color: inherit;
-  padding: 11px 15px;
+  padding: 0.9rem;
   line-height: normal;
   transition: border-color 0.1s ease, outline 0.1s ease;
 

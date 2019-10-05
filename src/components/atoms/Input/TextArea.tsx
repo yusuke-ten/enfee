@@ -6,7 +6,7 @@ interface Props {
   height?: string;
   placeholder: string;
   value: string;
-  handleChage: () => void;
+  handleChage: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   isError?: boolean;
 }
 
@@ -32,7 +32,7 @@ const StyledTextArea = styled.textarea<{ height: string; isError: boolean }>`
   width: 100%;
   min-height: 120px;
   height: ${props => props.height};
-  border: 1px solid transparent;
+  border: 2px solid ${Color.FONT.LIGHT};
   box-shadow: none;
   overflow: hidden;
   color: ${Color.FONT.BASE};

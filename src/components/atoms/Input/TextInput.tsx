@@ -24,6 +24,7 @@ const TextInput: FC<Props> = ({
   placeholder = '',
   isError = false,
   small = false,
+  ...props
 }) => {
   return (
     <StyledInput
@@ -35,6 +36,7 @@ const TextInput: FC<Props> = ({
       onFocus={onFocusHandler}
       isError={isError}
       small={small}
+      {...props}
     />
   );
 };
