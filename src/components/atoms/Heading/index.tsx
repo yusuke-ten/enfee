@@ -13,6 +13,7 @@ interface Props {
   color?: Color;
 }
 
+// TODO: 冗長なのでリファクタリングしたい
 const Heading: React.FC<Props> = ({
   type,
   children,
@@ -22,17 +23,41 @@ const Heading: React.FC<Props> = ({
 }) => {
   switch (type) {
     case 'h1':
-      return <StyledH1 {...{ color, align, props }}>{children}</StyledH1>;
+      return (
+        <StyledH1 {...{ color, align }} {...props}>
+          {children}
+        </StyledH1>
+      );
     case 'h2':
-      return <StyledH2 {...{ color, align, props }}>{children}</StyledH2>;
+      return (
+        <StyledH2 {...{ color, align }} {...props}>
+          {children}
+        </StyledH2>
+      );
     case 'h3':
-      return <StyledH3 {...{ color, align, props }}>{children}</StyledH3>;
+      return (
+        <StyledH3 {...{ color, align }} {...props}>
+          {children}
+        </StyledH3>
+      );
     case 'h4':
-      return <StyledH4 {...{ color, align, props }}>{children}</StyledH4>;
+      return (
+        <StyledH4 {...{ color, align }} {...props}>
+          {children}
+        </StyledH4>
+      );
     case 'h5':
-      return <StyledH5 {...{ color, align, props }}>{children}</StyledH5>;
+      return (
+        <StyledH5 {...{ color, align }} {...props}>
+          {children}
+        </StyledH5>
+      );
     case 'h6':
-      return <StyledH6 {...{ color, align, props }}>{children}</StyledH6>;
+      return (
+        <StyledH6 {...{ color, align }} {...props}>
+          {children}
+        </StyledH6>
+      );
     default:
       return null;
   }
