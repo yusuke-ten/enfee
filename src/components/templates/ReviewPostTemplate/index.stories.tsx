@@ -1,11 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
+import { MemoryRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
 import { Mock } from 'src/const';
 import { storeList, productCategoryList } from 'services/mocks/index';
-import ReviewPostForm from '.';
+import ReviewPostTemplate from '.';
 
 const pictures = [Mock.imageUrl];
 const reviewPostFormItems = {
@@ -27,12 +27,10 @@ const reviewPostFormItems = {
   handleSubmit: action('handleSubmit'),
 };
 
-storiesOf('organisms/ReviewPostForm', module).add('default', () => (
-  <Wrapper>
-    <ReviewPostForm reviewPostFormItems={reviewPostFormItems} />
-  </Wrapper>
-));
-
-const Wrapper = styled.div`
-  width: 670px;
-`;
+storiesOf('templates/ReviewPostTemplate', module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/reviews/new']}>{story()}</MemoryRouter>
+  ))
+  .add('default', () => (
+    <ReviewPostTemplate reviewPostFormItems={reviewPostFormItems} />
+  ));

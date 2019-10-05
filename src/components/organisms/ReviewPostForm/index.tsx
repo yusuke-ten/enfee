@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Heading, Select, TextInput, Card, Line } from 'components/atoms';
+import { Heading, Select, TextInput, Line } from 'components/atoms';
 import {
   TextAreaField,
   InputPictureField,
@@ -9,146 +9,111 @@ import {
 import { StoreItem, ProductCategoryItem } from 'services/models';
 
 export interface Props {
-  storeList: StoreItem[];
-  productCategoryList: ProductCategoryItem[];
-  pictures: string[];
-  maxPicturesCount: number;
-  postButtonDisabled: boolean;
-  isLoading: boolean;
-  categoryValue: string;
-  storeValue: string;
-  productNameValue: string;
-  contentValue: string;
-  handleChangeCategory: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  handleChangeStore: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  handleChageContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  handleChageProductName: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleChangeFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: () => void;
+  reviewPostFormItems: {
+    storeList: StoreItem[];
+    productCategoryList: ProductCategoryItem[];
+    pictures: string[];
+    maxPicturesCount: number;
+    postButtonDisabled: boolean;
+    isLoading: boolean;
+    categoryValue: string;
+    storeValue: string;
+    productNameValue: string;
+    contentValue: string;
+    handleChangeCategory: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    handleChangeStore: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    handleChageContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    handleChageProductName: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleChangeFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleSubmit: () => void;
+  };
 }
 
-const ReviewPostForm: React.FC<Props> = ({
-  storeList,
-  productCategoryList,
-  pictures,
-  maxPicturesCount,
-  postButtonDisabled,
-  isLoading,
-  categoryValue,
-  storeValue,
-  productNameValue,
-  contentValue,
-  handleChangeCategory,
-  handleChangeStore,
-  handleChageContent,
-  handleChageProductName,
-  handleChangeFile,
-  handleSubmit,
-  ...props
-}) => {
-  // const [categoryValue, updateCategoryId] = useState<string>('non-select');
-  // const [storeValue, updateStoreId] = useState<string>('non-select');
-  // const [contentValue, udpateContentValue] = useState<string>('');
-  // const [productNameValue, udpateProductName] = useState<string>('');
-
-  // const handleChangeCategory = useCallback(
-  //   (e: React.ChangeEvent<HTMLSelectElement>) => {
-  //     updateCategoryId(e.target.value);
-  //   },
-  //   [categoryValue],
-  // );
-
-  // const handleChangeStore = useCallback(
-  //   (e: React.ChangeEvent<HTMLSelectElement>) => {
-  //     updateStoreId(e.target.value);
-  //   },
-  //   [storeValue],
-  // );
-
-  // const handleChageContent = useCallback(
-  //   (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-  //     udpateContentValue(e.target.value);
-  //   },
-  //   [contentValue],
-  // );
-
-  // const handleChageProductName = useCallback(
-  //   (e: React.ChangeEvent<HTMLInputElement>) => {
-  //     udpateProductName(e.target.value);
-  //   },
-  //   [productNameValue],
-  // );
+const ReviewPostForm: React.FC<Props> = ({ reviewPostFormItems, ...props }) => {
+  const {
+    storeList,
+    productCategoryList,
+    pictures,
+    maxPicturesCount,
+    postButtonDisabled,
+    isLoading,
+    categoryValue,
+    storeValue,
+    productNameValue,
+    contentValue,
+    handleChangeCategory,
+    handleChangeStore,
+    handleChageContent,
+    handleChageProductName,
+    handleChangeFile,
+    handleSubmit,
+  } = reviewPostFormItems;
 
   return (
-    <StyledCard shadow {...props}>
-      <form onSubmit={handleSubmit}>
-        <StyledHeading type="h3" color="base" align="center">
-          レビュー投稿
-        </StyledHeading>
-        <Line />
-        <SelectArea>
-          <FieldMargin>
-            <Select
-              title="カテゴリー"
-              name="product_category_id"
-              items={productCategoryList}
-              value={categoryValue}
-              handleChage={handleChangeCategory}
-            />
-          </FieldMargin>
-          <FieldMargin>
-            <Select
-              title="ストア"
-              name="store_id"
-              items={storeList}
-              value={storeValue}
-              handleChage={handleChangeStore}
-            />
-          </FieldMargin>
-          <FieldMargin></FieldMargin>
-        </SelectArea>
+    <form onSubmit={handleSubmit} {...props}>
+      <StyledHeading type="h3" color="base" align="center">
+        レビュー投稿
+      </StyledHeading>
+      <Line />
+      <SelectArea>
         <FieldMargin>
-          <StyledTextInput
-            value={productNameValue}
-            onChangeHandler={handleChageProductName}
-            placeholder="商品名を入力してください"
+          <Select
+            title="カテゴリー"
+            name="product_category_id"
+            items={productCategoryList}
+            value={categoryValue}
+            handleChage={handleChangeCategory}
           />
         </FieldMargin>
-        <TextAreaWrapper>
-          <TextAreaField
-            value={contentValue}
-            handleChage={handleChageContent}
-            valueMaxLength={500}
-            placeholder="レビュー本文を入力してください"
+        <FieldMargin>
+          <Select
+            title="ストア"
+            name="store_id"
+            items={storeList}
+            value={storeValue}
+            handleChage={handleChangeStore}
           />
-        </TextAreaWrapper>
+        </FieldMargin>
         <FieldMargin></FieldMargin>
-        <Line />
-        <FieldMargin>
-          <InputPictureField
-            pictures={pictures}
-            handleChangeFile={handleChangeFile}
-            maxPicturesCount={maxPicturesCount}
-          />
-        </FieldMargin>
-        <ButtonArea>
-          <PostButtonWithLoading
-            text="投稿する"
-            lodaingText="投稿中"
-            isLoading={isLoading}
-            disabled={postButtonDisabled}
-          />
-        </ButtonArea>
-      </form>
-    </StyledCard>
+      </SelectArea>
+      <FieldMargin>
+        <StyledTextInput
+          value={productNameValue}
+          onChangeHandler={handleChageProductName}
+          placeholder="商品名を入力してください"
+        />
+      </FieldMargin>
+      <TextAreaWrapper>
+        <TextAreaField
+          value={contentValue}
+          handleChage={handleChageContent}
+          valueMaxLength={500}
+          placeholder="レビュー本文を入力してください"
+        />
+      </TextAreaWrapper>
+      <FieldMargin></FieldMargin>
+      <Line />
+      <FieldMargin>
+        <InputPictureField
+          pictures={pictures}
+          handleChangeFile={handleChangeFile}
+          maxPicturesCount={maxPicturesCount}
+        />
+      </FieldMargin>
+      <ButtonArea>
+        <PostButtonWithLoading
+          text="投稿する"
+          lodaingText="投稿中"
+          isLoading={isLoading}
+          disabled={postButtonDisabled}
+        />
+      </ButtonArea>
+    </form>
   );
 };
 
 const StyledHeading = styled(Heading)`
-  margin: 20px 0;
-`;
-const StyledCard = styled(Card)`
-  width: 100%;
+  margin: 20px;
 `;
 const FieldMargin = styled.div`
   margin-top: 18px;
