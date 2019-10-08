@@ -12,7 +12,7 @@ export interface Props {
   reviewPostFormItems: {
     storeList: StoreItem[];
     productCategoryList: ProductCategoryItem[];
-    pictures: string[];
+    pictures: { id: number; picture: string }[];
     maxPicturesCount: number;
     postButtonDisabled: boolean;
     isLoading: boolean;
@@ -20,12 +20,13 @@ export interface Props {
     storeValue: string;
     productNameValue: string;
     contentValue: string;
+    errorMessages: string[];
     handleChangeCategory: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     handleChangeStore: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     handleChageContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     handleChageProductName: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleChangeFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleSubmit: () => void;
+    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   };
 }
 
@@ -41,6 +42,7 @@ const ReviewPostForm: React.FC<Props> = ({ reviewPostFormItems, ...props }) => {
     storeValue,
     productNameValue,
     contentValue,
+    errorMessages,
     handleChangeCategory,
     handleChangeStore,
     handleChageContent,
@@ -81,6 +83,7 @@ const ReviewPostForm: React.FC<Props> = ({ reviewPostFormItems, ...props }) => {
           value={productNameValue}
           onChangeHandler={handleChageProductName}
           placeholder="商品名を入力してください"
+          vanish={false}
         />
       </FieldMargin>
       <TextAreaWrapper>

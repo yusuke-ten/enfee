@@ -7,7 +7,7 @@ import { Mock } from 'src/const';
 import { storeList, productCategoryList } from 'services/mocks/index';
 import ReviewPostForm from '.';
 
-const pictures = [Mock.imageUrl];
+const pictures = [{ id: 1, picture: Mock.imageUrl }];
 const reviewPostFormItems = {
   storeList,
   productCategoryList,

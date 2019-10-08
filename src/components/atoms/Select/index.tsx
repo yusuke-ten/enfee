@@ -14,6 +14,7 @@ interface Props {
   value: string;
   handleChage: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   size?: number;
+  isError?: boolean;
 }
 
 const Select: React.FC<Props> = ({
@@ -22,14 +23,22 @@ const Select: React.FC<Props> = ({
   items,
   value,
   handleChage,
+  isError = false,
   ...props
 }) => {
   return (
     <Container {...props}>
-      <StyledSelect name={name} value={value} onChange={handleChage}>
+      <StyledSelect
+        name={name}
+        value={value}
+        onChange={handleChage}
+        isError={isError}
+      >
         <option value="non-select">--- {title}を選択してください ---</option>
         {items.map(item => (
-          <option value={item.id}>{item.name}</option>
+          <option value={item.id} key={item.name}>
+            {item.name}
+          </option>
         ))}
       </StyledSelect>
     </Container>
@@ -37,10 +46,8 @@ const Select: React.FC<Props> = ({
 };
 
 const borderWidth = 2;
-const demoBlue = '#005BA6';
 const demoGray = '#D6D6D6';
 const demoPlaceholder = '#C7C7C7';
-const demoBorder = '#E6E6E6';
 
 const selectFormReset = css`
   display: block;
@@ -134,9 +141,10 @@ const Container = styled.div`
   }
 `;
 
-const StyledSelect = styled.select`
+const StyledSelect = styled.select<{ isError: boolean }>`
   cursor: pointer;
-  border: ${borderWidth}px solid ${Color.FONT.LIGHT};
+  border: ${borderWidth}px solid
+    ${props => (props.isError ? Color.THEME.ERROR : Color.FONT.LIGHT)};
   border-radius: 0;
   font-weight: 400;
   color: inherit;

@@ -1,6 +1,6 @@
 import AxiosFactory from 'utils/axios';
 import { TimeoutError, ServerError } from 'src/utils/errors';
-import { StoreList, ProductCategoryList } from 'services/models';
+import { StoreItem, ProductCategoryItem } from 'services/models';
 
 const axios = AxiosFactory.getInstance();
 
@@ -11,7 +11,7 @@ export const fetchStoreList = async () => {
     if (response.status !== 200) {
       throw new ServerError('server error');
     }
-    const result: StoreList = response.data;
+    const result: StoreItem[] = response.data;
 
     return result;
   } catch (err) {
@@ -34,7 +34,7 @@ export const fetchProductCategoryList = async () => {
     if (response.status !== 200) {
       throw new ServerError('server error');
     }
-    const result: ProductCategoryList = response.data;
+    const result: ProductCategoryItem[] = response.data;
 
     return result;
   } catch (err) {

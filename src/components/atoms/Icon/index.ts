@@ -14,4 +14,5 @@ export {
   AngleDownIcon,
   PlusIcon,
   CameraIcon,
+  TrashIcon,
 } from './Icons';

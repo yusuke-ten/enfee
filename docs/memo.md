@@ -27,3 +27,31 @@ reviewsページの中で更にルーティングするとなったらこっち�
 ### refactor
 
 - headerのメニューアイコンを上のコンポネントから受け渡すように修正する。
+
+### reviewPostForm設計
+
+#### 入力項目
+
+- product_name(商品名)
+- content(本文)
+- picture
+- price
+- rating
+- store_id
+- product_category_id
+
+#### 入力タイプ
+
+```js
+{
+  inputs: [
+    {
+      type: '',
+      value: '',
+      handleChage: '',
+      placeholder: '',
+      validationError: ''
+    }
+  ]
+}
+```

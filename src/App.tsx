@@ -1,7 +1,11 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
-import { SignupPage, ReviewPostPage } from 'components/pages';
-import { LoginPageContainer, ReviewsPageContainer } from 'containers/pages';
+import { SignupPage } from 'components/pages';
+import {
+  LoginPageContainer,
+  ReviewsPageContainer,
+  ReviewPostPage,
+} from 'containers/pages';
 
 const NotFound = () => <div>not found</div>;
 

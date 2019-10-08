@@ -10,7 +10,7 @@ import {
 import { Color, Size } from 'src/const';
 
 interface Props {
-  pictures: string[];
+  pictures: { id: number; picture: string }[];
   handleChangeFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
   maxPicturesCount: number;
 }
@@ -37,6 +37,9 @@ const InputPictureField: React.FC<Props> = ({
     </Label>
   );
 
+  console.log('-----------input picture field');
+  console.log(pictures);
+
   return (
     <>
       <TitleWrapper>
@@ -46,10 +49,10 @@ const InputPictureField: React.FC<Props> = ({
         </Heading>
       </TitleWrapper>
       <Container>
-        {pictures.map((picture, i) => (
+        {pictures.map((p, i) => (
           <PictureFrame key={i}>
             <span>
-              <Picture src={picture} />
+              <Picture src={p.picture} />
             </span>
           </PictureFrame>
         ))}

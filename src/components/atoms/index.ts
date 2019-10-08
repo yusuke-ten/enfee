@@ -17,6 +17,7 @@ export {
   AngleDownIcon,
   PlusIcon,
   CameraIcon,
+  TrashIcon,
 } from './Icon';
 export { default as Line } from './Line';
 export { default as TextInput } from './Input/TextInput';
