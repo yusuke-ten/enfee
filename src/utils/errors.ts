@@ -25,3 +25,17 @@ export class TimeoutError extends ApplicationError {
     this.name = 'TimeoutError';
   }
 }
+
+export class ValidationError extends ApplicationError {
+  constructor(m: string) {
+    super(m);
+    this.name = 'ValidationError';
+  }
+}
+
+export class NotImplementError extends ApplicationError {
+  constructor(m: string) {
+    super(m);
+    this.name = 'NotImplementError';
+  }
+}

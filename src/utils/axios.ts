@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import camelcaseKeys from 'camelcase-keys';
 import config from 'src/config';
 
-interface ApiConfig {
+export interface ApiConfig {
   baseURL: string;
   timeout: number;
 }
@@ -15,9 +15,9 @@ const DEFAULT_API_CONFIG: ApiConfig = {
 class AxiosFactory {
   static axiosInstance: AxiosInstance | null = null;
 
-  static getInstance() {
+  static getInstance(optionConfig?: ApiConfig) {
     if (this.axiosInstance === null) {
-      this.axiosInstance = this.createAxiosInstance();
+      this.axiosInstance = this.createAxiosInstance(optionConfig);
     }
 
     return this.axiosInstance;
