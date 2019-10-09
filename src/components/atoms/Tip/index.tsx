@@ -11,7 +11,7 @@ interface Props {
   color?: Color;
 }
 
-const BalloonComponent: React.FC<Props> = ({
+const TipComponent: React.FC<Props> = ({
   position = 'top',
   color = 'primary',
   children,
@@ -20,9 +20,9 @@ const BalloonComponent: React.FC<Props> = ({
   const colorCode = color === 'primary' ? Color.THEME.PRIMARY : 'white';
 
   return (
-    <Balloon color={colorCode} position={position} {...props}>
+    <Tip color={colorCode} position={position} {...props}>
       {children}
-    </Balloon>
+    </Tip>
   );
 };
 
@@ -65,7 +65,7 @@ const getAllowStyle = (p: Position, colorCode: string) => {
   }
 };
 
-const Balloon = styled.span<{ color: string; position: Position }>`
+const Tip = styled.span<{ color: string; position: Position }>`
   background-color: ${props => props.color};
   border-radius: 2px;
   color: white;
@@ -84,4 +84,4 @@ const Balloon = styled.span<{ color: string; position: Position }>`
   }
 `;
 
-export default BalloonComponent;
+export default TipComponent;

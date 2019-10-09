@@ -36,7 +36,7 @@ export { default as Picture } from './Picture';
 export { default as Rating } from './Rating';
 export { default as Txt, InfoTxt, WarnTxt } from './Text';
 export { default as MediaObjectLayout } from './MediaObjectLayout';
-export { default as Bolloon } from './Bolloon';
+export { default as Bolloon } from './Tip';
 export {
   default as HoverTipInteraction,
   Tip,

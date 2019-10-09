@@ -1,27 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import Balloon from '.';
+import Tip from '.';
 
-storiesOf('atoms/Balloon', module)
+storiesOf('atoms/Tip', module)
   .add('top', () => (
     <Wrapper>
-      <Balloon>これはバルーン</Balloon>
+      <Tip>これはチップ</Tip>
     </Wrapper>
   ))
   .add('left', () => (
     <Wrapper>
-      <Balloon position="left">これはバルーン</Balloon>
+      <Tip position="left">これはチップ</Tip>
     </Wrapper>
   ))
   .add('right', () => (
     <Wrapper>
-      <Balloon position="right">これはバルーン</Balloon>
+      <Tip position="right">これはチップ</Tip>
     </Wrapper>
   ))
   .add('bottom', () => (
     <Wrapper>
-      <Balloon position="bottom">これはバルーン</Balloon>
+      <Tip position="bottom">これはチップ</Tip>
     </Wrapper>
   ));
 
