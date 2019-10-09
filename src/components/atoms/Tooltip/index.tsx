@@ -11,7 +11,7 @@ interface Props {
   color?: Color;
 }
 
-const TipComponent: React.FC<Props> = ({
+const Tooltip: React.FC<Props> = ({
   position = 'top',
   color = 'primary',
   children,
@@ -20,9 +20,9 @@ const TipComponent: React.FC<Props> = ({
   const colorCode = color === 'primary' ? Color.THEME.PRIMARY : 'white';
 
   return (
-    <Tip color={colorCode} position={position} {...props}>
+    <Container color={colorCode} position={position} {...props}>
       {children}
-    </Tip>
+    </Container>
   );
 };
 
@@ -65,7 +65,7 @@ const getAllowStyle = (p: Position, colorCode: string) => {
   }
 };
 
-const Tip = styled.span<{ color: string; position: Position }>`
+const Container = styled.span<{ color: string; position: Position }>`
   background-color: ${props => props.color};
   border-radius: 2px;
   color: white;
@@ -84,4 +84,4 @@ const Tip = styled.span<{ color: string; position: Position }>`
   }
 `;
 
-export default TipComponent;
+export default Tooltip;
