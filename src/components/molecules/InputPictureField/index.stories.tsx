@@ -5,7 +5,10 @@ import { action } from '@storybook/addon-actions';
 import { Mock } from 'src/const';
 import InputPictureField from '.';
 
-const pictures = [Mock.imageUrl, Mock.imageUrl];
+const pictures = [
+  { id: 1, picture: Mock.imageUrl },
+  { id: 2, picture: Mock.imageUrl },
+];
 
 storiesOf('molecules/InputPictureField', module).add('default', () => (
   <Wrapper>

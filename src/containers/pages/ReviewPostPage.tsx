@@ -13,6 +13,7 @@ const ReviewPostPage: React.FC = () => {
     { id: number; picture: string }[]
   >([]);
   const [isLoading, updateIsLoading] = useState<boolean>(false);
+  const [errorMessages, updateErrorMessages] = useState<string[]>([]);
 
   const handleChangeCategory = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -88,6 +89,7 @@ const ReviewPostPage: React.FC = () => {
     storeValue,
     productNameValue,
     contentValue,
+    errorMessages,
     handleChangeCategory,
     handleChangeStore,
     handleChageContent,

@@ -7,7 +7,10 @@ import { Mock } from 'src/const';
 import { storeList, productCategoryList } from 'services/mocks/index';
 import ReviewPostTemplate from '.';
 
-const pictures = [Mock.imageUrl];
+const pictures = [
+  { id: 1, picture: Mock.imageUrl },
+  { id: 2, picture: Mock.imageUrl },
+];
 const reviewPostFormItems = {
   storeList,
   productCategoryList,
@@ -19,6 +22,7 @@ const reviewPostFormItems = {
   storeValue: text('storeValue', 'non-select'),
   productNameValue: text('productNameValue', ''),
   contentValue: text('contentValue', ''),
+  errorMessages: [],
   handleChangeCategory: action('handleChangeCategory'),
   handleChangeStore: action('handleChangeStore'),
   handleChageContent: action('handleChageContent'),

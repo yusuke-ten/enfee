@@ -19,6 +19,7 @@ const reviewPostFormItems = {
   storeValue: text('storeValue', 'non-select'),
   productNameValue: text('productNameValue', ''),
   contentValue: text('contentValue', ''),
+  errorMessages: [],
   handleChangeCategory: action('handleChangeCategory'),
   handleChangeStore: action('handleChangeStore'),
   handleChageContent: action('handleChageContent'),
