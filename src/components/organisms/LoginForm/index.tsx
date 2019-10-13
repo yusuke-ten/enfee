@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button, Line, Heading, Spinner, Txt, WarnTxt } from 'components/atoms';
 import { Field, TwitterButton } from 'components/molecules';
+import config from 'src/config';
 
 export interface Props {
   emailValue: string;
@@ -67,19 +68,19 @@ const LoginForm: React.FC<Props> = ({
             {isLoading ? <LoadingComponent /> : 'ログインする'}
           </Button>
         </MarginBlock>
-        <Line text="または" />
-        <MarginBlock>
-          <Link to="/twitter.com">
-            <TwitterButton text="twitterアカウントでログイン" />
-          </Link>
-        </MarginBlock>
-        <Line />
-        <MarginBlock>
-          <Link to="/signup">
-            <Button color="secondary">新規アカウント作成</Button>
-          </Link>
-        </MarginBlock>
       </Form>
+      <Line text="または" />
+      <MarginBlock>
+        <a href={config.twitterLoginUrl}>
+          <TwitterButton text="twitterアカウントでログイン" />
+        </a>
+      </MarginBlock>
+      <Line />
+      <MarginBlock>
+        <Link to="/signup">
+          <Button color="secondary">新規アカウント作成</Button>
+        </Link>
+      </MarginBlock>
     </Container>
   );
 };
@@ -96,6 +97,7 @@ const Form = styled.form`
 `;
 const MarginBlock = styled.div`
   margin: 20px auto;
+  text-align: center;
 `;
 const StyledTxt = styled(Txt)`
   color: white;

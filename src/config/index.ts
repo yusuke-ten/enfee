@@ -8,14 +8,20 @@ const commonConfig = {
   isBrowser: typeof window !== 'undefined',
   apiUrl: '',
   timeoutMsec: 7000,
+  localstrageTokenKey: '',
+  twitterLoginUrl: '',
 };
 
 const developmentConfig = {
   apiUrl: 'http://localhost:8080/api',
+  localstrageTokenKey: 'enfee_dev',
+  twitterLoginUrl: 'http://localhost:3000/api/auth/twitter',
 };
 
 const productionConfig = {
-  // apiUrl: 'https://enfee',
+  apiUrl: '',
+  localstrageTokenKey: 'enfee',
+  twitterLoginUrl: '',
 };
 
 const testConfig = {};

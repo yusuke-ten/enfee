@@ -40,9 +40,11 @@ const LoginFormContainer = () => {
       email: emailValue,
       password: passwrodValue,
     };
-    updateEmailValidationError(validationEmail(emailValue));
-    updatePasswordValidationError(validationPassword(passwrodValue));
-    if (emailValidationError && passwordValidationError) {
+    const emailValidationErrorMessage = validationEmail(emailValue);
+    const passwordValidationErrormessage = validationPassword(passwrodValue);
+    updateEmailValidationError(emailValidationErrorMessage);
+    updatePasswordValidationError(passwordValidationErrormessage);
+    if (!emailValidationErrorMessage && !passwordValidationErrormessage) {
       dispatch(login.start(params));
     }
   };

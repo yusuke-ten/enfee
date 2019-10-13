@@ -19,9 +19,9 @@ export const login = {
     type: actions.LOGIN_START,
     payload: { params },
   }),
-  succeed: (params: LoginParams, result: { token: string }) => ({
+  succeed: (result: { token: string }) => ({
     type: actions.LOGIN_SUCCEED,
-    payload: { params, result },
+    payload: { result },
   }),
   fail: (params: LoginParams, error: { message: string }) => ({
     type: actions.LOGIN_FAIL,

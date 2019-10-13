@@ -57,15 +57,6 @@ const ReviewPostPage: React.FC = () => {
     },
     [pictures],
   );
-  // const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { files } = e.target;
-  //   if (files && files.length !== 0) {
-  //     const imageUrl = createObjectURL(files[0]);
-  //     const id =
-  //       pictures.length === 0 ? 1 : pictures[pictures.length - 1].id + 1;
-  //     updatePictures([...pictures, { id, picture: imageUrl }]);
-  //   }
-  // };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
