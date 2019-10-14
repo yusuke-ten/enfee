@@ -17,3 +17,4 @@ export { default as InputPictureField } from './InputPictureField';
 export {
   default as PostButtonWithLoading,
 } from './Button/PostButtonWithLoading';
+export { default as DropdownMenu } from './DropdownMenu';

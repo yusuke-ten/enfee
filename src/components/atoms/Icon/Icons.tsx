@@ -16,6 +16,7 @@ import AngleDown from './icons/angleDown.svg';
 import Plus from './icons/plus.svg';
 import Camera from './icons/camera.svg';
 import Trash from './icons/trash.svg';
+import CaretDown from './icons/caretDown.svg';
 
 export type ColorType = 'less' | 'primary' | 'gray' | 'black';
 
@@ -128,6 +129,15 @@ export const TrashIcon: React.FC<Props> = ({
   <StyledTrashIcon color={color} height={height} width={width} {...props} />
 );
 
+export const CaretDownIcon: React.FC<Props> = ({
+  color = DEFAULT_COLOR,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
+  ...props
+}) => (
+  <StyledCaretDownIcon color={color} height={height} width={width} {...props} />
+);
+
 const colorPallete: { [k in ColorType]: string } = {
   gray: Color.FONT.BASE,
   less: Color.FONT.LESS,
@@ -189,5 +199,8 @@ const StyledCameraIcon = styled(Camera)<StyleProps>`
   ${props => getStyles(props.color)}
 `;
 const StyledTrashIcon = styled(Trash)<StyleProps>`
+  ${props => getStyles(props.color)}
+`;
+const StyledCaretDownIcon = styled(CaretDown)<StyleProps>`
   ${props => getStyles(props.color)}
 `;
