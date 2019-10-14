@@ -44,6 +44,7 @@ export interface AppState {
   isLoading: boolean;
   isLoggedIn: boolean;
   isError: boolean;
+  isFetchedProfile: boolean;
   profile: User | null;
   token: string | null;
   error?: string | null;
@@ -52,6 +53,7 @@ export interface AppState {
 const initialState: AppState = {
   isLoading: false,
   isLoggedIn: false,
+  isFetchedProfile: false,
   isError: false,
   profile: null,
   token: null,
