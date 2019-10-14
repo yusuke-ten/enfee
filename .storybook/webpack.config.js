@@ -55,9 +55,9 @@ module.exports = ({config}) => {
     'src': SRC_PATH,
     'components': SRC_PATH + '/components/',
     'containers': SRC_PATH + '/containers/',
-    'atoms': SRC_PATH + 'components/atoms/',
-    'const': SRC_PATH + 'const/',
-    'modules': SRC_PATH + 'modules/',
+    'atoms': SRC_PATH + '/components/atoms/',
+    'const': SRC_PATH + '/const/',
+    'modules': SRC_PATH + '/modules/',
     'services': SRC_PATH + '/services/',
     'config': SRC_PATH + '/config/',
     'utils': SRC_PATH + '/utils/'

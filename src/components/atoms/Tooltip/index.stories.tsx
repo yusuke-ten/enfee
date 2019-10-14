@@ -1,30 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
+import { Size } from 'src/const';
 import Tooltip from '.';
 
-storiesOf('atoms/Tooltip', module)
-  .add('top', () => (
+storiesOf('atoms/Tooltip', module).add('default', () => (
+  <>
     <Wrapper>
-      <Tooltip>これはチップ</Tooltip>
+      <Tooltip position="topRight" color="white">
+        <Text>topRightのチップ</Text>
+      </Tooltip>
     </Wrapper>
-  ))
-  .add('left', () => (
     <Wrapper>
-      <Tooltip position="left">これはチップ</Tooltip>
+      <Tooltip position="topLeft" color="white">
+        <Text>topLeftのチップ</Text>
+      </Tooltip>
     </Wrapper>
-  ))
-  .add('right', () => (
     <Wrapper>
-      <Tooltip position="right">これはチップ</Tooltip>
+      <Tooltip position="bottomRight" color="white">
+        <Text>bottomRightのチップ</Text>
+      </Tooltip>
     </Wrapper>
-  ))
-  .add('bottom', () => (
     <Wrapper>
-      <Tooltip position="bottom">これはチップ</Tooltip>
+      <Tooltip position="bottomLeft" color="white">
+        <Text>bottomLeftのチップ</Text>
+      </Tooltip>
     </Wrapper>
-  ));
+  </>
+));
 
 const Wrapper = styled.div`
-  padding: 8px;
+  margin: 20px 10px;
+`;
+const Text = styled.p`
+  font-size: ${Size.FONT_RATIO.SMALL}rem;
+  padding: 16px;
 `;

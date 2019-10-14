@@ -1,9 +1,14 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Color, Size } from 'src/const';
+import { Color } from 'src/const';
 
-type Color = 'primary';
-type Position = 'top' | 'left' | 'bottom' | 'right';
+const backgroundPallete = {
+  white: '#fff',
+  primary: Color.THEME.PRIMARY,
+};
+
+type Color = 'white' | 'primary';
+type Position = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
 interface Props {
   children: React.ReactNode;
@@ -12,75 +17,86 @@ interface Props {
 }
 
 const Tooltip: React.FC<Props> = ({
-  position = 'top',
-  color = 'primary',
+  position = 'topRight',
+  color = 'white',
   children,
   ...props
 }) => {
-  const colorCode = color === 'primary' ? Color.THEME.PRIMARY : 'white';
+  const colorCode = backgroundPallete[color];
 
   return (
-    <Container color={colorCode} position={position} {...props}>
+    <Container position={position} colorCode={colorCode} {...props}>
       {children}
     </Container>
   );
 };
 
-const getAllowStyle = (p: Position, colorCode: string) => {
-  switch (p) {
-    case 'top':
+const positionStyle = (position: Position) => {
+  switch (position) {
+    case 'topRight':
       return css`
-        border-color: ${colorCode} transparent transparent transparent;
-        border-width: 3px 3px 0 3px;
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%, 100%);
+        top: -5px;
+        right: 10px;
       `;
-    case 'left':
+    case 'topLeft':
       return css`
-        border-color: transparent transparent transparent ${colorCode};
-        border-width: 3px 0 3px 3px;
-        right: 0;
-        top: 50%;
-        transform: translate(100%, -50%);
+        top: -5px;
+        left: 10px;
       `;
-    case 'right':
+    case 'bottomRight':
       return css`
-        border-color: transparent ${colorCode} transparent transparent;
-        border-width: 3px 3px 3px 0;
-        left: 0;
-        top: 50%;
-        transform: translate(-100%, -50%);
+        bottom: -5px;
+        right: 10px;
       `;
-    case 'bottom':
+    case 'bottomLeft':
       return css`
-        border-color: transparent transparent ${colorCode} transparent;
-        border-width: 0 3px 3px 3px;
-        top: 0;
-        left: 50%;
-        transform: translate(-50%, -100%);
+        bottom: -5px;
+        left: 10px;
       `;
     default:
       return null;
   }
 };
 
-const Container = styled.span<{ color: string; position: Position }>`
-  background-color: ${props => props.color};
-  border-radius: 2px;
-  color: white;
+const Container = styled.div<{ position: Position; colorCode: string }>`
   display: inline-block;
-  font-size: ${Size.FONT_RATIO.SMALL}rem;
-  padding: 0.6rem 0.7rem;
   position: relative;
+  border-radius: 1px;
+  box-shadow: 0 0 4px 0 rgba(163, 163, 163, 0.5);
+  background-color: ${props => props.colorCode};
+  border: 1px solid lightgray;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    width: 13px;
+    height: 13px;
+    box-shadow: 0 0 6px 0 rgba(163, 163, 163, 0.5);
+    transform: rotate(45deg) skew(5deg, 5deg);
+    border: 1px solid lightgray;
+    ${props => positionStyle(props.position)}
+  }
 
   &::after {
-    border-style: solid;
     content: '';
-    display: block;
     position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 1px;
+  }
 
-    ${props => getAllowStyle(props.position, props.color)}
+  &::before,
+  &::after {
+    background-color: ${props => props.colorCode};
+  }
+
+  > * {
+    position: relative;
+    z-index: 3;
   }
 `;
 
