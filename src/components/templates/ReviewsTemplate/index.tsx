@@ -15,7 +15,7 @@ interface Props {
   closeModal: () => void;
   reviews: Review[];
   isLoadingReview: boolean;
-  myProfile: MyProfileInAside;
+  myProfile: MyProfileInAside | null;
 }
 
 const ReviewsTemplate: React.FC<Props> = ({

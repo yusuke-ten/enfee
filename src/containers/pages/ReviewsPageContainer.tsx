@@ -1,9 +1,10 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ReviewsPage } from 'components/pages';
 import { RootState } from 'src/modules';
 import { fetchMyProfile } from 'src/modules/app';
+import { userProfileInAsideSelector } from 'services/selectors';
 
 /* モックデータ */
 import reviewData from 'src/services/mocks/json/reviews.json';
@@ -13,19 +14,8 @@ import Review from 'src/services/models/review';
 const tmpReviews = camelcaseKeys(reviewData, { deep: true }) as {
   [k: string]: any;
 }[];
-const reviews = tmpReviews as Review[];
 
-const myProfile = {
-  imageUrl:
-    'https://s3-ap-northeast-1.amazonaws.com/aohiro-blog/User/avatar/dot.jpg',
-  displayName: 'あおひろ',
-  loginName: '@aohiro',
-  statsList: [
-    { heading: 'レビュー', amount: 30 } as const,
-    { heading: 'フォロー', amount: 59 } as const,
-    { heading: 'フォロワー', amount: 103 } as const,
-  ],
-};
+const reviews = tmpReviews as Review[];
 
 const ReviewsPageContainer: React.FC<
   RouteComponentProps<{ store: string }>
@@ -44,9 +34,11 @@ const ReviewsPageContainer: React.FC<
 
   const { store } = match.params;
 
-  const { isLoggedIn, isFetchedProfile } = useSelector(
-    (state: RootState) => state.app,
-  );
+  const {
+    isLoggedIn,
+    isFetchedProfile,
+    myProfile: myProfileState,
+  } = useSelector((state: RootState) => state.app);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -54,6 +46,10 @@ const ReviewsPageContainer: React.FC<
       dispatch(fetchMyProfile.start());
     }
   }, []);
+
+  const myProfile = useMemo(() => userProfileInAsideSelector(myProfileState), [
+    myProfileState,
+  ]);
 
   return (
     <ReviewsPage

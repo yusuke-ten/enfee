@@ -14,7 +14,7 @@ const links: MenuLinkType[] = [
 interface Props {
   isLoadingReview: boolean;
   reviews: Review[];
-  myProfile: MyProfileInAside;
+  myProfile: MyProfileInAside | null;
   isModal: boolean;
   openModal: () => void;
   closeModal: () => void;
