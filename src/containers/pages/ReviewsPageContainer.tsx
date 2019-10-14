@@ -1,6 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ReviewsPage } from 'components/pages';
+import { RootState } from 'src/modules';
+import { fetchMyProfile } from 'src/modules/app';
 
 /* モックデータ */
 import reviewData from 'src/services/mocks/json/reviews.json';
@@ -40,6 +43,17 @@ const ReviewsPageContainer: React.FC<
   }, []);
 
   const { store } = match.params;
+
+  const { isLoggedIn, isFetchedProfile } = useSelector(
+    (state: RootState) => state.app,
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isLoggedIn && !isFetchedProfile) {
+      dispatch(fetchMyProfile.start());
+    }
+  }, []);
 
   return (
     <ReviewsPage

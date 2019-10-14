@@ -1,11 +1,15 @@
 import { Reducer } from 'redux';
 import { CreatorsToActions } from 'src/utils';
+import { UserProfile } from 'services/models';
 
 /* actions */
 export const actions = {
   LOGIN_START: 'APP/LOGIN_START',
   LOGIN_SUCCEED: 'APP/LOGIN_SUCCESS',
   LOGIN_FAIL: 'APP/LOGIN_FAILED',
+  FETCH_MY_PROFILE_START: 'APP/FETCH_MY_PROFILE_START',
+  FETCH_MY_PROFILE_SUCCEED: 'APP/FETCH_MY_PROFILE_SUCCEED',
+  FETCH_MY_PROFILE_FAIL: 'APP/FETCH_MY_PROFILE_FAIL',
 } as const;
 
 interface LoginParams {
@@ -30,7 +34,23 @@ export const login = {
   }),
 };
 
-type AppAction = CreatorsToActions<typeof login>;
+export const fetchMyProfile = {
+  start: () => ({
+    type: actions.FETCH_MY_PROFILE_START,
+  }),
+  succeed: (params: UserProfile) => ({
+    type: actions.FETCH_MY_PROFILE_SUCCEED,
+    payload: { params },
+  }),
+  fail: () => ({
+    type: actions.FETCH_MY_PROFILE_FAIL,
+    error: true,
+  }),
+};
+
+type AppAction =
+  | CreatorsToActions<typeof login>
+  | CreatorsToActions<typeof fetchMyProfile>;
 
 /* reducer */
 interface User {
@@ -45,7 +65,7 @@ export interface AppState {
   isLoggedIn: boolean;
   isError: boolean;
   isFetchedProfile: boolean;
-  profile: User | null;
+  myProfile: UserProfile | null;
   token: string | null;
   error?: string | null;
 }
@@ -55,7 +75,7 @@ const initialState: AppState = {
   isLoggedIn: false,
   isFetchedProfile: false,
   isError: false,
-  profile: null,
+  myProfile: null,
   token: null,
 };
 
@@ -90,6 +110,18 @@ const reducer: Reducer<AppState, AppAction> = (
         isLoading: false,
         isError: true,
         error: action.payload.error.message,
+      };
+    case actions.FETCH_MY_PROFILE_START:
+      return { ...state };
+    case actions.FETCH_MY_PROFILE_SUCCEED:
+      return {
+        ...state,
+        isFetchedProfile: true,
+        myProfile: action.payload.params,
+      };
+    case actions.FETCH_MY_PROFILE_FAIL:
+      return {
+        ...state,
       };
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars

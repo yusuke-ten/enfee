@@ -1,8 +1,15 @@
-import { fork, takeLatest, call, put } from 'redux-saga/effects';
+import { fork, takeLatest, call, put, select } from 'redux-saga/effects';
 import { loginApiFactory } from 'services/api/auth';
+import { fetchMyProfile } from 'services/api/user';
 import { LoginError } from 'src/utils/errors';
 import config from 'src/config';
-import { actions, login } from '.';
+import { UserProfile } from 'services/models';
+import {
+  actions,
+  login,
+  AppState,
+  fetchMyProfile as fetchMyProfileActions,
+} from '.';
 
 const loginHandler = loginApiFactory();
 
@@ -23,6 +30,18 @@ export function* runLogin(action: ReturnType<typeof login.start>) {
   }
 }
 
+export function* runFetchMyProfile() {
+  const { token }: AppState = yield select(state => state.app);
+  if (!token) return;
+
+  try {
+    const data: UserProfile = yield call(fetchMyProfile, token);
+    yield put(fetchMyProfileActions.succeed(data));
+  } catch (err) {
+    console.log('error', err);
+  }
+}
+
 export function setTokenToLocalstrage(
   action: ReturnType<typeof login.succeed>,
 ) {
@@ -38,7 +57,12 @@ export function* watchLoginSucceed() {
   yield takeLatest(actions.LOGIN_SUCCEED, setTokenToLocalstrage);
 }
 
+export function* watchFetchMyProfile() {
+  yield takeLatest(actions.FETCH_MY_PROFILE_START, runFetchMyProfile);
+}
+
 export default function* rootSaga() {
   yield fork(watchLogin);
   yield fork(watchLoginSucceed);
+  yield fork(watchFetchMyProfile);
 }

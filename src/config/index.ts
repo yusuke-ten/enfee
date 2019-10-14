@@ -13,7 +13,7 @@ const commonConfig = {
 };
 
 const developmentConfig = {
-  apiUrl: 'http://localhost:8080/api',
+  apiUrl: 'http://localhost:3000/api',
   localstrageTokenKey: 'enfee_dev',
   twitterLoginUrl: 'http://localhost:3000/api/auth/twitter',
 };

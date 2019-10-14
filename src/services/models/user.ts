@@ -14,3 +14,17 @@ export interface MyProfileInAside {
     amount: number;
   }[];
 }
+
+export interface UserProfile {
+  id: number;
+  displayName: string;
+  loginName: string;
+  imageUrl: string;
+  followerCount: number;
+  followingCount: number;
+  reviewCount: number;
+  loveStore: {
+    id: number;
+    name: string;
+  };
+}
