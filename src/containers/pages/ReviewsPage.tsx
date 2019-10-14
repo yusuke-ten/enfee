@@ -1,10 +1,11 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { ReviewsPage } from 'components/pages';
+import { ReviewsTemplate } from 'components/templates';
 import { RootState } from 'src/modules';
 import { fetchMyProfile } from 'src/modules/app';
 import { userProfileInAsideSelector } from 'services/selectors';
+import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
 
 /* モックデータ */
 import reviewData from 'src/services/mocks/json/reviews.json';
@@ -16,6 +17,13 @@ const tmpReviews = camelcaseKeys(reviewData, { deep: true }) as {
 }[];
 
 const reviews = tmpReviews as Review[];
+
+const links: MenuLinkType[] = [
+  { text: 'すべて', to: '/reviews/all' },
+  { text: 'セブン−イレブン', to: '/reviews/seven-eleven' },
+  { text: 'ファミリーマート', to: '/reviews/family-mart' },
+  { text: 'ローソン', to: '/reviews/lawson' },
+];
 
 const ReviewsPageContainer: React.FC<
   RouteComponentProps<{ store: string }>
@@ -52,15 +60,14 @@ const ReviewsPageContainer: React.FC<
   ]);
 
   return (
-    <ReviewsPage
-      {...{
-        isLoadingReview,
-        reviews,
-        myProfile,
-        isModal,
-        openModal,
-        closeModal,
-      }}
+    <ReviewsTemplate
+      menuLinks={links}
+      isModal={isModal}
+      openModal={openModal}
+      closeModal={closeModal}
+      reviews={reviews}
+      isLoadingReview={isLoadingReview}
+      myProfile={myProfile}
     />
   );
 };
