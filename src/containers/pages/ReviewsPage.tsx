@@ -68,6 +68,7 @@ const ReviewsPageContainer: React.FC<
       reviews={reviews}
       isLoadingReview={isLoadingReview}
       myProfile={myProfile}
+      isLoggedIn={isLoggedIn}
     />
   );
 };

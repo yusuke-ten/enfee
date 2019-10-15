@@ -10,3 +10,4 @@ export { default as CommentArea } from './CommentArea';
 export { default as ReviewDetailArea } from './ReviewDetailArea';
 export { default as ReviewDetailModal } from './ReviewDetailModal';
 export { default as ReviewPostForm } from './ReviewPostForm';
+export { default as AccountNav } from './AccountNav';

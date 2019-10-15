@@ -13,7 +13,7 @@ interface Props {
 const Dropdown: React.FC<Props> = ({
   titleContent,
   menuContent,
-  top = 36,
+  top = 30,
   left = -60,
   allowPos = 'topRight',
 }) => {
@@ -49,6 +49,10 @@ const Menu = styled.div<MenuPosition>`
   position: absolute;
   top: ${props => props.top}px;
   left: ${props => props.left}px;
+
+  &:hover {
+    display: block;
+  }
 `;
 const Container = styled.div`
   display: flex;

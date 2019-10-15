@@ -5,17 +5,23 @@ import { Header } from 'components/organisms';
 import ReviewPostForm, {
   Props as ReviewPostFormProps,
 } from 'components/organisms/ReviewPostForm';
+import { MyProfileInAside } from 'services/models';
 import { Color } from 'src/const';
 
-type Props = ReviewPostFormProps;
+type Props = ReviewPostFormProps & {
+  myProfile: MyProfileInAside;
+  isLoggedIn: boolean;
+};
 
 const ReviewPostTemplate: React.FC<Props> = ({
   reviewPostFormItems,
+  myProfile,
+  isLoggedIn,
   ...props
 }) => {
   return (
     <Layout title="レビュー投稿ページ" {...props}>
-      <Header />
+      <Header isLoggedIn={isLoggedIn} myProfile={myProfile} />
       <Body>
         <Contents>
           <FormWrapper>

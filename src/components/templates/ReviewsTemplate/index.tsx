@@ -16,6 +16,7 @@ interface Props {
   reviews: Review[];
   isLoadingReview: boolean;
   myProfile: MyProfileInAside | null;
+  isLoggedIn: boolean;
 }
 
 const ReviewsTemplate: React.FC<Props> = ({
@@ -26,10 +27,11 @@ const ReviewsTemplate: React.FC<Props> = ({
   reviews,
   isLoadingReview,
   myProfile,
+  isLoggedIn,
 }) => {
   return (
     <Layout title="レビューページ">
-      <Header />
+      <Header isLoggedIn={isLoggedIn} myProfile={myProfile} />
       <Body>
         <Contents>
           <NavWrapper>
