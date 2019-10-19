@@ -55,3 +55,24 @@ reviewsページの中で更にルーティングするとなったらこっち�
   ]
 }
 ```
+
+## initializerでやりたいこと
+
+### check token in localstrage
+
+いつ実行？ -> JSを読み込んだと同時に！
+
+- localstrageにtokenが保存されいるか？ + そのtokenが有効であるか
+
+### initialize app
+
+いつ実行？ -> login page以外を開いたとき
+
+- user情報を取得してstateに保存
+
+### initialize review form
+
+いつ実行？ -> review post pageを開いたとき
+
+- ストア情報の取得
+- カテゴリ情報の取得

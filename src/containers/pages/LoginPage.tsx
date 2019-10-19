@@ -21,6 +21,8 @@ const LoginPageContainer: React.FC = () => {
   if (isLoggedIn) {
     return <Redirect to="/reviews/all" />;
   }
+
+  // twitterログインの場合にquery parameterでtokenが渡される
   if (token) {
     dispatch(login.succeed({ token }));
   }

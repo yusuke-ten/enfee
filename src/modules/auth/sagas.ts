@@ -1,7 +1,7 @@
 import { fork, takeLatest, call, put } from 'redux-saga/effects';
-import config from 'src/config';
 import { LoginError } from 'src/utils/errors';
 import { loginApiFactory } from 'services/api/auth';
+import * as localStorage from 'utils/localStorage';
 import { actionTypes, login } from './actions';
 
 const loginHandler = loginApiFactory();
@@ -27,7 +27,7 @@ export function setTokenToLocalstrage(
   action: ReturnType<typeof login.succeed>,
 ) {
   const { token } = action.payload.result;
-  localStorage.setItem(config.localstrageTokenKey, token);
+  localStorage.setToken(token);
 }
 
 export function* watchLogin() {
