@@ -55,6 +55,7 @@ module.exports = ({config}) => {
     'src': SRC_PATH,
     'components': SRC_PATH + '/components/',
     'containers': SRC_PATH + '/containers/',
+    'hooks': SRC_PATH + '/hooks/',
     'atoms': SRC_PATH + '/components/atoms/',
     'const': SRC_PATH + '/const/',
     'modules': SRC_PATH + '/modules/',

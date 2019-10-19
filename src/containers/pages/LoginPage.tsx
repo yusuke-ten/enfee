@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import useQuery from 'src/hooks/useQuery';
 import { RootState } from 'src/modules';
 import Layout from 'components/Layout';
 import { LoginFormContainer } from 'containers/organisms';
@@ -8,10 +8,6 @@ import { EntranceInfo } from 'components/organisms';
 import { EntranceTemplate } from 'components/templates';
 import { setToken } from 'utils/localStorage';
 import config from 'src/config';
-
-const useQuery = () => {
-  return new URLSearchParams(useLocation().search);
-};
 
 // login処理が終わったらローカルストレージにtokenを一度保存して、location.hrefでメインページに遷移させている。
 // メインページにて、initailize処理にそのtokenを使用する。

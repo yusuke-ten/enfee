@@ -77,6 +77,7 @@ module.exports = {
       'src': path.resolve(__dirname, './src/'),
       'components': path.resolve(__dirname, './src/components/'),
       'containers': path.resolve(__dirname, './src/containers/'),
+      'hooks': path.resolve(__dirname, './src/hooks/'),
       'atoms': path.resolve(__dirname, './src/components/atoms/'),
       'const': path.resolve(__dirname, './src/const/'),
       'modules': path.resolve(__dirname, './src//modules/'),

@@ -24,6 +24,7 @@
       "src/*": ["src/*"],
       "components/*": ["src/components/*"],
       "containers/*": ["src/containers/*"],
+      "hooks/*": ["src/hooks/*"],
       "atoms/*": ["src/components/atoms/*"],
       "const/*": ["src/const/*"],
       "modules/*": ["src/modules/*"],
