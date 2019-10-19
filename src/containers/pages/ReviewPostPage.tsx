@@ -1,6 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { useSelector } from 'react-redux';
 import { ReviewPostTemplate } from 'components/templates';
+import { RootState } from 'modules/index';
+import { userProfileInAsideSelector } from 'services/selectors';
 import { storeList, productCategoryList } from 'services/mocks';
 import { sleep } from 'utils/timer';
 
@@ -89,7 +91,17 @@ const ReviewPostPage: React.FC = () => {
     handleSubmit,
   };
 
-  return <ReviewPostTemplate reviewPostFormItems={reviewPostFormItems} />;
+  const { myProfile, isLoggedIn } = useSelector(
+    (state: RootState) => state.app,
+  );
+
+  return (
+    <ReviewPostTemplate
+      reviewPostFormItems={reviewPostFormItems}
+      myProfile={userProfileInAsideSelector(myProfile)}
+      isLoggedIn={isLoggedIn}
+    />
+  );
 };
 
 export default ReviewPostPage;

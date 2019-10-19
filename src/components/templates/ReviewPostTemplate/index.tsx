@@ -9,7 +9,7 @@ import { MyProfileInAside } from 'services/models';
 import { Color } from 'src/const';
 
 type Props = ReviewPostFormProps & {
-  myProfile: MyProfileInAside;
+  myProfile: MyProfileInAside | null;
   isLoggedIn: boolean;
 };
 

@@ -1,10 +1,14 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import { Mock } from 'src/const';
-import { storeList, productCategoryList } from 'services/mocks/index';
+import {
+  storeList,
+  productCategoryList,
+  myProfile,
+} from 'services/mocks/index';
 import ReviewPostTemplate from '.';
 
 const pictures = [
@@ -36,5 +40,9 @@ storiesOf('templates/ReviewPostTemplate', module)
     <MemoryRouter initialEntries={['/reviews/new']}>{story()}</MemoryRouter>
   ))
   .add('default', () => (
-    <ReviewPostTemplate reviewPostFormItems={reviewPostFormItems} />
+    <ReviewPostTemplate
+      reviewPostFormItems={reviewPostFormItems}
+      myProfile={myProfile}
+      isLoggedIn={boolean('isLoggedIn', true)}
+    />
   ));
