@@ -1,32 +1,7 @@
 import { Reducer } from 'redux';
-import { CreatorsToActions } from 'src/utils';
 import { UserProfile } from 'services/models';
+import { AppAction, actionTypes } from './actions';
 
-/* actions */
-export const actions = {
-  FETCH_MY_PROFILE_START: 'APP/FETCH_MY_PROFILE_START',
-  FETCH_MY_PROFILE_SUCCEED: 'APP/FETCH_MY_PROFILE_SUCCEED',
-  FETCH_MY_PROFILE_FAIL: 'APP/FETCH_MY_PROFILE_FAIL',
-} as const;
-
-/* actionCreators */
-export const fetchMyProfile = {
-  start: () => ({
-    type: actions.FETCH_MY_PROFILE_START,
-  }),
-  succeed: (params: UserProfile) => ({
-    type: actions.FETCH_MY_PROFILE_SUCCEED,
-    payload: { params },
-  }),
-  fail: () => ({
-    type: actions.FETCH_MY_PROFILE_FAIL,
-    error: true,
-  }),
-};
-
-type AppAction = CreatorsToActions<typeof fetchMyProfile>;
-
-/* reducer */
 export interface AppState {
   initialized: boolean;
   isFetchedProfile: boolean;
@@ -44,15 +19,15 @@ const reducer: Reducer<AppState, AppAction> = (
   action: AppAction,
 ) => {
   switch (action.type) {
-    case actions.FETCH_MY_PROFILE_START:
+    case actionTypes.FETCH_MY_PROFILE_START:
       return { ...state };
-    case actions.FETCH_MY_PROFILE_SUCCEED:
+    case actionTypes.FETCH_MY_PROFILE_SUCCEED:
       return {
         ...state,
         isFetchedProfile: true,
         myProfile: action.payload.params,
       };
-    case actions.FETCH_MY_PROFILE_FAIL:
+    case actionTypes.FETCH_MY_PROFILE_FAIL:
       return {
         ...state,
       };

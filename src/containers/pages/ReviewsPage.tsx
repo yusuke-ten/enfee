@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ReviewsTemplate } from 'components/templates';
 import { RootState } from 'src/modules';
-import { fetchMyProfile } from 'src/modules/app';
+import { fetchMyProfile } from 'modules/app/actions';
 import { userProfileInAsideSelector } from 'services/selectors';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
 

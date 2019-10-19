@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import app, { AppState } from './app';
+import app, { AppState } from './app/reducer';
 import auth, { AuthState } from './auth/reducer';
 
 export interface RootState {

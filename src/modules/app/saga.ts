@@ -2,7 +2,10 @@ import { fork, takeLatest, call, put, select } from 'redux-saga/effects';
 import { fetchMyProfile } from 'services/api/user';
 import { UserProfile } from 'services/models';
 import { RootState } from 'src/modules';
-import { actions, fetchMyProfile as fetchMyProfileActions } from '.';
+import {
+  actionTypes,
+  fetchMyProfile as fetchMyProfileActions,
+} from './actions';
 
 export function* runFetchMyProfile() {
   const { token } = yield select((state: RootState) => state.auth);
@@ -17,7 +20,7 @@ export function* runFetchMyProfile() {
 }
 
 export function* watchFetchMyProfile() {
-  yield takeLatest(actions.FETCH_MY_PROFILE_START, runFetchMyProfile);
+  yield takeLatest(actionTypes.FETCH_MY_PROFILE_START, runFetchMyProfile);
 }
 
 export default function* rootSaga() {
