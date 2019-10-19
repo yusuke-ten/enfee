@@ -1,8 +1,10 @@
 import axios from 'axios';
+import AxiosFactory, { createAuthHeader } from 'utils/axios';
 import camelcaseKeys from 'camelcase-keys';
 import config from 'src/config';
-import { LoginError } from 'src/utils/errors';
+import { LoginError, ServerError, TimeoutError } from 'src/utils/errors';
 
+// TODO: リファクタリング===============
 interface ApiConfig {
   baseURL: string;
   timeout: number;
@@ -51,4 +53,29 @@ export const loginApiFactory = (optionConfig?: ApiConfig) => {
   };
 
   return loginApi;
+};
+// ================================
+
+const axiosInstance = AxiosFactory.getInstance();
+
+export const logout = async (token: string) => {
+  console.log('run logout api');
+
+  const headers = createAuthHeader(token);
+
+  try {
+    const response = await axiosInstance.delete('/logout', { headers });
+
+    const result: any = response.data;
+
+    console.log('logout api result', result);
+
+    return result;
+  } catch (err) {
+    if (err.message.startsWith('timeout')) {
+      throw new TimeoutError('timeout error');
+    }
+
+    throw new Error('unexpected error');
+  }
 };

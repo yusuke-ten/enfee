@@ -8,9 +8,10 @@ import { Color } from 'src/const';
 interface Props {
   imageUrl: string;
   mypageUrl: string;
+  handleLogout: () => void;
 }
 
-const AccountNav: React.FC<Props> = ({ imageUrl, mypageUrl }) => {
+const AccountNav: React.FC<Props> = ({ imageUrl, mypageUrl, handleLogout }) => {
   const TitleContent = () => (
     <AvatarFrame>
       <AvatarCircle src={imageUrl} />
@@ -21,9 +22,7 @@ const AccountNav: React.FC<Props> = ({ imageUrl, mypageUrl }) => {
       <Link to={mypageUrl}>
         <Li>マイページ</Li>
       </Link>
-      <Link to="/logout">
-        <Li>ログアウト</Li>
-      </Link>
+      <Li onClick={handleLogout}>ログアウト</Li>
     </Ul>
   );
 

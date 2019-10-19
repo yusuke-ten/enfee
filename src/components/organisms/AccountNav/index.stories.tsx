@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { MemoryRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
-import { Color, Mock } from 'src/const';
+import { action } from '@storybook/addon-actions';
+import { Mock } from 'src/const';
 import AccountNav from '.';
 
 storiesOf('organisms/AccountNav', module)
@@ -12,7 +13,11 @@ storiesOf('organisms/AccountNav', module)
   .add('default', () => (
     <Container>
       <Wrapper>
-        <AccountNav imageUrl={Mock.imageUrl} mypageUrl="/mypage" />
+        <AccountNav
+          imageUrl={Mock.imageUrl}
+          mypageUrl="/mypage"
+          handleLogout={action('handleLogout')}
+        />
       </Wrapper>
     </Container>
   ));

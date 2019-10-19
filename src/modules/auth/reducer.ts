@@ -51,6 +51,15 @@ export const reducer: Reducer<AuthState, AuthAction> = (
         isError: true,
         error: action.payload.error.message,
       };
+    case actionTypes.LOGOUT_START:
+      return {
+        ...state,
+      };
+    case actionTypes.LOGOUT_FINISHED:
+      return {
+        ...state,
+        isLoggedIn: false,
+      };
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const _: never = action;

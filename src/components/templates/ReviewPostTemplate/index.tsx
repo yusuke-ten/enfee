@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Layout from 'components/Layout';
-import { Header } from 'components/organisms';
 import ReviewPostForm, {
   Props as ReviewPostFormProps,
 } from 'components/organisms/ReviewPostForm';
+import { HeaderContainer } from 'containers/organisms';
 import { MyProfileInAside } from 'services/models';
 import { Color } from 'src/const';
 
@@ -21,7 +21,7 @@ const ReviewPostTemplate: React.FC<Props> = ({
 }) => {
   return (
     <Layout title="レビュー投稿ページ" {...props}>
-      <Header isLoggedIn={isLoggedIn} myProfile={myProfile} />
+      <HeaderContainer />
       <Body>
         <Contents>
           <FormWrapper>

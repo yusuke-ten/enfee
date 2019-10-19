@@ -7,6 +7,7 @@ const commonConfig = {
   basename: process.env.PUBLIC_PATH,
   isBrowser: typeof window !== 'undefined',
   apiUrl: '',
+  baseUrl: '',
   timeoutMsec: 7000,
   localstrageTokenKey: '',
   twitterLoginUrl: '',
@@ -14,12 +15,14 @@ const commonConfig = {
 
 const developmentConfig = {
   apiUrl: 'http://localhost:3000/api',
+  baseUrl: 'http://localhost:3377',
   localstrageTokenKey: 'enfee_dev',
   twitterLoginUrl: 'http://localhost:3000/api/auth/twitter',
 };
 
 const productionConfig = {
   apiUrl: '',
+  baseUrl: '',
   localstrageTokenKey: 'enfee',
   twitterLoginUrl: '',
 };

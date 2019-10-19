@@ -1,10 +1,13 @@
-import { fork, takeLatest, call, put } from 'redux-saga/effects';
+import { fork, takeLatest, call, put, select } from 'redux-saga/effects';
 import { LoginError } from 'src/utils/errors';
-import { loginApiFactory } from 'services/api/auth';
+import { loginApiFactory, logout as logoutApi } from 'services/api/auth';
 import * as localStorage from 'utils/localStorage';
-import { actionTypes, login } from './actions';
+import { RootState } from 'modules/index';
+import config from 'src/config';
+import { actionTypes, login, logout } from './actions';
 
 const loginHandler = loginApiFactory();
+const getTokenSelector = (state: RootState) => state.auth.token;
 
 export function* runLogin(action: ReturnType<typeof login.start>) {
   const { params } = action.payload;
@@ -23,6 +26,27 @@ export function* runLogin(action: ReturnType<typeof login.start>) {
   }
 }
 
+export function* runLogout() {
+  console.log('run logout in saga');
+
+  const token: ReturnType<typeof getTokenSelector> = yield select(
+    getTokenSelector,
+  );
+
+  try {
+    if (token) {
+      localStorage.removeToken();
+      const response = yield call(logoutApi, token);
+      console.log('logout response in saga', response);
+    }
+    yield put(logout.finish());
+
+    window.location.href = `${config.baseUrl}/login`;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export function setTokenToLocalstrage(
   action: ReturnType<typeof login.succeed>,
 ) {
@@ -38,7 +62,12 @@ export function* watchLoginSucceed() {
   yield takeLatest(actionTypes.LOGIN_SUCCEED, setTokenToLocalstrage);
 }
 
+export function* watchLogout() {
+  yield takeLatest(actionTypes.LOGOUT_START, runLogout);
+}
+
 export default function* rootSaga() {
   yield fork(watchLogin);
   yield fork(watchLoginSucceed);
+  yield fork(watchLogout);
 }

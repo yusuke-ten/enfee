@@ -38,4 +38,8 @@ class AxiosFactory {
   }
 }
 
+export const createAuthHeader = (token: string) => ({
+  Authorization: `Bearer ${token}`,
+});
+
 export default AxiosFactory;

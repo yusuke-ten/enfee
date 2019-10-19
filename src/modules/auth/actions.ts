@@ -4,6 +4,8 @@ export const actionTypes = {
   LOGIN_START: 'APP/LOGIN_START',
   LOGIN_SUCCEED: 'APP/LOGIN_SUCCESS',
   LOGIN_FAIL: 'APP/LOGIN_FAILED',
+  LOGOUT_START: 'APP/LOGOUT_START',
+  LOGOUT_FINISHED: 'APP/LOGOUT_FINISHED',
 } as const;
 
 interface LoginParams {
@@ -27,4 +29,15 @@ export const login = {
   }),
 };
 
-export type AuthAction = CreatorsToActions<typeof login>;
+export const logout = {
+  start: () => ({
+    type: actionTypes.LOGOUT_START,
+  }),
+  finish: () => ({
+    type: actionTypes.LOGOUT_FINISHED,
+  }),
+};
+
+export type AuthAction =
+  | CreatorsToActions<typeof login>
+  | CreatorsToActions<typeof logout>;

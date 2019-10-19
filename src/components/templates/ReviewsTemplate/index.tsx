@@ -2,9 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from 'components/Layout';
 import { ReviewMenu, Aside } from 'components/molecules';
-import { Header, ReviewPanelList } from 'components/organisms';
+import { ReviewPanelList } from 'components/organisms';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
-import { ReviewDetailModalContainer } from 'containers/organisms';
+import {
+  HeaderContainer,
+  ReviewDetailModalContainer,
+} from 'containers/organisms';
 import { Review, MyProfileInAside } from 'services/models';
 import { Color } from 'src/const';
 
@@ -31,7 +34,7 @@ const ReviewsTemplate: React.FC<Props> = ({
 }) => {
   return (
     <Layout title="レビューページ">
-      <Header isLoggedIn={isLoggedIn} myProfile={myProfile} />
+      <HeaderContainer />
       <Body>
         <Contents>
           <NavWrapper>

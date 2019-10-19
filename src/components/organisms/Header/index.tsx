@@ -17,9 +17,14 @@ const links: LinkType[] = [
 interface Props {
   isLoggedIn?: boolean;
   myProfile: MyProfileInAside | null;
+  handleLogout: () => void;
 }
 
-const Header: React.FC<Props> = ({ isLoggedIn = false, myProfile }) => {
+const Header: React.FC<Props> = ({
+  isLoggedIn = false,
+  myProfile,
+  handleLogout,
+}) => {
   return (
     <Container>
       <Frame>
@@ -31,7 +36,11 @@ const Header: React.FC<Props> = ({ isLoggedIn = false, myProfile }) => {
         </LeftWrapper>
         <RightWrapper>
           {isLoggedIn && myProfile ? (
-            <AccountNav imageUrl={myProfile.imageUrl} mypageUrl="/mypage" />
+            <AccountNav
+              imageUrl={myProfile.imageUrl}
+              mypageUrl="/mypage"
+              handleLogout={handleLogout}
+            />
           ) : (
             <Link to="/login">
               <StyledButton reverse>ログイン</StyledButton>
