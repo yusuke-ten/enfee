@@ -49,6 +49,7 @@ const Ul = styled.ul`
   width: 140px;
 `;
 const Li = styled.li`
+  cursor: pointer;
   display: block;
   font-size: 1.2rem;
   font-weight: 400;

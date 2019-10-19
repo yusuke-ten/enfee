@@ -2,8 +2,9 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ReviewsTemplate } from 'components/templates';
+import { withInitialize } from 'containers/hocs';
 import { RootState } from 'src/modules';
-import useInitialize from 'src/hooks/useInitialize';
+// import useInitialize from 'src/hooks/useInitialize';
 import { userProfileInAsideSelector } from 'services/selectors';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
 
@@ -43,14 +44,11 @@ const ReviewsPageContainer: React.FC<
   const { store } = match.params;
 
   const {
-    intializer: { localstorgeChecked, appInitialized },
     auth: { isLoggedIn },
     app: { myProfile: myProfileState },
   } = useSelector((state: RootState) => state);
 
   const dispatch = useDispatch();
-
-  useInitialize();
 
   const myProfile = useMemo(() => userProfileInAsideSelector(myProfileState), [
     myProfileState,
@@ -70,4 +68,4 @@ const ReviewsPageContainer: React.FC<
   );
 };
 
-export default withRouter(ReviewsPageContainer);
+export default withInitialize(withRouter(ReviewsPageContainer));
