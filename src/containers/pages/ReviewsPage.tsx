@@ -43,10 +43,9 @@ const ReviewsPageContainer: React.FC<
   const { store } = match.params;
 
   const {
-    isLoggedIn,
-    isFetchedProfile,
-    myProfile: myProfileState,
-  } = useSelector((state: RootState) => state.app);
+    auth: { isLoggedIn },
+    app: { isFetchedProfile, myProfile: myProfileState },
+  } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {

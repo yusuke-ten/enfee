@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import LoginForm from 'components/organisms/LoginForm';
-import { login } from 'src/modules/app';
+import { login } from 'modules/auth/actions';
 import { RootState } from 'src/modules';
 import { validationEmail, validationPassword } from 'services/validation';
 
@@ -16,8 +16,8 @@ const LoginFormContainer = () => {
 
   const dispatch = useDispatch();
 
-  const { isLoading, error, isError } = useSelector(
-    (state: RootState) => state.app,
+  const { isLoading, loginErrorMessage, isError } = useSelector(
+    (state: RootState) => state.auth,
   );
 
   const onChangeEmail = useCallback(
@@ -61,7 +61,7 @@ const LoginFormContainer = () => {
         passwordValidationError,
         disabledSubmitButton,
         isLoading,
-        error,
+        error: loginErrorMessage,
         isError,
       }}
     />

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useLocation } from 'react-router-dom';
 import { RootState } from 'src/modules';
-import { login } from 'modules/app';
+import { login } from 'modules/auth/actions';
 import Layout from 'components/Layout';
 import { LoginFormContainer } from 'containers/organisms';
 import { EntranceInfo } from 'components/organisms';
@@ -13,7 +13,7 @@ const useQuery = () => {
 };
 
 const LoginPageContainer: React.FC = () => {
-  const { isLoggedIn } = useSelector((state: RootState) => state.app);
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   const query = useQuery();
   const token = query.get('token');

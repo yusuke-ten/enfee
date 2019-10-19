@@ -1,19 +1,31 @@
-# redux storeのデータ構造
+# Storeのデータ構造
 
 ```js
 {
-  app: {
-    token: '',
+  auth: {
     isLoggedIn: false,
+    token: '',
+    loginErrorMessage: '',
+    signupErroMessage: '',
+  },
+  app: {
+    initialized: false, // ここでプロフィール情報を取得するか判断
     profile: {
-      loginName: '',
+      id: 1,
       displayName: '',
+      loginName: '',
       imageUrl: '',
-      userPageUrl: '',
+      followerCount: 0,
+      followingCount: 0,
+      reviewCount: 1,
+      loveStore: {
+        id: 1,
+        name: 'セブン-イレブン'
+      }
     }
   },
   review: {
-    reviewList: {
+    reviews: {
       isLoading: false,
       data: [],
     },
@@ -22,10 +34,15 @@
       data: [],
       replyLoading: false,
     },
+    reviewComments: {
+      isLoading: false,
+      data: [],
+    },
+    selectedReviewId: 1,
     isModal: false,
   },
-  messages: {
-
+  directMessages: {
+    ...
   }
 }
 ```

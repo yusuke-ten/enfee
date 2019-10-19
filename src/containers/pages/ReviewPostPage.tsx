@@ -91,9 +91,10 @@ const ReviewPostPage: React.FC = () => {
     handleSubmit,
   };
 
-  const { myProfile, isLoggedIn } = useSelector(
-    (state: RootState) => state.app,
-  );
+  const {
+    auth: { isLoggedIn },
+    app: { myProfile },
+  } = useSelector((state: RootState) => state);
 
   return (
     <ReviewPostTemplate
