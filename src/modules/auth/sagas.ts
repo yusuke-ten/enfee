@@ -2,12 +2,11 @@ import { fork, takeLatest, call, put, select } from 'redux-saga/effects';
 import { LoginError } from 'src/utils/errors';
 import { loginApiFactory, logout as logoutApi } from 'services/api/auth';
 import * as localStorage from 'utils/localStorage';
-import { RootState } from 'modules/index';
 import config from 'src/config';
 import { actionTypes, login, logout } from './actions';
+import { selectToken } from './selectors';
 
 const loginHandler = loginApiFactory();
-const getTokenSelector = (state: RootState) => state.auth.token;
 
 export function* runLogin(action: ReturnType<typeof login.start>) {
   const { params } = action.payload;
@@ -29,9 +28,7 @@ export function* runLogin(action: ReturnType<typeof login.start>) {
 export function* runLogout() {
   console.log('run logout in saga');
 
-  const token: ReturnType<typeof getTokenSelector> = yield select(
-    getTokenSelector,
-  );
+  const token: ReturnType<typeof selectToken> = yield select(selectToken);
 
   try {
     if (token) {

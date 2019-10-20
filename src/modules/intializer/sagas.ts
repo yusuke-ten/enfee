@@ -5,11 +5,8 @@ import {
   actionTypes as appActionTypes,
   fetchMyProfile,
 } from 'modules/app/actions';
-import { RootState } from 'modules/index';
-
+import { selectAuth } from 'modules/auth/selectors';
 import { actionTypes, initialized } from './actions';
-
-const selectAuth = (state: RootState) => state.auth;
 
 function* checkTokenInLocalStorage() {
   const token = localStorage.getToken();
