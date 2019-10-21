@@ -4,7 +4,6 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { ReviewsTemplate } from 'components/templates';
 import { withInitialize } from 'containers/hocs';
 import { RootState } from 'src/modules';
-// import useInitialize from 'src/hooks/useInitialize';
 import { userProfileInAsideSelector } from 'services/selectors';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
 

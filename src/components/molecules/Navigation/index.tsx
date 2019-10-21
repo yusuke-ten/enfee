@@ -6,13 +6,14 @@ import { Color, Size } from 'src/const';
 
 type LinkText = 'レビュー' | 'メッセージ' | 'コミュニティ';
 
-export interface Link {
+export interface LinkType {
   text: LinkText;
   to: string;
+  isShow: boolean;
 }
 
 interface Props {
-  links: Link[];
+  links: LinkType[];
 }
 
 const selectIconComponent = (linkText: LinkText) => {
@@ -26,14 +27,16 @@ const selectIconComponent = (linkText: LinkText) => {
 const Navigation: React.FC<Props> = ({ links }) => {
   return (
     <List>
-      {links.map(({ text, to }: Link) => (
-        <ListItem key={to}>
-          <StyledLink to={to}>
-            <LinkText>{text}</LinkText>
-            {selectIconComponent(text)}
-          </StyledLink>
-        </ListItem>
-      ))}
+      {links.map(({ text, to, isShow }: LinkType) =>
+        isShow ? (
+          <ListItem key={to}>
+            <StyledLink to={to}>
+              <LinkText>{text}</LinkText>
+              {selectIconComponent(text)}
+            </StyledLink>
+          </ListItem>
+        ) : null,
+      )}
     </List>
   );
 };

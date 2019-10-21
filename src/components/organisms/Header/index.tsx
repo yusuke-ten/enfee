@@ -4,26 +4,22 @@ import styled, { css } from 'styled-components';
 import { Logo, Button } from 'components/atoms';
 import { Navigation } from 'components/molecules';
 import { AccountNav } from 'components/organisms';
-import { Link as LinkType } from 'components/molecules/Navigation';
+import { LinkType } from 'components/molecules/Navigation';
 import { MyProfileInAside } from 'services/models';
 import { Color, Size } from 'src/const';
-
-const links: LinkType[] = [
-  { text: 'レビュー', to: '/' },
-  { text: 'コミュニティ', to: '/comunities' },
-  { text: 'メッセージ', to: '/messages' },
-];
 
 interface Props {
   isLoggedIn?: boolean;
   myProfile: MyProfileInAside | null;
   handleLogout: () => void;
+  navLinks: LinkType[];
 }
 
 const Header: React.FC<Props> = ({
   isLoggedIn = false,
   myProfile,
   handleLogout,
+  navLinks,
 }) => {
   return (
     <Container>
@@ -32,7 +28,7 @@ const Header: React.FC<Props> = ({
           <LogoLink to="/">
             <Logo />
           </LogoLink>
-          <Navigation links={links} />
+          <Navigation links={navLinks} />
         </LeftWrapper>
         <RightWrapper>
           {isLoggedIn && myProfile ? (
