@@ -27,6 +27,6 @@ export const fetchMyProfile = async (token: string) => {
       throw new ServerError(err.message);
     }
 
-    throw new Error('unexpected error');
+    throw new Error(`unexpected error${err}`);
   }
 };

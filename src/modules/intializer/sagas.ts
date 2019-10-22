@@ -28,7 +28,10 @@ function* runInitializeApp() {
   if (isLoggedIn && token) {
     // ログインユーザに必要なイニシャライズ処理
     yield put(fetchMyProfile.start());
-    yield take(appActionTypes.FETCH_MY_PROFILE_SUCCEED);
+    yield take([
+      appActionTypes.FETCH_MY_PROFILE_SUCCEED,
+      appActionTypes.FETCH_MY_PROFILE_FAIL,
+    ]);
   }
   // すべてのユーザに必要なイニシャライズ処理を書く
 

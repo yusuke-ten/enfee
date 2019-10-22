@@ -15,7 +15,8 @@ export function* runFetchMyProfile() {
     const data: UserProfile = yield call(fetchMyProfile, token);
     yield put(fetchMyProfileActions.succeed(data));
   } catch (err) {
-    console.log('error', err);
+    console.log(err);
+    yield put(fetchMyProfileActions.fail());
   }
 }
 
