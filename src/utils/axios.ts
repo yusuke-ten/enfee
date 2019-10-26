@@ -42,4 +42,8 @@ export const createAuthHeader = (token: string) => ({
   Authorization: `Bearer ${token}`,
 });
 
+export const createMultiPartHeader = () => ({
+  'content-type': 'multipart/form-data',
+});
+
 export default AxiosFactory;
