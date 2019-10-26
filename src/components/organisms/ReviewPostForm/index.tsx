@@ -18,8 +18,8 @@ export interface Props {
     maxPicturesCount: number;
     postButtonDisabled: boolean;
     isPosting: boolean;
-    categoryValue: string;
-    storeValue: string;
+    categoryId: number;
+    storeId: number;
     productNameValue: string;
     contentValue: string;
     errorMessages: string[];
@@ -40,8 +40,8 @@ const ReviewPostForm: React.FC<Props> = ({ reviewPostFormItems, ...props }) => {
     maxPicturesCount,
     postButtonDisabled,
     isPosting,
-    categoryValue,
-    storeValue,
+    categoryId,
+    storeId,
     productNameValue,
     contentValue,
     errorMessages,
@@ -65,7 +65,7 @@ const ReviewPostForm: React.FC<Props> = ({ reviewPostFormItems, ...props }) => {
             title="カテゴリー"
             name="product_category_id"
             items={productCategoryList}
-            value={categoryValue}
+            value={categoryId}
             handleChage={handleChangeCategory}
           />
         </FieldMargin>
@@ -74,7 +74,7 @@ const ReviewPostForm: React.FC<Props> = ({ reviewPostFormItems, ...props }) => {
             title="ストア"
             name="store_id"
             items={storeList}
-            value={storeValue}
+            value={storeId}
             handleChage={handleChangeStore}
           />
         </FieldMargin>

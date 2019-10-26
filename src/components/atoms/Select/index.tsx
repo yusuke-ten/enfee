@@ -11,7 +11,7 @@ interface Props {
   title: string;
   name: string;
   items: Item[];
-  value: string;
+  value: number | string;
   handleChage: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   size?: number;
   isError?: boolean;
@@ -30,13 +30,13 @@ const Select: React.FC<Props> = ({
     <Container {...props}>
       <StyledSelect
         name={name}
-        value={value}
+        value={String(value)}
         onChange={handleChage}
         isError={isError}
       >
-        <option value="non-select">--- {title}を選択してください ---</option>
+        <option value="0">--- {title}を選択してください ---</option>
         {items.map(item => (
-          <option value={item.id} key={item.name}>
+          <option value={String(item.id)} key={item.name}>
             {item.name}
           </option>
         ))}

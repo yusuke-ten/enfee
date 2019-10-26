@@ -9,40 +9,39 @@ import { postReview } from 'modules/review/actions';
 import { withInitialize } from 'containers/hocs';
 
 const ReviewPostPage: React.FC = () => {
-  const [categoryValue, updateCategoryId] = useState<string>('non-select');
-  const [storeValue, updateStoreId] = useState<string>('non-select');
-  const [contentValue, udpateContentValue] = useState<string>('');
-  const [productNameValue, udpateProductName] = useState<string>('');
-  const [pictures, updatePictures] = useState<
+  const [categoryId, setCategoryId] = useState<number>(0);
+  const [storeId, setStoreId] = useState<number>(0);
+  const [contentValue, setContentValue] = useState<string>('');
+  const [productNameValue, setProductName] = useState<string>('');
+  const [pictures, setPictures] = useState<
     { id: number; url: string; file: File }[]
   >([]);
-  const [isLoading, updateIsLoading] = useState<boolean>(false);
   const [errorMessages, updateErrorMessages] = useState<string[]>([]);
 
   const handleChangeCategory = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
-      updateCategoryId(e.target.value);
+      setCategoryId(Number(e.target.value));
     },
-    [categoryValue],
+    [categoryId],
   );
 
   const handleChangeStore = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
-      updateStoreId(e.target.value);
+      setStoreId(Number(e.target.value));
     },
-    [storeValue],
+    [storeId],
   );
 
   const handleChageContent = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      udpateContentValue(e.target.value);
+      setContentValue(e.target.value);
     },
     [contentValue],
   );
 
   const handleChageProductName = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      udpateProductName(e.target.value);
+      setProductName(e.target.value);
     },
     [productNameValue],
   );
@@ -57,7 +56,7 @@ const ReviewPostPage: React.FC = () => {
         const url = createObjectURL(file);
         const id =
           pictures.length === 0 ? 1 : pictures[pictures.length - 1].id + 1;
-        updatePictures([...pictures, { id, url, file }]);
+        setPictures([...pictures, { id, url, file }]);
       }
     },
     [pictures],
@@ -67,15 +66,14 @@ const ReviewPostPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('submit!!!');
     const reviewFormParams: ReviewFormParams = {
       productName: productNameValue,
       content: contentValue,
       pictures,
       price: 200,
       rating: 5,
-      storeId: 1,
-      productCategoryId: 1,
+      storeId,
+      productCategoryId: categoryId,
     };
     console.log('form params', reviewFormParams);
     dispatch(postReview.start(reviewFormParams));
@@ -99,8 +97,8 @@ const ReviewPostPage: React.FC = () => {
     maxPicturesCount,
     postButtonDisabled,
     isPosting,
-    categoryValue,
-    storeValue,
+    categoryId,
+    storeId,
     productNameValue,
     contentValue,
     errorMessages,
