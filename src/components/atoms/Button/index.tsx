@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Color, Size } from 'src/const';
 
-type ColorType = 'primary' | 'secondary' | 'twitter';
+export type ColorType = 'primary' | 'secondary' | 'twitter';
 type SizeType = 'small' | 'midium' | 'large';
 type ShapeType = 'oval' | 'rect';
 
@@ -14,7 +14,7 @@ interface Props {
   height?: number;
 }
 
-const getColor = (color: ColorType = 'primary') => {
+export const getColor = (color: ColorType = 'primary') => {
   switch (color) {
     case 'primary':
       return Color.THEME.PRIMARY;

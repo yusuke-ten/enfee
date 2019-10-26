@@ -1,9 +1,11 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { boolean, text } from '@storybook/addon-knobs';
 import TwitterButton from './TwitterButton';
 import ReviewPostButton from './ReviewPostButton';
 import WithLoadingPostButton from './PostButtonWithLoading';
+import PenLauncherButton from './PenLauncherButton';
 
 storiesOf('molecules/Button', module)
   .add('TwitterButton', () => (
@@ -17,4 +19,8 @@ storiesOf('molecules/Button', module)
       isPosting={boolean('isLoading', false)}
       disabled={boolean('disabled', false)}
     />
-  ));
+  ))
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+  ))
+  .add('PenLauncherButton', () => <PenLauncherButton to="/reviews/new" />);

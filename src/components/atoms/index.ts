@@ -1,5 +1,6 @@
 export { default as Label } from './Label';
 export { default as Button } from './Button';
+export { default as LauncherButton } from './Button/LauncherButton';
 export { default as Heading } from './Heading';
 export {
   InfoIcon,

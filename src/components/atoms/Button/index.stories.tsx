@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Button from '.';
+import LauncherButton from './LauncherButton';
 
 storiesOf('atoms/Button', module)
   .add('primary', () => <Button color="primary">ログインする</Button>)
@@ -10,4 +11,5 @@ storiesOf('atoms/Button', module)
     <Button shape="oval" reverse>
       フォロー
     </Button>
-  ));
+  ))
+  .add('LauncherButton', () => <LauncherButton shadow>◆</LauncherButton>);
