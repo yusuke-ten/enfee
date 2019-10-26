@@ -128,6 +128,7 @@ const StyledTextInput = styled(TextInput)`
 `;
 const SelectArea = styled.div`
   width: 50%;
+  min-width: 300px;
 `;
 const TextAreaWrapper = styled.div`
   margin: 18px 0;

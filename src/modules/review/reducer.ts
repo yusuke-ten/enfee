@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { ReviewDetail } from 'services/models';
+import { ReviewDetail, Review } from 'services/models';
 import { ReviewAction, actionTypes } from './actions';
 
 export interface ReviewState {
@@ -8,7 +8,7 @@ export interface ReviewState {
   };
   reiviews: {
     isLodading: boolean;
-    data: ReviewDetail[];
+    data: Review[];
   };
   // reviewDetail: {
   //   isLoading: boolean;
@@ -51,6 +51,26 @@ const reducer: Reducer<ReviewState, ReviewAction> = (
       return { ...state, form: { isPosting: false } };
     case actionTypes.POST_REVIEW_FAIL:
       return { ...state, form: { isPosting: false } };
+    case actionTypes.FETCH_REVIEW_LIST_START:
+      return { ...state, reviews: { isLoading: true, ...state.reiviews.data } };
+    case actionTypes.FETCH_REVIEW_LIST_SUCCESS:
+      return {
+        ...state,
+        reviews: {
+          isLoading: false,
+          data: [...state.reiviews.data, ...action.payload.result],
+        },
+      };
+    case actionTypes.FETCH_REVIEW_LIST_FAIL:
+      return { ...state };
+    case actionTypes.FETCH_REVIEW_DETAIL_START:
+      return { ...state };
+    case actionTypes.FETCH_REVIEW_DETAIL_SUCCESS:
+      return { ...state };
+    case actionTypes.FETCH_REVIEW_DETAIL_FAIL:
+      return { ...state };
+    case actionTypes.RESET_REVIEW_LIST:
+      return { ...state, reviews: { ...state.reiviews, data: [] } };
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const _: never = action;

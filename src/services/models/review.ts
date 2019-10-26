@@ -1,5 +1,5 @@
 import { Store } from './store';
-import { User } from './user';
+import { User, UserProfile } from './user';
 
 export interface Reaction {
   name: string;
@@ -12,7 +12,7 @@ export interface Review {
   productName: string;
   content: string;
   commentCount: number;
-  picturePath: string | null;
+  firstPictureUrl: string | null;
   createdAt: string;
   rating: number;
   storeName: Store;
@@ -21,8 +21,21 @@ export interface Review {
   user: User;
 }
 
-/* about post review form types */
+// export interface Review {
+//   id: number;
+//   productName: string;
+//   content: string;
+//   commentCount: number;
+//   picturePath: string | null;
+//   createdAt: string;
+//   rating: number;
+//   storeName: Store;
+//   productCategoryName: string;
+//   reactions: Reaction[] | null;
+//   user: UserProfile;
+// }
 
+/* about post review form types */
 export interface PictureForm {
   id: number;
   url: string;
