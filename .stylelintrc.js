@@ -12,5 +12,6 @@ module.exports = {
     'declaration-empty-line-before': null,
     'no-missing-end-of-source-newline': null,
     'order/properties-alphabetical-order': null,
+    "function-name-case": null,
   },
 };

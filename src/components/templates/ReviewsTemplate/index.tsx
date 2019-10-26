@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Layout from 'components/Layout';
-import { ReviewMenu, Aside } from 'components/molecules';
+import { ReviewMenu, Aside, PenLauncherButton } from 'components/molecules';
 import { ReviewPanelList } from 'components/organisms';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
 import {
@@ -9,7 +9,7 @@ import {
   ReviewDetailModalContainer,
 } from 'containers/organisms';
 import { Review, MyProfileInAside } from 'services/models';
-import { Color } from 'src/const';
+import { Color, Size } from 'src/const';
 
 interface Props {
   menuLinks: MenuLinkType[];
@@ -52,6 +52,9 @@ const ReviewsTemplate: React.FC<Props> = ({
           </AsideWrapper>
         </Contents>
       </Body>
+      <LauncherWrapper>
+        <PenLauncherButton to="/reviews/new" />
+      </LauncherWrapper>
       {isModal && <ReviewDetailModalContainer closeModal={closeModal} />}
     </Layout>
   );
@@ -74,11 +77,33 @@ const NavWrapper = styled.div`
   top: 1em;
 `;
 const MainWrapper = styled.div`
-  margin: 0 30px;
+  margin-left: 30px;
   width: 460px;
 `;
 const AsideWrapper = styled.div`
   width: 240px;
+  margin-left: 30px;
+
+  @media (max-width: ${Size.BREAK_POINT.TABLET}px) {
+    display: none;
+  }
+`;
+const LauncherWrapper = styled.div`
+  display: none;
+
+  @media (max-width: ${Size.BREAK_POINT.TABLET}px) {
+    display: inline-block;
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+  }
+
+  @media (max-width: ${Size.BREAK_POINT.MOBILE}px) {
+    display: inline-block;
+    position: fixed;
+    bottom: 18px;
+    right: 18px;
+  }
 `;
 
 export default ReviewsTemplate;
