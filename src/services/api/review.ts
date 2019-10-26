@@ -64,15 +64,13 @@ export const postReview = async (
 ) => {
   const params = new FormData();
 
-  // TODO: 複数枚の画像を投稿出来るようにする
-  // const { pictures } = formParams;
-  // for (let i = 0; i < pictures.length; i += 1) {
-  //   params.append(`pictures[${i}]`, pictures[i].file);
-  // }
+  const { pictures } = formParams;
+  for (let i = 0; i < pictures.length; i += 1) {
+    params.append(`pictures[${i}]`, pictures[i].file);
+  }
 
   params.append('product_name', formParams.productName);
   params.append('content', formParams.content);
-  params.append('picture', formParams.pictures[0].file);
   params.append('price', String(formParams.price));
   params.append('rating', String(formParams.rating));
   params.append('store_id', String(formParams.storeId));
