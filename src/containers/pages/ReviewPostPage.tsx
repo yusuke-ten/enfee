@@ -6,11 +6,9 @@ import { userProfileInAsideSelector } from 'services/selectors';
 import { storeList, productCategoryList } from 'services/mocks';
 import { ReviewFormParams } from 'services/models';
 import { postReview } from 'modules/review/actions';
-import useInitialize from 'src/hooks/useInitialize';
+import { withInitialize } from 'containers/hocs';
 
 const ReviewPostPage: React.FC = () => {
-  useInitialize();
-
   const [categoryValue, updateCategoryId] = useState<string>('non-select');
   const [storeValue, updateStoreId] = useState<string>('non-select');
   const [contentValue, udpateContentValue] = useState<string>('');
@@ -123,4 +121,4 @@ const ReviewPostPage: React.FC = () => {
   );
 };
 
-export default ReviewPostPage;
+export default withInitialize(ReviewPostPage);
