@@ -7,10 +7,17 @@ import {
   Heading,
   CameraIcon,
 } from 'components/atoms';
+import { PictureForm } from 'services/models';
 import { Color, Size } from 'src/const';
 
+export interface Picture {
+  id: number;
+  url: string;
+  file: File;
+}
+
 interface Props {
-  pictures: { id: number; picture: string }[];
+  pictures: PictureForm[];
   handleChangeFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
   maxPicturesCount: number;
 }
@@ -37,9 +44,6 @@ const InputPictureField: React.FC<Props> = ({
     </Label>
   );
 
-  console.log('-----------input picture field');
-  console.log(pictures);
-
   return (
     <>
       <TitleWrapper>
@@ -52,7 +56,7 @@ const InputPictureField: React.FC<Props> = ({
         {pictures.map((p, i) => (
           <PictureFrame key={i}>
             <span>
-              <Picture src={p.picture} />
+              <Picture src={p.url} />
             </span>
           </PictureFrame>
         ))}

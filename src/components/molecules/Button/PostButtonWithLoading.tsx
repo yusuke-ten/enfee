@@ -5,20 +5,20 @@ import { Txt, Spinner, Button } from 'components/atoms';
 interface Props {
   text: string;
   lodaingText: string;
-  isLoading: boolean;
+  isPosting: boolean;
   disabled: boolean;
 }
 
 const PostButtonWithLoading: React.FC<Props> = ({
   text,
   lodaingText,
-  isLoading,
+  isPosting,
   disabled,
   ...props
 }) => {
   return (
-    <Button type="submit" disabled={disabled || isLoading} {...props}>
-      {isLoading ? (
+    <Button type="submit" disabled={disabled || isPosting} {...props}>
+      {isPosting ? (
         <span>
           <StyledTxt tag="span" size="s">
             {lodaingText}

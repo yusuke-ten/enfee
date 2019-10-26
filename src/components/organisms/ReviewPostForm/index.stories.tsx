@@ -7,14 +7,14 @@ import { Mock } from 'src/const';
 import { storeList, productCategoryList } from 'services/mocks/index';
 import ReviewPostForm from '.';
 
-const pictures = [{ id: 1, picture: Mock.imageUrl }];
+const pictures = [{ id: 1, url: Mock.imageUrl, file: '' as any }];
 const reviewPostFormItems = {
   storeList,
   productCategoryList,
   pictures,
   maxPicturesCount: 6,
   postButtonDisabled: boolean('postButtonDisabled', false),
-  isLoading: boolean('isLoading', false),
+  isPosting: boolean('isLoading', false),
   categoryValue: text('categoryValue', 'non-select'),
   storeValue: text('storeValue', 'non-select'),
   productNameValue: text('productNameValue', ''),

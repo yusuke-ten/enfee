@@ -21,4 +21,22 @@ export interface Review {
   user: User;
 }
 
+/* about post review form types */
+
+export interface PictureForm {
+  id: number;
+  url: string;
+  file: File;
+}
+
+export interface ReviewFormParams {
+  productName: string;
+  content: string;
+  pictures: PictureForm[];
+  price: number;
+  rating: number;
+  storeId: number;
+  productCategoryId: number;
+}
+
 export default Review;

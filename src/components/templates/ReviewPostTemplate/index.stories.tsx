@@ -12,8 +12,8 @@ import {
 import ReviewPostTemplate from '.';
 
 const pictures = [
-  { id: 1, picture: Mock.imageUrl },
-  { id: 2, picture: Mock.imageUrl },
+  { id: 1, url: Mock.imageUrl, file: '' as any },
+  { id: 2, url: Mock.imageUrl, file: '' as any },
 ];
 const reviewPostFormItems = {
   storeList,
@@ -21,7 +21,7 @@ const reviewPostFormItems = {
   pictures,
   maxPicturesCount: 6,
   postButtonDisabled: boolean('postButtonDisabled', false),
-  isLoading: boolean('isLoading', false),
+  isPosting: boolean('isLoading', false),
   categoryValue: text('categoryValue', 'non-select'),
   storeValue: text('storeValue', 'non-select'),
   productNameValue: text('productNameValue', ''),

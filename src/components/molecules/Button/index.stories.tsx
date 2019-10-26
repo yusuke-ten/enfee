@@ -14,7 +14,7 @@ storiesOf('molecules/Button', module)
     <WithLoadingPostButton
       text={text('text', '投稿する')}
       lodaingText={text('loadingText', '送信中')}
-      isLoading={boolean('isLoading', false)}
+      isPosting={boolean('isLoading', false)}
       disabled={boolean('disabled', false)}
     />
   ));

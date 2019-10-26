@@ -25,6 +25,9 @@
     }
   },
   review: {
+    form: {
+      isPosting: false,
+    }
     reviews: {
       isLoading: false,
       data: [],

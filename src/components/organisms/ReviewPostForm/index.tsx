@@ -8,14 +8,16 @@ import {
 } from 'components/molecules';
 import { StoreItem, ProductCategoryItem } from 'services/models';
 
+import { Picture } from 'components/molecules/InputPictureField';
+
 export interface Props {
   reviewPostFormItems: {
     storeList: StoreItem[];
     productCategoryList: ProductCategoryItem[];
-    pictures: { id: number; picture: string }[];
+    pictures: Picture[];
     maxPicturesCount: number;
     postButtonDisabled: boolean;
-    isLoading: boolean;
+    isPosting: boolean;
     categoryValue: string;
     storeValue: string;
     productNameValue: string;
@@ -37,7 +39,7 @@ const ReviewPostForm: React.FC<Props> = ({ reviewPostFormItems, ...props }) => {
     pictures,
     maxPicturesCount,
     postButtonDisabled,
-    isLoading,
+    isPosting,
     categoryValue,
     storeValue,
     productNameValue,
@@ -107,7 +109,7 @@ const ReviewPostForm: React.FC<Props> = ({ reviewPostFormItems, ...props }) => {
         <PostButtonWithLoading
           text="投稿する"
           lodaingText="投稿中"
-          isLoading={isLoading}
+          isPosting={isPosting}
           disabled={postButtonDisabled}
         />
       </ButtonArea>

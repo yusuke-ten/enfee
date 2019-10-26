@@ -1,5 +1,5 @@
 import { Store } from './store';
-import { User } from './user';
+import { User, UserProfile } from './user';
 import { Rating } from './rating';
 
 export interface Comment {
@@ -23,5 +23,20 @@ export interface ReviewDetail {
   storeName: Store;
   productCategoryName: string;
   user: User;
+  comments: (Comment & { replies: Comment[] })[];
+}
+
+export interface FixedReviewDetail {
+  id: number;
+  productName: string;
+  content: string;
+  // picturePath: string[] | null;
+  picturePath: string | null;
+  rating: Rating;
+  createdAt: string;
+  price: number;
+  storeName: Store;
+  productCategoryName: string;
+  user: UserProfile;
   comments: (Comment & { replies: Comment[] })[];
 }

@@ -6,8 +6,8 @@ import { Mock } from 'src/const';
 import InputPictureField from '.';
 
 const pictures = [
-  { id: 1, picture: Mock.imageUrl },
-  { id: 2, picture: Mock.imageUrl },
+  { id: 1, url: Mock.imageUrl, file: '' as any },
+  { id: 2, url: Mock.imageUrl, file: '' as any },
 ];
 
 storiesOf('molecules/InputPictureField', module).add('default', () => (

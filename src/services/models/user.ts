@@ -26,5 +26,5 @@ export interface UserProfile {
   loveStore: {
     id: number;
     name: string;
-  };
+  } | null;
 }
