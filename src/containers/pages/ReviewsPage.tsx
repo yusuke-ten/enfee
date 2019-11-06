@@ -5,26 +5,30 @@ import { ReviewsTemplate } from 'components/templates';
 import { withInitialize } from 'containers/hocs';
 import { RootState } from 'src/modules';
 import { userProfileInAsideSelector } from 'services/selectors';
-import { fetchReviewList } from 'modules/review/actions';
+import { fetchReviewList, reset } from 'modules/review/actions';
 import { selectReviews } from 'modules/review/selectors';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
 import { Review } from 'src/services/models';
 
 const links: MenuLinkType[] = [
   { text: 'すべて', to: '/reviews/all' },
-  { text: 'セブン−イレブン', to: '/reviews/seven-eleven' },
-  { text: 'ファミリーマート', to: '/reviews/family-mart' },
+  { text: 'セブン−イレブン', to: '/reviews/seven' },
+  { text: 'ファミリーマート', to: '/reviews/family' },
   { text: 'ローソン', to: '/reviews/lawson' },
 ];
 
 const ReviewsPageContainer: React.FC<
   RouteComponentProps<{ store: string }>
 > = ({ history, match }) => {
+  const { store } = match.params;
+
+  console.log('store params', store);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchReviewList.start({}));
-  }, []);
+    dispatch(reset.reviewList());
+    dispatch(fetchReviewList.start({ store }));
+  }, [store]);
 
   const [isModal, toggleModal] = useState<boolean>(false);
 
@@ -35,8 +39,6 @@ const ReviewsPageContainer: React.FC<
   const closeModal = useCallback(() => {
     toggleModal(false);
   }, []);
-
-  const { store } = match.params;
 
   const {
     auth: { isLoggedIn },

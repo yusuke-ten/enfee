@@ -83,7 +83,7 @@ const reducer: Reducer<ReviewState, ReviewAction> = (
     case actionTypes.FETCH_REVIEW_DETAIL_FAIL:
       return { ...state };
     case actionTypes.RESET_REVIEW_LIST:
-      return { ...state, reviews: { ...state.reviews, data: [] } };
+      return { ...state, reviews: { loaded: false, entities: [] } };
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const _: never = action;
