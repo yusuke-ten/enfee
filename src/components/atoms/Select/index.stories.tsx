@@ -12,7 +12,7 @@ storiesOf('atoms/Select', module).add('default', () => (
     name="product_category"
     size={4}
     value={text('value', 'non-select')}
-    handleChage={action('handleChange')}
+    handleChange={action('handleChange')}
     isError={boolean('isError', false)}
   />
 ));

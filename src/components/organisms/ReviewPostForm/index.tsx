@@ -66,7 +66,7 @@ const ReviewPostForm: React.FC<Props> = ({ reviewPostFormItems, ...props }) => {
             name="product_category_id"
             items={productCategoryList}
             value={categoryId}
-            handleChage={handleChangeCategory}
+            handleChange={handleChangeCategory}
           />
         </FieldMargin>
         <FieldMargin>
@@ -75,7 +75,7 @@ const ReviewPostForm: React.FC<Props> = ({ reviewPostFormItems, ...props }) => {
             name="store_id"
             items={storeList}
             value={storeId}
-            handleChage={handleChangeStore}
+            handleChange={handleChangeStore}
           />
         </FieldMargin>
         <FieldMargin></FieldMargin>

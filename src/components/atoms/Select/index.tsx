@@ -7,22 +7,22 @@ interface Item {
   name: string;
 }
 
-interface Props {
+interface SelectProps {
   title: string;
   name: string;
   items: Item[];
   value: number | string;
-  handleChage: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   size?: number;
   isError?: boolean;
 }
 
-const Select: React.FC<Props> = ({
+const Select: React.FC<SelectProps> = ({
   title,
   name,
   items,
   value,
-  handleChage,
+  handleChange,
   isError = false,
   ...props
 }) => {
@@ -31,10 +31,10 @@ const Select: React.FC<Props> = ({
       <StyledSelect
         name={name}
         value={String(value)}
-        onChange={handleChage}
+        onChange={handleChange}
         isError={isError}
       >
-        <option value="0">--- {title}を選択してください ---</option>
+        <option value="0">{title}を選択してください</option>
         {items.map(item => (
           <option value={String(item.id)} key={item.name}>
             {item.name}
