@@ -1,18 +1,25 @@
+import qs from 'qs';
 import AxiosFactory, {
   createAuthHeader,
   createMultiPartHeader,
 } from 'utils/axios';
-import { TimeoutError, ServerError } from 'src/utils/errors';
+import {
+  TimeoutError,
+  ServerError,
+  UnauthorilzedError,
+} from 'src/utils/errors';
 import {
   StoreItem,
   ProductCategoryItem,
   ReviewFormParams,
   FixedReviewDetail,
+  Review,
 } from 'services/models';
+import config from 'src/config';
 
 const axios = AxiosFactory.getInstance();
 
-export const fetchStoreList = async () => {
+export const fetchStoreListApi = async () => {
   try {
     const response = await axios.get('/stores');
 
@@ -35,7 +42,7 @@ export const fetchStoreList = async () => {
   }
 };
 
-export const fetchProductCategoryList = async () => {
+export const fetchProductCategoryListApi = async () => {
   try {
     const response = await axios.get('/product_categories');
 
@@ -58,7 +65,7 @@ export const fetchProductCategoryList = async () => {
   }
 };
 
-export const postReview = async (
+export const postReviewApi = async (
   token: string,
   formParams: ReviewFormParams,
 ) => {
@@ -91,8 +98,6 @@ export const postReview = async (
 
     const result: FixedReviewDetail = response.data;
 
-    console.log('post review api okok', result);
-
     return result;
   } catch (err) {
     console.log('post review api error', err);
@@ -106,5 +111,37 @@ export const postReview = async (
     }
 
     throw new Error(`unexpected error: ${err}`);
+  }
+};
+
+/* eslint @typescript-eslint/camelcase: 0 */
+export interface FetchReviewListParams {
+  page?: number;
+  store?: string;
+  category?: number;
+}
+
+export const fetchReviewListApi = async (
+  queryParams: FetchReviewListParams = {},
+) => {
+  const per_page = config.defaultReviewListPerPage;
+  const { page, store, category } = queryParams;
+
+  try {
+    const params = qs.stringify({ page, store, category, per_page });
+    const response = await axios.get(`/reviews?${params}`);
+    const result: Review[] = response.data;
+
+    return result;
+  } catch (err) {
+    if (err.message.startsWith('timeout')) {
+      throw new TimeoutError('timeout error');
+    }
+
+    if (err instanceof ServerError) {
+      throw new ServerError(err.message);
+    }
+
+    throw new Error('unexpected error');
   }
 };

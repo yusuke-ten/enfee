@@ -6,6 +6,7 @@ import {
   FixedReviewDetail,
   Review,
 } from 'services/models';
+import { FetchReviewListParams } from 'services/api/review';
 
 /* action types */
 export const actionTypes = {
@@ -37,9 +38,9 @@ export const postReview = {
 };
 
 export const fetchReviewList = {
-  start: ({ page }: { page: number | null }) => ({
+  start: (queryParams: FetchReviewListParams) => ({
     type: actionTypes.FETCH_REVIEW_LIST_START,
-    paylaod: { page },
+    paylaod: { queryParams },
   }),
   success: (result: Review[]) => ({
     type: actionTypes.FETCH_REVIEW_LIST_SUCCESS,

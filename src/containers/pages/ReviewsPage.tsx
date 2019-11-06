@@ -1,22 +1,14 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ReviewsTemplate } from 'components/templates';
 import { withInitialize } from 'containers/hocs';
 import { RootState } from 'src/modules';
 import { userProfileInAsideSelector } from 'services/selectors';
+import { fetchReviewList } from 'modules/review/actions';
+import { selectReviews } from 'modules/review/selectors';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
-
-/* モックデータ */
-import reviewData from 'src/services/mocks/json/reviews.json';
-import camelcaseKeys from 'camelcase-keys';
-import Review from 'src/services/models/review';
-
-const tmpReviews = camelcaseKeys(reviewData, { deep: true }) as {
-  [k: string]: any;
-}[];
-
-const reviews = tmpReviews as Review[];
+import { Review } from 'src/services/models';
 
 const links: MenuLinkType[] = [
   { text: 'すべて', to: '/reviews/all' },
@@ -28,9 +20,13 @@ const links: MenuLinkType[] = [
 const ReviewsPageContainer: React.FC<
   RouteComponentProps<{ store: string }>
 > = ({ history, match }) => {
-  const [isModal, toggleModal] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
-  const isLoadingReview = false;
+  useEffect(() => {
+    dispatch(fetchReviewList.start({}));
+  }, []);
+
+  const [isModal, toggleModal] = useState<boolean>(false);
 
   const openModal = useCallback(() => {
     toggleModal(true);
@@ -46,8 +42,7 @@ const ReviewsPageContainer: React.FC<
     auth: { isLoggedIn },
     app: { myProfile: myProfileState },
   } = useSelector((state: RootState) => state);
-
-  const dispatch = useDispatch();
+  const { entities: reviews, loaded } = useSelector(selectReviews);
 
   const myProfile = useMemo(() => userProfileInAsideSelector(myProfileState), [
     myProfileState,
@@ -60,7 +55,7 @@ const ReviewsPageContainer: React.FC<
       openModal={openModal}
       closeModal={closeModal}
       reviews={reviews}
-      isLoadingReview={isLoadingReview}
+      isLoadingReview={!loaded}
       myProfile={myProfile}
       isLoggedIn={isLoggedIn}
     />

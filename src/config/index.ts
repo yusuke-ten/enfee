@@ -11,6 +11,7 @@ const commonConfig = {
   timeoutMsec: 7000,
   localstrageTokenKey: '',
   twitterLoginUrl: '',
+  defaultReviewListPerPage: 10,
 };
 
 const developmentConfig = {

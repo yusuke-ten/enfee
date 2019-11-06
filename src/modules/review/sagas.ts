@@ -1,8 +1,15 @@
-import { fork, takeLatest, call, select, put } from 'redux-saga/effects';
-import { postReview as postReviewApi } from 'services/api/review';
+import {
+  fork,
+  takeLatest,
+  takeEvery,
+  call,
+  select,
+  put,
+} from 'redux-saga/effects';
+import { postReviewApi, fetchReviewListApi } from 'services/api/review';
 import { selectToken } from 'modules/auth/selectors';
-import { FixedReviewDetail } from 'services/models';
-import { actionTypes, postReview } from './actions';
+import { FixedReviewDetail, Review } from 'services/models';
+import { actionTypes, postReview, fetchReviewList } from './actions';
 
 function* runPostReviewStart(action: ReturnType<typeof postReview.start>) {
   const token = yield select(selectToken);
@@ -17,10 +24,30 @@ function* runPostReviewStart(action: ReturnType<typeof postReview.start>) {
   }
 }
 
+function* runFetchReviewList(action: ReturnType<typeof fetchReviewList.start>) {
+  try {
+    const result: Review[] = yield call(
+      fetchReviewListApi,
+      action.paylaod.queryParams,
+    );
+
+    console.log('runFetchReviewList success! result: ', result);
+    yield put(fetchReviewList.success(result));
+  } catch (e) {
+    console.log('fetchReviewList error: ', e);
+    yield put(fetchReviewList.fail());
+  }
+}
+
 function* watchPostReviewStart() {
   yield takeLatest(actionTypes.POST_REVIEW_START, runPostReviewStart);
 }
 
+function* watchFetchReviewListStart() {
+  yield takeEvery(actionTypes.FETCH_REVIEW_LIST_START, runFetchReviewList);
+}
+
 export default function* rootSaga() {
   yield fork(watchPostReviewStart);
+  yield fork(watchFetchReviewListStart);
 }

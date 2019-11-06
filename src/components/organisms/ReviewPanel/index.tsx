@@ -24,7 +24,7 @@ const ReviewPanel: React.FC<Props> = ({ review, onOpenModal }) => {
     productName,
     content,
     commentCount,
-    picturePath,
+    firstPictureUrl,
     createdAt,
     rating,
     storeName,
@@ -62,7 +62,7 @@ const ReviewPanel: React.FC<Props> = ({ review, onOpenModal }) => {
       <Line />
       <Main onClick={onOpenModal}>
         <PictureFrame>
-          <Picture src={picturePath} />
+          <Picture src={firstPictureUrl} />
         </PictureFrame>
         <ReviewFrame>
           <Heading>{productName}</Heading>
