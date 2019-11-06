@@ -12,6 +12,7 @@ const MenuItem = styled(NavLink)`
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   transition: background-color 0.08s ease-in-out;
+  box-sizing: border-box;
 
   /* 非アクティブ時 */
   color: ${Color.FONT.BASE};

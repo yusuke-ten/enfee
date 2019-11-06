@@ -80,12 +80,12 @@ const NavWrapper = styled.div`
   top: 1em;
 `;
 const MainWrapper = styled.div`
-  margin-left: 30px;
+  /* margin-left: 16px; */
   width: 460px;
 `;
 const AsideWrapper = styled.div`
   width: 240px;
-  margin-left: 30px;
+  margin-left: 16px;
 
   @media (max-width: ${Size.BREAK_POINT.TABLET}px) {
     display: none;
@@ -113,6 +113,7 @@ const SpinnerWrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 100%;
 `;
 
 export default ReviewsTemplate;
