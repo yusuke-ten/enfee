@@ -39,3 +39,10 @@ export class NotImplementError extends ApplicationError {
     this.name = 'NotImplementError';
   }
 }
+
+export class UnauthorilzedError extends ApplicationError {
+  constructor(m: string) {
+    super(m);
+    this.name = 'UnauthorilzedError';
+  }
+}
