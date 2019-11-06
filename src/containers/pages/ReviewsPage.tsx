@@ -11,7 +11,7 @@ import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
 import { Review } from 'src/services/models';
 
 const links: MenuLinkType[] = [
-  { text: 'すべて', to: '/reviews/all' },
+  { text: 'すべて', to: '/reviews' },
   { text: 'セブン−イレブン', to: '/reviews/seven' },
   { text: 'ファミリーマート', to: '/reviews/family' },
   { text: 'ローソン', to: '/reviews/lawson' },

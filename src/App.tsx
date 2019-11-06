@@ -14,6 +14,7 @@ const App: React.FC = () => (
     <Route path="/login" component={LoginPage} exact />
     <Route path="/signup" component={SignupPage} exact />
     <Route path="/reviews/new" component={ReviewPostPage} exact />
+    <Route path="/reviews" component={ReviewsPage} exact />
     <Route path="/reviews/:store" component={ReviewsPage} exact />
     <Route
       path="/"

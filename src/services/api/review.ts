@@ -119,16 +119,18 @@ export interface FetchReviewListParams {
   page?: number;
   store?: string;
   category?: number;
+  per_page?: number;
 }
 
 export const fetchReviewListApi = async (
   queryParams: FetchReviewListParams = {},
 ) => {
-  const per_page = config.defaultReviewListPerPage;
-  const { page, store, category } = queryParams;
-
   try {
-    const params = qs.stringify({ page, store, category, per_page });
+    const params = qs.stringify(
+      Object.assign({}, queryParams, {
+        per_page: config.defaultReviewListPerPage,
+      }),
+    );
     const response = await axios.get(`/reviews?${params}`);
     const result: Review[] = response.data;
 
