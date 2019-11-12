@@ -2,41 +2,29 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Color, Size } from 'src/const';
 
-interface Item {
-  id: number;
-  name: string;
-}
-
-export interface SelectProps {
+export interface SmallSelectProps {
   title: string;
-  name: string;
-  items: Item[];
-  value: number | string;
-  handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  size?: number;
-  isError?: boolean;
+  items: {
+    id: number;
+    name: string;
+  }[];
+  selectProps: {
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  };
 }
 
-const Select: React.FC<SelectProps> = ({
+const SmallSelect: React.FC<SmallSelectProps> = ({
   title,
-  name,
   items,
-  value,
-  handleChange,
-  isError = false,
-  ...props
+  selectProps,
 }) => {
   return (
-    <Container {...props}>
-      <StyledSelect
-        name={name}
-        value={String(value)}
-        onChange={handleChange}
-        isError={isError}
-      >
-        <option value="0">{title}を選択してください</option>
+    <Container>
+      <StyledSelect {...selectProps}>
+        <option value="0">{title}</option>
         {items.map(item => (
-          <option value={String(item.id)} key={item.name}>
+          <option value={String(item.id)} key={item.id}>
             {item.name}
           </option>
         ))}
@@ -45,7 +33,7 @@ const Select: React.FC<SelectProps> = ({
   );
 };
 
-const borderWidth = 2;
+const borderWidth = 1;
 const demoGray = '#D6D6D6';
 const demoPlaceholder = '#C7C7C7';
 
@@ -54,7 +42,6 @@ const selectFormReset = css`
   padding: 0;
   position: relative;
 
-  &::before,
   &::after {
     content: '';
     display: block;
@@ -70,7 +57,7 @@ const selectFormReset = css`
     box-sizing: border-box;
     width: 100%;
     margin: 0;
-    font-size: ${Size.FONT_RATIO.MEDIUM}rem;
+    font-size: ${Size.FONT_RATIO.XSMALL}rem;
     outline: none;
 
     &:focus {
@@ -96,7 +83,6 @@ const Container = styled.div`
   margin-bottom: 15px;
   width: 100%;
 
-  &::before,
   &::after {
     content: '';
     display: block;
@@ -106,19 +92,12 @@ const Container = styled.div`
     border: 1px solid transparent;
     width: 0;
     height: 0;
-    right: 16px;
-  }
+    right: 12px;
 
-  &::before {
-    bottom: 55%;
-    border-width: 0 6.5px 8px 6.5px;
-    border-bottom-color: ${demoGray};
-  }
-
-  &::after {
-    border-width: 8px 6.5px 0 6.5px;
+    border-width: 7px 5.5px 0 5.5px;
     border-top-color: ${demoGray};
-    top: 55%;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   &:hover {
@@ -131,24 +110,19 @@ const Container = styled.div`
       }
     }
 
-    &::before {
-      border-bottom-color: ${Color.THEME.PRIMARY};
-    }
-
     &::after {
       border-top-color: ${Color.THEME.PRIMARY};
     }
   }
 `;
 
-const StyledSelect = styled.select<{ isError: boolean }>`
+const StyledSelect = styled.select`
   cursor: pointer;
-  border: ${borderWidth}px solid
-    ${props => (props.isError ? Color.THEME.ERROR : Color.FONT.LIGHT)};
+  border: ${borderWidth}px solid ${Color.FONT.LIGHT};
   border-radius: 0;
   font-weight: 400;
   color: inherit;
-  padding: 0.9rem;
+  padding: 0.6rem;
   line-height: normal;
   transition: border-color 0.1s ease, outline 0.1s ease;
 
@@ -169,4 +143,4 @@ const StyledSelect = styled.select<{ isError: boolean }>`
   }
 `;
 
-export default Select;
+export default SmallSelect;
