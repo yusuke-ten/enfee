@@ -4,7 +4,7 @@ import { Color, Size } from 'src/const';
 
 export interface SmallSelectProps {
   title: string;
-  items: {
+  selectItems: {
     id: number;
     name: string;
   }[];
@@ -16,14 +16,14 @@ export interface SmallSelectProps {
 
 const SmallSelect: React.FC<SmallSelectProps> = ({
   title,
-  items,
+  selectItems,
   selectProps,
 }) => {
   return (
     <Container>
       <StyledSelect {...selectProps}>
         <option value="0">{title}</option>
-        {items.map(item => (
+        {selectItems.map(item => (
           <option value={String(item.id)} key={item.id}>
             {item.name}
           </option>
@@ -79,8 +79,6 @@ const Container = styled.div`
   border-radius: 0;
   box-shadow: none;
   font-size: ${Size.FONT_RATIO.MEDIUM}rem;
-  margin-top: 9px;
-  margin-bottom: 15px;
   width: 100%;
 
   &::after {

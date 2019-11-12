@@ -69,7 +69,8 @@ const Item = styled.li<{ isCurrent: boolean | undefined; small: boolean }>`
 `;
 const RightContent = styled.div`
   margin-left: auto;
-  text-align: center;
+  display: flex;
+  align-items: center;
 `;
 
 export default FilterMenu;

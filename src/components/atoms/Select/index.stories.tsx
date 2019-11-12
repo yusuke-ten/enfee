@@ -23,7 +23,7 @@ storiesOf('atoms/Select', module)
     <Wrapper>
       <SmallSelect
         title="カテゴリーで絞り込み"
-        items={productCategoryList}
+        selectItems={productCategoryList}
         selectProps={{ value: '0', onChange: action('onChange') }}
       />
     </Wrapper>
