@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Layout from 'components/Layout';
-import { Spinner } from 'components/atoms';
 import { ReviewMenu, Aside, PenLauncherButton } from 'components/molecules';
 import { ReviewPanelList } from 'components/organisms';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
@@ -42,13 +41,11 @@ const ReviewsTemplate: React.FC<Props> = ({
             <ReviewMenu links={menuLinks} />
           </NavWrapper>
           <MainWrapper>
-            {isLoadingReview ? (
-              <SpinnerWrapper>
-                <Spinner color="primary" height={30} width={30} />
-              </SpinnerWrapper>
-            ) : (
-              <ReviewPanelList reviews={reviews} openModal={openModal} />
-            )}
+            <ReviewPanelList
+              reviews={reviews}
+              openModal={openModal}
+              isLoadingReview={isLoadingReview}
+            />
           </MainWrapper>
           <AsideWrapper>
             <Aside myProfile={myProfile} />
@@ -107,13 +104,6 @@ const LauncherWrapper = styled.div`
     bottom: 18px;
     right: 18px;
   }
-`;
-const SpinnerWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
 `;
 
 export default ReviewsTemplate;

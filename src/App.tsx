@@ -16,11 +16,7 @@ const App: React.FC = () => (
     <Route path="/reviews/new" component={ReviewPostPage} exact />
     <Route path="/reviews" component={ReviewsPage} exact />
     <Route path="/reviews/:store" component={ReviewsPage} exact />
-    <Route
-      path="/"
-      exact
-      render={({ match }) => <Redirect to="/reviews/all" />}
-    />
+    <Route path="/" exact render={({ match }) => <Redirect to="/reviews" />} />
     <Route path="/" component={NotFound} />
   </Switch>
 );
