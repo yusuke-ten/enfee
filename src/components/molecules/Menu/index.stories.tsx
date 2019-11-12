@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { MemoryRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { Color } from 'src/const';
 import ReviewMenu, { Link } from './ReviewMenu';
+import FilterMenu from './FilterMenu';
 
 const links: Link[] = [
   { text: 'すべて', to: '/reviews/all' },
@@ -22,6 +24,30 @@ storiesOf('molecules/Menu', module)
         <ReviewMenu links={links} />
       </MenuWrapper>
     </Background>
+  ))
+  .add('FilterReviewMenu', () => (
+    <>
+      <FilterMenuWrapper>
+        <FilterMenu
+          menuItems={[
+            { text: 'レビュー', isCurrent: true },
+            { text: 'フォロー中' },
+            { text: 'フォロワー' },
+          ]}
+          handleClick={action('handleClick')}
+        />
+      </FilterMenuWrapper>
+      <FilterMenuWrapper>
+        <FilterMenu
+          menuItems={[
+            { text: 'フォロー中', isCurrent: true },
+            { text: '全体' },
+          ]}
+          handleClick={action('handleClick')}
+          small
+        />
+      </FilterMenuWrapper>
+    </>
   ));
 
 const Background = styled.div`
@@ -31,4 +57,8 @@ const Background = styled.div`
 `;
 const MenuWrapper = styled.div`
   width: 200px;
+`;
+const FilterMenuWrapper = styled.div`
+  padding: 20px 20px;
+  width: 500px;
 `;
