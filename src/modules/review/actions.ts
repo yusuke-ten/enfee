@@ -5,6 +5,7 @@ import {
   ReviewDetail,
   FixedReviewDetail,
   Review,
+  ProductCategoryList,
 } from 'services/models';
 import { FetchReviewListParams } from 'services/api/review';
 
@@ -19,6 +20,10 @@ export const actionTypes = {
   FETCH_REVIEW_DETAIL_START: 'REVIEW/FETCH_REVIEW_DETAIL_START',
   FETCH_REVIEW_DETAIL_SUCCESS: 'REVIEW/FETCH_REVIEW_DETAIL_SUCCESS',
   FETCH_REVIEW_DETAIL_FAIL: 'REVIEW/FETCH_REVIEW_DETAIL_FAIL',
+  FETCH_PRODUCT_CATEGORY_LIST_START: 'REVIEW/FETCH_PRODUCT_CATEGORY_LIST_START',
+  FETCH_PRODUCT_CATEGORY_LIST_SUCCESS:
+    'REVIEW/FETCH_PRODUCT_CATEGORY_LIST_SUCCESS',
+  FETCH_PRODUCT_CATEGORY_LIST_FAIL: 'REVIEW/FETCH_PRODUCT_CATEGORY_LIST_FAIL',
   RESET_REVIEW_LIST: 'REVIEW/RESET_REVIEW_LIST',
 } as const;
 
@@ -65,6 +70,19 @@ export const fetchReviewDetail = {
   }),
 };
 
+export const fetchProductCategoryList = {
+  start: () => ({
+    type: actionTypes.FETCH_PRODUCT_CATEGORY_LIST_START,
+  }),
+  success: (productCategoryList: ProductCategoryList) => ({
+    type: actionTypes.FETCH_PRODUCT_CATEGORY_LIST_SUCCESS,
+    payload: { productCategoryList },
+  }),
+  fail: () => ({
+    type: actionTypes.FETCH_PRODUCT_CATEGORY_LIST_FAIL,
+  }),
+};
+
 export const reset = {
   reviewList: () => ({
     type: actionTypes.RESET_REVIEW_LIST,
@@ -75,4 +93,5 @@ export type ReviewAction =
   | CreatorsToActions<typeof postReview>
   | CreatorsToActions<typeof fetchReviewList>
   | CreatorsToActions<typeof fetchReviewDetail>
+  | CreatorsToActions<typeof fetchProductCategoryList>
   | CreatorsToActions<typeof reset>;

@@ -2,14 +2,24 @@ import {
   fork,
   takeLatest,
   takeEvery,
+  takeLeading,
   call,
   select,
   put,
 } from 'redux-saga/effects';
-import { postReviewApi, fetchReviewListApi } from 'services/api/review';
+import {
+  postReviewApi,
+  fetchReviewListApi,
+  fetchProductCategoryListApi,
+} from 'services/api/review';
 import { selectToken } from 'modules/auth/selectors';
 import { FixedReviewDetail, Review } from 'services/models';
-import { actionTypes, postReview, fetchReviewList } from './actions';
+import {
+  actionTypes,
+  postReview,
+  fetchReviewList,
+  fetchProductCategoryList,
+} from './actions';
 
 function* runPostReviewStart(action: ReturnType<typeof postReview.start>) {
   const token = yield select(selectToken);
@@ -39,6 +49,15 @@ function* runFetchReviewList(action: ReturnType<typeof fetchReviewList.start>) {
   }
 }
 
+function* runFetchProductCategoryList() {
+  try {
+    const result = yield call(fetchProductCategoryListApi);
+    yield put(fetchProductCategoryList.success(result));
+  } catch (e) {
+    yield put(fetchProductCategoryList.fail());
+  }
+}
+
 function* watchPostReviewStart() {
   yield takeLatest(actionTypes.POST_REVIEW_START, runPostReviewStart);
 }
@@ -47,7 +66,15 @@ function* watchFetchReviewListStart() {
   yield takeEvery(actionTypes.FETCH_REVIEW_LIST_START, runFetchReviewList);
 }
 
+function* watchFetchProductCategoryListStart() {
+  yield takeLeading(
+    actionTypes.FETCH_PRODUCT_CATEGORY_LIST_START,
+    runFetchProductCategoryList,
+  );
+}
+
 export default function* rootSaga() {
   yield fork(watchPostReviewStart);
   yield fork(watchFetchReviewListStart);
+  yield fork(watchFetchProductCategoryListStart);
 }

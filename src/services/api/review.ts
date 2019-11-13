@@ -61,7 +61,7 @@ export const fetchProductCategoryListApi = async () => {
       throw new ServerError(err.message);
     }
 
-    throw new Error('unexpected error');
+    throw err;
   }
 };
 

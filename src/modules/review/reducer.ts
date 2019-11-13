@@ -4,12 +4,17 @@ import {
   Review,
   FixedReviewDetail,
   Comment,
+  ProductCategoryList,
 } from 'services/models';
 import { ReviewAction, actionTypes } from './actions';
 
 export interface ReviewState {
   form: {
     isPosting: boolean;
+  };
+  productCategory: {
+    loaded: boolean;
+    entities: ProductCategoryList;
   };
   reviews: {
     loaded: boolean;
@@ -30,6 +35,10 @@ export interface ReviewState {
 const initialState: ReviewState = {
   form: {
     isPosting: false,
+  },
+  productCategory: {
+    loaded: false,
+    entities: [],
   },
   reviews: {
     loaded: false,
@@ -82,6 +91,18 @@ const reducer: Reducer<ReviewState, ReviewAction> = (
       return { ...state };
     case actionTypes.FETCH_REVIEW_DETAIL_FAIL:
       return { ...state };
+    case actionTypes.FETCH_PRODUCT_CATEGORY_LIST_START:
+      return { ...state, productCategory: { loaded: false, entities: [] } };
+    case actionTypes.FETCH_PRODUCT_CATEGORY_LIST_SUCCESS:
+      return {
+        ...state,
+        productCategory: {
+          loaded: true,
+          entities: action.payload.productCategoryList,
+        },
+      };
+    case actionTypes.FETCH_PRODUCT_CATEGORY_LIST_FAIL:
+      return { ...state, productCategory: { loaded: false, entities: [] } };
     case actionTypes.RESET_REVIEW_LIST:
       return { ...state, reviews: { loaded: false, entities: [] } };
     default: {

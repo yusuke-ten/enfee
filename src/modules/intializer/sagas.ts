@@ -5,6 +5,10 @@ import {
   actionTypes as appActionTypes,
   fetchMyProfile,
 } from 'modules/app/actions';
+import {
+  actionTypes as reviewActionTypes,
+  fetchProductCategoryList,
+} from 'modules/review/actions';
 import { selectAuth } from 'modules/auth/selectors';
 import { actionTypes, initialized } from './actions';
 
@@ -19,12 +23,11 @@ function* checkTokenInLocalStorage() {
 }
 
 function* runInitializeApp() {
-  console.log('run initialize app');
-
   const { token, isLoggedIn }: ReturnType<typeof selectAuth> = yield select(
     selectAuth,
   );
 
+  // TODO: 並列でapiを叩くようにする
   if (isLoggedIn && token) {
     // ログインユーザに必要なイニシャライズ処理
     yield put(fetchMyProfile.start());
@@ -34,6 +37,11 @@ function* runInitializeApp() {
     ]);
   }
   // すべてのユーザに必要なイニシャライズ処理を書く
+  yield put(fetchProductCategoryList.start());
+  yield take([
+    reviewActionTypes.FETCH_PRODUCT_CATEGORY_LIST_SUCCESS,
+    reviewActionTypes.FETCH_PRODUCT_CATEGORY_LIST_FAIL,
+  ]);
 
   yield put(initialized.app());
 }
