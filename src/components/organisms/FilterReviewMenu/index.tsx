@@ -6,7 +6,7 @@ import FilterMenu, {
   FilterMenuProps,
 } from 'components/molecules/Menu/FilterMenu';
 
-type FilterReviewProps = Omit<SmallSelectProps, 'title'> &
+export type FilterReviewProps = Omit<SmallSelectProps, 'title'> &
   Pick<FilterMenuProps, 'menuItems' | 'handleClick'>;
 
 const FilterReview: React.FC<FilterReviewProps> = ({
@@ -14,6 +14,7 @@ const FilterReview: React.FC<FilterReviewProps> = ({
   selectProps,
   menuItems,
   handleClick,
+  ...props
 }) => {
   return (
     <FilterMenu
@@ -27,6 +28,7 @@ const FilterReview: React.FC<FilterReviewProps> = ({
       }
       menuItems={menuItems}
       handleClick={handleClick}
+      {...props}
     />
   );
 };

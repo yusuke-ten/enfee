@@ -10,12 +10,33 @@ import { selectReviews } from 'modules/review/selectors';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
 import { Review } from 'src/services/models';
 
+import { productCategoryList } from 'src/services/mocks/productCategoryList';
+
 const links: MenuLinkType[] = [
   { text: 'すべて', to: '/reviews' },
   { text: 'セブン−イレブン', to: '/reviews/seven' },
   { text: 'ファミリーマート', to: '/reviews/family' },
   { text: 'ローソン', to: '/reviews/lawson' },
 ];
+
+const filterMenuItems: { text: string; isCurrent?: boolean }[] = [
+  { text: 'フォロー中', isCurrent: true },
+  { text: '全体' },
+];
+
+const selectItems = productCategoryList;
+
+const selectProps = {
+  value: '0',
+  onChange: () => {},
+};
+
+const filterMenuProps = {
+  selectItems,
+  selectProps,
+  menuItems: filterMenuItems,
+  handleClick: () => {},
+};
 
 const ReviewsPageContainer: React.FC<
   RouteComponentProps<{ store: string }>
@@ -60,6 +81,7 @@ const ReviewsPageContainer: React.FC<
       isLoadingReview={!loaded}
       myProfile={myProfile}
       isLoggedIn={isLoggedIn}
+      filterReviewMenuProps={filterMenuProps}
     />
   );
 };

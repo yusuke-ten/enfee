@@ -57,7 +57,7 @@ const selectFormReset = css`
     box-sizing: border-box;
     width: 100%;
     margin: 0;
-    font-size: ${Size.FONT_RATIO.XSMALL}rem;
+    font-size: ${Size.FONT_RATIO.SMALL}rem;
     outline: none;
 
     &:focus {

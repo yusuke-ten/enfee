@@ -14,9 +14,10 @@ const FilterMenu: React.FC<FilterMenuProps> = ({
   rightContent,
   handleClick,
   small = false,
+  ...props
 }) => {
   return (
-    <Container>
+    <Container {...props}>
       <FilterItems>
         {menuItems.map((item, i) => (
           <Item
@@ -47,7 +48,7 @@ const Item = styled.li<{ isCurrent: boolean | undefined; small: boolean }>`
   ${props =>
     props.small
       ? css`
-          font-size: ${Size.FONT_RATIO.SMALL}rem;
+          font-size: ${Size.FONT_RATIO.BASE}rem;
           padding: 10px 14px;
         `
       : css`

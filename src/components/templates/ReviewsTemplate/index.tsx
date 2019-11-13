@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import Layout from 'components/Layout';
 import { ReviewMenu, Aside, PenLauncherButton } from 'components/molecules';
 import { ReviewPanelList } from 'components/organisms';
+import FilterReviewMenu, {
+  FilterReviewProps,
+} from 'components/organisms/FilterReviewMenu';
 import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
 import {
   HeaderContainer,
@@ -20,6 +23,7 @@ interface Props {
   isLoadingReview: boolean;
   myProfile: MyProfileInAside | null;
   isLoggedIn: boolean;
+  filterReviewMenuProps: FilterReviewProps;
 }
 
 const ReviewsTemplate: React.FC<Props> = ({
@@ -31,6 +35,7 @@ const ReviewsTemplate: React.FC<Props> = ({
   isLoadingReview,
   myProfile,
   isLoggedIn,
+  filterReviewMenuProps,
 }) => {
   return (
     <Layout title="レビューページ">
@@ -41,6 +46,7 @@ const ReviewsTemplate: React.FC<Props> = ({
             <ReviewMenu links={menuLinks} />
           </NavWrapper>
           <MainWrapper>
+            <StyledFilterReviewMenu {...filterReviewMenuProps} />
             <ReviewPanelList
               reviews={reviews}
               openModal={openModal}
@@ -104,6 +110,9 @@ const LauncherWrapper = styled.div`
     bottom: 18px;
     right: 18px;
   }
+`;
+const StyledFilterReviewMenu = styled(FilterReviewMenu)`
+  margin-bottom: 10px;
 `;
 
 export default ReviewsTemplate;
