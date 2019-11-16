@@ -118,7 +118,7 @@ export const postReviewApi = async (
 export interface FetchReviewListParams {
   page?: number;
   store?: string;
-  category?: number;
+  category?: string;
   per_page?: number;
 }
 

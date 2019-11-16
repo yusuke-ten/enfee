@@ -22,7 +22,7 @@ const SmallSelect: React.FC<SmallSelectProps> = ({
   return (
     <Container>
       <StyledSelect {...selectProps}>
-        <option value="0">{title}</option>
+        <option value="">{title}</option>
         {selectItems.map(item => (
           <option value={String(item.id)} key={item.id}>
             {item.name}

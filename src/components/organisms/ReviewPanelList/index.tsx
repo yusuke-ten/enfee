@@ -38,8 +38,7 @@ const SpinnerWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
+  height: 160px;
 `;
 const ReviewWrapper = styled.div`
   margin-bottom: 20px;
