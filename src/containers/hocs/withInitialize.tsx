@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { RootState } from 'src/modules';
+import { RootState } from 'modules/reducer';
 import { Spinner } from 'components/atoms';
 import useInitialize from 'src/hooks/useInitialize';
 

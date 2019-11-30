@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ReviewsTemplate } from 'components/templates';
 import { withInitialize } from 'containers/hocs';
-import { RootState } from 'src/modules';
+import { RootState } from 'modules/reducer';
 import useSelect from 'src/hooks/useSelect';
 import { userProfileInAsideSelector } from 'services/selectors';
 import { fetchReviewList, reset } from 'modules/review/actions';
@@ -30,6 +30,7 @@ const ReviewsPageContainer: React.FC<
 
   const [isModal, toggleModal] = useState<boolean>(false);
 
+  // TODO: reviewIdを受け取って、そのIDのレビュー詳細を取得するように実装する
   const openModal = useCallback(() => {
     toggleModal(true);
   }, []);

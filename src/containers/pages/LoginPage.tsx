@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import useQuery from 'src/hooks/useQuery';
-import { RootState } from 'src/modules';
+import { RootState } from 'modules/reducer';
 import Layout from 'components/Layout';
 import { LoginFormContainer } from 'containers/organisms';
 import { EntranceInfo } from 'components/organisms';

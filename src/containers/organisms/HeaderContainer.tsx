@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from 'modules/index';
+import { RootState } from 'modules/reducer';
 import { Header } from 'components/organisms';
 import { logout } from 'modules/auth/actions';
 import { userProfileInAsideSelector } from 'services/selectors';

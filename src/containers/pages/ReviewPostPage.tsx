@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ReviewPostTemplate } from 'components/templates';
-import { RootState } from 'modules/index';
+import { RootState } from 'modules/reducer';
 import { userProfileInAsideSelector } from 'services/selectors';
 import { storeList, productCategoryList } from 'services/mocks';
 import { ReviewFormParams } from 'services/models';

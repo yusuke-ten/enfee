@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'modules/index';
+import { RootState } from 'modules/reducer';
 import { initialize } from 'modules/intializer/actions';
 
 const useInitialize = () => {

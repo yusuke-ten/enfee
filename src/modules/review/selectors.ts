@@ -1,3 +1,3 @@
-import { RootState } from 'modules/index';
+import { RootState } from 'src/modules/reducer';
 
 export const selectReviews = (state: RootState) => state.review.reviews;

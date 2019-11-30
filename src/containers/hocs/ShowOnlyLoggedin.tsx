@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from 'src/modules';
+import { RootState } from 'modules/reducer';
 
 interface Props {
   Component: React.FC;

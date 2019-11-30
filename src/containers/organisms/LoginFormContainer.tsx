@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import LoginForm from 'components/organisms/LoginForm';
 import { login } from 'modules/auth/actions';
-import { RootState } from 'src/modules';
+import { RootState } from 'modules/reducer';
 import { validationEmail, validationPassword } from 'services/validation';
 
 const LoginFormContainer = () => {
