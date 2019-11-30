@@ -123,6 +123,7 @@ const StyledSelect = styled.select`
   padding: 0.6rem;
   line-height: normal;
   transition: border-color 0.1s ease, outline 0.1s ease;
+  padding-right: 28px;
 
   &:focus {
     box-shadow: 0 3px 4px rgba(skyblue, 0.3) inset;

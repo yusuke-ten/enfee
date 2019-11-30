@@ -8,19 +8,7 @@ import useSelect from 'src/hooks/useSelect';
 import { userProfileInAsideSelector } from 'services/selectors';
 import { fetchReviewList, reset } from 'modules/review/actions';
 import { selectReviews } from 'modules/review/selectors';
-import { Link as MenuLinkType } from 'components/molecules/Menu/ReviewMenu';
-
-const links: MenuLinkType[] = [
-  { text: 'すべて', to: '/reviews' },
-  { text: 'セブン−イレブン', to: '/reviews/seven' },
-  { text: 'ファミリーマート', to: '/reviews/family' },
-  { text: 'ローソン', to: '/reviews/lawson' },
-];
-
-const filterMenuItems: { text: string; isCurrent?: boolean }[] = [
-  { text: 'フォロー中', isCurrent: true },
-  { text: '全体' },
-];
+import { storeFilteringLinks, followerFilteringTabs } from 'src/const/Link';
 
 const ReviewsPageContainer: React.FC<
   RouteComponentProps<{ store: string }>
@@ -66,13 +54,13 @@ const ReviewsPageContainer: React.FC<
   const filterMenuProps = {
     selectItems: productCategoryList,
     selectProps: categorySelectProps,
-    menuItems: filterMenuItems,
+    menuItems: followerFilteringTabs,
     handleClick: () => {},
   };
 
   return (
     <ReviewsTemplate
-      menuLinks={links}
+      menuLinks={storeFilteringLinks}
       isModal={isModal}
       openModal={openModal}
       closeModal={closeModal}

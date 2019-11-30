@@ -4,10 +4,10 @@ import { MemoryRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { Color } from 'src/const';
-import ReviewMenu, { Link } from './ReviewMenu';
+import ReviewMenu, { FilteringLink } from './ReviewMenu';
 import FilterMenu from './FilterMenu';
 
-const links: Link[] = [
+const links: FilteringLink[] = [
   { text: 'すべて', to: '/reviews/all' },
   { text: 'セブン−イレブン', to: '/reviews/seven-eleven' },
   { text: 'ファミリーマート', to: '/reviews/family-mart' },

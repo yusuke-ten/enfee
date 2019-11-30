@@ -2,16 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import { MenuItem } from 'components/atoms';
 
-export interface Link {
+export interface FilteringLink {
   text: string;
   to: string;
 }
 
-interface Props {
-  links: Link[];
+interface ReviewMenuProps {
+  links: FilteringLink[];
 }
 
-const ReviewMenu: React.FC<Props> = ({ links }) => (
+const ReviewMenu: React.FC<ReviewMenuProps> = ({ links }) => (
   <>
     {links.map(({ text, to }) => (
       <StyledMenuItem key={to} to={to} exact>
