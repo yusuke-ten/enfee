@@ -7,17 +7,14 @@ import FilterReviewMenu, {
   FilterReviewProps,
 } from 'components/organisms/FilterReviewMenu';
 import { FilteringLink } from 'components/molecules/Menu/ReviewMenu';
-import {
-  HeaderContainer,
-  ReviewDetailModalContainer,
-} from 'containers/organisms';
+import { HeaderContainer, ReviewDetailModalContainer } from 'containers/organisms';
 import { Review, MyProfileInAside } from 'services/models';
 import { Color, Size } from 'src/const';
 
 interface Props {
   menuLinks: FilteringLink[];
   isModal: boolean;
-  openModal: () => void;
+  openModal: (reviewId: number) => void;
   closeModal: () => void;
   reviews: Review[];
   isLoadingReview: boolean;

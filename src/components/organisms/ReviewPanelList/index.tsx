@@ -6,7 +6,7 @@ import { Review } from 'services/models';
 
 export interface Props {
   reviews: Review[];
-  openModal: () => void;
+  openModal: (reviewId: number) => void;
   isLoadingReview: boolean;
 }
 

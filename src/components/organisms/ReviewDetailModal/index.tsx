@@ -6,7 +6,7 @@ import { ReviewDetailArea, CommentArea } from 'components/organisms';
 import { ReviewDetail } from 'services/models';
 
 interface Props {
-  reviewDetail: ReviewDetail;
+  reviewDetail: ReviewDetail | null;
   isLoading: boolean;
   closeModal: () => void;
   commentValue: string;
@@ -22,6 +22,16 @@ const ReviewDetailModal: React.FC<Props> = ({
   commentChangeHandler,
   submitCommentHandler,
 }) => {
+  if (isLoading || reviewDetail === null) {
+    return (
+      <Modal onClose={closeModal}>
+        <SpinnerContainer>
+          <Spinner color="primary" height={32} width={32} />
+        </SpinnerContainer>
+      </Modal>
+    );
+  }
+
   const {
     id: reviewId,
     productName,
@@ -38,36 +48,30 @@ const ReviewDetailModal: React.FC<Props> = ({
 
   return (
     <Modal onClose={closeModal}>
-      {isLoading ? (
-        <SpinnerContainer>
-          <Spinner color="primary" height={40} width={40} />
-        </SpinnerContainer>
-      ) : (
-        <Container>
-          <ReviewDetailArea
-            {...{
-              productName,
-              content,
-              picturePath,
-              rating,
-              createdAt,
-              price,
-              storeName,
-              productCategoryName,
-              user,
-            }}
-          />
-          <CommentArea
-            {...{
-              comments,
-              commentValue,
-              commentChangeHandler,
-              submitCommentHandler,
-              reviewId,
-            }}
-          />
-        </Container>
-      )}
+      <div>
+        <ReviewDetailArea
+          {...{
+            productName,
+            content,
+            picturePath,
+            rating,
+            createdAt,
+            price,
+            storeName,
+            productCategoryName,
+            user,
+          }}
+        />
+        <CommentArea
+          {...{
+            comments,
+            commentValue,
+            commentChangeHandler,
+            submitCommentHandler,
+            reviewId,
+          }}
+        />
+      </div>
     </Modal>
   );
 };
@@ -78,6 +82,5 @@ const SpinnerContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const Container = styled.div``;
 
 export default ReviewDetailModal;

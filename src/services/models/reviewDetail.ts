@@ -22,7 +22,7 @@ export interface ReviewDetail {
   price: number;
   storeName: Store;
   productCategoryName: string;
-  user: User;
+  user: UserProfile;
   comments: (Comment & { replies: Comment[] })[];
 }
 

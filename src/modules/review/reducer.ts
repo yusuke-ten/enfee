@@ -2,7 +2,6 @@ import { Reducer } from 'redux';
 import {
   ReviewDetail,
   Review,
-  FixedReviewDetail,
   Comment,
   ProductCategoryList,
 } from 'services/models';
@@ -22,7 +21,7 @@ export interface ReviewState {
   };
   reviewDetail: {
     loaded: boolean;
-    entities: FixedReviewDetail | null;
+    entities: ReviewDetail | null;
   };
   comments: {
     loaded: boolean;
@@ -88,7 +87,10 @@ const reducer: Reducer<ReviewState, ReviewAction> = (
         reviewDetail: { loaded: false, entities: null },
       };
     case actionTypes.FETCH_REVIEW_DETAIL_SUCCESS:
-      return { ...state };
+      return {
+        ...state,
+        reviewDetail: { loaded: true, entities: action.payload.result },
+      };
     case actionTypes.FETCH_REVIEW_DETAIL_FAIL:
       return { ...state };
     case actionTypes.FETCH_PRODUCT_CATEGORY_LIST_START:

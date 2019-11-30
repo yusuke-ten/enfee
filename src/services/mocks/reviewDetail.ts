@@ -21,6 +21,13 @@ const reviewDetail: ReviewDetail = {
     loginName: '@aohiro',
     imageUrl:
       'https://s3-ap-northeast-1.amazonaws.com/aohiro-blog/User/avatar/dot.jpg',
+    followerCount: 0,
+    followingCount: 0,
+    reviewCount: 39,
+    loveStore: {
+      id: 1,
+      name: 'セブン-イレブン',
+    },
   },
   comments,
 };

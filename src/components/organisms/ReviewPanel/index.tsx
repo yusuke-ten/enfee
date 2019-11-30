@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import Review from 'src/services/models/review';
 import {
@@ -15,7 +15,7 @@ import { Color, Size } from 'src/const';
 
 interface Props {
   review: Review;
-  onOpenModal: () => void;
+  onOpenModal: (reviewId: number) => void;
 }
 
 const ReviewPanel: React.FC<Props> = ({ review, onOpenModal }) => {
@@ -32,6 +32,10 @@ const ReviewPanel: React.FC<Props> = ({ review, onOpenModal }) => {
     reactions,
     user,
   } = review;
+
+  const handleOpenModal = useCallback(() => {
+    onOpenModal(id);
+  }, []);
 
   return (
     <Container>
@@ -60,7 +64,7 @@ const ReviewPanel: React.FC<Props> = ({ review, onOpenModal }) => {
         />
       </Author>
       <Line />
-      <Main onClick={onOpenModal}>
+      <Main onClick={handleOpenModal}>
         <PictureFrame>
           <Picture src={firstPictureUrl} />
         </PictureFrame>

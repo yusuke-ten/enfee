@@ -21,8 +21,7 @@ export const actionTypes = {
   FETCH_REVIEW_DETAIL_SUCCESS: 'REVIEW/FETCH_REVIEW_DETAIL_SUCCESS',
   FETCH_REVIEW_DETAIL_FAIL: 'REVIEW/FETCH_REVIEW_DETAIL_FAIL',
   FETCH_PRODUCT_CATEGORY_LIST_START: 'REVIEW/FETCH_PRODUCT_CATEGORY_LIST_START',
-  FETCH_PRODUCT_CATEGORY_LIST_SUCCESS:
-    'REVIEW/FETCH_PRODUCT_CATEGORY_LIST_SUCCESS',
+  FETCH_PRODUCT_CATEGORY_LIST_SUCCESS: 'REVIEW/FETCH_PRODUCT_CATEGORY_LIST_SUCCESS',
   FETCH_PRODUCT_CATEGORY_LIST_FAIL: 'REVIEW/FETCH_PRODUCT_CATEGORY_LIST_FAIL',
   RESET_REVIEW_LIST: 'REVIEW/RESET_REVIEW_LIST',
 } as const;
@@ -57,9 +56,9 @@ export const fetchReviewList = {
 };
 
 export const fetchReviewDetail = {
-  start: (id: number) => ({
+  start: (reviewId: number) => ({
     type: actionTypes.FETCH_REVIEW_DETAIL_START,
-    payload: { id },
+    payload: { reviewId },
   }),
   success: (result: ReviewDetail) => ({
     type: actionTypes.FETCH_REVIEW_DETAIL_SUCCESS,

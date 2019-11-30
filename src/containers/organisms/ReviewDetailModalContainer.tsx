@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from 'modules/reducer';
 import { ReviewDetailModal } from 'components/organisms';
 
-/* モックデータ */
-import reviewDetailData from 'src/services/mocks/json/reviewDetail.json';
-import camelcaseKeys from 'camelcase-keys';
-import { ReviewDetail } from 'src/services/models/reviewDetail';
+const useStateProps = () => {
+  const { loaded, entities: reviewDetail } = useSelector(
+    (state: RootState) => state.review.reviewDetail,
+  );
 
-const tmpReviewDetail = camelcaseKeys(reviewDetailData, {
-  deep: true,
-}) as { [k: string]: any };
-const reviewDetail = tmpReviewDetail as ReviewDetail;
+  return { isLoading: !loaded, reviewDetail };
+};
 
-const ReviewsDetailModalContainer: React.FC<
-  RouteComponentProps & { closeModal: () => void }
-> = ({ closeModal }) => {
+const useCommentProps = () => {
   const [commentValue, changeCommentValue] = useState<string>('');
 
   const commentChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,20 +24,19 @@ const ReviewsDetailModalContainer: React.FC<
     changeCommentValue('');
   };
 
-  const isLoading = false;
-
-  return (
-    <ReviewDetailModal
-      {...{
-        reviewDetail,
-        isLoading,
-        closeModal,
-        commentValue,
-        commentChangeHandler,
-        submitCommentHandler,
-      }}
-    />
-  );
+  return { commentValue, commentChangeHandler, submitCommentHandler };
 };
 
-export default withRouter(ReviewsDetailModalContainer);
+const ReviewsDetailModalContainer: React.FC<{ closeModal: () => void }> = ({
+  closeModal,
+}) => {
+  const passProps = {
+    ...useStateProps(),
+    ...useCommentProps(),
+    closeModal,
+  };
+
+  return <ReviewDetailModal {...passProps} />;
+};
+
+export default ReviewsDetailModalContainer;

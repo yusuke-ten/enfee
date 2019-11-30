@@ -1,18 +1,19 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { ReviewsTemplate } from 'components/templates';
 import { withInitialize } from 'containers/hocs';
 import { RootState } from 'modules/reducer';
 import useSelect from 'src/hooks/useSelect';
 import { userProfileInAsideSelector } from 'services/selectors';
-import { fetchReviewList, reset } from 'modules/review/actions';
+import { fetchReviewList, reset, fetchReviewDetail } from 'modules/review/actions';
 import { selectReviews } from 'modules/review/selectors';
 import { storeFilteringLinks, followerFilteringTabs } from 'src/const/Link';
+import { ReviewsTemplate } from 'components/templates';
 
-const ReviewsPageContainer: React.FC<
-  RouteComponentProps<{ store: string }>
-> = ({ history, match }) => {
+const ReviewsPageContainer: React.FC<RouteComponentProps<{ store: string }>> = ({
+  history,
+  match,
+}) => {
   const { store } = match.params;
 
   const dispatch = useDispatch();
@@ -30,9 +31,9 @@ const ReviewsPageContainer: React.FC<
 
   const [isModal, toggleModal] = useState<boolean>(false);
 
-  // TODO: reviewIdを受け取って、そのIDのレビュー詳細を取得するように実装する
-  const openModal = useCallback(() => {
+  const openModal = useCallback((reviewId: number) => {
     toggleModal(true);
+    dispatch(fetchReviewDetail.start(reviewId));
   }, []);
 
   const closeModal = useCallback(() => {

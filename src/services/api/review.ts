@@ -1,19 +1,12 @@
 import qs from 'qs';
-import AxiosFactory, {
-  createAuthHeader,
-  createMultiPartHeader,
-} from 'utils/axios';
-import {
-  TimeoutError,
-  ServerError,
-  UnauthorilzedError,
-} from 'src/utils/errors';
+import AxiosFactory, { createAuthHeader, createMultiPartHeader } from 'utils/axios';
+import { TimeoutError, ServerError, UnauthorilzedError } from 'src/utils/errors';
 import {
   StoreItem,
   ProductCategoryItem,
-  ReviewFormParams,
-  FixedReviewDetail,
   Review,
+  ReviewFormParams,
+  ReviewDetail,
 } from 'services/models';
 import config from 'src/config';
 
@@ -96,12 +89,10 @@ export const postReviewApi = async (
       throw new ServerError('server error');
     }
 
-    const result: FixedReviewDetail = response.data;
+    const result: ReviewDetail = response.data;
 
     return result;
   } catch (err) {
-    console.log('post review api error', err);
-
     if (err.message.startsWith('timeout')) {
       throw new TimeoutError('timeout error');
     }
@@ -140,10 +131,22 @@ export const fetchReviewListApi = async (
       throw new TimeoutError('timeout error');
     }
 
-    if (err instanceof ServerError) {
-      throw new ServerError(err.message);
+    throw err;
+  }
+};
+
+export const fetchReviewDetailApi = async (
+  reviewId: number,
+): Promise<ReviewDetail> => {
+  try {
+    const response = await axios.get(`/reviews/${reviewId}`);
+
+    return response.data;
+  } catch (err) {
+    if (err.message.startsWith('timeout')) {
+      throw new TimeoutError('timeout error');
     }
 
-    throw new Error('unexpected error');
+    throw err;
   }
 };

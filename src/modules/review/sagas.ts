@@ -10,14 +10,16 @@ import {
 import {
   postReviewApi,
   fetchReviewListApi,
+  fetchReviewDetailApi,
   fetchProductCategoryListApi,
 } from 'services/api/review';
 import { selectToken } from 'modules/auth/selectors';
-import { FixedReviewDetail, Review } from 'services/models';
+import { FixedReviewDetail, Review, ReviewDetail } from 'services/models';
 import {
   actionTypes,
   postReview,
   fetchReviewList,
+  fetchReviewDetail,
   fetchProductCategoryList,
 } from './actions';
 
@@ -58,6 +60,17 @@ function* runFetchProductCategoryList() {
   }
 }
 
+function* runFetchReviewDetail(action: ReturnType<typeof fetchReviewDetail.start>) {
+  const { reviewId } = action.payload;
+  try {
+    const reviewDetail: ReviewDetail = yield call(fetchReviewDetailApi, reviewId);
+    yield put(fetchReviewDetail.success(reviewDetail));
+  } catch (e) {
+    console.log(e);
+    yield put(fetchReviewDetail.fail());
+  }
+}
+
 function* watchPostReviewStart() {
   yield takeLatest(actionTypes.POST_REVIEW_START, runPostReviewStart);
 }
@@ -73,8 +86,13 @@ function* watchFetchProductCategoryListStart() {
   );
 }
 
+function* wtachFetchReviewDetailStart() {
+  yield takeLatest(actionTypes.FETCH_REVIEW_DETAIL_START, runFetchReviewDetail);
+}
+
 export default function* rootSaga() {
   yield fork(watchPostReviewStart);
   yield fork(watchFetchReviewListStart);
   yield fork(watchFetchProductCategoryListStart);
+  yield fork(wtachFetchReviewDetailStart);
 }
