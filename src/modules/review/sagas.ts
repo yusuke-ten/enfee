@@ -15,6 +15,7 @@ import {
 } from 'services/api/review';
 import { selectToken } from 'modules/auth/selectors';
 import { FixedReviewDetail, Review, ReviewDetail } from 'services/models';
+import { setComments } from 'modules/comment/actions';
 import {
   actionTypes,
   postReview,
@@ -65,6 +66,7 @@ function* runFetchReviewDetail(action: ReturnType<typeof fetchReviewDetail.start
   try {
     const reviewDetail: ReviewDetail = yield call(fetchReviewDetailApi, reviewId);
     yield put(fetchReviewDetail.success(reviewDetail));
+    yield put(setComments(reviewDetail.comments));
   } catch (e) {
     console.log(e);
     yield put(fetchReviewDetail.fail());

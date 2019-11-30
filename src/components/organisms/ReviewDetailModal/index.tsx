@@ -2,25 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { Spinner } from 'components/atoms';
 import { Modal } from 'components/molecules';
-import { ReviewDetailArea, CommentArea } from 'components/organisms';
+import { ReviewDetailArea } from 'components/organisms';
+import CommentAreaContainer from 'containers/organisms/CommentAreaContainer';
 import { ReviewDetail } from 'services/models';
 
 interface Props {
   reviewDetail: ReviewDetail | null;
   isLoading: boolean;
   closeModal: () => void;
-  commentValue: string;
-  commentChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  submitCommentHandler: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const ReviewDetailModal: React.FC<Props> = ({
   reviewDetail,
   isLoading,
   closeModal,
-  commentValue,
-  commentChangeHandler,
-  submitCommentHandler,
 }) => {
   if (isLoading || reviewDetail === null) {
     return (
@@ -43,7 +38,6 @@ const ReviewDetailModal: React.FC<Props> = ({
     storeName,
     productCategoryName,
     user,
-    comments,
   } = reviewDetail;
 
   return (
@@ -62,15 +56,7 @@ const ReviewDetailModal: React.FC<Props> = ({
             user,
           }}
         />
-        <CommentArea
-          {...{
-            comments,
-            commentValue,
-            commentChangeHandler,
-            submitCommentHandler,
-            reviewId,
-          }}
-        />
+        <CommentAreaContainer reviewId={reviewId} />
       </div>
     </Modal>
   );

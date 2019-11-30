@@ -6,8 +6,9 @@ import { ReplyComment } from 'components/organisms';
 import { Comment as IComment } from 'services/models/reviewDetail';
 import { Color, Size } from 'src/const';
 
-export interface Props {
-  comment: IComment & { replies: IComment[] };
+export interface CommentProps {
+  comment: IComment;
+  replies: IComment[] | null;
   replyValue: string;
   isDisplayReplies: boolean;
   isDisplayReplyForm: boolean;
@@ -20,8 +21,9 @@ export interface Props {
   handleLike: (commentId: number, liked: boolean) => void;
 }
 
-const Comment: React.FC<Props> = ({
+const Comment: React.FC<CommentProps> = ({
   comment,
+  replies,
   replyValue,
   isDisplayReplies,
   isDisplayReplyForm,
@@ -42,7 +44,6 @@ const Comment: React.FC<Props> = ({
     replyCount,
     liked,
     user,
-    replies,
   } = comment;
 
   const ToggleReplyDisplayButton = () => {
@@ -102,13 +103,14 @@ const Comment: React.FC<Props> = ({
             </RepliesArea>
           ) : (
             <RepliesArea>
-              {replies.map(replyComment => (
-                <ReplyComment
-                  key={replyComment.id}
-                  comment={replyComment}
-                  handleLike={handleLike}
-                />
-              ))}
+              {replies &&
+                replies.map(replyComment => (
+                  <ReplyComment
+                    key={replyComment.id}
+                    comment={replyComment}
+                    handleLike={handleLike}
+                  />
+                ))}
             </RepliesArea>
           ))}
       </Content>

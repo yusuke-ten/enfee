@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import styled from 'styled-components';
 import { MemoryRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
-import { boolean, object, text } from '@storybook/addon-knobs';
+import { boolean, object } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { store } from 'src';
 import reviewDetail from 'services/mocks/reviewDetail';
@@ -20,9 +20,6 @@ storiesOf('organisms/ReviewDetailModal', module)
         reviewDetail={object('reviewDetail', reviewDetail)}
         isLoading={boolean('isLodading', false)}
         closeModal={action('closeModal')}
-        commentValue={text('commentValue', '')}
-        commentChangeHandler={action('commentChangeHandler')}
-        submitCommentHandler={action('submitCommentHandler')}
       />
     </Wrapper>
   ));

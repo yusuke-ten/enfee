@@ -5,15 +5,15 @@ import { CommentInputField } from 'components/molecules';
 import { CommentContainer } from 'containers/organisms';
 import { Comment } from 'services/models';
 
-interface Props {
-  comments: (Comment & { replies: Comment[] })[];
+export interface CommentAreaProps {
+  comments: Comment[];
   commentValue: string;
   commentChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   submitCommentHandler: (e: React.FormEvent<HTMLFormElement>) => void;
   reviewId: number;
 }
 
-const CommentArea: React.FC<Props> = ({
+const CommentArea: React.FC<CommentAreaProps> = ({
   comments,
   commentValue,
   commentChangeHandler,

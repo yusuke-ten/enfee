@@ -5,9 +5,9 @@ export const actionTypes = {
   SET_COMMENTS: 'COMMENT/SET_COMMENTS',
 } as const;
 
-export const setComment = (comments: Comment[]) => ({
+export const setComments = (comments: Comment[]) => ({
   type: actionTypes.SET_COMMENTS,
   payload: { comments },
 });
 
-export type CommentAction = ReturnType<typeof setComment>;
+export type CommentAction = ReturnType<typeof setComments>;

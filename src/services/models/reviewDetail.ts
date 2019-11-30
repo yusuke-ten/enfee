@@ -23,7 +23,8 @@ export interface ReviewDetail {
   storeName: Store;
   productCategoryName: string;
   user: UserProfile;
-  comments: (Comment & { replies: Comment[] })[];
+  // comments: (Comment & { replies: Comment[] })[];
+  comments: Comment[];
 }
 
 export interface FixedReviewDetail {

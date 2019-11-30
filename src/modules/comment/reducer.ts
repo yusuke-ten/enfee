@@ -4,10 +4,12 @@ import { CommentAction, actionTypes } from './actions';
 
 export interface CommentState {
   comments: Comment[];
+  replies: { [key: string]: Comment[] };
 }
 
 const initialState: CommentState = {
   comments: [],
+  replies: {},
 };
 
 const reducer: Reducer<CommentState, CommentAction> = (

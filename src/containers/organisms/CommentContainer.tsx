@@ -1,10 +1,10 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Comment, { Props as CommentProps } from 'components/organisms/Comment';
+import Comment, { CommentProps } from 'components/organisms/Comment';
 
-type Props = Pick<CommentProps, 'comment'> & { reviewId: number };
+type OwnProps = Pick<CommentProps, 'comment'> & { reviewId: number };
 
-const CommenrContainer: React.FC<Props> = ({ reviewId, comment }) => {
+const CommenrContainer: React.FC<OwnProps> = ({ reviewId, comment }) => {
   const [isDisplayReplies, updateIsDisplayReplies] = useState(false);
   const [isReplyLoading, updateIsReplyLoading] = useState(false);
   const [isDisplayReplyForm, toggleReplyForm] = useState<boolean>(false);
@@ -50,10 +50,14 @@ const CommenrContainer: React.FC<Props> = ({ reviewId, comment }) => {
     );
   };
 
+  // FIXME: 一旦nullを入れておく
+  const replies = null;
+
   return (
     <Comment
       {...{
         comment,
+        replies,
         replyValue,
         handleOpenReplies,
         handleChangeReplyValue,

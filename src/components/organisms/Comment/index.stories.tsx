@@ -23,7 +23,7 @@ const replyCommentData: IComment = {
   },
 };
 
-const commentData: IComment & { replies: IComment[] } = {
+const commentData: IComment = {
   id: 1,
   comment: 'レビュー1へのコメントです！',
   likeCount: 3,
@@ -37,7 +37,6 @@ const commentData: IComment & { replies: IComment[] } = {
     imageUrl:
       'https://s3-ap-northeast-1.amazonaws.com/aohiro-blog/User/avatar/dot.jpg',
   },
-  replies: [replyCommentData],
 };
 
 storiesOf('organisms/Comment', module)
@@ -45,6 +44,7 @@ storiesOf('organisms/Comment', module)
     <Wrapper>
       <Comment
         comment={object('comment', commentData)}
+        replies={[replyCommentData]}
         replyValue={text('replyValue', '')}
         isDisplayReplies={boolean('isDisplayReplies', true)}
         isDisplayReplyForm={boolean('isDisplayReplyForm', false)}
@@ -60,10 +60,7 @@ storiesOf('organisms/Comment', module)
   ))
   .add('replyComment', () => (
     <Wrapper>
-      <ReplyComment
-        comment={replyCommentData}
-        handleLike={action('handleLike')}
-      />
+      <ReplyComment comment={replyCommentData} handleLike={action('handleLike')} />
     </Wrapper>
   ));
 
