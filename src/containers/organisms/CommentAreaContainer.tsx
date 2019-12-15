@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'modules/reducer';
+import { postComment } from 'modules/comment/actions';
 import CommentArea from 'components/organisms/CommentArea';
 
-const useCommentProps = () => {
+const useCommentProps = (reviewId: number) => {
+  const dispatch = useDispatch();
   const [commentValue, changeCommentValue] = useState<string>('');
 
   const commentChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,7 +14,7 @@ const useCommentProps = () => {
 
   const submitCommentHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(`submit comment! value: ${commentValue}`);
+    dispatch(postComment.start({ commentValue, reviewId }));
     changeCommentValue('');
   };
 
@@ -20,9 +22,11 @@ const useCommentProps = () => {
 };
 
 const useSelectProps = () => {
-  const comments = useSelector((state: RootState) => state.comment.comments);
+  const { comments, isPosting } = useSelector((state: RootState) => state.comment);
+  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+  const myProfile = useSelector((state: RootState) => state.app.myProfile);
 
-  return { comments };
+  return { comments, isLoggedIn, myProfile, isPosting };
 };
 
 interface OwnProps {
@@ -30,11 +34,9 @@ interface OwnProps {
 }
 
 const CommentAreaContainer: React.FC<OwnProps> = ({ reviewId }) => {
-  console.log(reviewId);
-
   const passProps = {
     ...useSelectProps(),
-    ...useCommentProps(),
+    ...useCommentProps(reviewId),
     reviewId,
   };
 

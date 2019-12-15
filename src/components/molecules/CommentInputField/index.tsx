@@ -8,6 +8,7 @@ interface Props {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   reply?: boolean;
+  isPosting?: boolean;
 }
 
 const CommentInputField: React.FC<Props> = ({
@@ -15,6 +16,7 @@ const CommentInputField: React.FC<Props> = ({
   value,
   onChange,
   reply = false,
+  isPosting = false,
 }) => {
   const buttonText = reply ? '返信する' : 'コメントする';
   const placeholderText = reply ? '返信を入力' : 'コメントを入力';
@@ -34,7 +36,7 @@ const CommentInputField: React.FC<Props> = ({
         <ButtonArea>
           <StyledButton
             type="submit"
-            disabled={value.length === 0}
+            disabled={value.length === 0 || isPosting}
             small={reply}
           >
             {buttonText}

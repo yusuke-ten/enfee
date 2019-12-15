@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Txt, CommentDotsIcon } from 'components/atoms';
 import { CommentInputField } from 'components/molecules';
 import { CommentContainer } from 'containers/organisms';
-import { Comment } from 'services/models';
+import { Comment, UserProfile } from 'services/models';
 
 export interface CommentAreaProps {
   comments: Comment[];
@@ -11,6 +11,9 @@ export interface CommentAreaProps {
   commentChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   submitCommentHandler: (e: React.FormEvent<HTMLFormElement>) => void;
   reviewId: number;
+  isLoggedIn: boolean;
+  myProfile: UserProfile | null;
+  isPosting: boolean;
 }
 
 const CommentArea: React.FC<CommentAreaProps> = ({
@@ -19,7 +22,12 @@ const CommentArea: React.FC<CommentAreaProps> = ({
   commentChangeHandler,
   submitCommentHandler,
   reviewId,
+  isLoggedIn,
+  myProfile,
+  isPosting,
 }) => {
+  const myImageUrl = myProfile ? myProfile.imageUrl : '';
+
   return (
     <>
       <Title>
@@ -28,13 +36,16 @@ const CommentArea: React.FC<CommentAreaProps> = ({
         </StyledTxt>
         <CommentDotsIcon width={18} height={18} color="black" />
       </Title>
-      <form onSubmit={submitCommentHandler}>
-        <CommentInputField
-          imageUrl=""
-          value={commentValue}
-          onChange={commentChangeHandler}
-        />
-      </form>
+      {isLoggedIn && (
+        <form onSubmit={submitCommentHandler}>
+          <CommentInputField
+            imageUrl={myImageUrl}
+            value={commentValue}
+            onChange={commentChangeHandler}
+            isPosting={isPosting}
+          />
+        </form>
+      )}
       <div>
         {comments.map((comment, idx) => (
           <CommentWrapper key={idx}>

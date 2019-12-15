@@ -25,16 +25,12 @@ export const reducer: Reducer<AuthState, AuthAction> = (
 ) => {
   switch (action.type) {
     case actionTypes.LOGIN_START:
-      console.log('reducer: login start', action.payload);
-
       return {
         ...state,
         isLoading: true,
         isError: false,
       };
     case actionTypes.LOGIN_SUCCEED:
-      console.log('login succeed', action.payload);
-
       return {
         ...state,
         token: action.payload.result.token,
@@ -43,8 +39,6 @@ export const reducer: Reducer<AuthState, AuthAction> = (
         isError: false,
       };
     case actionTypes.LOGIN_FAIL:
-      console.log('login fail', action.payload.error.message);
-
       return {
         ...state,
         isLoading: false,
