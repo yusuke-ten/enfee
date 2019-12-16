@@ -12,6 +12,7 @@ import {
 import { UserInfo } from 'components/molecules';
 import { ReviewDetail } from 'services/models';
 import { Color, Size } from 'src/const';
+import { format } from 'utils/date';
 
 type Props = Omit<ReviewDetail, 'id' | 'comments'>;
 
@@ -49,7 +50,7 @@ const ReviewDetailArea: React.FC<Props> = ({
       </Section>
       <Line />
       <Section>
-        <CreatedAt>投稿日: {createdAt}</CreatedAt>
+        <CreatedAt>投稿日: {format(createdAt)}</CreatedAt>
         <Heading type="h3">{productName}</Heading>
         <Price>価格: ￥{price}</Price>
         <p>

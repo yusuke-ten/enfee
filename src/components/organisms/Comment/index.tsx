@@ -5,6 +5,7 @@ import { Like, ToggleAngle, CommentInputField } from 'components/molecules';
 import { ReplyComment } from 'components/organisms';
 import { Comment as IComment } from 'services/models/reviewDetail';
 import { Color, Size } from 'src/const';
+import { format } from 'utils/date';
 
 export interface CommentProps {
   comment: IComment;
@@ -72,7 +73,7 @@ const Comment: React.FC<CommentProps> = ({
           <Name>
             {user.displayName} {user.loginName}
           </Name>
-          <span>{createdAt}</span>
+          <span>{format(createdAt)}</span>
         </Top>
         <Body>{body}</Body>
         <Desc>

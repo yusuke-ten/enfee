@@ -12,6 +12,7 @@ import {
 import { CountText, UserInfo } from 'components/molecules';
 import { Rating as RatingType } from 'services/models';
 import { Color, Size } from 'src/const';
+import { format } from 'utils/date';
 
 interface Props {
   review: Review;
@@ -49,7 +50,7 @@ const ReviewPanel: React.FC<Props> = ({ review, onOpenModal }) => {
           </LabelItemWrapper>
         </div>
         <TopRight>
-          <CreatedAt>投稿日: {createdAt}</CreatedAt>
+          <CreatedAt>投稿日: {format(createdAt)}</CreatedAt>
           <CountText text="コメント" count={commentCount} />
         </TopRight>
       </Top>
