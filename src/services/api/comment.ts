@@ -6,6 +6,20 @@ import config from 'src/config';
 
 const axios = AxiosFactory.getInstance();
 
+export const fetchCommentsApi = async (reviewId: number): Promise<Comment[]> => {
+  try {
+    const response = await axios.get(`/reviews/${reviewId}/comments`);
+
+    return response.data;
+  } catch (err) {
+    if (err.message.startsWith('timeout')) {
+      throw new TimeoutError('timeout error');
+    }
+
+    throw err;
+  }
+};
+
 export const postCommentApi = async (
   token: string,
   reviewId: number,

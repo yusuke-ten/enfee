@@ -1,4 +1,5 @@
 import {
+  all,
   fork,
   takeLatest,
   takeEvery,
@@ -13,8 +14,9 @@ import {
   fetchReviewDetailApi,
   fetchProductCategoryListApi,
 } from 'services/api/review';
+import { fetchCommentsApi } from 'services/api/comment';
 import { selectToken } from 'modules/auth/selectors';
-import { FixedReviewDetail, Review, ReviewDetail } from 'services/models';
+import { FixedReviewDetail, Review, ReviewDetail, Comment } from 'services/models';
 import { setComments } from 'modules/comment/actions';
 import {
   actionTypes,
@@ -64,9 +66,13 @@ function* runFetchProductCategoryList() {
 function* runFetchReviewDetail(action: ReturnType<typeof fetchReviewDetail.start>) {
   const { reviewId } = action.payload;
   try {
-    const reviewDetail: ReviewDetail = yield call(fetchReviewDetailApi, reviewId);
+    const [reviewDetail, comments]: [ReviewDetail, Comment[]] = yield all([
+      call(fetchReviewDetailApi, reviewId),
+      call(fetchCommentsApi, reviewId),
+    ]);
+    yield call(fetchReviewDetailApi, reviewId);
     yield put(fetchReviewDetail.success(reviewDetail));
-    yield put(setComments(reviewDetail.comments));
+    yield put(setComments(comments));
   } catch (e) {
     console.log(e);
     yield put(fetchReviewDetail.fail());
