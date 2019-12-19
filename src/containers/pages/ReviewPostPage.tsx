@@ -54,8 +54,7 @@ const ReviewPostPage: React.FC = () => {
       if (files && files.length !== 0) {
         const file = files[0];
         const url = createObjectURL(file);
-        const id =
-          pictures.length === 0 ? 1 : pictures[pictures.length - 1].id + 1;
+        const id = pictures.length === 0 ? 1 : pictures[pictures.length - 1].id + 1;
         setPictures([...pictures, { id, url, file }]);
       }
     },

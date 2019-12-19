@@ -5,14 +5,12 @@ import { RootState } from 'modules/reducer';
 import { Spinner } from 'components/atoms';
 import useInitialize from 'src/hooks/useInitialize';
 
-const withInitialize = <P extends object>(
-  Component: React.ComponentType<P>,
-) => (props: P) => {
+const withInitialize = <P extends object>(Component: React.ComponentType<P>) => (
+  props: P,
+) => {
   useInitialize();
 
-  const { appInitialized } = useSelector(
-    (state: RootState) => state.intializer,
-  );
+  const { appInitialized } = useSelector((state: RootState) => state.intializer);
 
   if (appInitialized) {
     return <Component {...props} />;
