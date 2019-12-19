@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { like as likeAction } from 'modules/comment/actions';
 import Comment, { CommentProps } from 'components/organisms/Comment';
 
 type OwnProps = Pick<CommentProps, 'comment'> & { reviewId: number };
@@ -34,11 +35,8 @@ const CommenrContainer: React.FC<OwnProps> = ({ reviewId, comment }) => {
   }, []);
 
   const handleLike = useCallback((commentId: number, liked: boolean) => {
-    if (liked) {
-      console.log(`id: ${commentId}のライクを解除します`);
-    } else {
-      console.log(`id: ${commentId}をライクしました`);
-    }
+    const type = liked ? 'delete' : 'post';
+    dispatch(likeAction.start(commentId, type));
   }, []);
 
   const handleReplySubmit = (e: React.FormEvent<HTMLFormElement>) => {

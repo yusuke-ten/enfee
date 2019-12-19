@@ -65,16 +65,16 @@ function* runFetchProductCategoryList() {
 
 function* runFetchReviewDetail(action: ReturnType<typeof fetchReviewDetail.start>) {
   const { reviewId } = action.payload;
+  const token: ReturnType<typeof selectToken> = yield select(selectToken);
   try {
     const [reviewDetail, comments]: [ReviewDetail, Comment[]] = yield all([
       call(fetchReviewDetailApi, reviewId),
-      call(fetchCommentsApi, reviewId),
+      call(fetchCommentsApi, token, reviewId),
     ]);
     yield call(fetchReviewDetailApi, reviewId);
     yield put(fetchReviewDetail.success(reviewDetail));
     yield put(setComments(comments));
   } catch (e) {
-    console.log(e);
     yield put(fetchReviewDetail.fail());
   }
 }

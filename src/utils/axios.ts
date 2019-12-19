@@ -29,10 +29,17 @@ class AxiosFactory {
       ...optionConfig,
     };
     const instance = axios.create(axiosConfig);
-    instance.interceptors.response.use(res => ({
-      ...res,
-      data: camelcaseKeys(res.data, { deep: true }),
-    }));
+    instance.interceptors.response.use(res => {
+      return {
+        ...res,
+        data:
+          // status:201や204など、dataが入っていないときエラーにならないようにするため。
+          // ' 'をチェックしているのは、201のレスポンスがdata: ' 'で返ってきているため（なぜ？）
+          res.data && res.data !== ' '
+            ? camelcaseKeys(res.data, { deep: true })
+            : '',
+      };
+    });
 
     return instance;
   }

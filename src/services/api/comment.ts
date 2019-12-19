@@ -6,11 +6,58 @@ import config from 'src/config';
 
 const axios = AxiosFactory.getInstance();
 
-export const fetchCommentsApi = async (reviewId: number): Promise<Comment[]> => {
+export const fetchCommentsApi = async (
+  token: string | null,
+  reviewId: number,
+): Promise<Comment[]> => {
+  const headers = createAuthHeader(token || '');
+
   try {
-    const response = await axios.get(`/reviews/${reviewId}/comments`);
+    const response = await axios.get(`/reviews/${reviewId}/comments`, { headers });
 
     return response.data;
+  } catch (err) {
+    if (err.message.startsWith('timeout')) {
+      throw new TimeoutError('timeout error');
+    }
+
+    throw err;
+  }
+};
+
+export const postCommentLikeApi = async (
+  token: string,
+  commentId: number,
+): Promise<void> => {
+  const headers = createAuthHeader(token);
+
+  try {
+    await axios.post(`/comments/${commentId}/likes`, null, {
+      headers,
+    });
+
+    return;
+  } catch (err) {
+    if (err.message.startsWith('timeout')) {
+      throw new TimeoutError('timeout error');
+    }
+
+    throw err;
+  }
+};
+
+export const deleteCommentLikeApi = async (
+  token: string,
+  commentId: number,
+): Promise<unknown> => {
+  const headers = createAuthHeader(token);
+
+  try {
+    await axios.delete(`/comments/${commentId}/likes`, {
+      headers,
+    });
+
+    return;
   } catch (err) {
     if (err.message.startsWith('timeout')) {
       throw new TimeoutError('timeout error');
