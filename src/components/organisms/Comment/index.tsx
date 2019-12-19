@@ -71,7 +71,7 @@ const Comment: React.FC<CommentProps> = ({
       <Content>
         <Top>
           <Name>
-            {user.displayName} {user.loginName}
+            {user.displayName} @{user.loginName}
           </Name>
           <span>{format(createdAt)}</span>
         </Top>
@@ -82,9 +82,10 @@ const Comment: React.FC<CommentProps> = ({
             isLiked={liked}
             handleClick={() => handleLike(commentId, liked)}
           />
-          <DoReply onClick={handleToggleDisplayReplayForm}>
+          {/* リプライ機能は一旦使わない */}
+          {/* <DoReply onClick={handleToggleDisplayReplayForm}>
             {isDisplayReplyForm ? '返信をキャンセル' : '返信する'}
-          </DoReply>
+          </DoReply> */}
         </Desc>
         {isDisplayReplyForm && (
           <form onSubmit={handleReplySubmit}>
