@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import Layout from 'components/Layout';
 import { ReviewMenu, Aside, PenLauncherButton } from 'components/molecules';
 import { ReviewPanelList } from 'components/organisms';
@@ -58,11 +58,22 @@ const ReviewsTemplate: React.FC<Props> = ({
       <LauncherWrapper>
         <PenLauncherButton to="/reviews/new" />
       </LauncherWrapper>
-      {isModal && <ReviewDetailModalContainer closeModal={closeModal} />}
+      {isModal && (
+        <>
+          <BackgroundFixedStyle />
+          <ReviewDetailModalContainer closeModal={closeModal} />
+        </>
+      )}
     </Layout>
   );
 };
 
+// modal表示時に背景をスクロール出来ないよう固定するために使用
+const BackgroundFixedStyle = createGlobalStyle`
+  #root {
+    position: fixed;
+  }
+`;
 const Body = styled.div`
   min-height: calc(100vh - 50px);
   padding: 32px 16px;
