@@ -4,29 +4,31 @@ import { Color, Size } from 'src/const';
 
 export interface FilterMenuProps {
   rightContent?: React.ReactNode;
-  menuItems: { text: string; isCurrent?: boolean }[];
-  handleClick: () => void;
+  menus: string[];
+  selected: string;
+  handleSelect: (selectedMenu: string) => void;
   small?: boolean;
 }
 
 const FilterMenu: React.FC<FilterMenuProps> = ({
-  menuItems,
+  menus,
+  selected,
+  handleSelect,
   rightContent,
-  handleClick,
   small = false,
   ...props
 }) => {
   return (
     <Container {...props}>
       <FilterItems>
-        {menuItems.map((item, i) => (
+        {menus.map((m, i) => (
           <Item
             key={i}
-            isCurrent={item.isCurrent}
+            isCurrent={m === selected}
             small={small}
-            onClick={handleClick}
+            onClick={() => handleSelect(m)}
           >
-            {item.text}
+            {m}
           </Item>
         ))}
       </FilterItems>
@@ -36,7 +38,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({
 };
 
 const Container = styled.div`
-  border-top: 1px solid ${Color.BORDER.LIGHT};
+  border-bottom: 1px solid ${Color.BORDER.LIGHT};
   display: flex;
   padding: 0 12px;
 `;
@@ -54,8 +56,9 @@ const Item = styled.li<{ isCurrent: boolean | undefined; small: boolean }>`
           margin-right: 8px;
         `
       : css`
-          font-size: ${Size.FONT_RATIO.BASE}rem;
-          padding: 12px 16px;
+          font-size: ${Size.FONT_RATIO.MEDIUM}rem;
+          padding: 16px 20px;
+          margin-right: 12px;
         `}
   ${props =>
     props.isCurrent &&
@@ -65,8 +68,11 @@ const Item = styled.li<{ isCurrent: boolean | undefined; small: boolean }>`
       font-weight: 700;
     `}
 
+  transition-duration: 0.1s;
+
   &:hover {
     border-bottom: 2px solid ${Color.THEME.PRIMARY};
+    background-color: ${Color.BACKGROUND.BASE};
   }
 `;
 const RightContent = styled.div`

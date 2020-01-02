@@ -10,8 +10,11 @@ storiesOf('organisms/FilterReviewMenu', module).add('default', () => (
     <FilterReviewMenu
       selectItems={productCategoryList}
       selectProps={{ value: '0', onChange: action('onChange') }}
-      menuItems={[{ text: 'フォロー中', isCurrent: true }, { text: '全体' }]}
-      handleClick={action('handleClick')}
+      menuProps={{
+        menus: ['フォロー中', '全体'],
+        selected: 'フォロー中',
+        handleSelect: action('handleSelect'),
+      }}
     />
   </Wrapper>
 ));

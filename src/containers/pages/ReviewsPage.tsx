@@ -31,6 +31,11 @@ const ReviewsPageContainer: React.FC<RouteComponentProps<{ store: string }>> = (
 
   const [isModal, toggleModal] = useState<boolean>(false);
   const [currentScrollY, setCurrentScrollY] = useState<number>(0);
+  const [selectedFilterMenu, setSelectedFilterMenu] = useState<string>('全体');
+
+  const handleSelect = useCallback((selectedMenu: string) => {
+    setSelectedFilterMenu(selectedMenu);
+  }, []);
 
   const openModal = useCallback((reviewId: number) => {
     setCurrentScrollY(window.scrollY);
@@ -64,8 +69,11 @@ const ReviewsPageContainer: React.FC<RouteComponentProps<{ store: string }>> = (
   const filterMenuProps = {
     selectItems: productCategoryList,
     selectProps: categorySelectProps,
-    menuItems: followerFilteringTabs,
-    handleClick: () => {},
+    menuProps: {
+      menus: followerFilteringTabs,
+      selected: selectedFilterMenu,
+      handleSelect,
+    },
   };
 
   return (

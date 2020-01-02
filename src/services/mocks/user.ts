@@ -11,3 +11,5 @@ export const userProfile: UserProfile = {
   reviewCount: 39,
   loveStore: { id: 1, name: 'セブン-イレブン' },
 };
+
+export const userProfileList: UserProfile[] = new Array(8).fill(userProfile);

@@ -7,7 +7,4 @@ export const storeFilteringLinks: FilteringLink[] = [
   { text: 'ローソン', to: '/reviews/lawson' },
 ];
 
-export const followerFilteringTabs: { text: string; isCurrent?: boolean }[] = [
-  { text: 'フォロー中', isCurrent: true },
-  { text: '全体' },
-];
+export const followerFilteringTabs: string[] = ['全体', 'フォロー中'];

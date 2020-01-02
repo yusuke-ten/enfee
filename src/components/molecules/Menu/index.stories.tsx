@@ -29,21 +29,16 @@ storiesOf('molecules/Menu', module)
     <>
       <FilterMenuWrapper>
         <FilterMenu
-          menuItems={[
-            { text: 'レビュー', isCurrent: true },
-            { text: 'フォロー中' },
-            { text: 'フォロワー' },
-          ]}
-          handleClick={action('handleClick')}
+          menus={['レビュー', 'フォロー中', 'フォロワー']}
+          selected="レビュー"
+          handleSelect={action('handleSelect')}
         />
       </FilterMenuWrapper>
       <FilterMenuWrapper>
         <FilterMenu
-          menuItems={[
-            { text: 'フォロー中', isCurrent: true },
-            { text: '全体' },
-          ]}
-          handleClick={action('handleClick')}
+          menus={['フォロー中', '全体']}
+          selected="フォロー中"
+          handleSelect={action('handleSelect')}
           small
         />
       </FilterMenuWrapper>

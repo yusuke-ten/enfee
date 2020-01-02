@@ -4,12 +4,12 @@ import HorizontalUserProfile from 'components/molecules/UserProfile/HorizontalUs
 import { UserProfile } from 'services/models';
 import { Color } from 'src/const';
 
-interface UserProfileListProps {
+interface HorizontalUserProfileListProps {
   userProfileList: UserProfile[];
   isLoggedIn: boolean;
 }
 
-const UserProfileList: React.FC<UserProfileListProps> = ({
+const HorizontalUserProfileList: React.FC<HorizontalUserProfileListProps> = ({
   userProfileList,
   isLoggedIn,
 }) => {
@@ -32,4 +32,4 @@ const Wrapper = styled.div`
   border-bottom: 1px solid ${Color.BORDER.LIGHT};
 `;
 
-export default UserProfileList;
+export default HorizontalUserProfileList;
