@@ -61,7 +61,7 @@ const ReviewPanel: React.FC<Props> = ({ review, onOpenModal }) => {
           imageUrl={user.imageUrl}
           displayName={user.displayName}
           loginName={user.loginName}
-          userPageUrl={`/users/${user.id}`}
+          userPageUrl={`/users/${user.loginName}`}
           size="small"
         />
       </Author>

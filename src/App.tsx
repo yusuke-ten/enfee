@@ -20,7 +20,7 @@ const App: React.FC = () => (
     <Route path="/reviews" component={ReviewsPage} exact />
     <Route path={paths.reviews} component={ReviewsPage} exact />
     <Route path="/" exact render={({ match }) => <Redirect to="/reviews" />} />
-    <Route path={paths.user} component={UsersPage} exact />
+    <Route path={paths.users} component={UsersPage} exact />
     <Route path="/" component={NotFound} />
   </Switch>
 );

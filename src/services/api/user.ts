@@ -30,3 +30,15 @@ export const fetchMyProfile = async (token: string) => {
     throw new Error(`unexpected error${err}`);
   }
 };
+
+export const fetchUserProfileApi = async (
+  loginName: string,
+): Promise<UserProfile> => {
+  try {
+    const response = await axios.get<{ data: UserProfile }>(`/users/${loginName}`);
+
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+};
