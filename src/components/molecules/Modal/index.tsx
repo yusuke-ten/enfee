@@ -14,9 +14,9 @@ const modalRoot = document.getElementById('modal-root') as Element;
 
 const Modal: React.FC<Props> = ({ children, onClose, heading }) => {
   const modalUI = (
-    <Container>
+    <Container onClick={onClose}>
       <Inner>
-        <Content>
+        <Content onClick={e => e.stopPropagation()}>
           <Header>
             {heading && <Heading>{heading}</Heading>}
             <CloseButton onClick={onClose}>
@@ -45,7 +45,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-  border-radius: 2px;
+  border-radius: 1px;
 `;
 const Inner = styled.div`
   height: auto;
@@ -60,16 +60,13 @@ const Inner = styled.div`
 `;
 const Content = styled.div`
   overflow: initial;
-  /* min-height: 80vh; */
+  height: 100%;
+  width: 100%;
+  background-color: white;
 
   > * {
     pointer-events: all;
   }
-
-  height: 100%;
-  width: 100%;
-  border-radius: 3px;
-  background-color: white;
 `;
 const Header = styled.div`
   height: 40px;

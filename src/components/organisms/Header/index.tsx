@@ -49,7 +49,6 @@ const Header: React.FC<Props> = ({
 };
 
 const Container = styled.header`
-  width: 100vw;
   height: ${Size.HEADER.HEIGHT}px;
   background-color: ${Color.THEME.PRIMARY};
 `;
@@ -67,13 +66,11 @@ const Frame = styled.div`
   } */
 
   @media (max-width: ${Size.BREAK_POINT.TABLET}px) {
-    width: 100vw;
-    padding: 0 10px;
+    padding: 0 20px;
   }
 
   @media (max-width: ${Size.BREAK_POINT.MOBILE}px) {
-    width: 100vw;
-    padding: 0 5px;
+    padding: 0 14px;
   }
 `;
 

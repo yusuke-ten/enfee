@@ -21,6 +21,8 @@ interface Props {
   myProfile: MyProfileInAside | null;
   isLoggedIn: boolean;
   filterReviewMenuProps: FilterReviewProps;
+  currentScrollY: number;
+  undoScrollTop: () => void;
 }
 
 const ReviewsTemplate: React.FC<Props> = ({
@@ -33,6 +35,8 @@ const ReviewsTemplate: React.FC<Props> = ({
   myProfile,
   isLoggedIn,
   filterReviewMenuProps,
+  currentScrollY,
+  undoScrollTop,
 }) => {
   return (
     <Layout title="レビューページ">
@@ -58,22 +62,27 @@ const ReviewsTemplate: React.FC<Props> = ({
       <LauncherWrapper>
         <PenLauncherButton to="/reviews/new" />
       </LauncherWrapper>
-      {isModal && (
+      {isModal ? (
         <>
-          <BackgroundFixedStyle />
+          <BackgroundFixedStyle currentScrollY={currentScrollY} />
           <ReviewDetailModalContainer closeModal={closeModal} />
         </>
+      ) : (
+        <>{undoScrollTop()}</>
       )}
     </Layout>
   );
 };
 
-// modal表示時に背景をスクロール出来ないよう固定するために使用
-const BackgroundFixedStyle = createGlobalStyle`
+/* modal表示時に背景をスクロール出来ないよう固定するために使用 */
+const BackgroundFixedStyle = createGlobalStyle<{ currentScrollY: number }>`
   #root {
     position: fixed;
+    width: 100%;
+    top: -${props => props.currentScrollY}px;
   }
 `;
+
 const Body = styled.div`
   min-height: calc(100vh - 50px);
   padding: 32px 16px;

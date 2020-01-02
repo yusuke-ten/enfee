@@ -38,6 +38,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({
 const Container = styled.div`
   border-top: 1px solid ${Color.BORDER.LIGHT};
   display: flex;
+  padding: 0 12px;
 `;
 const FilterItems = styled.ul`
   display: flex;
@@ -49,13 +50,13 @@ const Item = styled.li<{ isCurrent: boolean | undefined; small: boolean }>`
     props.small
       ? css`
           font-size: ${Size.FONT_RATIO.BASE}rem;
-          padding: 10px 14px;
+          padding: 12px 10px;
+          margin-right: 8px;
         `
       : css`
           font-size: ${Size.FONT_RATIO.BASE}rem;
           padding: 12px 16px;
         `}
-  transition-duration: 0.2s;
   ${props =>
     props.isCurrent &&
     css`
@@ -65,7 +66,7 @@ const Item = styled.li<{ isCurrent: boolean | undefined; small: boolean }>`
     `}
 
   &:hover {
-    background-color: ${Color.BACKGROUND.BASE};
+    border-bottom: 2px solid ${Color.THEME.PRIMARY};
   }
 `;
 const RightContent = styled.div`

@@ -1,10 +1,6 @@
 import React from 'react';
-import SmallSelect, {
-  SmallSelectProps,
-} from 'components/atoms/Select/SmallSelect';
-import FilterMenu, {
-  FilterMenuProps,
-} from 'components/molecules/Menu/FilterMenu';
+import SmallSelect, { SmallSelectProps } from 'components/atoms/Select/SmallSelect';
+import FilterMenu, { FilterMenuProps } from 'components/molecules/Menu/FilterMenu';
 
 export type FilterReviewProps = Omit<SmallSelectProps, 'title'> &
   Pick<FilterMenuProps, 'menuItems' | 'handleClick'>;

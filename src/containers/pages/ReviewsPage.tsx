@@ -30,15 +30,23 @@ const ReviewsPageContainer: React.FC<RouteComponentProps<{ store: string }>> = (
   }, [store, categorySelectProps.value]);
 
   const [isModal, toggleModal] = useState<boolean>(false);
+  const [currentScrollY, setCurrentScrollY] = useState<number>(0);
 
   const openModal = useCallback((reviewId: number) => {
+    setCurrentScrollY(window.scrollY);
     toggleModal(true);
     dispatch(fetchReviewDetail.start(reviewId));
   }, []);
 
   const closeModal = useCallback(() => {
     toggleModal(false);
-  }, []);
+  }, [currentScrollY]);
+
+  const undoScrollTop = () => {
+    process.nextTick(() => {
+      window.scrollTo(0, currentScrollY);
+    });
+  };
 
   const {
     auth: { isLoggedIn },
@@ -71,6 +79,8 @@ const ReviewsPageContainer: React.FC<RouteComponentProps<{ store: string }>> = (
       myProfile={myProfile}
       isLoggedIn={isLoggedIn}
       filterReviewMenuProps={filterMenuProps}
+      currentScrollY={currentScrollY}
+      undoScrollTop={undoScrollTop}
     />
   );
 };
