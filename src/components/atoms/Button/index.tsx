@@ -11,7 +11,7 @@ interface Props {
   shape?: ShapeType;
   reverse?: boolean;
   disabled?: boolean;
-  height?: number;
+  // height?: number;
 }
 
 export const getColor = (color: ColorType = 'primary') => {
@@ -65,13 +65,33 @@ const getColorStyle = (color: ColorType, reverse: boolean) => {
   `;
 };
 
+const getSizeStyle = (size: SizeType = 'midium') => {
+  if (size === 'small') {
+    return css`
+      height: 28px;
+      padding: 0 18px;
+    `;
+  }
+  if (size === 'large') {
+    return css`
+      height: 40px;
+      padding: 0 28px;
+    `;
+  }
+
+  // default(midium)のとき
+  return css`
+    height: 35px;
+    padding: 0 25px;
+  `;
+};
+
 const StyledButton = styled.button<Props>`
   ${({ color = 'primary', reverse = false }) => getColorStyle(color, reverse)}
   font-size: ${Size.FONT.XSMALL}px;
-  height: ${({ height = 35 }) => height}px;
   border-radius: ${({ shape }) => getshape(shape)}px;
   letter-spacing: 1.28px;
-  padding: 0 25px;
+  ${props => getSizeStyle(props.size || 'midium')}
   cursor: pointer;
   outline: none;
   font-weight: ${Size.FONT_WEIGHT.NORMAL};
