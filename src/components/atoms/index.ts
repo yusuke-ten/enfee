@@ -36,14 +36,10 @@ export { default as MenuItem } from './MenuItem';
 export { default as Paragraph } from './Paragraph';
 export { default as Picture } from './Picture';
 export { default as Rating } from './Rating';
-export { default as Txt, InfoTxt, WarnTxt } from './Text';
+export { default as Txt, InfoTxt, WarnTxt } from './Txt';
 export { default as MediaObjectLayout } from './MediaObjectLayout';
 export { default as Tooltip } from './Tooltip';
-export {
-  default as HoverTipInteraction,
-  Tip,
-  Marker,
-} from './HoverTipInteraction';
+export { default as HoverTipInteraction, Tip, Marker } from './HoverTipInteraction';
 export { default as Card } from './Card';
 export { default as Select } from './Select';
 export { default as Bolloon } from './Bolloon';

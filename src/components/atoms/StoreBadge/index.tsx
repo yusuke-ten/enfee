@@ -4,20 +4,24 @@ import { Store } from 'services/models/store';
 import { Color, Size } from 'src/const';
 
 type Size = 'small' | 'medium';
+type StoreType = Store | 'INDEPENDENT';
 
 interface Props {
-  store: Store;
+  store: StoreType;
   size?: Size;
 }
 
 const StoreBadge: React.FC<Props> = ({ store, size = 'medium' }) => (
-  <Wrapper {...{ store, size }}>{store}</Wrapper>
+  <Wrapper {...{ store, size }}>
+    {store === 'INDEPENDENT' ? '無所属' : store}
+  </Wrapper>
 );
 
-const colors: { [k in Store]: string } = {
+const colors: { [key: string]: string } = {
   'セブン-イレブン': Color.STORE.SEVEN_ELEVEN,
   ファミリーマート: Color.STORE.FAMILY_MART,
   ローソン: Color.STORE.LAWSON,
+  none: Color.STORE.INDEPENDENT,
 };
 
 const getSizebStyles = (size: Size) => {
@@ -37,7 +41,7 @@ const getSizebStyles = (size: Size) => {
   }
 };
 
-const Wrapper = styled.span<{ store: Store; size: Size }>`
+const Wrapper = styled.span<{ store: StoreType; size: Size }>`
   display: inline-block;
   color: ${Color.FONT.LESS};
   border-radius: 2px;

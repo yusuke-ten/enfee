@@ -15,8 +15,8 @@ const BACKGROUND = {
 const FONT = {
   BASE: '#858282',
   DARK: '#5C5B5B',
-  SUPER_DARK: '#333333',
-  LIGHT: '#A7A2A2',
+  SUPER_DARK: '#14171a',
+  LIGHT: '#657786',
   SUPER_LIGHT: '#BEC8D2',
   LESS: '#FFFFFF',
   SELECTED: '#A7893E',
@@ -30,6 +30,7 @@ const STORE = {
   SEVEN_ELEVEN: '#EF2A2F',
   LAWSON: '#066AB9',
   FAMILY_MART: '#18AE48',
+  INDEPENDENT: '#A7893E',
 };
 
 export default {

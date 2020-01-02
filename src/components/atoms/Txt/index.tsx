@@ -4,18 +4,29 @@ import { Color, Size } from 'src/const';
 
 type Role = 'default' | 'info' | 'warn';
 type Size = 'xs' | 's' | 'b' | 'm' | 'l' | 'xl';
+type fontWeight = 'normal' | 'bold';
 
 interface Props {
   tag?: React.ReactType | keyof JSX.IntrinsicElements;
   size?: Size;
+  fontWeight?: fontWeight;
 }
 
 const txtFactory: (role: Role) => React.FC<Props> = role => ({
   tag = 'p',
   size = 'm',
+  fontWeight = 'normal',
   ...props
 }) => {
-  return <StyledText as={tag} role={role} size={size} {...props} />;
+  return (
+    <StyledText
+      as={tag}
+      role={role}
+      size={size}
+      fontWeight={fontWeight}
+      {...props}
+    />
+  );
 };
 
 const sizeMap: { [k in Size]: number } = {
@@ -28,14 +39,15 @@ const sizeMap: { [k in Size]: number } = {
 };
 
 const colorPallete: { [k in Role]: string } = {
-  default: Color.FONT.DARK,
-  info: Color.FONT.BASE,
+  default: Color.FONT.SUPER_DARK,
+  info: Color.FONT.LIGHT,
   warn: Color.THEME.ERROR,
 };
 
-const StyledText = styled.p<{ role: Role; size: Size }>`
+const StyledText = styled.p<{ role: Role; size: Size; fontWeight: fontWeight }>`
   font-size: ${props => sizeMap[props.size]}rem;
   color: ${props => colorPallete[props.role]};
+  font-weight: ${props => props.fontWeight};
 `;
 
 const Txt = txtFactory('default');

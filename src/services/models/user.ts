@@ -1,3 +1,5 @@
+import { Store } from './store';
+
 export interface User {
   id: number;
   displayName: string;
@@ -25,6 +27,6 @@ export interface UserProfile {
   reviewCount: number;
   loveStore: {
     id: number;
-    name: string;
+    name: Store;
   } | null;
 }

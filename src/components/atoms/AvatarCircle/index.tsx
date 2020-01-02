@@ -5,7 +5,9 @@ interface Props {
   src: string;
 }
 
-const AvatarCircle: React.FC<Props> = ({ src }) => <StyledImage src={src} />;
+const AvatarCircle: React.FC<Props> = ({ src, ...props }) => (
+  <StyledImage src={src} {...props} />
+);
 
 const StyledImage = styled.span<{ src: string }>`
   background-image: url(${props => props.src});
