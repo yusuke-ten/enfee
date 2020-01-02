@@ -12,6 +12,7 @@ import {
 import { CountText, UserInfo } from 'components/molecules';
 import { Rating as RatingType } from 'services/models';
 import { Color, Size } from 'src/const';
+import { fadeInDown } from 'src/styles/animation';
 import { format } from 'utils/date';
 
 interface Props {
@@ -87,6 +88,7 @@ const Container = styled.div`
   background: #fff;
   box-shadow: 1px 2px 4px 0 rgba(133, 131, 131, 0.5);
   border-radius: 2px;
+  animation: ${fadeInDown(3)} 0.3s both 0.3s;
 `;
 const Top = styled.div`
   display: flex;

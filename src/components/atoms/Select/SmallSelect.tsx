@@ -47,7 +47,6 @@ const selectFormReset = css`
     display: block;
     position: absolute;
     pointer-events: none;
-    z-index: 2;
   }
 
   select {
