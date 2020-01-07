@@ -28,7 +28,7 @@ const ReviewPanelListContainer: React.FC = () => {
     ...useStateProps(),
   };
 
-  return <ReviewPanelList {...passProps} openModal={() => {}} />;
+  return <ReviewPanelList {...passProps} openModal={() => {}} userHidden />;
 };
 
 export default ReviewPanelListContainer;

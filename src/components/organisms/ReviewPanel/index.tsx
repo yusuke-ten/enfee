@@ -18,9 +18,10 @@ import { format } from 'utils/date';
 interface Props {
   review: Review;
   onOpenModal: (reviewId: number) => void;
+  userHidden: boolean;
 }
 
-const ReviewPanel: React.FC<Props> = ({ review, onOpenModal }) => {
+const ReviewPanel: React.FC<Props> = ({ review, onOpenModal, userHidden }) => {
   const {
     id,
     productName,
@@ -56,15 +57,17 @@ const ReviewPanel: React.FC<Props> = ({ review, onOpenModal }) => {
         </TopRight>
       </Top>
       <Line />
-      <Author>
-        <UserInfo
-          imageUrl={user.imageUrl}
-          displayName={user.displayName}
-          loginName={user.loginName}
-          userPageUrl={`/users/${user.loginName}`}
-          size="small"
-        />
-      </Author>
+      {!userHidden && (
+        <Author>
+          <UserInfo
+            imageUrl={user.imageUrl}
+            displayName={user.displayName}
+            loginName={user.loginName}
+            userPageUrl={`/users/${user.loginName}`}
+            size="small"
+          />
+        </Author>
+      )}
       <Line />
       <Main onClick={handleOpenModal}>
         <PictureFrame>
@@ -88,7 +91,7 @@ const Container = styled.div`
   background: #fff;
   box-shadow: 1px 2px 4px 0 rgba(133, 131, 131, 0.5);
   border-radius: 2px;
-  animation: ${fadeInDown(3)} 0.3s both 0.3s;
+  animation: ${fadeInDown(0.7)} 0.2s both 0.2s;
 `;
 const Top = styled.div`
   display: flex;

@@ -36,7 +36,7 @@ const UsersTemplate: React.FC<UsersTemplateProps> = ({
           </Profile>
           <Content>
             <FilterMenu {...menuProps} />
-            {contentComponent}
+            <List>{contentComponent}</List>
           </Content>
         </Frame>
       </Body>
@@ -59,6 +59,9 @@ const Profile = styled.div`
 `;
 const Content = styled.div`
   background-color: white;
+`;
+const List = styled.div`
+  padding: 12px 14px;
 `;
 
 export default UsersTemplate;

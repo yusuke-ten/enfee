@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import Txt, { InfoTxt } from 'components/atoms/Txt';
 import Paragraph from 'components/atoms/Paragraph';
@@ -7,6 +8,7 @@ import AvatarCircle from 'components/atoms/AvatarCircle';
 import StoreBadge from 'components/atoms/StoreBadge';
 import Button from 'components/atoms/Button';
 import { UserProfile } from 'services/models';
+import { Color } from 'src/const';
 
 interface HorizontalUserProfileProps {
   userProfile: UserProfile;
@@ -17,40 +19,67 @@ const HorizontalUserProfile: React.FC<HorizontalUserProfileProps> = ({
   userProfile,
   isLoggedIn,
 }) => {
+  const history = useHistory();
+
+  const handleClickLink = useCallback(() => {
+    history.push(`/users/${userProfile.loginName}`);
+  }, []);
+
+  const handleFollow = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.stopPropagation();
+      // TODO: フォロー機能を実装
+    },
+    [],
+  );
+
   const { displayName, loginName, imageUrl, loveStore } = userProfile;
 
   const mockDescription =
     'ぼくの名前はくび長おばけです。セブンイレブンの商品が割と好きです。';
 
   return (
-    <MediaObjectLayout>
-      <LeftContent>
-        <StyledAvatarCircle src={imageUrl} />
-        <StoreBadge
-          store={loveStore ? loveStore.name : 'INDEPENDENT'}
-          size="small"
-        />
-      </LeftContent>
-      <RightContent>
-        <div>
-          <Txt fontWeight="bold" size="m">
-            {displayName}
-          </Txt>
-          <InfoTxt>@{loginName}</InfoTxt>
-          <Paragraph>{mockDescription}</Paragraph>
-        </div>
-        {isLoggedIn && (
-          <ButtonWrapper>
-            <Button shape="oval" size="small" reverse>
-              フォロー
-            </Button>
-          </ButtonWrapper>
-        )}
-      </RightContent>
-    </MediaObjectLayout>
+    <Wrapper onClick={handleClickLink}>
+      <MediaObjectLayout>
+        <LeftContent>
+          <StyledAvatarCircle src={imageUrl} />
+          <StoreBadge
+            store={loveStore ? loveStore.name : 'INDEPENDENT'}
+            size="small"
+          />
+        </LeftContent>
+        <RightContent>
+          <div>
+            <Txt fontWeight="bold" size="m">
+              {displayName}
+            </Txt>
+            <InfoTxt>@{loginName}</InfoTxt>
+            <Paragraph>{mockDescription}</Paragraph>
+          </div>
+          {isLoggedIn && (
+            <ButtonWrapper>
+              <Button shape="oval" size="small" reverse onClick={handleFollow}>
+                フォロー
+              </Button>
+            </ButtonWrapper>
+          )}
+        </RightContent>
+      </MediaObjectLayout>
+    </Wrapper>
   );
 };
 
+const Wrapper = styled.div`
+  display: block;
+  cursor: pointer;
+  padding: 8px;
+  border-bottom: 1px solid ${Color.BORDER.LIGHT};
+  transition-duration: 0.2s;
+
+  &:hover {
+    background-color: ${Color.BACKGROUND.LIGTH};
+  }
+`;
 const LeftContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -67,7 +96,7 @@ const RightContent = styled.div`
   align-items: center;
   height: 100%;
 `;
-const ButtonWrapper = styled.div`
+const ButtonWrapper = styled.object`
   margin-left: auto;
 `;
 

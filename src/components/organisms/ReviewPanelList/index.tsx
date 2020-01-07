@@ -8,12 +8,14 @@ export interface Props {
   reviews: Review[];
   openModal: (reviewId: number) => void;
   isLoadingReview: boolean;
+  userHidden?: boolean;
 }
 
 const ReviewPanelList: React.FC<Props> = ({
   reviews,
   openModal,
   isLoadingReview,
+  userHidden = false,
 }) => {
   return (
     <>
@@ -25,7 +27,11 @@ const ReviewPanelList: React.FC<Props> = ({
         <>
           {reviews.map(review => (
             <ReviewWrapper key={review.id}>
-              <ReviewPanel review={review} onOpenModal={openModal} />
+              <ReviewPanel
+                review={review}
+                onOpenModal={openModal}
+                userHidden={userHidden}
+              />
             </ReviewWrapper>
           ))}
         </>
@@ -42,6 +48,10 @@ const SpinnerWrapper = styled.div`
 `;
 const ReviewWrapper = styled.div`
   margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 export default ReviewPanelList;

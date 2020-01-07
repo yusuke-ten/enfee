@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Spinner } from 'components/atoms';
 import HorizontalUserProfile from 'components/molecules/UserProfile/HorizontalUserProfile';
 import { UserProfile } from 'services/models';
-import { Color } from 'src/const';
 
 interface HorizontalUserProfileListProps {
   users: UserProfile[];
@@ -25,12 +24,11 @@ const HorizontalUserProfileList: React.FC<HorizontalUserProfileListProps> = ({
       ) : (
         <>
           {users.map(userProfile => (
-            <Wrapper key={userProfile.id}>
-              <HorizontalUserProfile
-                userProfile={userProfile}
-                isLoggedIn={isLoggedIn}
-              />
-            </Wrapper>
+            <HorizontalUserProfile
+              key={userProfile.id}
+              userProfile={userProfile}
+              isLoggedIn={isLoggedIn}
+            />
           ))}
         </>
       )}
@@ -43,10 +41,6 @@ const SpinnerWrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 160px;
-`;
-const Wrapper = styled.div`
-  padding: 8px;
-  border-bottom: 1px solid ${Color.BORDER.LIGHT};
 `;
 
 export default HorizontalUserProfileList;
