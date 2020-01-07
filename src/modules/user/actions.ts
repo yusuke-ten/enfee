@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { CreatorsToActions } from 'src/utils';
-import { UserProfile } from 'services/models';
+import { UserProfile, Review } from 'services/models';
 import { UsersKind } from 'services/api/user';
 
 export const actionTypes = {
@@ -10,6 +10,9 @@ export const actionTypes = {
   FETCH_USERS_START: 'USER/FETCH_USERS_START',
   FETCH_USERS_SUCCEED: 'USER/FETCH_USERS_SUCCEED',
   FETCH_USERS_FAIL: 'USER/FETCH_USERS_FAIL',
+  FETCH_REVIEWS_START: 'USER/FETCH_REVIEWS_START',
+  FETCH_REVIEWS_SUCCEED: 'USER/FETCH_REVIEWS_SUCCEED',
+  FETCH_REVIEWS_FAIL: 'USER/FETCH_REVIEWS_FAIL',
 } as const;
 
 export const fetchUserProfile = {
@@ -44,11 +47,29 @@ export const fetchUsers = {
   }),
 };
 
+export const fetchReviews = {
+  start: (loginName: string) => ({
+    type: actionTypes.FETCH_REVIEWS_START,
+    payload: { loginName },
+  }),
+  succeed: (reviews: Review[]) => ({
+    type: actionTypes.FETCH_REVIEWS_SUCCEED,
+    payload: { reviews },
+  }),
+  fail: (error: AxiosError) => ({
+    type: actionTypes.FETCH_REVIEWS_FAIL,
+    error: true,
+    payload: { error },
+  }),
+};
+
 export const actions = {
   fetchUserProfile,
   fetchUsers,
+  fetchReviews,
 };
 
 export type UserAction =
   | CreatorsToActions<typeof fetchUserProfile>
-  | CreatorsToActions<typeof fetchUsers>;
+  | CreatorsToActions<typeof fetchUsers>
+  | CreatorsToActions<typeof fetchReviews>;

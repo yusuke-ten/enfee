@@ -1,6 +1,6 @@
 import AxiosFactory from 'utils/axios';
 import { TimeoutError, ServerError } from 'src/utils/errors';
-import { UserProfile } from 'services/models';
+import { UserProfile, Review } from 'services/models';
 
 const axios = AxiosFactory.getInstance();
 
@@ -52,6 +52,18 @@ export const fetchUsersApi = async (
   try {
     const response = await axios.get<{ data: UserProfile[] }>(
       `/users/${loginName}/${target}`,
+    );
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchReviewsApi = async (loginName: string): Promise<Review[]> => {
+  try {
+    const response = await axios.get<{ data: Review[] }>(
+      `/users/${loginName}/reviews`,
     );
 
     return response.data;

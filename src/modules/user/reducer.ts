@@ -41,6 +41,12 @@ const reducer: Reducer<UserState, UserAction> = (state = initialState, action) =
       };
     case actionTypes.FETCH_USERS_FAIL:
       return { ...state, isLoading: false };
+    case actionTypes.FETCH_REVIEWS_START:
+      return { ...state, isLoading: true, reviews: [] };
+    case actionTypes.FETCH_REVIEWS_SUCCEED:
+      return { ...state, isLoading: false, reviews: action.payload.reviews };
+    case actionTypes.FETCH_REVIEWS_FAIL:
+      return { ...state, isLoading: false };
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const _: never = action;

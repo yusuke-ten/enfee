@@ -1,6 +1,7 @@
 import { fork, takeEvery, call, put } from 'redux-saga/effects';
 import * as api from 'services/api/user';
-import { UserProfile } from 'services/models';
+import { fetchReviewListApi } from 'services/api/review';
+import { UserProfile, Review } from 'services/models';
 import { actionTypes, fetchUserProfile, actions } from './actions';
 
 function* runFetchUserProfile(action: ReturnType<typeof fetchUserProfile.start>) {
@@ -37,7 +38,25 @@ function* watchFetchUsers() {
   yield takeEvery(actionTypes.FETCH_USERS_START, runFetchUsers);
 }
 
+function* runFetchReviews(action: ReturnType<typeof actions.fetchReviews.start>) {
+  try {
+    const reviews: Review[] = yield call(
+      api.fetchReviewsApi,
+      action.payload.loginName,
+    );
+
+    yield put(actions.fetchReviews.succeed(reviews));
+  } catch (error) {
+    yield put(actions.fetchReviews.fail(error));
+  }
+}
+
+function* watchFetchReviews() {
+  yield takeEvery(actionTypes.FETCH_REVIEWS_START, runFetchReviews);
+}
+
 export default function* root() {
   yield fork(watchFetchUserProfile);
   yield fork(watchFetchUsers);
+  yield fork(watchFetchReviews);
 }
