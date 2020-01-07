@@ -44,6 +44,15 @@ const HEADER = {
   HEIGHT: 50,
 };
 
+const MAPPING = {
+  xs: FONT_RATIO.XSMALL,
+  s: FONT_RATIO.SMALL,
+  b: FONT_RATIO.BASE,
+  m: FONT_RATIO.MEDIUM,
+  l: FONT_RATIO.LARGE,
+  xl: FONT_RATIO.XLARGE,
+};
+
 export default {
   FONT,
   FONT_RATIO,
@@ -51,4 +60,5 @@ export default {
   BORDER_RADIUS,
   BREAK_POINT,
   HEADER,
+  MAPPING,
 };

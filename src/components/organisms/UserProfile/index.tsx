@@ -19,8 +19,12 @@ const StatsItem: React.FC<{ count: number; text: string }> = ({ count, text }) =
   </Wrapper>
 );
 
-const Wrapper = styled.div`
+const Wrapper = styled.span`
   margin-right: 20px;
+
+  &:last-child {
+    margin-right: 0;
+  }
 `;
 /* ------------- */
 
@@ -75,7 +79,7 @@ const UserProfileComponent: React.FC<UserProfileProps> = ({
         </RightContent>
       </MediaObjectLayout>
       <Description>
-        <Paragraph>{mockDescription}</Paragraph>
+        <Paragraph size="b">{mockDescription}</Paragraph>
       </Description>
     </>
   );
@@ -93,21 +97,28 @@ const StyledAvatarCircle = styled(AvatarCircle)`
   margin-bottom: 6px;
 `;
 const RightContent = styled.div`
-  padding: 12px;
   position: relative;
-`;
-const Names = styled.div``;
-const Stats = styled.div`
-  margin-top: 6px;
-  background-color: white;
+  height: 80px;
+  box-sizing: border-box;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+`;
+const Names = styled.div`
+  padding-top: 9px;
+`;
+const Stats = styled.div`
+  display: inline-block;
+  background-color: #fff;
+  padding: 6px 10px;
 `;
 const StatsCountTxt = styled(Txt)`
   padding-right: 4px;
 `;
 const ButtonWrapper = styled.div`
   position: absolute;
-  top: 12px;
+  top: 8px;
   right: 20px;
 `;
 const Description = styled.div`
