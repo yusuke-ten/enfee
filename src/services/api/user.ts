@@ -42,3 +42,20 @@ export const fetchUserProfileApi = async (
     throw err;
   }
 };
+
+export type UsersKind = 'followers' | 'following';
+
+export const fetchUsersApi = async (
+  loginName: string,
+  target: UsersKind,
+): Promise<UserProfile[]> => {
+  try {
+    const response = await axios.get<{ data: UserProfile[] }>(
+      `/users/${loginName}/${target}`,
+    );
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

@@ -84,7 +84,7 @@ const ReviewPanel: React.FC<Props> = ({ review, onOpenModal }) => {
 };
 
 const Container = styled.div`
-  width: 460px;
+  width: 100%;
   background: #fff;
   box-shadow: 1px 2px 4px 0 rgba(133, 131, 131, 0.5);
   border-radius: 2px;

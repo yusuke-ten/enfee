@@ -4,7 +4,6 @@ import Layout from 'components/Layout';
 import FilterMenu from 'components/molecules/Menu/FilterMenu';
 import { HeaderContainer } from 'containers/organisms';
 import UserProfileContent from 'components/organisms/UserProfile';
-import HorizontalUserProfileList from 'components/organisms/HorizontalUserProfileList';
 import { UserProfile } from 'services/models';
 import { Color, Size } from 'src/const';
 
@@ -17,6 +16,7 @@ interface UsersTemplateProps {
     handleSelect: (selectMenu: string) => void;
   };
   userProfileList: UserProfile[];
+  contentComponent: React.ReactNode;
 }
 
 const UsersTemplate: React.FC<UsersTemplateProps> = ({
@@ -24,23 +24,21 @@ const UsersTemplate: React.FC<UsersTemplateProps> = ({
   isLoggedIn,
   menuProps,
   userProfileList,
+  contentComponent,
 }) => {
   return (
-    <Layout title="ユーザーページ - name">
+    <Layout title={`@${userProfile.loginName}さんのユーザーページ`}>
       <HeaderContainer />
       <Body>
-        <Content>
+        <Frame>
           <Profile>
             <UserProfileContent userProfile={userProfile} isLoggedIn={isLoggedIn} />
           </Profile>
-          <ListTable>
+          <Content>
             <FilterMenu {...menuProps} />
-            <HorizontalUserProfileList
-              userProfileList={userProfileList}
-              isLoggedIn
-            />
-          </ListTable>
-        </Content>
+            {contentComponent}
+          </Content>
+        </Frame>
       </Body>
     </Layout>
   );
@@ -51,7 +49,7 @@ const Body = styled.div`
   background-color: ${Color.BACKGROUND.LIGTH};
   box-sizing: border-box;
 `;
-const Content = styled.div`
+const Frame = styled.div`
   max-width: 600px;
   margin: 0 auto;
   padding: 40px 0;
@@ -59,7 +57,7 @@ const Content = styled.div`
 const Profile = styled.div`
   margin-bottom: 30px;
 `;
-const ListTable = styled.div`
+const Content = styled.div`
   background-color: white;
 `;
 

@@ -6,7 +6,10 @@ import { fetchUserProfile } from 'modules/user/actions';
 import { userProfileList, userProfile } from 'services/mocks';
 import useQuery from 'hooks/useQuery';
 
+import UserPageContentContainer from 'containers/organisms/UserPageContent';
 import UsersTemplate from 'components/templates/UsersTemplate';
+
+export type Menus = 'レビュー' | 'フォロー中' | 'フォロワー';
 
 const UsersPage: React.FC = () => {
   const { loginName } = useParams<{ loginName: string }>();
@@ -17,11 +20,11 @@ const UsersPage: React.FC = () => {
     selectedContent = 'following';
   }
 
-  const menus = ['フォロー中', 'フォロワー'];
-  const [selected, setSelected] = useState<string>('フォロー中');
+  const menus = ['レビュー', 'フォロー中', 'フォロワー'];
+  const [selected, setSelected] = useState<Menus>('レビュー');
 
   const handleSelect = useCallback((selectMenu: string) => {
-    setSelected(selectMenu);
+    setSelected(selectMenu as Menus);
   }, []);
 
   useEffect(() => {
@@ -37,6 +40,7 @@ const UsersPage: React.FC = () => {
       isLoggedIn={isLoggedIn}
       userProfileList={userProfileList}
       userProfile={userProfile}
+      contentComponent={<UserPageContentContainer selected={selected} />}
     />
   );
 };

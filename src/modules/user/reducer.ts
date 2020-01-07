@@ -1,15 +1,19 @@
 import { Reducer } from 'redux';
-import { UserProfile } from 'services/models';
+import { UserProfile, Review } from 'services/models';
 import { actionTypes, UserAction } from './actions';
 
 export interface UserState {
-  users: {
-    [loginName: string]: UserProfile;
-  };
+  isLoading: boolean;
+  profile: UserProfile | null;
+  users: UserProfile[];
+  reviews: Review[];
 }
 
 const initialState: UserState = {
-  users: {},
+  isLoading: false,
+  profile: null,
+  users: [],
+  reviews: [],
 };
 
 const reducer: Reducer<UserState, UserAction> = (state = initialState, action) => {
@@ -26,6 +30,17 @@ const reducer: Reducer<UserState, UserAction> = (state = initialState, action) =
     }
     case actionTypes.FETCH_USER_PROFILE_FAIL:
       return { ...state };
+    case actionTypes.FETCH_USERS_START:
+      return { ...state, isLoading: true };
+    case actionTypes.FETCH_USERS_SUCCEED:
+      return {
+        ...state,
+        isLoading: false,
+        // users: state.users.concat(action.payload.users),
+        users: action.payload.users,
+      };
+    case actionTypes.FETCH_USERS_FAIL:
+      return { ...state, isLoading: false };
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const _: never = action;
