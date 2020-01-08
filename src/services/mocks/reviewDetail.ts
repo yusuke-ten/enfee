@@ -19,6 +19,7 @@ const reviewDetail: ReviewDetail = {
     id: 1,
     displayName: 'あおひろ',
     loginName: '@aohiro',
+    profile: 'これはプロフィールです',
     imageUrl:
       'https://s3-ap-northeast-1.amazonaws.com/aohiro-blog/User/avatar/dot.jpg',
     followerCount: 0,

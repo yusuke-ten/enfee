@@ -41,14 +41,12 @@ const UserProfileComponent: React.FC<UserProfileProps> = ({
     displayName,
     loginName,
     imageUrl,
+    profile,
     loveStore,
     reviewCount,
     followingCount,
     followerCount,
   } = userProfile;
-
-  const mockDescription =
-    'ぼくの名前はくび長おばけです。セブンイレブンの商品が割と好きです。';
 
   return (
     <>
@@ -79,7 +77,7 @@ const UserProfileComponent: React.FC<UserProfileProps> = ({
         </RightContent>
       </MediaObjectLayout>
       <Description>
-        <Paragraph size="b">{mockDescription}</Paragraph>
+        <Paragraph size="b">{profile}</Paragraph>
       </Description>
     </>
   );

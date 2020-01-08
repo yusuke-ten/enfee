@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { MemoryRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
-import { object } from '@storybook/addon-knobs';
+import { object, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import reviewData from 'src/services/mocks/json/reviews.json';
 import camelcaseKeys from 'camelcase-keys';
@@ -25,6 +25,7 @@ storiesOf('organisms/ReviewPanel', module)
       <ReviewPanel
         review={object('review', reviews[0] as Review)}
         onOpenModal={action('onOpenModal')}
+        userHidden={boolean('userHidden', false)}
       />
     </Background>
   ));

@@ -1,10 +1,7 @@
 import { fork, put, take, takeLatest, select } from 'redux-saga/effects';
 import * as localStorage from 'utils/localStorage';
 import { login } from 'modules/auth/actions';
-import {
-  actionTypes as appActionTypes,
-  fetchMyProfile,
-} from 'modules/app/actions';
+import { actionTypes as appActionTypes, fetchMyProfile } from 'modules/app/actions';
 import {
   actionTypes as reviewActionTypes,
   fetchProductCategoryList,

@@ -6,12 +6,14 @@ export interface AppState {
   initialized: boolean;
   isFetchedProfile: boolean;
   myProfile: UserProfile | null;
+  isLoadingPage: boolean;
 }
 
 const initialState: AppState = {
   initialized: false,
   isFetchedProfile: false,
   myProfile: null,
+  isLoadingPage: false,
 };
 
 const reducer: Reducer<AppState, AppAction> = (
@@ -30,6 +32,11 @@ const reducer: Reducer<AppState, AppAction> = (
     case actionTypes.FETCH_MY_PROFILE_FAIL:
       return {
         ...state,
+      };
+    case actionTypes.TOGGLE_LODING:
+      return {
+        ...state,
+        isLoadingPage: action.payload.status,
       };
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars

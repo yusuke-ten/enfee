@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { withInitialize } from 'containers/hocs';
 import { fetchUserProfile } from 'modules/user/actions';
-import { userProfileList, userProfile } from 'services/mocks';
 import useQuery from 'hooks/useQuery';
+import { RootState } from 'modules/reducer';
 
 import UserPageContentContainer from 'containers/organisms/UserPageContent';
 import UsersTemplate from 'components/templates/UsersTemplate';
@@ -27,19 +27,20 @@ const UsersPage: React.FC = () => {
     setSelected(selectMenu as Menus);
   }, []);
 
+  const { isLoadingPage } = useSelector((state: RootState) => state.app);
+  const { profile } = useSelector((state: RootState) => state.user);
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
+
   useEffect(() => {
     dispatch(fetchUserProfile.start(loginName));
-  }, [selected]);
-
-  // 一旦true
-  const isLoggedIn = true;
+  }, []);
 
   return (
     <UsersTemplate
+      isLoadingPage={isLoadingPage}
       menuProps={{ menus, selected, handleSelect }}
       isLoggedIn={isLoggedIn}
-      userProfileList={userProfileList}
-      userProfile={userProfile}
+      userProfile={profile}
       contentComponent={<UserPageContentContainer selected={selected} />}
     />
   );

@@ -22,6 +22,7 @@ export interface UserProfile {
   displayName: string;
   loginName: string;
   imageUrl: string;
+  profile: string;
   followerCount: number;
   followingCount: number;
   reviewCount: number;

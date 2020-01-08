@@ -17,23 +17,27 @@ const StoreBadge: React.FC<Props> = ({ store, size = 'medium' }) => (
   </Wrapper>
 );
 
-const colors: { [key: string]: string } = {
+const colors: { [key in StoreType]: string } = {
   'セブン-イレブン': Color.STORE.SEVEN_ELEVEN,
   ファミリーマート: Color.STORE.FAMILY_MART,
   ローソン: Color.STORE.LAWSON,
-  none: Color.STORE.INDEPENDENT,
+  INDEPENDENT: Color.STORE.INDEPENDENT,
 };
 
 const getSizebStyles = (size: Size) => {
   switch (size) {
     case 'medium':
       return css`
-        padding: 6px 18px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        width: 110px;
         font-size: ${Size.FONT_RATIO.XXSMALL}rem;
       `;
     case 'small':
       return css`
-        padding: 4px 8px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        width: 86px;
         font-size: ${Size.FONT_RATIO.TINY}rem;
       `;
     default:
@@ -46,6 +50,7 @@ const Wrapper = styled.span<{ store: StoreType; size: Size }>`
   color: ${Color.FONT.LESS};
   border-radius: 2px;
   background-color: ${props => colors[props.store]};
+  text-align: center;
   ${props => getSizebStyles(props.size)}
 `;
 

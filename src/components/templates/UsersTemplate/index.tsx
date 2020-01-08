@@ -1,44 +1,55 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Layout from 'components/Layout';
 import FilterMenu from 'components/molecules/Menu/FilterMenu';
+import Loading from 'components/molecules/Loading';
 import { HeaderContainer } from 'containers/organisms';
 import UserProfileContent from 'components/organisms/UserProfile';
 import { UserProfile } from 'services/models';
-import { Color, Size } from 'src/const';
+import { Color } from 'src/const';
 
 interface UsersTemplateProps {
-  userProfile: UserProfile;
+  isLoadingPage: boolean;
+  userProfile: UserProfile | null;
   isLoggedIn: boolean;
   menuProps: {
     menus: string[];
     selected: string;
     handleSelect: (selectMenu: string) => void;
   };
-  userProfileList: UserProfile[];
   contentComponent: React.ReactNode;
 }
 
 const UsersTemplate: React.FC<UsersTemplateProps> = ({
+  isLoadingPage,
   userProfile,
   isLoggedIn,
   menuProps,
-  userProfileList,
   contentComponent,
 }) => {
+  const { loginName } = useParams<{ loginName: string }>();
+
   return (
-    <Layout title={`@${userProfile.loginName}さんのユーザーページ`}>
+    <Layout title={`@${loginName}さんのユーザーページ`}>
       <HeaderContainer />
       <Body>
-        <Frame>
-          <Profile>
-            <UserProfileContent userProfile={userProfile} isLoggedIn={isLoggedIn} />
-          </Profile>
-          <Content>
-            <FilterMenu {...menuProps} />
-            <List>{contentComponent}</List>
-          </Content>
-        </Frame>
+        {isLoadingPage || !userProfile ? (
+          <Loading />
+        ) : (
+          <Frame>
+            <Profile>
+              <UserProfileContent
+                userProfile={userProfile}
+                isLoggedIn={isLoggedIn}
+              />
+            </Profile>
+            <Content>
+              <FilterMenu {...menuProps} />
+              <List>{contentComponent}</List>
+            </Content>
+          </Frame>
+        )}
       </Body>
     </Layout>
   );

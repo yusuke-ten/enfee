@@ -19,13 +19,11 @@ const initialState: UserState = {
 const reducer: Reducer<UserState, UserAction> = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_USER_PROFILE_START:
-      return { ...state };
+      return { ...state, profile: null };
     case actionTypes.FETCH_USER_PROFILE_SUCCEED: {
-      const { userProfile } = action.payload;
-
       return {
         ...state,
-        users: Object.assign(state.users, { [userProfile.loginName]: userProfile }),
+        profile: action.payload.userProfile,
       };
     }
     case actionTypes.FETCH_USER_PROFILE_FAIL:
