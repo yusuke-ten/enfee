@@ -15,7 +15,6 @@ export { default as CommentInputField } from './CommentInputField';
 export { default as Aside } from './Aside';
 export { default as TextAreaField } from './TextAreaField';
 export { default as InputPictureField } from './InputPictureField';
-export {
-  default as PostButtonWithLoading,
-} from './Button/PostButtonWithLoading';
+export { default as PostButtonWithLoading } from './Button/PostButtonWithLoading';
 export { default as DropdownMenu } from './DropdownMenu';
+export { default as Loading } from './Loading';
