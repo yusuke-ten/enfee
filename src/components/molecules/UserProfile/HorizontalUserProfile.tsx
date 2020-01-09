@@ -6,7 +6,7 @@ import Paragraph from 'components/atoms/Paragraph';
 import MediaObjectLayout from 'components/atoms/MediaObjectLayout';
 import AvatarCircle from 'components/atoms/AvatarCircle';
 import StoreBadge from 'components/atoms/StoreBadge';
-import Button from 'components/atoms/Button';
+import { FollowButton } from 'components/molecules';
 import { UserProfile } from 'services/models';
 import { Color } from 'src/const';
 
@@ -33,7 +33,7 @@ const HorizontalUserProfile: React.FC<HorizontalUserProfileProps> = ({
     [],
   );
 
-  const { displayName, loginName, imageUrl, loveStore } = userProfile;
+  const { displayName, loginName, imageUrl, loveStore, isFollowing } = userProfile;
 
   const mockDescription =
     'ぼくの名前はくび長おばけです。セブンイレブンの商品が割と好きです。';
@@ -49,18 +49,20 @@ const HorizontalUserProfile: React.FC<HorizontalUserProfileProps> = ({
           />
         </LeftContent>
         <RightContent>
-          <div>
+          <InfoWrapper>
             <Txt fontWeight="bold" size="m">
               {displayName}
             </Txt>
             <InfoTxt>@{loginName}</InfoTxt>
             <Paragraph>{mockDescription}</Paragraph>
-          </div>
+          </InfoWrapper>
           {isLoggedIn && (
             <ButtonWrapper>
-              <Button shape="oval" size="small" reverse onClick={handleFollow}>
-                フォロー
-              </Button>
+              <FollowButton
+                isFollowing={isFollowing}
+                onClick={handleFollow}
+                size="small"
+              />
             </ButtonWrapper>
           )}
         </RightContent>
@@ -95,6 +97,9 @@ const RightContent = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
+`;
+const InfoWrapper = styled.div`
+  width: 70%;
 `;
 const ButtonWrapper = styled.object`
   margin-left: auto;

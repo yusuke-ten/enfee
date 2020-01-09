@@ -5,6 +5,7 @@ export { default as UserInfo } from './UserInfo';
 export { default as TwitterButton } from './Button/TwitterButton';
 export { default as ReviewPostButton } from './Button/ReviewPostButton';
 export { default as PenLauncherButton } from './Button/PenLauncherButton';
+export { default as FollowButton } from './Button/FollowButton';
 export { default as UserProfileCard } from './Card/UserProfileCard';
 export { default as ReviewMenu } from './Menu/ReviewMenu';
 export { default as CountText } from './CountText';

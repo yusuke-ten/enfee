@@ -48,8 +48,7 @@ const getColorStyle = (color: ColorType, reverse: boolean) => {
       border: 2px solid ${colorCode};
 
       &:hover {
-        color: ${Color.FONT.LESS};
-        background-color: ${colorCode};
+        opacity: 0.8;
       }
     `;
   }
@@ -69,26 +68,28 @@ const getSizeStyle = (size: SizeType = 'midium') => {
   if (size === 'small') {
     return css`
       height: 28px;
-      padding: 0 18px;
+      padding: 0 14px;
+      font-size: ${Size.FONT.XXSMALL}px;
     `;
   }
   if (size === 'large') {
     return css`
       height: 40px;
-      padding: 0 28px;
+      padding: 0 22px;
+      font-size: ${Size.FONT.SMALL}px;
     `;
   }
 
   // default(midium)のとき
   return css`
     height: 35px;
-    padding: 0 25px;
+    padding: 0 18px;
+    font-size: ${Size.FONT.XSMALL}px;
   `;
 };
 
 const StyledButton = styled.button<Props>`
   ${({ color = 'primary', reverse = false }) => getColorStyle(color, reverse)}
-  font-size: ${Size.FONT.XSMALL}px;
   border-radius: ${({ shape }) => getshape(shape)}px;
   letter-spacing: 1.28px;
   ${props => getSizeStyle(props.size || 'midium')}

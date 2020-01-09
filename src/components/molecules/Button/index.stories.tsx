@@ -6,11 +6,20 @@ import TwitterButton from './TwitterButton';
 import ReviewPostButton from './ReviewPostButton';
 import WithLoadingPostButton from './PostButtonWithLoading';
 import PenLauncherButton from './PenLauncherButton';
+import FollowButton from './FollowButton';
 
 storiesOf('molecules/Button', module)
-  .add('TwitterButton', () => (
-    <TwitterButton text="twitterアカウントでログイン" />
+  .add('FollowButton', () => (
+    <>
+      <div style={{ marginBottom: '10px' }}>
+        <FollowButton onClick={() => {}} isFollowing={false} />
+      </div>
+      <div>
+        <FollowButton onClick={() => {}} isFollowing />
+      </div>
+    </>
   ))
+  .add('TwitterButton', () => <TwitterButton text="twitterアカウントでログイン" />)
   .add('ReviewPostButton', () => <ReviewPostButton text="レビューを投稿" />)
   .add('WithLoadingPostButton', () => (
     <WithLoadingPostButton
