@@ -6,37 +6,42 @@ import Paragraph from 'components/atoms/Paragraph';
 import MediaObjectLayout from 'components/atoms/MediaObjectLayout';
 import AvatarCircle from 'components/atoms/AvatarCircle';
 import StoreBadge from 'components/atoms/StoreBadge';
-import { FollowButton } from 'components/molecules';
+import { FollowingButton, NotFollowingButton } from 'components/molecules';
 import { UserProfile } from 'services/models';
 import { Color } from 'src/const';
 
 interface HorizontalUserProfileProps {
   userProfile: UserProfile;
   isLoggedIn: boolean;
+  handleFollow: (loginName: string, isFollowing: boolean) => void;
 }
 
 const HorizontalUserProfile: React.FC<HorizontalUserProfileProps> = ({
   userProfile,
   isLoggedIn,
+  handleFollow,
 }) => {
+  const {
+    displayName,
+    loginName,
+    profile,
+    imageUrl,
+    loveStore,
+    isFollowing,
+  } = userProfile;
   const history = useHistory();
 
   const handleClickLink = useCallback(() => {
     history.push(`/users/${userProfile.loginName}`);
   }, []);
 
-  const handleFollow = useCallback(
+  const handleFollowWrapper = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.stopPropagation();
-      // TODO: フォロー機能を実装
+      handleFollow(loginName, isFollowing);
     },
     [],
   );
-
-  const { displayName, loginName, imageUrl, loveStore, isFollowing } = userProfile;
-
-  const mockDescription =
-    'ぼくの名前はくび長おばけです。セブンイレブンの商品が割と好きです。';
 
   return (
     <Wrapper onClick={handleClickLink}>
@@ -54,15 +59,15 @@ const HorizontalUserProfile: React.FC<HorizontalUserProfileProps> = ({
               {displayName}
             </Txt>
             <InfoTxt>@{loginName}</InfoTxt>
-            <Paragraph>{mockDescription}</Paragraph>
+            <Paragraph>{profile}</Paragraph>
           </InfoWrapper>
           {isLoggedIn && (
             <ButtonWrapper>
-              <FollowButton
-                isFollowing={isFollowing}
-                onClick={handleFollow}
-                size="small"
-              />
+              {isFollowing ? (
+                <FollowingButton onClick={handleFollowWrapper} size="small" />
+              ) : (
+                <NotFollowingButton onClick={handleFollowWrapper} size="small" />
+              )}
             </ButtonWrapper>
           )}
         </RightContent>

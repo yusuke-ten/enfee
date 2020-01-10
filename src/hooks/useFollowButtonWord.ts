@@ -1,28 +1,30 @@
 import { useState, useCallback } from 'react';
 
+export const wordTypes = {
+  FOLLOWING_WORDS: 'FOLLOWING_WORDS',
+  NOT_FOLLOWING_WORDS: 'NOT_FOLLOWING_WORDS',
+} as const;
+
 const words = {
-  followingWords: {
+  [wordTypes.FOLLOWING_WORDS]: {
     enter: 'フォロー解除',
     leave: 'フォロー中',
   },
-  notFollowingWords: {
+  [wordTypes.NOT_FOLLOWING_WORDS]: {
     enter: 'フォローする',
     leave: 'フォロー',
   },
 };
 
-const useFollowButtonWord = (isFollowing: boolean) => {
-  const type: keyof typeof words = isFollowing
-    ? 'followingWords'
-    : 'notFollowingWords';
-  const [word, setWord] = useState(words[type].leave);
+const useFollowButtonWord = (wordType: keyof typeof wordTypes) => {
+  const [word, setWord] = useState(words[wordType].leave);
 
   const onMouseEnter = useCallback(() => {
-    setWord(words[type].enter);
+    setWord(words[wordType].enter);
   }, []);
 
   const onMouseLeave = useCallback(() => {
-    setWord(words[type].leave);
+    setWord(words[wordType].leave);
   }, []);
 
   return { word, handlers: { onMouseEnter, onMouseLeave } };

@@ -6,16 +6,17 @@ import TwitterButton from './TwitterButton';
 import ReviewPostButton from './ReviewPostButton';
 import WithLoadingPostButton from './PostButtonWithLoading';
 import PenLauncherButton from './PenLauncherButton';
-import FollowButton from './FollowButton';
+import FollowingButton from './FollowingButton';
+import NotFollowingButton from './NotFollowingButton';
 
 storiesOf('molecules/Button', module)
   .add('FollowButton', () => (
     <>
       <div style={{ marginBottom: '10px' }}>
-        <FollowButton onClick={() => {}} isFollowing={false} />
+        <FollowingButton onClick={() => {}} />
       </div>
       <div>
-        <FollowButton onClick={() => {}} isFollowing />
+        <NotFollowingButton onClick={() => {}} />
       </div>
     </>
   ))

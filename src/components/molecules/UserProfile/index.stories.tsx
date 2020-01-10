@@ -8,5 +8,6 @@ storiesOf('molecules/UserProfile', module).add('HorizontalUserProfile', () => (
   <HorizontalUserProfile
     userProfile={userProfile}
     isLoggedIn={boolean('isLoggedIn', true)}
+    handleFollow={() => {}}
   />
 ));
