@@ -20,8 +20,7 @@ const ReviewPostTemplate: React.FC<Props> = ({
   ...props
 }) => {
   return (
-    <Layout title="レビュー投稿ページ" {...props}>
-      <HeaderContainer />
+    <Layout title="レビュー投稿ページ" {...props} withHeader>
       <Body>
         <Contents>
           <FormWrapper>

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Layout from 'components/Layout';
 import FilterMenu from 'components/molecules/Menu/FilterMenu';
 import Loading from 'components/molecules/Loading';
-import { HeaderContainer } from 'containers/organisms';
 import UserProfileContent from 'components/organisms/UserProfile';
 import { UserProfile } from 'services/models';
 import { Color } from 'src/const';
@@ -12,6 +11,7 @@ import { Color } from 'src/const';
 interface UsersTemplateProps {
   isLoadingPage: boolean;
   userProfile: UserProfile | null;
+  handleFollow: (loginName: string, isFollowing: boolean) => void;
   isLoggedIn: boolean;
   menuProps: {
     menus: string[];
@@ -24,6 +24,7 @@ interface UsersTemplateProps {
 const UsersTemplate: React.FC<UsersTemplateProps> = ({
   isLoadingPage,
   userProfile,
+  handleFollow,
   isLoggedIn,
   menuProps,
   contentComponent,
@@ -31,8 +32,7 @@ const UsersTemplate: React.FC<UsersTemplateProps> = ({
   const { loginName } = useParams<{ loginName: string }>();
 
   return (
-    <Layout title={`@${loginName}さんのユーザーページ`}>
-      <HeaderContainer />
+    <Layout title={`@${loginName}さんのユーザーページ`} withHeader>
       <Body>
         {isLoadingPage || !userProfile ? (
           <Loading />
@@ -42,6 +42,7 @@ const UsersTemplate: React.FC<UsersTemplateProps> = ({
               <UserProfileContent
                 userProfile={userProfile}
                 isLoggedIn={isLoggedIn}
+                handleFollow={handleFollow}
               />
             </Profile>
             <Content>

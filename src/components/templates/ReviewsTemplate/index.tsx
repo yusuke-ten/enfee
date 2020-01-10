@@ -39,8 +39,7 @@ const ReviewsTemplate: React.FC<Props> = ({
   undoScrollTop,
 }) => {
   return (
-    <Layout title="レビューページ">
-      <HeaderContainer />
+    <Layout title="レビューページ" withHeader>
       <Body>
         <Contents>
           <NavWrapper>
