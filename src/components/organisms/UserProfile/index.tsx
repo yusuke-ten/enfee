@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from 'components/atoms/Button';
 import Txt, { InfoTxt, WarnTxt } from 'components/atoms/Txt';
@@ -8,6 +9,7 @@ import MediaObjectLayout from 'components/atoms/MediaObjectLayout';
 import Paragraph from 'components/atoms/Paragraph';
 import { FollowingButton, NotFollowingButton } from 'components/molecules';
 import { UserProfile } from 'services/models';
+import paths from 'src/paths';
 import { USER_PAGE } from 'src/const/Sentence';
 
 /* stats itemコンポーネント ------------- */
@@ -58,9 +60,11 @@ const UserProfileComponent: React.FC<UserProfileProps> = ({
     if (isMyProfilePage) {
       return (
         <ButtonWrapper>
-          <Button size="midium" reverse>
-            {USER_PAGE.editProfile}
-          </Button>
+          <Link to={paths.settingsProfile}>
+            <Button size="midium" reverse>
+              {USER_PAGE.editProfile}
+            </Button>
+          </Link>
         </ButtonWrapper>
       );
     }

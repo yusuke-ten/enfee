@@ -5,8 +5,7 @@ import ReviewPostForm, {
   Props as ReviewPostFormProps,
 } from 'components/organisms/ReviewPostForm';
 import { MyProfileInAside } from 'services/models';
-import { Color } from 'src/const';
-import { getPageTitle } from 'src/const/PageTitle';
+import { Color, getPageTitle } from 'src/const';
 
 type Props = ReviewPostFormProps & {
   myProfile: MyProfileInAside | null;

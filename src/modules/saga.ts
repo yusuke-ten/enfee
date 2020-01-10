@@ -2,7 +2,7 @@ import { fork } from 'redux-saga/effects';
 
 import app from './app/saga';
 import auth from './auth/sagas';
-import intializer from './intializer/sagas';
+import intializer from './initializer/sagas';
 import review from './review/sagas';
 import comment from './comment/sagas';
 import user from './user/sagas';

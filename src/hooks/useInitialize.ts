@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/reducer';
-import { initialize } from 'modules/intializer/actions';
+import { initialize } from 'modules/initializer/actions';
 import { toggleLoadingPage } from 'modules/app/actions';
 
 const useInitialize = () => {

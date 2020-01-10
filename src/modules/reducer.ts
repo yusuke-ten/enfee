@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import app, { AppState } from './app/reducer';
 import auth, { AuthState } from './auth/reducer';
-import intializer, { InitializerState } from './intializer/reducer';
+import intializer, { InitializerState } from './initializer/reducer';
 import review, { ReviewState } from './review/reducer';
 import comment, { CommentState } from './comment/reducer';
 import user, { UserState } from './user/reducer';
