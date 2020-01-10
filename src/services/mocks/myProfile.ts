@@ -22,5 +22,6 @@ export const profile: UserProfile = {
   followerCount: 0,
   followingCount: 0,
   reviewCount: 39,
+  isFollowing: false,
   loveStore: { id: 1, name: 'セブン-イレブン' },
 };

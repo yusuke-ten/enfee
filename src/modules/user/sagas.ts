@@ -1,14 +1,16 @@
-import { fork, takeEvery, call, put } from 'redux-saga/effects';
+import { fork, takeEvery, call, put, select } from 'redux-saga/effects';
 import * as api from 'services/api/user';
 import { UserProfile, Review } from 'services/models';
 import { toggleLoadingPage } from 'modules/app/actions';
+import { selectToken } from 'modules/auth/selectors';
 import { actionTypes, fetchUserProfile, actions } from './actions';
 
 function* runFetchUserProfile(action: ReturnType<typeof fetchUserProfile.start>) {
   const { loginName } = action.payload;
+  const token: ReturnType<typeof selectToken> = yield select(selectToken);
 
   try {
-    const userProfile = yield call(api.fetchUserProfileApi, loginName);
+    const userProfile = yield call(api.fetchUserProfileApi, loginName, token);
 
     yield put(fetchUserProfile.succeed(userProfile));
     yield put(toggleLoadingPage(false));
@@ -22,11 +24,14 @@ function* watchFetchUserProfile() {
 }
 
 function* runFetchUsers(action: ReturnType<typeof actions.fetchUsers.start>) {
+  const token: ReturnType<typeof selectToken> = yield select(selectToken);
+
   try {
     const users: UserProfile[] = yield call(
       api.fetchUsersApi,
       action.payload.loginName,
       action.payload.target,
+      token,
     );
 
     yield put(actions.fetchUsers.succeed(users));
@@ -56,8 +61,34 @@ function* watchFetchReviews() {
   yield takeEvery(actionTypes.FETCH_REVIEWS_START, runFetchReviews);
 }
 
+function* runFollow(action: ReturnType<typeof actions.follow>) {
+  const token: ReturnType<typeof selectToken> = yield select(selectToken);
+
+  if (token) {
+    yield call(api.followApi, action.payload.loginName, token);
+  }
+}
+
+function* watchFollow() {
+  yield takeEvery(actionTypes.FOLLOW, runFollow);
+}
+
+function* runUnfollow(action: ReturnType<typeof actions.unfollow>) {
+  const token: ReturnType<typeof selectToken> = yield select(selectToken);
+
+  if (token) {
+    yield call(api.unfollowApi, action.payload.loginName, token);
+  }
+}
+
+function* watchUnfollow() {
+  yield takeEvery(actionTypes.UNFOLLOW, runUnfollow);
+}
+
 export default function* root() {
   yield fork(watchFetchUserProfile);
   yield fork(watchFetchUsers);
   yield fork(watchFetchReviews);
+  yield fork(watchFollow);
+  yield fork(watchUnfollow);
 }

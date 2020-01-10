@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 import Txt, { InfoTxt } from 'components/atoms/Txt';
 import StoreBadge from 'components/atoms/StoreBadge';
-import Button from 'components/atoms/Button';
 import AvatarCircle from 'components/atoms/AvatarCircle';
 import MediaObjectLayout from 'components/atoms/MediaObjectLayout';
 import Paragraph from 'components/atoms/Paragraph';
+import { FollowingButton, NotFollowingButton } from 'components/molecules';
 import { UserProfile } from 'services/models';
 
 /* stats itemコンポーネント ------------- */
@@ -31,17 +31,20 @@ const Wrapper = styled.span`
 interface UserProfileProps {
   userProfile: UserProfile;
   isLoggedIn: boolean;
+  handleFollow: (loginName: string, isFollowing: boolean) => void;
 }
 
 const UserProfileComponent: React.FC<UserProfileProps> = ({
   userProfile,
   isLoggedIn,
+  handleFollow,
 }) => {
   const {
     displayName,
     loginName,
     imageUrl,
     profile,
+    isFollowing,
     loveStore,
     reviewCount,
     followingCount,
@@ -69,9 +72,15 @@ const UserProfileComponent: React.FC<UserProfileProps> = ({
           </Stats>
           {isLoggedIn && (
             <ButtonWrapper>
-              <Button shape="oval" reverse>
-                フォロー
-              </Button>
+              {isFollowing ? (
+                <FollowingButton
+                  onClick={() => handleFollow(loginName, isFollowing)}
+                />
+              ) : (
+                <NotFollowingButton
+                  onClick={() => handleFollow(loginName, isFollowing)}
+                />
+              )}
             </ButtonWrapper>
           )}
         </RightContent>
@@ -117,7 +126,7 @@ const StatsCountTxt = styled(Txt)`
 const ButtonWrapper = styled.div`
   position: absolute;
   top: 8px;
-  right: 20px;
+  right: 8px;
 `;
 const Description = styled.div`
   padding: 8px 12px;

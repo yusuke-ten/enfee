@@ -4,14 +4,25 @@ import { actionTypes, UserAction } from './actions';
 
 export interface UserState {
   isLoading: boolean;
-  profile: UserProfile | null;
+  profile: UserProfile;
   users: UserProfile[];
   reviews: Review[];
 }
 
 const initialState: UserState = {
   isLoading: false,
-  profile: null,
+  profile: {
+    id: 0,
+    displayName: '',
+    loginName: '',
+    profile: '',
+    imageUrl: '',
+    followerCount: 0,
+    followingCount: 0,
+    reviewCount: 0,
+    isFollowing: false,
+    loveStore: null,
+  },
   users: [],
   reviews: [],
 };
@@ -19,7 +30,7 @@ const initialState: UserState = {
 const reducer: Reducer<UserState, UserAction> = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_USER_PROFILE_START:
-      return { ...state, profile: null };
+      return { ...state, profile: initialState.profile };
     case actionTypes.FETCH_USER_PROFILE_SUCCEED: {
       return {
         ...state,
@@ -34,7 +45,6 @@ const reducer: Reducer<UserState, UserAction> = (state = initialState, action) =
       return {
         ...state,
         isLoading: false,
-        // users: state.users.concat(action.payload.users),
         users: action.payload.users,
       };
     case actionTypes.FETCH_USERS_FAIL:
@@ -45,6 +55,38 @@ const reducer: Reducer<UserState, UserAction> = (state = initialState, action) =
       return { ...state, isLoading: false, reviews: action.payload.reviews };
     case actionTypes.FETCH_REVIEWS_FAIL:
       return { ...state, isLoading: false };
+    case actionTypes.FOLLOW: {
+      const { loginName } = action.payload;
+      // TODO: すべてのユーザーをチェックしているので、stateをシリアライズして処理したい
+      // ({ [loginName]: profile })
+      // TODO: profileとusersどちらの変更か確認する方法を変える
+      const changeStatus = (u: UserProfile) =>
+        u.loginName === loginName ? { ...u, isFollowing: true } : u;
+
+      return {
+        ...state,
+        users: state.users.map(changeStatus),
+        profile:
+          loginName === state.profile.loginName
+            ? { ...state.profile, isFollowing: true }
+            : state.profile,
+      };
+    }
+    case actionTypes.UNFOLLOW: {
+      const { loginName } = action.payload;
+
+      const changeStatus = (u: UserProfile) =>
+        u.loginName === loginName ? { ...u, isFollowing: false } : u;
+
+      return {
+        ...state,
+        users: state.users.map(changeStatus),
+        profile:
+          loginName === state.profile.loginName
+            ? { ...state.profile, isFollowing: false }
+            : state.profile,
+      };
+    }
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const _: never = action;

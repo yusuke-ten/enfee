@@ -26,6 +26,7 @@ export interface UserProfile {
   followerCount: number;
   followingCount: number;
   reviewCount: number;
+  isFollowing: boolean;
   loveStore: {
     id: number;
     name: Store;

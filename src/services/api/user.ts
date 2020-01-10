@@ -1,5 +1,5 @@
-import AxiosFactory from 'utils/axios';
-import { TimeoutError, ServerError } from 'src/utils/errors';
+import AxiosFactory, { createAuthHeader } from 'utils/axios';
+import { TimeoutError, ServerError, UnauthorilzedError } from 'src/utils/errors';
 import { UserProfile, Review } from 'services/models';
 
 const axios = AxiosFactory.getInstance();
@@ -33,9 +33,14 @@ export const fetchMyProfile = async (token: string) => {
 
 export const fetchUserProfileApi = async (
   loginName: string,
+  token: string | null,
 ): Promise<UserProfile> => {
+  const headers = createAuthHeader(token || '');
+
   try {
-    const response = await axios.get<{ data: UserProfile }>(`/users/${loginName}`);
+    const response = await axios.get<{ data: UserProfile }>(`/users/${loginName}`, {
+      headers,
+    });
 
     return response.data;
   } catch (err) {
@@ -48,10 +53,14 @@ export type UsersKind = 'followers' | 'following';
 export const fetchUsersApi = async (
   loginName: string,
   target: UsersKind,
+  token: string | null,
 ): Promise<UserProfile[]> => {
+  const headers = createAuthHeader(token || '');
+
   try {
     const response = await axios.get<{ data: UserProfile[] }>(
       `/users/${loginName}/${target}`,
+      { headers },
     );
 
     return response.data;
@@ -68,6 +77,40 @@ export const fetchReviewsApi = async (loginName: string): Promise<Review[]> => {
 
     return response.data;
   } catch (error) {
+    throw error;
+  }
+};
+
+export const followApi = async (
+  loginName: string,
+  token: string,
+): Promise<void> => {
+  const headers = createAuthHeader(token);
+
+  try {
+    await axios.post(`/users/${loginName}/follow`, null, { headers });
+  } catch (error) {
+    if (error instanceof UnauthorilzedError) {
+      throw new UnauthorilzedError('Unauthorized Error.');
+    }
+
+    throw error;
+  }
+};
+
+export const unfollowApi = async (
+  loginName: string,
+  token: string,
+): Promise<void> => {
+  const headers = createAuthHeader(token);
+
+  try {
+    await axios.delete(`/users/${loginName}/unfollow`, { headers });
+  } catch (error) {
+    if (error instanceof UnauthorilzedError) {
+      throw new UnauthorilzedError('Unauthorized Error.');
+    }
+
     throw error;
   }
 };

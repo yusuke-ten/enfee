@@ -12,5 +12,6 @@ storiesOf('organisms/UserProfileList', module).add('default', () => (
     users={userProfileList}
     isLoggedIn={boolean('isLoggedIn', true)}
     isLoading={boolean('isLoading', false)}
+    handleFollow={() => {}}
   />
 ));

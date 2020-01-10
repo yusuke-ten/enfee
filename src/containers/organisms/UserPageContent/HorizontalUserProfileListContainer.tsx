@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import HorizontalUserProfileList from 'components/organisms/HorizontalUserProfileList';
@@ -15,6 +15,18 @@ const useFetchUsers = (target: UsersKind) => {
   }, [target]);
 };
 
+const useFollowHandler = () => {
+  const dispatch = useDispatch();
+
+  return useCallback((target: string, isFollowing: boolean) => {
+    if (isFollowing) {
+      dispatch(actions.unfollow(target));
+    } else {
+      dispatch(actions.follow(target));
+    }
+  }, []);
+};
+
 const useStateProps = () => {
   const { isLoading, users } = useSelector((state: RootState) => state.user);
   const { isLoggedIn } = useSelector((state: RootState) => state.auth);
@@ -29,6 +41,7 @@ const HorizontalUserProfileListContainer: React.FC<{ target: UsersKind }> = ({
 
   const passProps = {
     ...useStateProps(),
+    handleFollow: useFollowHandler(),
   };
 
   return <HorizontalUserProfileList {...passProps} />;

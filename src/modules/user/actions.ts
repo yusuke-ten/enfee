@@ -13,6 +13,8 @@ export const actionTypes = {
   FETCH_REVIEWS_START: 'USER/FETCH_REVIEWS_START',
   FETCH_REVIEWS_SUCCEED: 'USER/FETCH_REVIEWS_SUCCEED',
   FETCH_REVIEWS_FAIL: 'USER/FETCH_REVIEWS_FAIL',
+  FOLLOW: 'USER/FOLLOW',
+  UNFOLLOW: 'USER/UNFOLLOW',
 } as const;
 
 export const fetchUserProfile = {
@@ -63,13 +65,27 @@ export const fetchReviews = {
   }),
 };
 
+export const follow = (loginName: string) => ({
+  type: actionTypes.FOLLOW,
+  payload: { loginName },
+});
+
+export const unfollow = (loginName: string) => ({
+  type: actionTypes.UNFOLLOW,
+  payload: { loginName },
+});
+
 export const actions = {
   fetchUserProfile,
   fetchUsers,
   fetchReviews,
+  follow,
+  unfollow,
 };
 
 export type UserAction =
   | CreatorsToActions<typeof fetchUserProfile>
   | CreatorsToActions<typeof fetchUsers>
-  | CreatorsToActions<typeof fetchReviews>;
+  | CreatorsToActions<typeof fetchReviews>
+  | ReturnType<typeof follow>
+  | ReturnType<typeof unfollow>;

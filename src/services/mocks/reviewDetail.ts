@@ -25,6 +25,7 @@ const reviewDetail: ReviewDetail = {
     followerCount: 0,
     followingCount: 0,
     reviewCount: 39,
+    isFollowing: true,
     loveStore: {
       id: 1,
       name: 'セブン-イレブン',

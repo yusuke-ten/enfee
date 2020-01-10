@@ -8,12 +8,14 @@ interface HorizontalUserProfileListProps {
   users: UserProfile[];
   isLoggedIn: boolean;
   isLoading: boolean;
+  handleFollow: (loginName: string, isFollowing: boolean) => void;
 }
 
 const HorizontalUserProfileList: React.FC<HorizontalUserProfileListProps> = ({
   users,
   isLoggedIn,
   isLoading,
+  handleFollow,
 }) => {
   return (
     <>
@@ -28,6 +30,7 @@ const HorizontalUserProfileList: React.FC<HorizontalUserProfileListProps> = ({
               key={userProfile.id}
               userProfile={userProfile}
               isLoggedIn={isLoggedIn}
+              handleFollow={handleFollow}
             />
           ))}
         </>
