@@ -12,6 +12,7 @@ const commonConfig = {
   localstrageTokenKey: '',
   twitterLoginUrl: '',
   defaultReviewListPerPage: 10,
+  siteName: 'Enfee',
 };
 
 const developmentConfig = {

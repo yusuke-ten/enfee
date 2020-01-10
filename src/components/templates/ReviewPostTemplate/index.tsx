@@ -4,9 +4,9 @@ import Layout from 'components/Layout';
 import ReviewPostForm, {
   Props as ReviewPostFormProps,
 } from 'components/organisms/ReviewPostForm';
-import { HeaderContainer } from 'containers/organisms';
 import { MyProfileInAside } from 'services/models';
 import { Color } from 'src/const';
+import { getPageTitle } from 'src/const/PageTitle';
 
 type Props = ReviewPostFormProps & {
   myProfile: MyProfileInAside | null;
@@ -20,7 +20,7 @@ const ReviewPostTemplate: React.FC<Props> = ({
   ...props
 }) => {
   return (
-    <Layout title="レビュー投稿ページ" {...props} withHeader>
+    <Layout title={getPageTitle['/reviews/new']()} {...props} withHeader>
       <Body>
         <Contents>
           <FormWrapper>

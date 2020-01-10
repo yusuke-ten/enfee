@@ -7,9 +7,9 @@ import FilterReviewMenu, {
   FilterReviewProps,
 } from 'components/organisms/FilterReviewMenu';
 import { FilteringLink } from 'components/molecules/Menu/ReviewMenu';
-import { HeaderContainer, ReviewDetailModalContainer } from 'containers/organisms';
+import { ReviewDetailModalContainer } from 'containers/organisms';
 import { Review, MyProfileInAside } from 'services/models';
-import { Color, Size } from 'src/const';
+import { Color, Size, getPageTitle } from 'src/const';
 
 interface Props {
   menuLinks: FilteringLink[];
@@ -23,6 +23,7 @@ interface Props {
   filterReviewMenuProps: FilterReviewProps;
   currentScrollY: number;
   undoScrollTop: () => void;
+  store?: string;
 }
 
 const ReviewsTemplate: React.FC<Props> = ({
@@ -37,9 +38,10 @@ const ReviewsTemplate: React.FC<Props> = ({
   filterReviewMenuProps,
   currentScrollY,
   undoScrollTop,
+  store,
 }) => {
   return (
-    <Layout title="レビューページ" withHeader>
+    <Layout title={getPageTitle['/reviews/:store'](store)} withHeader>
       <Body>
         <Contents>
           <NavWrapper>

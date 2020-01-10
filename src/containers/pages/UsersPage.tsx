@@ -45,6 +45,7 @@ const UsersPage: React.FC = () => {
 
   return (
     <UsersTemplate
+      loginName={loginName}
       isLoadingPage={isLoadingPage}
       menuProps={{ menus, selected, handleSelect }}
       isLoggedIn={isLoggedIn}

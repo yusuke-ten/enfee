@@ -11,7 +11,6 @@ import { storeFilteringLinks, followerFilteringTabs } from 'src/const/Link';
 import { ReviewsTemplate } from 'components/templates';
 
 const ReviewsPageContainer: React.FC<RouteComponentProps<{ store: string }>> = ({
-  history,
   match,
 }) => {
   const { store } = match.params;
@@ -89,6 +88,7 @@ const ReviewsPageContainer: React.FC<RouteComponentProps<{ store: string }>> = (
       filterReviewMenuProps={filterMenuProps}
       currentScrollY={currentScrollY}
       undoScrollTop={undoScrollTop}
+      store={store}
     />
   );
 };
