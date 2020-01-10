@@ -18,6 +18,7 @@ interface UsersTemplateProps {
     selected: string;
     handleSelect: (selectMenu: string) => void;
   };
+  isMyProfilePage: boolean;
   contentComponent: React.ReactNode;
 }
 
@@ -28,6 +29,7 @@ const UsersTemplate: React.FC<UsersTemplateProps> = ({
   handleFollow,
   isLoggedIn,
   menuProps,
+  isMyProfilePage,
   contentComponent,
 }) => {
   return (
@@ -42,6 +44,7 @@ const UsersTemplate: React.FC<UsersTemplateProps> = ({
                 userProfile={userProfile}
                 isLoggedIn={isLoggedIn}
                 handleFollow={handleFollow}
+                isMyProfilePage={isMyProfilePage}
               />
             </Profile>
             <Content>

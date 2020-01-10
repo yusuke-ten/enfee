@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import Txt, { InfoTxt } from 'components/atoms/Txt';
+import Button from 'components/atoms/Button';
+import Txt, { InfoTxt, WarnTxt } from 'components/atoms/Txt';
 import StoreBadge from 'components/atoms/StoreBadge';
 import AvatarCircle from 'components/atoms/AvatarCircle';
 import MediaObjectLayout from 'components/atoms/MediaObjectLayout';
 import Paragraph from 'components/atoms/Paragraph';
 import { FollowingButton, NotFollowingButton } from 'components/molecules';
 import { UserProfile } from 'services/models';
+import { USER_PAGE } from 'src/const/Sentence';
 
 /* stats itemコンポーネント ------------- */
 const StatsItem: React.FC<{ count: number; text: string }> = ({ count, text }) => (
@@ -32,12 +33,14 @@ interface UserProfileProps {
   userProfile: UserProfile;
   isLoggedIn: boolean;
   handleFollow: (loginName: string, isFollowing: boolean) => void;
+  isMyProfilePage: boolean;
 }
 
 const UserProfileComponent: React.FC<UserProfileProps> = ({
   userProfile,
   isLoggedIn,
   handleFollow,
+  isMyProfilePage,
 }) => {
   const {
     displayName,
@@ -51,8 +54,45 @@ const UserProfileComponent: React.FC<UserProfileProps> = ({
     followerCount,
   } = userProfile;
 
+  const renderEditProfileButton = () => {
+    if (isMyProfilePage) {
+      return (
+        <ButtonWrapper>
+          <Button size="midium" reverse>
+            {USER_PAGE.editProfile}
+          </Button>
+        </ButtonWrapper>
+      );
+    }
+
+    return null;
+  };
+
+  const renderFollowButton = () => {
+    if (isLoggedIn && !isMyProfilePage) {
+      return (
+        <ButtonWrapper>
+          {isFollowing ? (
+            <FollowingButton onClick={() => handleFollow(loginName, isFollowing)} />
+          ) : (
+            <NotFollowingButton
+              onClick={() => handleFollow(loginName, isFollowing)}
+            />
+          )}
+        </ButtonWrapper>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <>
+      {isMyProfilePage && (
+        <StyledInfoTxt tag="div" fontWeight="bold">
+          {USER_PAGE.yourPage}
+        </StyledInfoTxt>
+      )}
       <MediaObjectLayout>
         <LeftContent>
           <StyledAvatarCircle src={imageUrl} />
@@ -70,19 +110,8 @@ const UserProfileComponent: React.FC<UserProfileProps> = ({
             <StatsItem text="フォロー中" count={followingCount} />
             <StatsItem text="フォロワー" count={followerCount} />
           </Stats>
-          {isLoggedIn && (
-            <ButtonWrapper>
-              {isFollowing ? (
-                <FollowingButton
-                  onClick={() => handleFollow(loginName, isFollowing)}
-                />
-              ) : (
-                <NotFollowingButton
-                  onClick={() => handleFollow(loginName, isFollowing)}
-                />
-              )}
-            </ButtonWrapper>
-          )}
+          {renderEditProfileButton()}
+          {renderFollowButton()}
         </RightContent>
       </MediaObjectLayout>
       <Description>
@@ -92,6 +121,9 @@ const UserProfileComponent: React.FC<UserProfileProps> = ({
   );
 };
 
+const StyledInfoTxt = styled(WarnTxt)`
+  margin-bottom: 10px;
+`;
 const LeftContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -125,7 +157,7 @@ const StatsCountTxt = styled(Txt)`
 `;
 const ButtonWrapper = styled.div`
   position: absolute;
-  top: 8px;
+  top: 0;
   right: 8px;
 `;
 const Description = styled.div`

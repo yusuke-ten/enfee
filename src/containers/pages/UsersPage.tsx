@@ -10,6 +10,7 @@ import UserPageContentContainer from 'containers/organisms/UserPageContent';
 import UsersTemplate from 'components/templates/UsersTemplate';
 
 export type Menus = 'レビュー' | 'フォロー中' | 'フォロワー';
+const menus: Menus[] = ['レビュー', 'フォロー中', 'フォロワー'];
 
 const UsersPage: React.FC = () => {
   const { loginName } = useParams<{ loginName: string }>();
@@ -19,9 +20,7 @@ const UsersPage: React.FC = () => {
   if (!selectedContent) {
     selectedContent = 'following';
   }
-
-  const menus = ['レビュー', 'フォロー中', 'フォロワー'];
-  const [selected, setSelected] = useState<Menus>('レビュー');
+  const [selected, setSelected] = useState<Menus>(menus[0]);
 
   const handleSelect = useCallback((selectMenu: string) => {
     setSelected(selectMenu as Menus);
@@ -38,6 +37,7 @@ const UsersPage: React.FC = () => {
   const { isLoadingPage } = useSelector((state: RootState) => state.app);
   const { profile } = useSelector((state: RootState) => state.user);
   const { isLoggedIn } = useSelector((state: RootState) => state.auth);
+  const { myProfile } = useSelector((state: RootState) => state.app);
 
   useEffect(() => {
     dispatch(fetchUserProfile.start(loginName));
@@ -52,6 +52,9 @@ const UsersPage: React.FC = () => {
       userProfile={profile}
       handleFollow={handleFollow}
       contentComponent={<UserPageContentContainer selected={selected} />}
+      isMyProfilePage={
+        myProfile ? myProfile.loginName === profile.loginName : false
+      }
     />
   );
 };
