@@ -5,14 +5,14 @@ import ReviewPanelList from 'components/organisms/ReviewPanelList';
 import { RootState } from 'modules/reducer';
 import { actions } from 'modules/user/actions';
 
-const useFetchReviews = () => {
-  const dispatch = useDispatch();
-  const { loginName } = useParams<{ loginName: string }>();
+// const useFetchReviews = () => {
+//   const dispatch = useDispatch();
+//   const { loginName } = useParams<{ loginName: string }>();
 
-  useEffect(() => {
-    dispatch(actions.fetchReviews.start(loginName));
-  }, []);
-};
+//   useEffect(() => {
+//     dispatch(actions.fetchReviews.start(loginName));
+//   }, []);
+// };
 
 const useStateProps = () => {
   const { reviews, isLoading } = useSelector((state: RootState) => state.user);
@@ -22,7 +22,7 @@ const useStateProps = () => {
 };
 
 const ReviewPanelListContainer: React.FC = () => {
-  useFetchReviews();
+  // useFetchReviews();
 
   const passProps = {
     ...useStateProps(),

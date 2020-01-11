@@ -40,7 +40,7 @@ const reducer: Reducer<UserState, UserAction> = (state = initialState, action) =
     case actionTypes.FETCH_USER_PROFILE_FAIL:
       return { ...state };
     case actionTypes.FETCH_USERS_START:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true, users: [], reviews: [] };
     case actionTypes.FETCH_USERS_SUCCEED:
       return {
         ...state,
@@ -48,9 +48,9 @@ const reducer: Reducer<UserState, UserAction> = (state = initialState, action) =
         users: action.payload.users,
       };
     case actionTypes.FETCH_USERS_FAIL:
-      return { ...state, isLoading: false };
+      return { ...state, isLoading: false, users: [] };
     case actionTypes.FETCH_REVIEWS_START:
-      return { ...state, isLoading: true, reviews: [] };
+      return { ...state, isLoading: true, reviews: [], users: [] };
     case actionTypes.FETCH_REVIEWS_SUCCEED:
       return { ...state, isLoading: false, reviews: action.payload.reviews };
     case actionTypes.FETCH_REVIEWS_FAIL:

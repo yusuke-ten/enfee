@@ -6,14 +6,14 @@ import { actions } from 'modules/user/actions';
 import { RootState } from 'modules/reducer';
 import { UsersKind } from 'services/api/user';
 
-const useFetchUsers = (target: UsersKind) => {
-  const dispatch = useDispatch();
-  const { loginName } = useParams<{ loginName: string }>();
+// const useFetchUsers = (target: UsersKind) => {
+//   const dispatch = useDispatch();
+//   const { loginName } = useParams<{ loginName: string }>();
 
-  useEffect(() => {
-    dispatch(actions.fetchUsers.start(loginName, target));
-  }, [target]);
-};
+//   useEffect(() => {
+//     dispatch(actions.fetchUsers.start(loginName, target));
+//   }, [target]);
+// };
 
 const useFollowHandler = () => {
   const dispatch = useDispatch();
@@ -34,10 +34,8 @@ const useStateProps = () => {
   return { isLoading, users, isLoggedIn };
 };
 
-const HorizontalUserProfileListContainer: React.FC<{ target: UsersKind }> = ({
-  target,
-}) => {
-  useFetchUsers(target);
+const HorizontalUserProfileListContainer: React.FC = () => {
+  // useFetchUsers(target);
 
   const passProps = {
     ...useStateProps(),
