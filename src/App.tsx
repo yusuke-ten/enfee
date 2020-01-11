@@ -7,6 +7,7 @@ import {
   ReviewsPage,
   ReviewPostPage,
   UsersPage,
+  SettingsProfilePage,
 } from 'containers/pages';
 
 const NotFound = () => <div>not found</div>;
@@ -21,6 +22,7 @@ const App: React.FC = () => (
     <Route path={paths.reviews} component={ReviewsPage} exact />
     <Route path="/" exact render={({ match }) => <Redirect to="/reviews" />} />
     <Route path={paths.users} component={UsersPage} exact />
+    <Route path={paths.settingsProfile} component={SettingsProfilePage} exact />
     <Route path="/" component={NotFound} />
   </Switch>
 );

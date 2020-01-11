@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from 'components/Layout';
 import FilterMenu from 'components/molecules/Menu/FilterMenu';
-import Loading from 'components/molecules/Loading';
+import { LoadingPage } from 'components/molecules';
 import UserProfileContent from 'components/organisms/UserProfile';
 import { UserProfile } from 'services/models';
 import { Color, getPageTitle } from 'src/const';
@@ -36,7 +36,7 @@ const UsersTemplate: React.FC<UsersTemplateProps> = ({
     <Layout title={getPageTitle['/users/:loginName'](loginName)} withHeader>
       <Body>
         {isLoadingPage || !userProfile ? (
-          <Loading />
+          <LoadingPage />
         ) : (
           <Frame>
             <Profile>

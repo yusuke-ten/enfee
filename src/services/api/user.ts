@@ -1,4 +1,4 @@
-import AxiosFactory, { createAuthHeader } from 'utils/axios';
+import AxiosFactory, { createAuthHeader, createMultiPartHeader } from 'utils/axios';
 import { TimeoutError, ServerError, UnauthorilzedError } from 'src/utils/errors';
 import { UserProfile, Review } from 'services/models';
 
@@ -109,6 +109,59 @@ export const unfollowApi = async (
   } catch (error) {
     if (error instanceof UnauthorilzedError) {
       throw new UnauthorilzedError('Unauthorized Error.');
+    }
+
+    throw error;
+  }
+};
+
+export interface UpdateProfileParams {
+  image?: File;
+  name?: string;
+  storeId?: string;
+  profile?: string;
+}
+
+export const updateProfile = async (
+  params: UpdateProfileParams,
+  loginName: string,
+  token: string,
+): Promise<UserProfile> => {
+  const formData = new FormData();
+
+  if (params.image) {
+    formData.append('image', params.image);
+  }
+
+  if (params.name) {
+    formData.append('display_name', params.name);
+  }
+
+  if (params.profile) {
+    formData.append('profile', params.profile);
+  }
+
+  if (params.storeId) {
+    formData.append('love_store_id', params.storeId);
+  }
+
+  const headers = Object.assign(
+    {},
+    createAuthHeader(token),
+    createMultiPartHeader(),
+  );
+
+  try {
+    const response = await axios.put<{ data: UserProfile }>(
+      `/users/${loginName}`,
+      formData,
+      { headers },
+    );
+
+    return response.data;
+  } catch (error) {
+    if (error instanceof UnauthorilzedError) {
+      throw new UnauthorilzedError('Unauthorized Error');
     }
 
     throw error;

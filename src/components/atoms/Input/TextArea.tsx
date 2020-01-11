@@ -10,6 +10,7 @@ interface Props {
   isError?: boolean;
   onBlurHandler?: () => void;
   onFocusHandler?: () => void;
+  name?: string;
 }
 
 const TextArea: React.FC<Props> = ({
@@ -20,6 +21,7 @@ const TextArea: React.FC<Props> = ({
   isError = false,
   onBlurHandler = () => {},
   onFocusHandler = () => {},
+  name,
   ...props
 }) => (
   <StyledTextArea
@@ -30,6 +32,7 @@ const TextArea: React.FC<Props> = ({
     placeholder={placeholder}
     onBlur={onBlurHandler}
     onFocus={onFocusHandler}
+    name={name}
     {...props}
   />
 );
@@ -44,7 +47,7 @@ const StyledTextArea = styled.textarea<{ height: string; isError: boolean }>`
   color: ${Color.FONT.BASE};
   word-wrap: break-word;
   resize: none;
-  transition: 0.3s ease;
+  /* transition: 0.3s ease; */
   padding: 0.8rem 0.4rem;
   font-size: ${Size.FONT_RATIO.MEDIUM}rem;
   box-sizing: border-box;

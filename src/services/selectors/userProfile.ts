@@ -8,7 +8,7 @@ export const userProfileInAsideSelector = (
   return {
     imageUrl: u.imageUrl,
     displayName: u.displayName,
-    loginName: `@${u.loginName}`,
+    loginName: u.loginName,
     statsList: [
       { heading: 'レビュー', amount: u.reviewCount },
       { heading: 'フォロー', amount: u.followingCount },

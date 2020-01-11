@@ -4,6 +4,7 @@ export const USER_PAGE = {
 };
 
 export const SETTINGS_PROFILE = {
+  title: 'プロフィール編集',
   avatar: {
     label: 'ユーザー画像:',
   },

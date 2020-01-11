@@ -34,7 +34,7 @@ const Header: React.FC<Props> = ({
           {isLoggedIn && myProfile ? (
             <AccountNav
               imageUrl={myProfile.imageUrl}
-              mypageUrl="/mypage"
+              mypageUrl={`/users/${myProfile.loginName}`}
               handleLogout={handleLogout}
             />
           ) : (

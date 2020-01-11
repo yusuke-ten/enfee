@@ -1,8 +1,16 @@
-import { fork, takeEvery, call, put, select } from 'redux-saga/effects';
+import {
+  fork,
+  takeEvery,
+  takeLeading,
+  call,
+  put,
+  select,
+} from 'redux-saga/effects';
 import * as api from 'services/api/user';
 import { UserProfile, Review } from 'services/models';
 import { selectToken } from 'modules/auth/selectors';
 import { actionTypes, fetchUserProfile, actions } from './actions';
+import { RootState } from '../reducer';
 
 function* runFetchUserProfile(action: ReturnType<typeof fetchUserProfile.start>) {
   const { loginName } = action.payload;
@@ -83,10 +91,36 @@ function* watchUnfollow() {
   yield takeEvery(actionTypes.UNFOLLOW, runUnfollow);
 }
 
+function* runUpdateProfile(action: ReturnType<typeof actions.updateProfile.start>) {
+  const token: ReturnType<typeof selectToken> = yield select(selectToken);
+
+  if (token) {
+    const { loginName, params } = action.paylod;
+
+    try {
+      const myProfile: UserProfile = yield call(
+        api.updateProfile,
+        params,
+        loginName,
+        token,
+      );
+
+      yield put(actions.updateProfile.succeed());
+    } catch (error) {
+      yield put(actions.updateProfile.fail());
+    }
+  }
+}
+
+function* watchUpdateProfile() {
+  yield takeLeading(actionTypes.UPDATE_PROFILE_START, runUpdateProfile);
+}
+
 export default function* root() {
   yield fork(watchFetchUserProfile);
   yield fork(watchFetchUsers);
   yield fork(watchFetchReviews);
   yield fork(watchFollow);
   yield fork(watchUnfollow);
+  yield fork(watchUpdateProfile);
 }

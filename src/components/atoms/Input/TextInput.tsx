@@ -14,6 +14,7 @@ interface Props {
   isError?: boolean;
   small?: boolean;
   vanish?: boolean;
+  name?: string;
 }
 
 const TextInput: FC<Props> = ({
@@ -26,6 +27,7 @@ const TextInput: FC<Props> = ({
   isError = false,
   small = false,
   vanish = true,
+  name,
   ...props
 }) => {
   return (
@@ -39,6 +41,7 @@ const TextInput: FC<Props> = ({
       isError={isError}
       small={small}
       vanish={vanish}
+      name={name}
       {...props}
     />
   );

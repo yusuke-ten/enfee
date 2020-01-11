@@ -10,4 +10,5 @@ export default {
     store ? `${store} / ${siteName}` : siteName,
   [paths.users]: (loginName: string) => `@${loginName}さんのページ / ${siteName}`,
   [paths.reviewPost]: () => `レビューを投稿 / ${siteName}`,
+  [paths.settingsProfile]: () => `プロフィール編集 / ${siteName}`,
 };

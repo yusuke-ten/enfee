@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { CreatorsToActions } from 'src/utils';
 import { metaKeys } from 'modules/actions';
 import { UserProfile, Review } from 'services/models';
-import { UsersKind } from 'services/api/user';
+import { UsersKind, UpdateProfileParams } from 'services/api/user';
 
 export const actionTypes = {
   FETCH_USER_PROFILE_START: 'USER/FETCH_USER_PROFILE_START',
@@ -16,6 +16,9 @@ export const actionTypes = {
   FETCH_REVIEWS_FAIL: 'USER/FETCH_REVIEWS_FAIL',
   FOLLOW: 'USER/FOLLOW',
   UNFOLLOW: 'USER/UNFOLLOW',
+  UPDATE_PROFILE_START: 'USER/UPDATE_PROFILE_START',
+  UPDATE_PROFILE_SUCCEED: 'USER/UPDATE_PROFILE_SUCCEED',
+  UPDATE_PROFILE_FAIL: 'USER/UPDATE_PROFILE_FAIL',
 } as const;
 
 export const fetchUserProfile = {
@@ -79,12 +82,26 @@ export const unfollow = (loginName: string) => ({
   payload: { loginName },
 });
 
+export const updateProfile = {
+  start: (params: UpdateProfileParams, loginName: string) => ({
+    type: actionTypes.UPDATE_PROFILE_START,
+    paylod: { params, loginName },
+  }),
+  succeed: () => ({
+    type: actionTypes.UPDATE_PROFILE_SUCCEED,
+  }),
+  fail: () => ({
+    type: actionTypes.UPDATE_PROFILE_FAIL,
+  }),
+};
+
 export const actions = {
   fetchUserProfile,
   fetchUsers,
   fetchReviews,
   follow,
   unfollow,
+  updateProfile,
 };
 
 export type UserAction =
@@ -92,4 +109,5 @@ export type UserAction =
   | CreatorsToActions<typeof fetchUsers>
   | CreatorsToActions<typeof fetchReviews>
   | ReturnType<typeof follow>
-  | ReturnType<typeof unfollow>;
+  | ReturnType<typeof unfollow>
+  | CreatorsToActions<typeof updateProfile>;

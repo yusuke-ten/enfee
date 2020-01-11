@@ -9,6 +9,7 @@ interface Props {
   isError?: boolean;
   valueMaxLength: number;
   label?: string;
+  name?: string;
 }
 
 const TextAreaField: React.FC<Props> = ({
@@ -18,6 +19,7 @@ const TextAreaField: React.FC<Props> = ({
   isError = false,
   valueMaxLength,
   label,
+  name,
 }) => {
   const [focus, toggleFocus] = useState<boolean>(false);
 
@@ -50,6 +52,7 @@ const TextAreaField: React.FC<Props> = ({
         height="94%"
         onBlurHandler={onBlurHandler}
         onFocusHandler={onFocusHandler}
+        name={name}
       />
       {validLength ? (
         <StyledInfoTxt size="s">

@@ -11,6 +11,7 @@ interface Props {
   isError?: boolean;
   validationError?: string;
   label?: string;
+  name?: string;
 }
 
 const Field: React.FC<Props> = ({
@@ -21,6 +22,7 @@ const Field: React.FC<Props> = ({
   isError = false,
   validationError = '',
   label,
+  name,
 }) => {
   const [focus, toggleFocus] = useState<boolean>(false);
 
@@ -51,6 +53,7 @@ const Field: React.FC<Props> = ({
         onBlurHandler={onBlurHandler}
         onFocusHandler={onFocusHandler}
         isError={isError}
+        name={name}
       />
       {validationError && (
         <StyledWarnTxt size="s">

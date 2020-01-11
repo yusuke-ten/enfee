@@ -1,17 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AvatarCircle, Label, Select, Button } from 'components/atoms';
+import { AvatarCircle, Label, Select, Button, Heading } from 'components/atoms';
 import { Field, TextAreaField } from 'components/molecules';
 import { StoreItem } from 'services/models';
 import { SETTINGS_PROFILE } from 'src/const/Sentence';
 
-interface EditProfileProps {
+export interface EditProfileProps {
   avatarProps: {
     value: string;
   };
   nameProps: {
+    name: string;
     value: string;
-    onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChangeHandler: (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => void;
   };
   storeProps: {
     items: StoreItem[];
@@ -19,8 +22,11 @@ interface EditProfileProps {
     handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   };
   profileProps: {
+    name: string;
     value: string;
-    handleChage: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    handleChage: (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => void;
   };
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
@@ -33,7 +39,10 @@ const EditProfile: React.FC<EditProfileProps> = ({
   handleSubmit,
 }) => {
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
+      <StyledHeading type="h3" color="base" align="center">
+        {SETTINGS_PROFILE.title}
+      </StyledHeading>
       <Section>
         <Label>{SETTINGS_PROFILE.avatar.label}</Label>
         <AvatarWrapper>
@@ -42,6 +51,7 @@ const EditProfile: React.FC<EditProfileProps> = ({
       </Section>
       <Section>
         <Field
+          name={nameProps.name}
           type="text"
           placeholder={SETTINGS_PROFILE.profile.placeholder}
           label={SETTINGS_PROFILE.name.label}
@@ -54,6 +64,7 @@ const EditProfile: React.FC<EditProfileProps> = ({
       </Section>
       <Section>
         <TextAreaField
+          name={profileProps.name}
           placeholder={SETTINGS_PROFILE.profile.placeholder}
           valueMaxLength={160}
           label={SETTINGS_PROFILE.profile.label}
@@ -63,16 +74,25 @@ const EditProfile: React.FC<EditProfileProps> = ({
       <ButtonField>
         <Button type="submit">{SETTINGS_PROFILE.save}</Button>
       </ButtonField>
-    </form>
+    </Form>
   );
 };
 
+const Form = styled.form`
+  padding: 20px 50px;
+  background-color: white;
+  box-shadow: 1px 2px 4px 0 rgba(133, 131, 131, 0.5);
+`;
+const StyledHeading = styled(Heading)`
+  padding: 12px 0;
+  margin-bottom: 14px;
+`;
 const AvatarWrapper = styled.div`
   height: 60px;
   width: 60px;
 `;
 const Section = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 `;
 const ButtonField = styled.div`
   text-align: center;

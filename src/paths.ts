@@ -4,6 +4,7 @@ const paths = {
   reviewPost: '/reviews/new',
   reviews: '/reviews/:store',
   users: '/users/:loginName',
+  settingsProfile: '/settings/profile',
 } as const;
 
 export default paths;
