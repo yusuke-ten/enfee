@@ -1,7 +1,6 @@
 import { fork, takeEvery, call, put, select } from 'redux-saga/effects';
 import * as api from 'services/api/user';
 import { UserProfile, Review } from 'services/models';
-import { toggleLoadingPage } from 'modules/app/actions';
 import { selectToken } from 'modules/auth/selectors';
 import { actionTypes, fetchUserProfile, actions } from './actions';
 
@@ -13,7 +12,6 @@ function* runFetchUserProfile(action: ReturnType<typeof fetchUserProfile.start>)
     const userProfile = yield call(api.fetchUserProfileApi, loginName, token);
 
     yield put(fetchUserProfile.succeed(userProfile));
-    yield put(toggleLoadingPage(false));
   } catch (error) {
     yield put(fetchUserProfile.fail(loginName, error));
   }

@@ -27,6 +27,7 @@ export const fetchUserProfile = {
   succeed: (userProfile: UserProfile) => ({
     type: actionTypes.FETCH_USER_PROFILE_SUCCEED,
     payload: { userProfile },
+    meta: { [metaKeys.LOADING_PAGE]: false },
   }),
   fail: (loginName: string, error: AxiosError) => ({
     type: actionTypes.FETCH_USER_PROFILE_FAIL,
