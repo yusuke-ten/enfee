@@ -1,12 +1,22 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Color, Size } from 'src/const';
 
-const Label = styled.label<{ isHidden?: boolean; isError?: boolean }>`
-  visibility: ${props =>
-    props.isHidden && !props.isError ? 'hidden' : 'visible'};
+const Label = styled.label<{
+  isHidden?: boolean;
+  isError?: boolean;
+  focus?: boolean;
+}>`
+  visibility: ${props => (props.isHidden && !props.isError ? 'hidden' : 'visible')};
   font-size: ${Size.FONT.XSMALL}px;
-  color: ${props => (props.isError ? Color.THEME.ERROR : Color.THEME.PRIMARY)};
-  padding: 0 5px;
+  ${({ focus }) =>
+    focus
+      ? css`
+          color: ${Color.THEME.PRIMARY};
+        `
+      : css`
+          color: ${Color.FONT.BASE};
+        `}
+  color: ${props => props.isError && Color.THEME.ERROR};
 `;
 
 export default Label;

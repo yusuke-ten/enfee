@@ -92,8 +92,8 @@ const Container = styled.div`
   border-radius: 0;
   box-shadow: none;
   font-size: ${Size.FONT_RATIO.MEDIUM}rem;
-  margin-top: 9px;
-  margin-bottom: 15px;
+  /* margin-top: 9px;
+  margin-bottom: 15px; */
   width: 100%;
 
   &::before,
@@ -111,12 +111,12 @@ const Container = styled.div`
 
   &::before {
     bottom: 55%;
-    border-width: 0 6.5px 8px 6.5px;
+    border-width: 0 5.5px 7px 5.5px;
     border-bottom-color: ${demoGray};
   }
 
   &::after {
-    border-width: 8px 6.5px 0 6.5px;
+    border-width: 7px 5.5px 0 5.5px;
     border-top-color: ${demoGray};
     top: 55%;
   }
@@ -148,7 +148,9 @@ const StyledSelect = styled.select<{ isError: boolean }>`
   border-radius: 0;
   font-weight: 400;
   color: inherit;
-  padding: 0.9rem;
+  /* padding: 0.9rem; */
+  height: 36px;
+  padding: 0 4px;
   line-height: normal;
   transition: border-color 0.1s ease, outline 0.1s ease;
 

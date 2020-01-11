@@ -50,7 +50,7 @@ const StyledInput = styled.input<{
   vanish?: boolean;
 }>`
   width: 100%;
-  height: ${props => (props.small ? '30px' : '40px')};
+  height: ${props => (props.small ? '30px' : '32px')};
   font-size: ${props => (props.small ? '12px' : '14px')};
   color: ${Color.FONT.BASE};
   letter-spacing: 1.5px;

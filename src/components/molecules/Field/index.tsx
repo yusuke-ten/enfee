@@ -7,9 +7,10 @@ interface Props {
   type?: InputType;
   value: string;
   onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder: string;
+  placeholder?: string;
   isError?: boolean;
   validationError?: string;
+  label?: string;
 }
 
 const Field: React.FC<Props> = ({
@@ -19,26 +20,33 @@ const Field: React.FC<Props> = ({
   placeholder,
   isError = false,
   validationError = '',
+  label,
 }) => {
-  const [showLabel, toggleShowLabel] = useState<boolean>(false);
+  const [focus, toggleFocus] = useState<boolean>(false);
 
   const onBlurHandler = () => {
-    toggleShowLabel(false);
+    toggleFocus(false);
   };
 
   const onFocusHandler = () => {
-    toggleShowLabel(true);
+    toggleFocus(true);
   };
 
   return (
     <Wrapper>
-      <Label isHidden={!showLabel} isError={isError}>
-        {placeholder}
-      </Label>
+      {label ? (
+        <Label focus={focus} isError={isError}>
+          {label}
+        </Label>
+      ) : (
+        <Label isHidden={!focus} isError={isError} focus={focus}>
+          {placeholder}
+        </Label>
+      )}
       <TextInput
         type={type}
         value={value}
-        placeholder={placeholder}
+        placeholder={placeholder || ''}
         onChangeHandler={onChangeHandler}
         onBlurHandler={onBlurHandler}
         onFocusHandler={onFocusHandler}

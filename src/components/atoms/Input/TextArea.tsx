@@ -8,6 +8,8 @@ interface Props {
   value: string;
   handleChage: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   isError?: boolean;
+  onBlurHandler?: () => void;
+  onFocusHandler?: () => void;
 }
 
 const TextArea: React.FC<Props> = ({
@@ -16,6 +18,8 @@ const TextArea: React.FC<Props> = ({
   value,
   handleChage,
   isError = false,
+  onBlurHandler = () => {},
+  onFocusHandler = () => {},
   ...props
 }) => (
   <StyledTextArea
@@ -24,6 +28,8 @@ const TextArea: React.FC<Props> = ({
     value={value}
     onChange={handleChage}
     placeholder={placeholder}
+    onBlur={onBlurHandler}
+    onFocus={onFocusHandler}
     {...props}
   />
 );
@@ -39,7 +45,7 @@ const StyledTextArea = styled.textarea<{ height: string; isError: boolean }>`
   word-wrap: break-word;
   resize: none;
   transition: 0.3s ease;
-  padding: 0.9rem;
+  padding: 0.8rem 0.4rem;
   font-size: ${Size.FONT_RATIO.MEDIUM}rem;
   box-sizing: border-box;
 
@@ -58,9 +64,9 @@ const StyledTextArea = styled.textarea<{ height: string; isError: boolean }>`
     border: 2px solid ${Color.THEME.PRIMARY};
   }
 
-  &:focus::placeholder {
-    transition: 0.2s;
-  }
+  /* &:focus::placeholder {
+    transition: 0.1s;
+  } */
 `;
 
 export default TextArea;

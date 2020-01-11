@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { TextArea, InfoTxt, WarnTxt } from 'components/atoms';
+import { TextArea, InfoTxt, WarnTxt, Label } from 'components/atoms';
 
 interface Props {
   value: string;
@@ -8,6 +8,7 @@ interface Props {
   placeholder: string;
   isError?: boolean;
   valueMaxLength: number;
+  label?: string;
 }
 
 const TextAreaField: React.FC<Props> = ({
@@ -16,7 +17,18 @@ const TextAreaField: React.FC<Props> = ({
   placeholder,
   isError = false,
   valueMaxLength,
+  label,
 }) => {
+  const [focus, toggleFocus] = useState<boolean>(false);
+
+  const onBlurHandler = () => {
+    toggleFocus(false);
+  };
+
+  const onFocusHandler = () => {
+    toggleFocus(true);
+  };
+
   const RemainingLength = useMemo(() => {
     return valueMaxLength - value.length;
   }, [value]);
@@ -25,12 +37,19 @@ const TextAreaField: React.FC<Props> = ({
 
   return (
     <Container>
+      {label && (
+        <Label focus={focus} isError={isError}>
+          {label}
+        </Label>
+      )}
       <TextArea
         value={value}
         handleChage={handleChage}
         placeholder={placeholder}
         isError={isError}
         height="94%"
+        onBlurHandler={onBlurHandler}
+        onFocusHandler={onFocusHandler}
       />
       {validLength ? (
         <StyledInfoTxt size="s">
