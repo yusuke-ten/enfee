@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Spinner } from 'components/atoms';
+import { LoadingContents } from 'components/molecules';
 import HorizontalUserProfile from 'components/molecules/UserProfile/HorizontalUserProfile';
 import { UserProfile } from 'services/models';
 
@@ -20,11 +19,9 @@ const HorizontalUserProfileList: React.FC<HorizontalUserProfileListProps> = ({
   return (
     <>
       {isLoading ? (
-        <SpinnerWrapper>
-          <Spinner color="primary" height={30} width={30} />
-        </SpinnerWrapper>
+        <LoadingContents height={160} spinnerSize={26} />
       ) : (
-        <>
+        <div>
           {users.map(userProfile => (
             <HorizontalUserProfile
               key={userProfile.id}
@@ -33,17 +30,10 @@ const HorizontalUserProfileList: React.FC<HorizontalUserProfileListProps> = ({
               handleFollow={handleFollow}
             />
           ))}
-        </>
+        </div>
       )}
     </>
   );
 };
-
-const SpinnerWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 160px;
-`;
 
 export default HorizontalUserProfileList;

@@ -19,4 +19,5 @@ export { default as TextAreaField } from './TextAreaField';
 export { default as InputPictureField } from './InputPictureField';
 export { default as PostButtonWithLoading } from './Button/PostButtonWithLoading';
 export { default as DropdownMenu } from './DropdownMenu';
-export { default as Loading } from './Loading';
+export { default as LoadingPage } from './Loading/LoadingPage';
+export { default as LoadingContents } from './Loading/LoadingContents';

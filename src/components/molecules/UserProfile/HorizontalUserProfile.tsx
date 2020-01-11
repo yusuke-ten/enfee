@@ -77,7 +77,7 @@ const HorizontalUserProfile: React.FC<HorizontalUserProfileProps> = ({
 };
 
 const Wrapper = styled.div`
-  display: block;
+  /* display: block; */
   cursor: pointer;
   padding: 8px;
   border-bottom: 1px solid ${Color.BORDER.LIGHT};
@@ -106,7 +106,7 @@ const RightContent = styled.div`
 const InfoWrapper = styled.div`
   width: 70%;
 `;
-const ButtonWrapper = styled.object`
+const ButtonWrapper = styled.div`
   margin-left: auto;
 `;
 

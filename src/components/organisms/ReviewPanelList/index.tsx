@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Spinner } from 'components/atoms';
+import { LoadingContents } from 'components/molecules';
 import { ReviewPanel } from 'components/organisms';
 import { Review } from 'services/models';
 
@@ -20,9 +20,7 @@ const ReviewPanelList: React.FC<Props> = ({
   return (
     <>
       {isLoadingReview ? (
-        <SpinnerWrapper>
-          <Spinner color="primary" height={30} width={30} />
-        </SpinnerWrapper>
+        <LoadingContents height={160} spinnerSize={26} />
       ) : (
         <>
           {reviews.map(review => (
@@ -40,12 +38,6 @@ const ReviewPanelList: React.FC<Props> = ({
   );
 };
 
-const SpinnerWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 160px;
-`;
 const ReviewWrapper = styled.div`
   margin-bottom: 20px;
 
