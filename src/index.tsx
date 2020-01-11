@@ -4,6 +4,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
+import loadingPageMiddleware from './store/middlewares/loadingPageMiddleware';
 import rootReducer from './modules/reducer';
 import rootSaga from './modules/saga';
 import App from './App';
@@ -20,7 +21,9 @@ const composeEnhancers =
 /* eslint-enable */
 
 const sagaMiddleWare = createSagaMiddleware();
-const enhancer = composeEnhancers(applyMiddleware(sagaMiddleWare));
+const enhancer = composeEnhancers(
+  applyMiddleware(loadingPageMiddleware, sagaMiddleWare),
+);
 export const store = createStore(rootReducer, enhancer);
 
 ReactDOM.render(

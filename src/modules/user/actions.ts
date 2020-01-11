@@ -1,5 +1,6 @@
 import { AxiosError } from 'axios';
 import { CreatorsToActions } from 'src/utils';
+import { metaKeys } from 'modules/actions';
 import { UserProfile, Review } from 'services/models';
 import { UsersKind } from 'services/api/user';
 
@@ -21,6 +22,7 @@ export const fetchUserProfile = {
   start: (loginName: string) => ({
     type: actionTypes.FETCH_USER_PROFILE_START,
     payload: { loginName },
+    meta: { [metaKeys.LOADING_PAGE]: true },
   }),
   succeed: (userProfile: UserProfile) => ({
     type: actionTypes.FETCH_USER_PROFILE_SUCCEED,
@@ -30,6 +32,7 @@ export const fetchUserProfile = {
     type: actionTypes.FETCH_USER_PROFILE_FAIL,
     error: true,
     payload: { loginName, error },
+    meta: { [metaKeys.LOADING_PAGE]: false },
   }),
 };
 

@@ -29,6 +29,11 @@ export const toggleLoadingPage = (status: boolean) => ({
   payload: { status },
 });
 
+export const actions = {
+  fetchMyProfile,
+  toggleLoadingPage,
+};
+
 export type AppAction =
   | CreatorsToActions<typeof fetchMyProfile>
   | ReturnType<typeof toggleLoadingPage>;

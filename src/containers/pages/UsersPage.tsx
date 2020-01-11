@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { withInitialize } from 'containers/hocs';
 import { fetchUserProfile, follow, unfollow } from 'modules/user/actions';
-import useQuery from 'hooks/useQuery';
 import { RootState } from 'modules/reducer';
 
 import UserPageContentContainer from 'containers/organisms/UserPageContent';
@@ -15,11 +14,6 @@ const menus: Menus[] = ['レビュー', 'フォロー中', 'フォロワー'];
 const UsersPage: React.FC = () => {
   const { loginName } = useParams<{ loginName: string }>();
   const dispatch = useDispatch();
-  const query = useQuery();
-  let selectedContent = query.get('selectedConent');
-  if (!selectedContent) {
-    selectedContent = 'following';
-  }
   const [selected, setSelected] = useState<Menus>(menus[0]);
 
   const handleSelect = useCallback((selectMenu: string) => {
@@ -41,7 +35,8 @@ const UsersPage: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchUserProfile.start(loginName));
-  }, []);
+    setSelected(menus[0]);
+  }, [loginName]);
 
   return (
     <UsersTemplate
