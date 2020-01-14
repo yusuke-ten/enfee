@@ -17,6 +17,7 @@ import Plus from './icons/plus.svg';
 import Camera from './icons/camera.svg';
 import Trash from './icons/trash.svg';
 import CaretDown from './icons/caretDown.svg';
+import Image from './icons/image.svg';
 
 export type ColorType = 'less' | 'primary' | 'gray' | 'black';
 
@@ -116,18 +117,14 @@ export const CameraIcon: React.FC<Props> = ({
   width = DEFAULT_WIDTH,
   height = DEFAULT_HEIGHT,
   ...props
-}) => (
-  <StyledCameraIcon color={color} height={height} width={width} {...props} />
-);
+}) => <StyledCameraIcon color={color} height={height} width={width} {...props} />;
 
 export const TrashIcon: React.FC<Props> = ({
   color = DEFAULT_COLOR,
   width = DEFAULT_WIDTH,
   height = DEFAULT_HEIGHT,
   ...props
-}) => (
-  <StyledTrashIcon color={color} height={height} width={width} {...props} />
-);
+}) => <StyledTrashIcon color={color} height={height} width={width} {...props} />;
 
 export const CaretDownIcon: React.FC<Props> = ({
   color = DEFAULT_COLOR,
@@ -137,6 +134,13 @@ export const CaretDownIcon: React.FC<Props> = ({
 }) => (
   <StyledCaretDownIcon color={color} height={height} width={width} {...props} />
 );
+
+export const ImageIcon: React.FC<Props> = ({
+  color = DEFAULT_COLOR,
+  width = DEFAULT_WIDTH,
+  height = DEFAULT_HEIGHT,
+  ...props
+}) => <StyledImageIcon color={color} height={height} width={width} {...props} />;
 
 const colorPallete: { [k in ColorType]: string } = {
   gray: Color.FONT.BASE,
@@ -202,5 +206,8 @@ const StyledTrashIcon = styled(Trash)<StyleProps>`
   ${props => getStyles(props.color)}
 `;
 const StyledCaretDownIcon = styled(CaretDown)<StyleProps>`
+  ${props => getStyles(props.color)}
+`;
+const StyledImageIcon = styled(Image)<StyleProps>`
   ${props => getStyles(props.color)}
 `;

@@ -16,4 +16,5 @@ export {
   CameraIcon,
   TrashIcon,
   CaretDownIcon,
+  ImageIcon,
 } from './Icons';

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { CloseIcon, Line } from 'components/atoms';
 import { Color, Size } from 'src/const';
 
@@ -8,13 +8,14 @@ interface Props {
   children: React.ReactNode;
   onClose: () => void;
   heading?: string;
+  open: boolean;
 }
 
 const modalRoot = document.getElementById('modal-root') as Element;
 
-const Modal: React.FC<Props> = ({ children, onClose, heading }) => {
+const Modal: React.FC<Props> = ({ children, onClose, heading, open }) => {
   const modalUI = (
-    <Container onClick={onClose}>
+    <Container onClick={onClose} open={open}>
       <Inner>
         <Content onClick={e => e.stopPropagation()}>
           <Header>
@@ -33,7 +34,7 @@ const Modal: React.FC<Props> = ({ children, onClose, heading }) => {
   return ReactDOM.createPortal(modalUI, modalRoot);
 };
 
-const Container = styled.div`
+const Container = styled.div<{ open: boolean }>`
   background: rgba(0, 0, 0, 0.7);
   z-index: 2000;
   position: fixed;
@@ -46,6 +47,11 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   border-radius: 1px;
+  ${props =>
+    !props.open &&
+    css`
+      display: none;
+    `}
 `;
 const Inner = styled.div`
   height: auto;
@@ -53,9 +59,9 @@ const Inner = styled.div`
   align-self: flex-start;
   padding: 7rem 0.625rem 7rem;
   margin: 0 auto;
-  width: 100%;
-  max-width: 725px;
-  min-height: 250px;
+  /* width: 100%; */
+  /* max-width: 725px;
+  min-height: 250px; */
   pointer-events: none;
 `;
 const Content = styled.div`
@@ -78,13 +84,21 @@ const Heading = styled.div`
   line-height: 40px;
   text-align: center;
 `;
-const CloseButton = styled.span`
-  padding: 6px;
-  cursor: pointer;
+const CloseButton = styled.div`
+  height: 40px;
+  width: 40px;
   position: absolute;
-  right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.1s;
+
+  &:hover {
+    background-color: ${Color.THEME.BACKGROUND};
+  }
 `;
 const Main = styled.div`
   height: 100%;

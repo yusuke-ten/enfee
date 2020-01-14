@@ -52,6 +52,7 @@ module.exports = {
   },
   rules: {
     'no-undef': 'off',
+    'no-plusplus': 'off',
 
     // eslint official
     'newline-before-return': 'error',
