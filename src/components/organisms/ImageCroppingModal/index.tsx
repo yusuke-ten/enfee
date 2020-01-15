@@ -4,7 +4,7 @@ import { Modal } from 'components/molecules';
 import { Button, ImageIcon } from 'components/atoms';
 import { createObjectURL } from 'src/utils/file';
 
-interface ImageCroppingModalProps {
+export interface ImageCroppingModalProps {
   onClose: () => void;
   open: boolean;
   image: {

@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import Modal from '.';
 
 storiesOf('molecules/Modal', module).add('default', () => (
-  <Modal onClose={() => {}} heading="タイトル">
+  <Modal onClose={() => {}} heading="タイトル" open>
     <Container>Top OK</Container>
     <div>Bottom OK</div>
   </Modal>

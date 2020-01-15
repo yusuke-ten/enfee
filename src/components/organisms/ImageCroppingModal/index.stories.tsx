@@ -1,13 +1,19 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import pandaImage from 'services/mocks/images/panda.png';
-import ImageCroppingModal from '.';
+import ImageCroppingModal, { ImageCroppingModalProps } from '.';
 
-const image = {
-  src: pandaImage,
-  fileName: 'panda',
+const props: ImageCroppingModalProps = {
+  onClose: () => {},
+  open: true,
+  image: {
+    src: pandaImage,
+    fileName: 'panda',
+  },
+  handleSetAvatar: () => {},
+  undoAvatarProps: () => {},
 };
 
 storiesOf('organisms/ImageCroppingModal', module).add('default', () => (
-  <ImageCroppingModal onClose={() => {}} image={image} open />
+  <ImageCroppingModal {...props} />
 ));

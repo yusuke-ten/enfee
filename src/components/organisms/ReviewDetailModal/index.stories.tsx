@@ -19,7 +19,8 @@ storiesOf('organisms/ReviewDetailModal', module)
       <ReviewDetailModal
         reviewDetail={object('reviewDetail', reviewDetail)}
         isLoading={boolean('isLodading', false)}
-        closeModal={action('closeModal')}
+        onClose={action('closeModal')}
+        open
       />
     </Wrapper>
   ));

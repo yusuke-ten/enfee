@@ -1,13 +1,21 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { profile, storeList } from 'services/mocks';
-import EditProfile from '.';
+import EditProfile, { EditProfileProps } from '.';
 
-const props = {
+const props: EditProfileProps = {
+  modalProps: {
+    isOpen: true,
+    handleClose: () => {},
+    handleOpen: () => {},
+    undoAvatarProps: () => {},
+  },
   avatarProps: {
     value: profile.imageUrl,
+    file: null,
   },
   nameProps: {
+    name: 'name',
     value: profile.displayName,
     onChangeHandler: () => {},
   },
@@ -17,9 +25,11 @@ const props = {
     handleChange: () => {},
   },
   profileProps: {
+    name: 'profile',
     value: profile.profile,
     handleChage: () => {},
   },
+  handleSetAvatar: () => {},
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   },
