@@ -63,14 +63,14 @@ const ReviewsTemplate: React.FC<Props> = ({
       <LauncherWrapper>
         <PenLauncherButton to="/reviews/new" />
       </LauncherWrapper>
-      {isModal ? (
-        <>
-          <BackgroundFixedStyle currentScrollY={currentScrollY} />
-          <ReviewDetailModalContainer closeModal={closeModal} />
-        </>
-      ) : (
+      {/* {isModal ? ( */}
+      <>
+        {isModal && <BackgroundFixedStyle currentScrollY={currentScrollY} />}
+        <ReviewDetailModalContainer onClose={closeModal} open={isModal} />
+      </>
+      {/* ) : (
         <>{undoScrollTop()}</>
-      )}
+      )} */}
     </Layout>
   );
 };

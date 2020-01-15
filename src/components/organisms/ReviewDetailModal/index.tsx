@@ -9,17 +9,19 @@ import { ReviewDetail } from 'services/models';
 interface Props {
   reviewDetail: ReviewDetail | null;
   isLoading: boolean;
-  closeModal: () => void;
+  onClose: () => void;
+  open: boolean;
 }
 
 const ReviewDetailModal: React.FC<Props> = ({
   reviewDetail,
   isLoading,
-  closeModal,
+  onClose,
+  open,
 }) => {
   if (isLoading || reviewDetail === null) {
     return (
-      <Modal onClose={closeModal}>
+      <Modal onClose={onClose} open={open}>
         <SpinnerContainer>
           <Spinner color="primary" height={32} width={32} />
         </SpinnerContainer>
@@ -41,7 +43,7 @@ const ReviewDetailModal: React.FC<Props> = ({
   } = reviewDetail;
 
   return (
-    <Modal onClose={closeModal}>
+    <Modal onClose={onClose} open={open}>
       <div>
         <ReviewDetailArea
           {...{

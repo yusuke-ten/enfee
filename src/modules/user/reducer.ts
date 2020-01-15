@@ -87,6 +87,10 @@ const reducer: Reducer<UserState, UserAction> = (state = initialState, action) =
             : state.profile,
       };
     }
+    case actionTypes.UPDATE_PROFILE_START:
+    case actionTypes.UPDATE_PROFILE_SUCCEED:
+    case actionTypes.UPDATE_PROFILE_FAIL:
+      return { ...state };
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const _: never = action;

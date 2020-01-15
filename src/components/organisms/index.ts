@@ -11,3 +11,4 @@ export { default as ReviewDetailArea } from './ReviewDetailArea';
 export { default as ReviewDetailModal } from './ReviewDetailModal';
 export { default as ReviewPostForm } from './ReviewPostForm';
 export { default as AccountNav } from './AccountNav';
+export { default as ImageCroppingModal } from './ImageCroppingModal';

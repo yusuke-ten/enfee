@@ -1,13 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AvatarCircle, Label, Select, Button, Heading } from 'components/atoms';
+import {
+  AvatarCircle,
+  Label,
+  Select,
+  Button,
+  Heading,
+  CameraIcon,
+} from 'components/atoms';
 import { Field, TextAreaField } from 'components/molecules';
+import { ImageCroppingModal } from 'components/organisms';
 import { StoreItem } from 'services/models';
 import { SETTINGS_PROFILE } from 'src/const/Sentence';
+import useInputFile from 'src/hooks/use-inputFile';
 
 export interface EditProfileProps {
+  modalProps: {
+    isOpen: boolean;
+    handleClose: () => void;
+    handleOpen: () => void;
+    undoAvatarProps: () => void;
+  };
   avatarProps: {
     value: string;
+    file: File | null;
   };
   nameProps: {
     name: string;
@@ -28,24 +44,52 @@ export interface EditProfileProps {
       e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => void;
   };
+  handleSetAvatar: (imageUrl: string, file: File) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const EditProfile: React.FC<EditProfileProps> = ({
+  modalProps: { isOpen, handleClose, handleOpen, undoAvatarProps },
   avatarProps,
   nameProps,
   storeProps,
   profileProps,
+  handleSetAvatar,
   handleSubmit,
 }) => {
+  const { fileRef, onChangeFile, image } = useInputFile();
+
+  const handleChangeFileWrapper = () => {
+    onChangeFile();
+    handleOpen();
+  };
+
   return (
     <Form onSubmit={handleSubmit}>
+      <ImageCroppingModal
+        open={isOpen}
+        onClose={handleClose}
+        image={image}
+        handleSetAvatar={handleSetAvatar}
+        undoAvatarProps={undoAvatarProps}
+      />
       <StyledHeading type="h3" color="base" align="center">
         {SETTINGS_PROFILE.title}
       </StyledHeading>
       <Section>
         <Label>{SETTINGS_PROFILE.avatar.label}</Label>
         <AvatarWrapper>
+          <input
+            id="file"
+            ref={fileRef}
+            type="file"
+            style={{ display: 'hidden' }}
+            accept="image/png,image/jpg,image/jpeg"
+            hidden
+            onChange={handleChangeFileWrapper}
+          />
+          <Overlay as="label" htmlFor="file" />
+          <StyledCameraIcon width={16} height={16} color="gray" />
           <AvatarCircle src={avatarProps.value} />
         </AvatarWrapper>
       </Section>
@@ -88,8 +132,31 @@ const StyledHeading = styled(Heading)`
   margin-bottom: 14px;
 `;
 const AvatarWrapper = styled.div`
-  height: 60px;
-  width: 60px;
+  height: 80px;
+  width: 80px;
+  position: relative;
+`;
+const Overlay = styled.label`
+  cursor: pointer;
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  background-color: gray;
+  opacity: 0.5;
+  z-index: 1;
+
+  &:hover {
+    background-color: #fff;
+    opacity: 0.2;
+    transition: background-color 0.2s;
+  }
+`;
+const StyledCameraIcon = styled(CameraIcon)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 const Section = styled.div`
   margin-bottom: 16px;

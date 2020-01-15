@@ -1,40 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { Modal } from 'components/molecules';
 import { Button, ImageIcon } from 'components/atoms';
-
-// const getBaseName = (str: string): string => {
-//   let base = str.substring(str.lastIndexOf('/') + 1);
-//   if (base.lastIndexOf('.') !== -1) {
-//     base = base.substring(0, base.lastIndexOf('.'));
-//   }
-
-//   return base;
-// };
-
-// const useInputFile = () => {
-//   const [image, setImage] = useState<{
-//     preview: string;
-//     raw: File | null;
-//     fileName: string;
-//   }>({ preview: '', raw: null, fileName: '' });
-//   const fileRef = useRef<HTMLInputElement>(null);
-
-//   const { createObjectURL } = window.URL || window.webkitURL;
-
-//   const onChangeFile = () => {
-//     if (fileRef.current && fileRef.current.files) {
-//       const imageUrl = createObjectURL(fileRef.current.files[0]);
-//       setImage({
-//         preview: imageUrl,
-//         raw: fileRef.current.files[0],
-//         fileName: getBaseName(fileRef.current.files[0].name),
-//       });
-//     }
-//   };
-
-//   return { fileRef, onChangeFile, image };
-// };
+import { createObjectURL } from 'src/utils/file';
 
 interface ImageCroppingModalProps {
   onClose: () => void;
@@ -42,17 +10,32 @@ interface ImageCroppingModalProps {
   image: {
     src: string;
     fileName: string;
+    raw?: File | null;
   };
+  handleSetAvatar: (imageUrl: string, file: File) => void;
+  undoAvatarProps: () => void;
 }
 
 const ImageCroppingModal: React.FC<ImageCroppingModalProps> = ({
   open,
   onClose,
   image,
+  handleSetAvatar,
+  undoAvatarProps,
 }) => {
+  const onCloseWrapper = () => {
+    undoAvatarProps();
+    onClose();
+  };
+
   return (
-    <Modal onClose={onClose} open={open}>
-      <Cropping imageUrl={image.src} fileName={image.fileName} />
+    <Modal onClose={onCloseWrapper} open={open}>
+      <Cropping
+        imageUrl={image.src}
+        fileName={image.fileName}
+        handleSetAvatar={handleSetAvatar}
+        onClose={onClose}
+      />
     </Modal>
   );
 };
@@ -62,10 +45,12 @@ const outCanvas = { width: 300, height: 300 };
 const minScale = 10;
 const maxScale = 200;
 
-const Cropping: React.FC<{ imageUrl: string; fileName: string }> = ({
-  imageUrl,
-  fileName,
-}) => {
+const Cropping: React.FC<{
+  imageUrl: string;
+  fileName: string;
+  handleSetAvatar: (imageUrl: string, file: File) => void;
+  onClose: () => void;
+}> = ({ imageUrl, fileName, handleSetAvatar, onClose }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const outCanvasRef = useRef<HTMLCanvasElement>(null);
   const imageSize = useRef({ width: 0, height: 0 });
@@ -187,7 +172,7 @@ const Cropping: React.FC<{ imageUrl: string; fileName: string }> = ({
     }
   };
 
-  const toData = () => {
+  const generateFileData = (): [string, File] | null => {
     if (outCanvasRef.current) {
       // canvas -> base64
       const base64 = outCanvasRef.current.toDataURL('image/png');
@@ -198,7 +183,7 @@ const Cropping: React.FC<{ imageUrl: string; fileName: string }> = ({
         buffer[i] = bin.charCodeAt(i);
       }
       // binary -> Blob
-      const blob = new Blob([buffer.buffer], { type: 'image/png' });
+      // const blob = new Blob([buffer.buffer], { type: 'image/png' });
       // binary -> File
       const file = new File([buffer.buffer], `${fileName}.png`, {
         type: 'image/png',
@@ -206,9 +191,13 @@ const Cropping: React.FC<{ imageUrl: string; fileName: string }> = ({
 
       console.log('切り取ったファイルを変換しました。結果: ');
       console.log('to base64 data: ', base64);
-      console.log('to blob: ', blob);
+      // console.log('to blob: ', blob);
       console.log('to file: ', file);
+
+      return [createObjectURL(file), file];
     }
+
+    return null;
   };
 
   const scaling = (_v: number) => {
@@ -235,7 +224,11 @@ const Cropping: React.FC<{ imageUrl: string; fileName: string }> = ({
 
   const handleApply = () => {
     cropImg();
-    toData();
+    const fileData = generateFileData();
+    if (fileData) {
+      handleSetAvatar(...fileData);
+      onClose();
+    }
   };
 
   return (

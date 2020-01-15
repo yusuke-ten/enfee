@@ -11,12 +11,14 @@ const useStateProps = () => {
   return { isLoading: !loaded, reviewDetail };
 };
 
-const ReviewsDetailModalContainer: React.FC<{ closeModal: () => void }> = ({
-  closeModal,
-}) => {
+const ReviewsDetailModalContainer: React.FC<{
+  onClose: () => void;
+  open: boolean;
+}> = ({ onClose, open }) => {
   const passProps = {
     ...useStateProps(),
-    closeModal,
+    onClose,
+    open,
   };
 
   return <ReviewDetailModal {...passProps} />;
