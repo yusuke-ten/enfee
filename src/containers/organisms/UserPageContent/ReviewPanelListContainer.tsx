@@ -1,18 +1,9 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import ReviewPanelList from 'components/organisms/ReviewPanelList';
+import React, { useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchReviewDetail } from 'modules/review/actions';
 import { RootState } from 'modules/reducer';
-import { actions } from 'modules/user/actions';
-
-// const useFetchReviews = () => {
-//   const dispatch = useDispatch();
-//   const { loginName } = useParams<{ loginName: string }>();
-
-//   useEffect(() => {
-//     dispatch(actions.fetchReviews.start(loginName));
-//   }, []);
-// };
+import useOpen from 'src/hooks/useOpen';
+import ReviewPanelList from 'components/organisms/ReviewPanelList';
 
 const useStateProps = () => {
   const { reviews, isLoading } = useSelector((state: RootState) => state.user);
@@ -21,14 +12,33 @@ const useStateProps = () => {
   return { reviews, isLoadingReview: isLoading, isLoggedIn };
 };
 
-const ReviewPanelListContainer: React.FC = () => {
-  // useFetchReviews();
+const useReviewDetail = () => {
+  const dispatch = useDispatch();
 
+  const { isOpen, handleClose, handleOpen } = useOpen();
+
+  const handleOpenReviewModal = useCallback((reviewId: number) => {
+    dispatch(fetchReviewDetail.start(reviewId));
+    handleOpen();
+  }, []);
+
+  return {
+    modalProps: {
+      open: isOpen,
+      handleClose,
+      handleOpen: handleOpenReviewModal,
+      currentScrollY: 0,
+    },
+  };
+};
+
+const ReviewPanelListContainer: React.FC = () => {
   const passProps = {
     ...useStateProps(),
+    ...useReviewDetail(),
   };
 
-  return <ReviewPanelList {...passProps} openModal={() => {}} userHidden />;
+  return <ReviewPanelList {...passProps} userHidden />;
 };
 
 export default ReviewPanelListContainer;

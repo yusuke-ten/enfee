@@ -1,19 +1,20 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RouteComponentProps, withRouter } from 'react-router';
 import { withInitialize } from 'containers/hocs';
 import { RootState } from 'modules/reducer';
 import useSelect from 'src/hooks/useSelect';
+import useQuery from 'src/hooks/useQuery';
+import useOpen from 'src/hooks/useOpen';
 import { userProfileInAsideSelector } from 'services/selectors';
 import { fetchReviewList, reset, fetchReviewDetail } from 'modules/review/actions';
 import { selectReviews } from 'modules/review/selectors';
 import { storeFilteringLinks, followerFilteringTabs } from 'src/const/Link';
 import { ReviewsTemplate } from 'components/templates';
 
-const ReviewsPageContainer: React.FC<RouteComponentProps<{ store: string }>> = ({
-  match,
-}) => {
-  const { store } = match.params;
+const ReviewsPageContainer: React.FC = () => {
+  // query paramから絞り込み情報を取得
+  const query = useQuery();
+  const store = query.get('store');
 
   const dispatch = useDispatch();
   const categorySelectProps = useSelect('');
@@ -22,13 +23,13 @@ const ReviewsPageContainer: React.FC<RouteComponentProps<{ store: string }>> = (
     dispatch(reset.reviewList());
     dispatch(
       fetchReviewList.start({
-        store,
+        store: store || undefined,
         category: categorySelectProps.value || undefined,
       }),
     );
   }, [store, categorySelectProps.value]);
 
-  const [isModal, toggleModal] = useState<boolean>(false);
+  const { isOpen, handleClose, handleOpen } = useOpen();
   const [currentScrollY, setCurrentScrollY] = useState<number>(0);
   const [selectedFilterMenu, setSelectedFilterMenu] = useState<string>('全体');
 
@@ -36,14 +37,19 @@ const ReviewsPageContainer: React.FC<RouteComponentProps<{ store: string }>> = (
     setSelectedFilterMenu(selectedMenu);
   }, []);
 
-  const openModal = useCallback((reviewId: number) => {
+  const wrappedHandleOpen = useCallback((reviewId: number) => {
+    // window.history.pushState(
+    //   null,
+    //   '',
+    //   `reviews/${reviewId}${window.location.search}`,
+    // );
     setCurrentScrollY(window.scrollY);
-    toggleModal(true);
+    handleOpen();
     dispatch(fetchReviewDetail.start(reviewId));
   }, []);
 
-  const closeModal = useCallback(() => {
-    toggleModal(false);
+  const wrappedHandleClose = useCallback(() => {
+    handleClose();
   }, [currentScrollY]);
 
   const undoScrollTop = () => {
@@ -78,19 +84,21 @@ const ReviewsPageContainer: React.FC<RouteComponentProps<{ store: string }>> = (
   return (
     <ReviewsTemplate
       menuLinks={storeFilteringLinks}
-      isModal={isModal}
-      openModal={openModal}
-      closeModal={closeModal}
       reviews={reviews}
       isLoadingReview={!loaded}
       myProfile={myProfile}
       isLoggedIn={isLoggedIn}
       filterReviewMenuProps={filterMenuProps}
-      currentScrollY={currentScrollY}
       undoScrollTop={undoScrollTop}
       store={store}
+      modalProps={{
+        open: isOpen,
+        handleOpen: wrappedHandleOpen,
+        handleClose: wrappedHandleClose,
+        currentScrollY,
+      }}
     />
   );
 };
 
-export default withInitialize(withRouter(ReviewsPageContainer));
+export default withInitialize(ReviewsPageContainer);

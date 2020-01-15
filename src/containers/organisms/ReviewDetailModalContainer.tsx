@@ -15,6 +15,10 @@ const ReviewsDetailModalContainer: React.FC<{
   onClose: () => void;
   open: boolean;
 }> = ({ onClose, open }) => {
+  // MEMO: reviewDetail取得アクションのディスパッチをここに移動したい
+  //       review一覧ページとuserページで使用しているcomponentなので共通化できる
+  //       url: reviews/:reviewId?...のようなURLからIDを取得してdispatchさせる
+  //       そうすれば、上のcomponentではmodalを開く処理だけでよくなりシンプルになる
   const passProps = {
     ...useStateProps(),
     onClose,

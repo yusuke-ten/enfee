@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import Layout from 'components/Layout';
 import { ReviewMenu, Aside, PenLauncherButton } from 'components/molecules';
 import { ReviewPanelList } from 'components/organisms';
@@ -7,38 +7,36 @@ import FilterReviewMenu, {
   FilterReviewProps,
 } from 'components/organisms/FilterReviewMenu';
 import { FilteringLink } from 'components/molecules/Menu/ReviewMenu';
-import { ReviewDetailModalContainer } from 'containers/organisms';
 import { Review, MyProfileInAside } from 'services/models';
 import { Color, Size, getPageTitle } from 'src/const';
 
 interface Props {
   menuLinks: FilteringLink[];
-  isModal: boolean;
-  openModal: (reviewId: number) => void;
-  closeModal: () => void;
   reviews: Review[];
   isLoadingReview: boolean;
   myProfile: MyProfileInAside | null;
   isLoggedIn: boolean;
   filterReviewMenuProps: FilterReviewProps;
-  currentScrollY: number;
   undoScrollTop: () => void;
-  store?: string;
+  store?: string | null;
+  modalProps: {
+    open: boolean;
+    handleClose: () => void;
+    handleOpen: (reviewId: number) => void;
+    currentScrollY: number;
+  };
 }
 
 const ReviewsTemplate: React.FC<Props> = ({
   menuLinks,
-  isModal,
-  openModal,
-  closeModal,
   reviews,
   isLoadingReview,
   myProfile,
   isLoggedIn,
   filterReviewMenuProps,
-  currentScrollY,
   undoScrollTop,
   store,
+  modalProps,
 }) => {
   return (
     <Layout title={getPageTitle['/reviews/:store'](store)} withHeader>
@@ -51,8 +49,8 @@ const ReviewsTemplate: React.FC<Props> = ({
             <StyledFilterReviewMenu {...filterReviewMenuProps} />
             <ReviewPanelList
               reviews={reviews}
-              openModal={openModal}
               isLoadingReview={isLoadingReview}
+              modalProps={modalProps}
             />
           </MainWrapper>
           <AsideWrapper>
@@ -63,26 +61,9 @@ const ReviewsTemplate: React.FC<Props> = ({
       <LauncherWrapper>
         <PenLauncherButton to="/reviews/new" />
       </LauncherWrapper>
-      {/* {isModal ? ( */}
-      <>
-        {isModal && <BackgroundFixedStyle currentScrollY={currentScrollY} />}
-        <ReviewDetailModalContainer onClose={closeModal} open={isModal} />
-      </>
-      {/* ) : (
-        <>{undoScrollTop()}</>
-      )} */}
     </Layout>
   );
 };
-
-/* modal表示時に背景をスクロール出来ないよう固定するために使用 */
-const BackgroundFixedStyle = createGlobalStyle<{ currentScrollY: number }>`
-  #root {
-    position: fixed;
-    width: 100%;
-    top: -${props => props.currentScrollY}px;
-  }
-`;
 
 const Body = styled.div`
   min-height: calc(100vh - 50px);
@@ -101,7 +82,6 @@ const NavWrapper = styled.div`
   top: 1em;
 `;
 const MainWrapper = styled.div`
-  /* margin-left: 16px; */
   width: 460px;
 `;
 const AsideWrapper = styled.div`

@@ -14,7 +14,13 @@ interface ReviewMenuProps {
 const ReviewMenu: React.FC<ReviewMenuProps> = ({ links }) => (
   <>
     {links.map(({ text, to }) => (
-      <StyledMenuItem key={to} to={to} exact>
+      <StyledMenuItem
+        key={to}
+        to={to}
+        exact
+        // search paramsまですべて一致している時にアクティブにするため
+        isActive={(_, location) => location.pathname + location.search === `${to}`}
+      >
         {text}
       </StyledMenuItem>
     ))}
