@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { InputType } from 'components/atoms/Input/TextInput';
 import { TextInput, Label, WarnTxt } from 'components/atoms';
@@ -26,13 +26,13 @@ const Field: React.FC<Props> = ({
 }) => {
   const [focus, toggleFocus] = useState<boolean>(false);
 
-  const onBlurHandler = () => {
+  const onBlurHandler = useCallback(() => {
     toggleFocus(false);
-  };
+  }, []);
 
-  const onFocusHandler = () => {
+  const onFocusHandler = useCallback(() => {
     toggleFocus(true);
-  };
+  }, []);
 
   return (
     <Wrapper>

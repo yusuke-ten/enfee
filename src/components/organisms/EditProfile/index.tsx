@@ -1,14 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  AvatarCircle,
-  Label,
-  Select,
-  Button,
-  Heading,
-  CameraIcon,
-} from 'components/atoms';
-import { Field, TextAreaField } from 'components/molecules';
+import { AvatarCircle, Label, Button, Heading, CameraIcon } from 'components/atoms';
+import { Field, TextAreaField, SelectField } from 'components/molecules';
 import { ImageCroppingModal } from 'components/organisms';
 import { StoreItem } from 'services/models';
 import { SETTINGS_PROFILE } from 'src/const/Sentence';
@@ -103,8 +96,12 @@ const EditProfile: React.FC<EditProfileProps> = ({
         />
       </Section>
       <Section>
-        <Label>{SETTINGS_PROFILE.store.label}</Label>
-        <Select title={SETTINGS_PROFILE.store.label} name="hoge" {...storeProps} />
+        <SelectField
+          title={SETTINGS_PROFILE.store.title}
+          label={SETTINGS_PROFILE.store.label}
+          name="store"
+          {...storeProps}
+        />
       </Section>
       <Section>
         <TextAreaField

@@ -17,6 +17,7 @@ export const SETTINGS_PROFILE = {
   },
   store: {
     label: '好きなコンビニ:',
+    title: '好きなコンビニ',
   },
   save: '保存する',
 };

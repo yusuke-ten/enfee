@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Color, Size } from 'src/const';
 
-interface Item {
+export interface Item {
   id: number;
   name: string;
 }
@@ -15,6 +15,8 @@ export interface SelectProps {
   handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   size?: number;
   isError?: boolean;
+  onMouseLeave?: (e: React.MouseEvent<HTMLSelectElement, MouseEvent>) => void;
+  onMouseEnter?: (e: React.MouseEvent<HTMLSelectElement, MouseEvent>) => void;
 }
 
 const Select: React.FC<SelectProps> = ({
@@ -24,6 +26,8 @@ const Select: React.FC<SelectProps> = ({
   value,
   handleChange,
   isError = false,
+  onMouseLeave = () => {},
+  onMouseEnter = () => {},
   ...props
 }) => {
   return (
@@ -33,6 +37,8 @@ const Select: React.FC<SelectProps> = ({
         value={String(value)}
         onChange={handleChange}
         isError={isError}
+        onMouseLeave={onMouseLeave}
+        onMouseEnter={onMouseEnter}
       >
         <option value="0">{title}を選択してください</option>
         {items.map(item => (
@@ -92,8 +98,6 @@ const Container = styled.div`
   border-radius: 0;
   box-shadow: none;
   font-size: ${Size.FONT_RATIO.MEDIUM}rem;
-  /* margin-top: 9px;
-  margin-bottom: 15px; */
   width: 100%;
 
   &::before,
@@ -148,11 +152,9 @@ const StyledSelect = styled.select<{ isError: boolean }>`
   border-radius: 0;
   font-weight: 400;
   color: inherit;
-  /* padding: 0.9rem; */
   height: 36px;
   padding: 0 4px;
   line-height: normal;
-  transition: border-color 0.1s ease, outline 0.1s ease;
 
   &:focus {
     box-shadow: 0 3px 4px rgba(skyblue, 0.3) inset;
