@@ -59,12 +59,10 @@ const Inner = styled.div`
   align-self: flex-start;
   padding: 7rem 0.625rem 7rem;
   margin: 0 auto;
-  /* width: 100%; */
-  /* max-width: 725px;
-  min-height: 250px; */
   pointer-events: none;
 `;
 const Content = styled.div`
+  border-radius: 3px;
   overflow: initial;
   height: 100%;
   width: 100%;
@@ -84,7 +82,9 @@ const Heading = styled.div`
   line-height: 40px;
   text-align: center;
 `;
-const CloseButton = styled.div`
+const CloseButton = styled.button`
+  border: none;
+  border-radius: 50%;
   height: 40px;
   width: 40px;
   position: absolute;

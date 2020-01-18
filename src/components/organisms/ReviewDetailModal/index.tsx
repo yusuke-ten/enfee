@@ -1,10 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Spinner } from 'components/atoms';
 import { Modal } from 'components/molecules';
 import { ReviewDetailArea } from 'components/organisms';
 import CommentAreaContainer from 'containers/organisms/CommentAreaContainer';
 import { ReviewDetail } from 'services/models';
+import { Size } from 'src/const';
 
 interface Props {
   reviewDetail: ReviewDetail | null;
@@ -44,7 +45,7 @@ const ReviewDetailModal: React.FC<Props> = ({
 
   return (
     <Modal onClose={onClose} open={open}>
-      <div>
+      <Wrapper>
         <ReviewDetailArea
           {...{
             productName,
@@ -59,16 +60,25 @@ const ReviewDetailModal: React.FC<Props> = ({
           }}
         />
         <CommentAreaContainer reviewId={reviewId} />
-      </div>
+      </Wrapper>
     </Modal>
   );
 };
 
+const commonStyle = css`
+  width: 60%;
+  min-width: ${Size.BREAK_POINT.MOBILE}px;
+  max-width: 560px;
+`;
 const SpinnerContainer = styled.div`
+  ${commonStyle}
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+const Wrapper = styled.div`
+  ${commonStyle}
 `;
 
 export default ReviewDetailModal;

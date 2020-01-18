@@ -2,7 +2,6 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 import { object, boolean } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 import camelcaseKeys from 'camelcase-keys';
 import reviewsData from 'services/mocks/json/reviews.json';
 import { Review } from 'services/models';
@@ -22,7 +21,12 @@ storiesOf('organisms/ReviewPanelList', module)
   .add('ReviewPanelList', () => (
     <ReviewPanelList
       reviews={object('reviews', reviews)}
-      openModal={action('openModal')}
       isLoadingReview={boolean('isLoadingReview', false)}
+      modalProps={{
+        open: true,
+        handleClose: () => {},
+        handleOpen: () => {},
+        currentScrollY: 0,
+      }}
     />
   ));

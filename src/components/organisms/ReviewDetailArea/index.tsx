@@ -34,7 +34,7 @@ const ReviewDetailArea: React.FC<Props> = ({
           imageUrl={user.imageUrl}
           displayName={user.displayName}
           loginName={user.loginName}
-          userPageUrl={`/users/${user.id}`}
+          userPageUrl={`/users/${user.displayName}`}
         />
       </Section>
       <Line />

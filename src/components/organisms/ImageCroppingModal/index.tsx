@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Modal } from 'components/molecules';
 import { Button, ImageIcon } from 'components/atoms';
@@ -79,6 +79,7 @@ const Cropping: React.FC<{
         imageSize.current.width * scaleRef.current,
         imageSize.current.height * scaleRef.current,
       );
+      // 切り抜きサイズの四角を描く
       ctx.strokeStyle = 'rgba(0, 123, 255, 0.8)';
       ctx.lineWidth = 1;
       ctx.strokeRect(
@@ -87,6 +88,20 @@ const Cropping: React.FC<{
         outCanvas.width,
         outCanvas.height,
       );
+      // アバター画像に適用される位置の円を描く
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.8)';
+      ctx.lineWidth = 0.1;
+      ctx.beginPath();
+      ctx.arc(
+        (inputCanvas.width - outCanvas.width) / 2 + outCanvas.width / 2,
+        (inputCanvas.height - outCanvas.height) / 2 + outCanvas.height / 2,
+        outCanvas.width / 2,
+        0,
+        2 * Math.PI,
+      );
+      ctx.stroke();
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+      ctx.fill();
     }
   };
 
@@ -182,17 +197,10 @@ const Cropping: React.FC<{
       for (let i = 0; i < bin.length; i++) {
         buffer[i] = bin.charCodeAt(i);
       }
-      // binary -> Blob
-      // const blob = new Blob([buffer.buffer], { type: 'image/png' });
       // binary -> File
       const file = new File([buffer.buffer], `${fileName}.png`, {
         type: 'image/png',
       });
-
-      console.log('切り取ったファイルを変換しました。結果: ');
-      console.log('to base64 data: ', base64);
-      // console.log('to blob: ', blob);
-      console.log('to file: ', file);
 
       return [createObjectURL(file), file];
     }
