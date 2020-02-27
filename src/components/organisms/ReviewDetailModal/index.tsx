@@ -45,40 +45,29 @@ const ReviewDetailModal: React.FC<Props> = ({
 
   return (
     <Modal onClose={onClose} open={open}>
-      <Wrapper>
-        <ReviewDetailArea
-          {...{
-            productName,
-            content,
-            picturePath,
-            rating,
-            createdAt,
-            price,
-            storeName,
-            productCategoryName,
-            user,
-          }}
-        />
-        <CommentAreaContainer reviewId={reviewId} />
-      </Wrapper>
+      <ReviewDetailArea
+        {...{
+          productName,
+          content,
+          picturePath,
+          rating,
+          createdAt,
+          price,
+          storeName,
+          productCategoryName,
+          user,
+        }}
+      />
+      <CommentAreaContainer reviewId={reviewId} />
     </Modal>
   );
 };
 
-const commonStyle = css`
-  width: 60%;
-  min-width: ${Size.BREAK_POINT.MOBILE}px;
-  max-width: 560px;
-`;
 const SpinnerContainer = styled.div`
-  ${commonStyle}
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-const Wrapper = styled.div`
-  ${commonStyle}
 `;
 
 export default ReviewDetailModal;

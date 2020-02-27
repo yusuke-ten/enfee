@@ -6,7 +6,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   entry: path.join(__dirname, '/src/index.tsx'),
   output: {
-    filename: 'js/bundle.js',
+    filename: 'js/[name].bundle.js',
+    chunkFilename: 'js/[name].bundle.js',
     path: path.join(__dirname, '/dist'),
     publicPath: '/',
   },
@@ -90,15 +91,26 @@ module.exports = {
   optimization: {
     splitChunks: {
       cacheGroups: {
-        vendor: {
-          test: /node_modules/,
+        defaultVendors: {
+          // Note the usage of `[\\/]` as a path separator for cross-platform compatibility.
+          test: /react|react-dom|react-router|react-route-dom|styled-components|redux|react-redux|axios/,
           name: 'vendor',
-          chunks: 'initial',
-          enforce: true
         }
       }
     }
   },
+  // optimization: {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       vendor: {
+  //         test: /node_modules/,
+  //         name: 'vendor',
+  //         chunks: 'initial',
+  //         enforce: true
+  //       }
+  //     }
+  //   }
+  // },
   plugins: [
     new ExtractTextPlugin({
       filename: 'css/style.css',

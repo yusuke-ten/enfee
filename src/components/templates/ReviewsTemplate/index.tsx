@@ -80,6 +80,10 @@ const NavWrapper = styled.div`
   width: 200px;
   position: sticky;
   top: 1em;
+
+  @media (max-width: ${Size.BREAK_POINT.MOBILE}px) {
+    display: none;
+  }
 `;
 const MainWrapper = styled.div`
   width: 460px;

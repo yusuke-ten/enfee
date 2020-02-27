@@ -57,19 +57,29 @@ const Inner = styled.div`
   height: auto;
   display: flex;
   align-self: flex-start;
-  padding: 7rem 0.625rem 7rem;
-  margin: 0 auto;
+  padding: 7rem 14px;
   pointer-events: none;
+  width: 100%;
 `;
 const Content = styled.div`
   border-radius: 3px;
   overflow: initial;
   height: 100%;
-  width: 100%;
   background-color: white;
+  margin: 0 auto;
+  width: 70%;
+  max-width: 630px;
 
   > * {
     pointer-events: all;
+  }
+
+  @media (max-width: ${Size.BREAK_POINT.TABLET}px) {
+    width: 90%;
+  }
+
+  @media (max-width: ${Size.BREAK_POINT.MOBILE}px) {
+    width: 100%;
   }
 `;
 const Header = styled.div`
